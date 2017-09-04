@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.0.2" orientation="orthogonal" renderorder="right-down" width="20" height="13" tilewidth="16" tileheight="16" nextobjectid="5">
+<map version="1.0" tiledversion="1.0.2" orientation="orthogonal" renderorder="right-down" width="25" height="13" tilewidth="16" tileheight="16" nextobjectid="4">
  <tileset firstgid="1" source="tiles.tsx"/>
- <layer name="Background" width="20" height="13">
+ <layer name="background" width="25" height="13">
   <data encoding="base64" compression="zlib">
-   eJxjZGBgYBzFo3gUj2IgBgAWVgEF
+   eJxjZGBgYBzFo3gUj+JRDMYAQP0BRg==
   </data>
  </layer>
- <layer name="graphics" width="20" height="13">
+ <layer name="graphics" width="25" height="13">
   <data encoding="base64" compression="zlib">
-   eJxjZ2BgYKcyphYYNW/UvFHzCJvHSiUMMgsAc0kBjw==
+   eJxjZ2BgYKcDpiUYtWPUjlE7Ro4drDTEIPMB/5gByw==
   </data>
  </layer>
  <objectgroup name="blocks">
-  <object id="1" x="16" y="192" width="287" height="16"/>
-  <object id="2" x="304" y="16" width="16" height="192"/>
-  <object id="3" x="0" y="16" width="16" height="192"/>
+  <object id="1" x="384.667" y="0" width="16.6667" height="208.667"/>
+  <object id="2" x="-4.66667" y="-5.33333" width="20" height="213.333"/>
+  <object id="3" x="16" y="192" width="367.333" height="17.3333"/>
  </objectgroup>
 </map>
