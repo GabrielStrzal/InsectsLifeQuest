@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" tiledversion="1.0.2" orientation="orthogonal" renderorder="right-down" width="25" height="13" tilewidth="64" tileheight="64" nextobjectid="4">
+ <tileset firstgid="1" source="tiles2.tsx"/>
+ <layer name="background" width="25" height="13">
+  <data encoding="base64" compression="zlib">
+   eJxjZGBgYBzFo3gUj+JRDMYAQP0BRg==
+  </data>
+ </layer>
+ <layer name="graphics" width="25" height="13">
+  <data encoding="base64" compression="zlib">
+   eJxjZ2BgYKcDpiUYtWPUjlE7Ro4drDTEIPMB/5gByw==
+  </data>
+ </layer>
+ <objectgroup name="blocks">
+  <object id="1" x="-6" y="2" width="66" height="828"/>
+  <object id="2" x="1536.36" y="3.0303" width="63.6364" height="827.273"/>
+  <object id="3" x="60.6061" y="763.636" width="1469.7" height="60.6061"/>
+ </objectgroup>
+</map>
