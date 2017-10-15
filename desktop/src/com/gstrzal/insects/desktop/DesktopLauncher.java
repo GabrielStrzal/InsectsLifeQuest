@@ -3,12 +3,13 @@ package com.gstrzal.insects.desktop;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplication;
 import com.badlogic.gdx.backends.lwjgl.LwjglApplicationConfiguration;
 import com.gstrzal.insects.Insects;
+import com.gstrzal.insects.config.GameConfig;
 
 public class DesktopLauncher {
 	public static void main (String[] arg) {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
-		config.width = 1200;
-		config.height = 624;
+		config.width = (int) GameConfig.SCREEN_WIDTH;
+		config.height = (int)GameConfig.SCREEN_HEIGHT;
 		new LwjglApplication(new Insects(), config);
 	}
 }

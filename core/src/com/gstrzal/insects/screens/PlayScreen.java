@@ -1,9 +1,10 @@
 package com.gstrzal.insects.screens;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
@@ -13,7 +14,9 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.gstrzal.insects.Insects;
+import com.gstrzal.insects.sprites.Ant;
 import com.gstrzal.insects.tools.B2WorldCreator;
+import com.gstrzal.insects.utils.GdxUtils;
 
 
 /**
@@ -22,8 +25,12 @@ import com.gstrzal.insects.tools.B2WorldCreator;
 
 public class PlayScreen implements Screen{
     private Insects game;
+    private TextureAtlas atlas;
+
+
     private OrthographicCamera gamecam;
     private Viewport gamePort;
+    private Ant ant;
 
     private TmxMapLoader mapLoader;
     private TiledMap map;
@@ -33,17 +40,24 @@ public class PlayScreen implements Screen{
     private Box2DDebugRenderer b2dr;
 
     public PlayScreen(Insects game){
+        atlas = new TextureAtlas("sprites_32x32.txt");
         this.game = game;
         gamecam = new OrthographicCamera();
         gamePort = new FitViewport(Insects.V_WIDTH / Insects.PPM, Insects.V_HEIGHT/ Insects.PPM, gamecam);
+
         world = new World(new Vector2(0,-10), true);
         b2dr = new Box2DDebugRenderer();
         mapLoader = new TmxMapLoader();
-        map = mapLoader.load("ins_level_02.tmx");
+        map = mapLoader.load("ins_level_05.tmx");
         renderer = new OrthogonalTiledMapRenderer(map, 1 / Insects.PPM);
         gamecam.position.set(gamePort.getWorldWidth()/2,gamePort.getWorldHeight()/2, 0);
+        ant = new Ant(world, this);
+
         new B2WorldCreator(world, map);
 
+    }
+    public TextureAtlas getAtlas(){
+        return atlas;
     }
     @Override
     public void show() {
@@ -54,23 +68,33 @@ public class PlayScreen implements Screen{
         handleInput(dt);
 
         world.step(1/60f, 6, 2);
+        ant.update(dt);
+        //gamecam.position.x = ant.b2body.getPosition().x;
         gamecam.update();
         renderer.setView(gamecam);
 
     }
     private void handleInput(float dt) {
-
+        if (Gdx.input.isKeyJustPressed(Input.Keys.UP)){
+            ant.b2body.applyLinearImpulse(new Vector2(0,4f),ant.b2body.getWorldCenter(), true);
+        }
+        if (Gdx.input.isKeyPressed(Input.Keys.RIGHT) && ant.b2body.getLinearVelocity().x <= 2){
+            ant.b2body.applyLinearImpulse(new Vector2(0.1f, 0), ant.b2body.getWorldCenter(), true);
+        }
+        if (Gdx.input.isKeyPressed(Input.Keys.LEFT) && ant.b2body.getLinearVelocity().x >= -2){
+            ant.b2body.applyLinearImpulse(new Vector2(-0.1f, 0), ant.b2body.getWorldCenter(), true);
+        }
     }
     @Override
     public void render(float delta) {
         update(delta);
-        Gdx.gl.glClearColor(0,0,0,1);
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        GdxUtils.clearScreen();
         renderer.render();
 
         b2dr.render(world, gamecam.combined);
         game.batch.setProjectionMatrix(gamecam.combined);
         game.batch.begin();
+        ant.draw(game.batch);
         game.batch.end();
 
     }
