@@ -3,10 +3,15 @@ package com.gstrzal.insects.screens;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.utils.viewport.FitViewport;
+import com.badlogic.gdx.utils.viewport.Viewport;
 import com.gstrzal.insects.Insects;
 import com.gstrzal.insects.config.GameConfig;
 import com.gstrzal.insects.utils.GdxUtils;
+import com.gstrzal.insects.utils.ViewportUtils;
 
 /**
  * Created by Gabriel on 09/10/2017.
@@ -14,16 +19,16 @@ import com.gstrzal.insects.utils.GdxUtils;
 
 public class MenuScreen implements Screen {
 
-    private static final int MENU_SCREEN_WIDTH = (int) GameConfig.SCREEN_WIDTH_PX;
-    private static final int MENU_SCREEN_HEIGHT = (int)GameConfig.SCREEN_HEIGHT_PX;
-    private static final int PLAY_BUTTON_WIDTH = 300;
-    private static final int PLAY_BUTTON_HEIGHT = 120;
-    private static final int PLAY_BUTTON_Y = 520;
-    private static final int PLAY_BUTTON_X = 340;
+    private static final float PLAY_BUTTON_WIDTH = 6f;
+    private static final float PLAY_BUTTON_HEIGHT = 2f;
+    private static final int PLAY_BUTTON_Y = 10;
+    private static final int PLAY_BUTTON_X = 17;
 
 
 
-
+    private OrthographicCamera camera;
+    private Viewport viewport;
+    private ShapeRenderer renderer;
 
     private Insects game;
 
@@ -33,7 +38,9 @@ public class MenuScreen implements Screen {
 
     public MenuScreen(Insects game){
         this.game = game;
-
+        camera = new OrthographicCamera();
+        viewport = new FitViewport(GameConfig.WORLD_WIDTH_UNITS, GameConfig.WORLD_HEIGHT_UNITS, camera);
+        renderer = new ShapeRenderer();
 
         backgroundImage = new Texture("menu/insects_menu_800x480.png");
         playButton = new Texture("menu/start_button.png");
@@ -58,16 +65,20 @@ public class MenuScreen implements Screen {
     public void render(float delta) {
         update(delta);
         GdxUtils.clearScreen(new Color(0.15f, 0.15f, 0.3f, 1));
+        viewport.apply();
+        game.batch.setProjectionMatrix(camera.combined);
 
         game.batch.begin();
-        game.batch.draw(backgroundImage, (game.V_WIDTH/2) - MENU_SCREEN_WIDTH/2, (game.V_HEIGHT/2) - MENU_SCREEN_HEIGHT/2);
-        game.batch.draw(playButton, PLAY_BUTTON_Y, PLAY_BUTTON_X);
+        game.batch.draw(backgroundImage, 0,0,GameConfig.WORLD_WIDTH_UNITS, GameConfig.WORLD_HEIGHT_UNITS);
+        game.batch.draw(playButton, PLAY_BUTTON_X, PLAY_BUTTON_Y, PLAY_BUTTON_WIDTH, PLAY_BUTTON_HEIGHT);
         game.batch.end();
 
     }
 
     @Override
     public void resize(int width, int height) {
+        viewport.update(width, height, true);
+        ViewportUtils.debugPixelPerUnit(viewport);
 
     }
 
@@ -90,5 +101,6 @@ public class MenuScreen implements Screen {
     public void dispose() {
         playButton.dispose();
         backgroundImage.dispose();
+        renderer.dispose();
     }
 }
