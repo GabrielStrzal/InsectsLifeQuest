@@ -14,8 +14,8 @@ import com.gstrzal.insects.utils.GdxUtils;
 
 public class MenuScreen implements Screen {
 
-    private static final int MENU_SCREEN_WIDTH = (int) GameConfig.SCREEN_WIDTH;
-    private static final int MENU_SCREEN_HEIGHT = (int)GameConfig.SCREEN_HEIGHT;
+    private static final int MENU_SCREEN_WIDTH = (int) GameConfig.SCREEN_WIDTH_PX;
+    private static final int MENU_SCREEN_HEIGHT = (int)GameConfig.SCREEN_HEIGHT_PX;
     private static final int PLAY_BUTTON_WIDTH = 300;
     private static final int PLAY_BUTTON_HEIGHT = 120;
     private static final int PLAY_BUTTON_Y = 520;
@@ -45,7 +45,7 @@ public class MenuScreen implements Screen {
 
     }
     private void handleInput(float dt) {
-        if (Gdx.input.justTouched()){
+        if (Gdx.input.isTouched()){
             game.setScreen(new PlayScreen(game));
         }
     }

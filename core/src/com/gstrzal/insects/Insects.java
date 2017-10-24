@@ -8,8 +8,8 @@ import com.gstrzal.insects.screens.MenuScreen;
 
 
 public class Insects extends Game {
-	public static final int V_WIDTH = (int)GameConfig.SCREEN_WIDTH;
-	public static final int V_HEIGHT = (int)GameConfig.SCREEN_HEIGHT;
+	public static final int V_WIDTH = (int)GameConfig.SCREEN_WIDTH_PX;
+	public static final int V_HEIGHT = (int)GameConfig.SCREEN_HEIGHT_PX;
 	public static final float PPM = 1;
 
 
