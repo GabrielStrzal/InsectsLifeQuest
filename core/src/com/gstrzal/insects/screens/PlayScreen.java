@@ -14,6 +14,7 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.gstrzal.insects.Insects;
+import com.gstrzal.insects.config.GameConfig;
 import com.gstrzal.insects.sprites.Ant;
 import com.gstrzal.insects.tools.B2WorldCreator;
 import com.gstrzal.insects.utils.GdxUtils;
@@ -43,13 +44,13 @@ public class PlayScreen implements Screen{
         atlas = new TextureAtlas("sprites_32x32.txt");
         this.game = game;
         gamecam = new OrthographicCamera();
-        gamePort = new FitViewport(Insects.V_WIDTH / Insects.PPM, Insects.V_HEIGHT/ Insects.PPM, gamecam);
+        gamePort = new FitViewport(GameConfig.WORLD_WIDTH_UNITS, GameConfig.WORLD_HEIGHT_UNITS, gamecam);
 
-        world = new World(new Vector2(0,-32), true);
+        world = new World(new Vector2(0,-1), true);
         b2dr = new Box2DDebugRenderer();
         mapLoader = new TmxMapLoader();
         map = mapLoader.load("ins_level_05.tmx");
-        renderer = new OrthogonalTiledMapRenderer(map, 1 / Insects.PPM);
+        renderer = new OrthogonalTiledMapRenderer(map, 0.0315f); //TODO
         gamecam.position.set(gamePort.getWorldWidth()/2,gamePort.getWorldHeight()/2, 0);
         ant = new Ant(world, this);
 
