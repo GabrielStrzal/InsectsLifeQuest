@@ -45,7 +45,7 @@ public class PlayScreen implements Screen{
         gamecam = new OrthographicCamera();
         gamePort = new FitViewport(Insects.V_WIDTH / Insects.PPM, Insects.V_HEIGHT/ Insects.PPM, gamecam);
 
-        world = new World(new Vector2(0,-10), true);
+        world = new World(new Vector2(0,-32), true);
         b2dr = new Box2DDebugRenderer();
         mapLoader = new TmxMapLoader();
         map = mapLoader.load("ins_level_05.tmx");
@@ -75,14 +75,14 @@ public class PlayScreen implements Screen{
 
     }
     private void handleInput(float dt) {
-        if (Gdx.input.isKeyJustPressed(Input.Keys.UP)){
-            ant.b2body.applyLinearImpulse(new Vector2(0,4f),ant.b2body.getWorldCenter(), true);
+        if (Gdx.input.isKeyJustPressed(Input.Keys.UP)&& ant.b2body.getLinearVelocity().y <= 32){
+            ant.b2body.applyLinearImpulse(new Vector2(0,32f),ant.b2body.getWorldCenter(), true);
         }
-        if (Gdx.input.isKeyPressed(Input.Keys.RIGHT) && ant.b2body.getLinearVelocity().x <= 2){
-            ant.b2body.applyLinearImpulse(new Vector2(0.1f, 0), ant.b2body.getWorldCenter(), true);
+        if (Gdx.input.isKeyPressed(Input.Keys.RIGHT) && ant.b2body.getLinearVelocity().x <= 32){
+            ant.b2body.applyLinearImpulse(new Vector2(32f, 0), ant.b2body.getWorldCenter(), true);
         }
-        if (Gdx.input.isKeyPressed(Input.Keys.LEFT) && ant.b2body.getLinearVelocity().x >= -2){
-            ant.b2body.applyLinearImpulse(new Vector2(-0.1f, 0), ant.b2body.getWorldCenter(), true);
+        if (Gdx.input.isKeyPressed(Input.Keys.LEFT) && ant.b2body.getLinearVelocity().x >= -32){
+            ant.b2body.applyLinearImpulse(new Vector2(-32f, 0), ant.b2body.getWorldCenter(), true);
         }
     }
     @Override

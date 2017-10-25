@@ -47,7 +47,7 @@ public class Ant extends Sprite {
 
         FixtureDef fdef = new FixtureDef();
         CircleShape shape = new CircleShape();
-        shape.setRadius(6/ Insects.PPM);
+        shape.setRadius(16/ Insects.PPM);
         fdef.filter.categoryBits = Insects.ANT_BIT;
         fdef.filter.maskBits = Insects.DEFAULT_BIT | Insects.COIN_BIT | Insects.BRICK_BIT;
 
