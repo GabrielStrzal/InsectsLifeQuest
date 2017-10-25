@@ -75,7 +75,7 @@ public class PlayScreen implements Screen{
 
     }
     private void handleInput(float dt) {
-        if (Gdx.input.isKeyJustPressed(Input.Keys.UP)&& ant.b2body.getLinearVelocity().y <= 32){
+        if (Gdx.input.isKeyJustPressed(Input.Keys.UP)&& ant.b2body.getLinearVelocity().y == 0){
             ant.b2body.applyLinearImpulse(new Vector2(0,32f),ant.b2body.getWorldCenter(), true);
         }
         if (Gdx.input.isKeyPressed(Input.Keys.RIGHT) && ant.b2body.getLinearVelocity().x <= 32){
