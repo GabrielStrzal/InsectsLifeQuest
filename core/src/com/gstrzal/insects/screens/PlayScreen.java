@@ -48,7 +48,7 @@ public class PlayScreen implements Screen{
         world = new World(new Vector2(0,-32), true);
         b2dr = new Box2DDebugRenderer();
         mapLoader = new TmxMapLoader();
-        map = mapLoader.load("ins_level_05.tmx");
+        map = mapLoader.load("ins_level_06.tmx");
         renderer = new OrthogonalTiledMapRenderer(map, 1 / Insects.PPM);
         gamecam.position.set(gamePort.getWorldWidth()/2,gamePort.getWorldHeight()/2, 0);
         ant = new Ant(world, this);
