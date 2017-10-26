@@ -14,9 +14,11 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.gstrzal.insects.Insects;
+import com.gstrzal.insects.config.GameConfig;
 import com.gstrzal.insects.sprites.Ant;
 import com.gstrzal.insects.tools.B2WorldCreator;
 import com.gstrzal.insects.utils.GdxUtils;
+import com.gstrzal.insects.utils.debug.DebugCameraController;
 
 
 /**
@@ -38,6 +40,9 @@ public class PlayScreen implements Screen{
 
     private World world;
     private Box2DDebugRenderer b2dr;
+
+    //camera debug
+    private DebugCameraController debugCameraController;
 
     public PlayScreen(Insects game){
         atlas = new TextureAtlas("sprites_32x32.txt");
@@ -62,6 +67,10 @@ public class PlayScreen implements Screen{
     @Override
     public void show() {
 
+        //camera debug
+        debugCameraController = new DebugCameraController();
+        debugCameraController.setStartPosition(GameConfig.SCREEN_WIDTH_PX/2, GameConfig.SCREEN_HEIGHT_PX/2);
+
     }
 
     public void update(float dt){
@@ -69,7 +78,6 @@ public class PlayScreen implements Screen{
 
         world.step(1/60f, 6, 2);
         ant.update(dt);
-        //gamecam.position.x = ant.b2body.getPosition().x;
         gamecam.update();
         renderer.setView(gamecam);
 
@@ -85,7 +93,7 @@ public class PlayScreen implements Screen{
             ant.b2body.applyLinearImpulse(new Vector2(-32f, 0), ant.b2body.getWorldCenter(), true);
         }
 
-
+        //Return to menu screen
         if (Gdx.input.isKeyJustPressed(Input.Keys.M)){
             game.setScreen(new MenuScreen(game));
         }
@@ -94,6 +102,11 @@ public class PlayScreen implements Screen{
     }
     @Override
     public void render(float delta) {
+        //camera debug
+        debugCameraController.handleDebugInput(delta);
+        debugCameraController.applyTo(gamecam);
+
+        
         update(delta);
         GdxUtils.clearScreen();
         renderer.render();

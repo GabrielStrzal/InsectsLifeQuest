@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.GL20;
 
 /**
  * Created by Gabriel on 15/10/2017.
+ * Based on Goran's course
  */
 
 public class GdxUtils {
