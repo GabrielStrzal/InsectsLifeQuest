@@ -49,6 +49,8 @@ public class PlayScreen implements Screen{
     private World world;
     private Box2DDebugRenderer b2dr;
 
+    private boolean debugGrid = false;
+
     //camera debug
     private DebugCameraController debugCameraController;
 
@@ -111,6 +113,10 @@ public class PlayScreen implements Screen{
             game.setScreen(new MenuScreen(game));
         }
 
+        //Turn debugGrid on/of
+        if (Gdx.input.isKeyJustPressed(Input.Keys.G)){
+            debugGrid = debugGrid? false: true;
+        }
 
     }
     @Override
@@ -135,8 +141,9 @@ public class PlayScreen implements Screen{
 
     }
     private void renderDebug() {
-
-        ViewportUtils.drawGrid(gamePort, renderer, 32);
+        if(debugGrid) {
+            ViewportUtils.drawGrid(gamePort, renderer, 32);
+        }
     }
 
     @Override
