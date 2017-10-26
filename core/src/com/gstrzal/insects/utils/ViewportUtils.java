@@ -11,6 +11,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
  */
 
 public class ViewportUtils {
+
     private static final Logger log = new Logger(ViewportUtils.class.getName(), Logger.DEBUG);
 
     private static final int DEFAULT_CELL_SIZE = 1;

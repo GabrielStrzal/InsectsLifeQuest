@@ -5,12 +5,14 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
+import com.badlogic.gdx.utils.Logger;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.gstrzal.insects.Insects;
@@ -18,6 +20,7 @@ import com.gstrzal.insects.config.GameConfig;
 import com.gstrzal.insects.sprites.Ant;
 import com.gstrzal.insects.tools.B2WorldCreator;
 import com.gstrzal.insects.utils.GdxUtils;
+import com.gstrzal.insects.utils.ViewportUtils;
 import com.gstrzal.insects.utils.debug.DebugCameraController;
 
 
@@ -26,6 +29,9 @@ import com.gstrzal.insects.utils.debug.DebugCameraController;
  */
 
 public class PlayScreen implements Screen{
+
+    private static final Logger log = new Logger(PlayScreen.class.getName(), Logger.DEBUG);
+
     private Insects game;
     private TextureAtlas atlas;
 
@@ -36,7 +42,9 @@ public class PlayScreen implements Screen{
 
     private TmxMapLoader mapLoader;
     private TiledMap map;
-    private OrthogonalTiledMapRenderer renderer;
+    private OrthogonalTiledMapRenderer mapRenderer;
+
+    private ShapeRenderer renderer;
 
     private World world;
     private Box2DDebugRenderer b2dr;
@@ -45,16 +53,19 @@ public class PlayScreen implements Screen{
     private DebugCameraController debugCameraController;
 
     public PlayScreen(Insects game){
+
         atlas = new TextureAtlas("sprites_32x32.txt");
         this.game = game;
         gamecam = new OrthographicCamera();
         gamePort = new FitViewport(Insects.V_WIDTH / Insects.PPM, Insects.V_HEIGHT/ Insects.PPM, gamecam);
 
+
+
         world = new World(new Vector2(0,-32), true);
         b2dr = new Box2DDebugRenderer();
         mapLoader = new TmxMapLoader();
         map = mapLoader.load("ins_level_06.tmx");
-        renderer = new OrthogonalTiledMapRenderer(map, 1 / Insects.PPM);
+        mapRenderer = new OrthogonalTiledMapRenderer(map, 1 / Insects.PPM);
         gamecam.position.set(gamePort.getWorldWidth()/2,gamePort.getWorldHeight()/2, 0);
         ant = new Ant(world, this);
 
@@ -66,6 +77,8 @@ public class PlayScreen implements Screen{
     }
     @Override
     public void show() {
+
+        renderer = new ShapeRenderer();
 
         //camera debug
         debugCameraController = new DebugCameraController();
@@ -79,7 +92,7 @@ public class PlayScreen implements Screen{
         world.step(1/60f, 6, 2);
         ant.update(dt);
         gamecam.update();
-        renderer.setView(gamecam);
+        mapRenderer.setView(gamecam);
 
     }
     private void handleInput(float dt) {
@@ -106,10 +119,11 @@ public class PlayScreen implements Screen{
         debugCameraController.handleDebugInput(delta);
         debugCameraController.applyTo(gamecam);
 
-        
+
         update(delta);
         GdxUtils.clearScreen();
-        renderer.render();
+        mapRenderer.render();
+        mapRenderer.render();
 
         b2dr.render(world, gamecam.combined);
         game.batch.setProjectionMatrix(gamecam.combined);
@@ -117,11 +131,18 @@ public class PlayScreen implements Screen{
         ant.draw(game.batch);
         game.batch.end();
 
+        renderDebug();
+
+    }
+    private void renderDebug() {
+
+        ViewportUtils.drawGrid(gamePort, renderer, 32);
     }
 
     @Override
     public void resize(int width, int height) {
         gamePort.update(width, height);
+        ViewportUtils.debugPixelPerUnit(gamePort);
     }
 
     @Override
@@ -142,7 +163,7 @@ public class PlayScreen implements Screen{
     @Override
     public void dispose() {
         map.dispose();
-        renderer.dispose();
+        mapRenderer.dispose();
         world.dispose();
         b2dr.dispose();
     }
