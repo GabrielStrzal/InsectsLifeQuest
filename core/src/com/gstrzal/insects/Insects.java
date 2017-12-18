@@ -7,6 +7,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.gstrzal.insects.config.GameConfig;
 import com.gstrzal.insects.screens.MenuScreen;
+import com.gstrzal.insects.screens.StartScreen;
 
 
 public class Insects extends Game {
@@ -27,7 +28,7 @@ public class Insects extends Game {
 	public void create () {
 		Gdx.app.setLogLevel(Application.LOG_DEBUG);
 		batch = new SpriteBatch();
-		setScreen(new MenuScreen(this));
+		setScreen(new StartScreen(this));
 
 	}
 

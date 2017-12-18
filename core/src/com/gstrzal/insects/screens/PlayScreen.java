@@ -110,8 +110,9 @@ public class PlayScreen implements Screen{
 
         //Return to menu screen
         if (Gdx.input.isKeyJustPressed(Input.Keys.M)){
-            game.setScreen(new MenuScreen(game));
+            game.setScreen(new StartScreen(game));
         }
+
 
         //Turn debugGrid on/of
         if (Gdx.input.isKeyJustPressed(Input.Keys.G)){
