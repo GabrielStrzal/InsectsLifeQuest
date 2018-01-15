@@ -17,7 +17,7 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.gstrzal.insects.Insects;
 import com.gstrzal.insects.config.GameConfig;
-import com.gstrzal.insects.sprites.Ant;
+import com.gstrzal.insects.entity.Ant;
 import com.gstrzal.insects.tools.B2WorldCreator;
 import com.gstrzal.insects.utils.GdxUtils;
 import com.gstrzal.insects.utils.ViewportUtils;

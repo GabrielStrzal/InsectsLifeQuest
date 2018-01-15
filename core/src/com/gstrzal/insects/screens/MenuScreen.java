@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.gstrzal.insects.Insects;
+import com.gstrzal.insects.assets.AssetPaths;
 import com.gstrzal.insects.config.GameConfig;
 import com.gstrzal.insects.utils.GdxUtils;
 import com.gstrzal.insects.utils.ViewportUtils;
@@ -42,8 +43,8 @@ public class MenuScreen implements Screen {
         viewport = new FitViewport(GameConfig.WORLD_WIDTH_UNITS, GameConfig.WORLD_HEIGHT_UNITS, camera);
         renderer = new ShapeRenderer();
 
-        backgroundImage = new Texture("menu/insects_menu_800x480.png");
-        playButton = new Texture("menu/start_button.png");
+        backgroundImage = new Texture(AssetPaths.MENU_BACKGROUND);
+        playButton = new Texture(AssetPaths.MENU_PLAYBUTTON);
         //playButtonActive = new Texture("menu/start_button_active.png");
     }
 
