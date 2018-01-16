@@ -10,6 +10,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ActorGestureListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
+import com.badlogic.gdx.utils.Logger;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.gstrzal.insects.Insects;
 import com.gstrzal.insects.assets.AssetPaths;
@@ -31,6 +32,8 @@ public class StartScreen extends ScreenAdapter {
     private Stage stage;
     private final Insects game;
 
+
+
     public StartScreen(Insects game) {
         this.game = game;
     }
@@ -38,12 +41,12 @@ public class StartScreen extends ScreenAdapter {
     public void show() {
         stage = new Stage(new FitViewport(GameConfig.SCREEN_WIDTH_PX, GameConfig.SCREEN_HEIGHT_PX));
         Gdx.input.setInputProcessor(stage);
-        backgroundTexture = new Texture(Gdx.files.internal(AssetPaths.MENU_BACKGROUND));
+        backgroundTexture = game.assetManager.get(AssetPaths.MENU_BACKGROUND);
         Image background = new Image(backgroundTexture);
         stage.addActor(background);
 
-        playTexture = new Texture(Gdx.files.internal(AssetPaths.MENU_PLAYBUTTON));
-        playPressTexture = new Texture(Gdx.files.internal(AssetPaths.MENU_PLAYBUTTON_ACTIVE));
+        playTexture = game.assetManager.get(AssetPaths.MENU_PLAYBUTTON);
+        playPressTexture = game.assetManager.get(AssetPaths.MENU_PLAYBUTTON_ACTIVE);
         ImageButton play = new ImageButton(
                 new TextureRegionDrawable(new TextureRegion(playTexture)),
                 new TextureRegionDrawable(new TextureRegion(playPressTexture)));

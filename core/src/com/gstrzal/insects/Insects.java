@@ -4,8 +4,11 @@ package com.gstrzal.insects;
 import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.utils.Logger;
 import com.gstrzal.insects.config.GameConfig;
+import com.gstrzal.insects.screens.LoadingScreen;
 import com.gstrzal.insects.screens.MenuScreen;
 import com.gstrzal.insects.screens.StartScreen;
 
@@ -23,12 +26,15 @@ public class Insects extends Game {
 	public static final short DESTROYED_BIT = 16;
 
 	public SpriteBatch batch;
+	public final AssetManager assetManager = new AssetManager();
 
 	@Override
 	public void create () {
 		Gdx.app.setLogLevel(Application.LOG_DEBUG);
+		assetManager.getLogger().setLevel(Logger.DEBUG);
+
 		batch = new SpriteBatch();
-		setScreen(new StartScreen(this));
+		setScreen(new LoadingScreen(this));
 
 	}
 
@@ -40,5 +46,6 @@ public class Insects extends Game {
 	@Override
 	public void dispose () {
 		batch.dispose();
+		assetManager.dispose();
 	}
 }
