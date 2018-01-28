@@ -3,11 +3,11 @@ package com.gstrzal.insects.screens;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.maps.tiled.TiledMap;
-import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
@@ -16,8 +16,9 @@ import com.badlogic.gdx.utils.Logger;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.gstrzal.insects.Insects;
+import com.gstrzal.insects.assets.AssetPaths;
 import com.gstrzal.insects.config.GameConfig;
-import com.gstrzal.insects.entity.Ant;
+import com.gstrzal.insects.entity.*;
 import com.gstrzal.insects.tools.B2WorldCreator;
 import com.gstrzal.insects.utils.GdxUtils;
 import com.gstrzal.insects.utils.ViewportUtils;
@@ -33,14 +34,12 @@ public class PlayScreen implements Screen{
     private static final Logger log = new Logger(PlayScreen.class.getName(), Logger.DEBUG);
 
     private Insects game;
-    private TextureAtlas atlas;
 
 
     private OrthographicCamera gamecam;
     private Viewport gamePort;
-    private Ant ant;
+    private LBug lBug;
 
-    private TmxMapLoader mapLoader;
     private TiledMap map;
     private OrthogonalTiledMapRenderer mapRenderer;
 
@@ -48,34 +47,42 @@ public class PlayScreen implements Screen{
 
     private World world;
     private Box2DDebugRenderer b2dr;
+    private AssetManager assetManager;
 
     private boolean debugGrid = false;
+
+    private boolean isDirectionRight = true;
+    private boolean isDirectionUp = false;
+    private boolean blockJump = false;
+
+    private float xVelocity = 100f;
+    private float yVelocity = 400f;
+    private float gravity = -400f;
 
     //camera debug
     private DebugCameraController debugCameraController;
 
     public PlayScreen(Insects game){
 
-        atlas = new TextureAtlas("sprites_32x32.txt");
+        this.assetManager = game.getAssetManager();
+
+
         this.game = game;
         gamecam = new OrthographicCamera();
         gamePort = new FitViewport(Insects.V_WIDTH / Insects.PPM, Insects.V_HEIGHT/ Insects.PPM, gamecam);
 
 
 
-        world = new World(new Vector2(0,-32), true);
+        world = new World(new Vector2(0, gravity), true);
         b2dr = new Box2DDebugRenderer();
-        mapLoader = new TmxMapLoader();
-        map = mapLoader.load("ins_level_06.tmx");
+
+        map = assetManager.get(AssetPaths.LEVEL_07);
         mapRenderer = new OrthogonalTiledMapRenderer(map, 1 / Insects.PPM);
         gamecam.position.set(gamePort.getWorldWidth()/2,gamePort.getWorldHeight()/2, 0);
-        ant = new Ant(world, this);
+        lBug = new LBug(world, (Texture) assetManager.get(AssetPaths.JOANINHA));
 
         new B2WorldCreator(world, map);
 
-    }
-    public TextureAtlas getAtlas(){
-        return atlas;
     }
     @Override
     public void show() {
@@ -92,21 +99,61 @@ public class PlayScreen implements Screen{
         handleInput(dt);
 
         world.step(1/60f, 6, 2);
-        ant.update(dt);
+        lBug.update(dt);
         gamecam.update();
         mapRenderer.setView(gamecam);
 
     }
     private void handleInput(float dt) {
-        if (Gdx.input.isKeyJustPressed(Input.Keys.UP)&& ant.b2body.getLinearVelocity().y == 0){
-            ant.b2body.applyLinearImpulse(new Vector2(0,32f),ant.b2body.getWorldCenter(), true);
+
+        if(isDirectionRight && !blockJump){
+            lBug.b2body.setLinearVelocity(xVelocity,0);
         }
-        if (Gdx.input.isKeyPressed(Input.Keys.RIGHT) && ant.b2body.getLinearVelocity().x <= 32){
-            ant.b2body.applyLinearImpulse(new Vector2(32f, 0), ant.b2body.getWorldCenter(), true);
+        else if (!isDirectionRight && !blockJump){
+            lBug.b2body.setLinearVelocity(-xVelocity,0);
         }
-        if (Gdx.input.isKeyPressed(Input.Keys.LEFT) && ant.b2body.getLinearVelocity().x >= -32){
-            ant.b2body.applyLinearImpulse(new Vector2(-32f, 0), ant.b2body.getWorldCenter(), true);
+        if (isDirectionUp){
+            if(isDirectionRight){
+                lBug.b2body.applyLinearImpulse(new Vector2(xVelocity,yVelocity),lBug.b2body.getWorldCenter(), true);
+            }else{
+                lBug.b2body.applyLinearImpulse(new Vector2(-xVelocity,yVelocity),lBug.b2body.getWorldCenter(), true);
+            }
+            isDirectionUp = false;
         }
+
+
+
+
+        if (Gdx.input.isKeyJustPressed(Input.Keys.UP) && !blockJump){
+            isDirectionUp = true;
+            blockJump = true;
+        }
+        if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)){
+            isDirectionRight = true;
+        }
+        if (Gdx.input.isKeyPressed(Input.Keys.LEFT)){
+            isDirectionRight = false;
+        }
+
+        if(lBug.b2body.getLinearVelocity().x < 40 && lBug.b2body.getLinearVelocity().x > -40){
+            blockJump = false;
+            isDirectionUp = false;
+        }
+
+        //mobile
+        if (Gdx.input.isTouched()) {
+            if ((Gdx.input.getY() < Gdx.graphics.getHeight() / 4) && !blockJump) {
+                isDirectionUp = true;
+                blockJump = true;
+            }else if (Gdx.input.getX() > Gdx.graphics.getWidth() / 2){
+                isDirectionRight = true;
+            } else {
+                isDirectionRight = false;
+            }
+        }
+
+
+
 
         //Return to menu screen
         if (Gdx.input.isKeyJustPressed(Input.Keys.M)){
@@ -120,6 +167,7 @@ public class PlayScreen implements Screen{
         }
 
     }
+
     @Override
     public void render(float delta) {
         //camera debug
@@ -130,12 +178,11 @@ public class PlayScreen implements Screen{
         update(delta);
         GdxUtils.clearScreen();
         mapRenderer.render();
-        mapRenderer.render();
 
         b2dr.render(world, gamecam.combined);
         game.batch.setProjectionMatrix(gamecam.combined);
         game.batch.begin();
-        ant.draw(game.batch);
+        lBug.draw(game.batch);
         game.batch.end();
 
         renderDebug();

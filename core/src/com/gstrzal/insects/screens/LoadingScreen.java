@@ -1,11 +1,13 @@
 package com.gstrzal.insects.screens;
 
 import com.badlogic.gdx.ScreenAdapter;
+import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.gstrzal.insects.Insects;
@@ -27,8 +29,11 @@ public class LoadingScreen extends ScreenAdapter{
     private Camera camera;
     private float progress = 0;
     private final Insects insects;
+    protected final AssetManager assetManager;
+
     public LoadingScreen(Insects insects) {
         this.insects = insects;
+        this.assetManager = insects.getAssetManager();
     }
     @Override
     public void resize(int width, int height) {
@@ -41,9 +46,12 @@ public class LoadingScreen extends ScreenAdapter{
         camera.update();
         viewport = new FitViewport(GameConfig.SCREEN_WIDTH_PX, GameConfig.SCREEN_HEIGHT_PX, camera);
         shapeRenderer = new ShapeRenderer();
-        insects.assetManager.load(AssetPaths.MENU_BACKGROUND, Texture.class);
-        insects.assetManager.load(AssetPaths.MENU_PLAYBUTTON, Texture.class);
-        insects.assetManager.load(AssetPaths.MENU_PLAYBUTTON_ACTIVE, Texture.class);
+        assetManager.load(AssetPaths.MENU_BACKGROUND, Texture.class);
+        assetManager.load(AssetPaths.MENU_PLAYBUTTON, Texture.class);
+        assetManager.load(AssetPaths.MENU_PLAYBUTTON_ACTIVE, Texture.class);
+        assetManager.load(AssetPaths.LEVEL_06, TiledMap.class);
+        assetManager.load(AssetPaths.LEVEL_07, TiledMap.class);
+        assetManager.load(AssetPaths.JOANINHA, Texture.class);
     }
     @Override
     public void render(float delta) {
@@ -56,10 +64,10 @@ public class LoadingScreen extends ScreenAdapter{
         shapeRenderer.dispose();
     }
     private void update() {
-        if (insects.assetManager.update()) {
+        if (assetManager.update()) {
             insects.setScreen(new StartScreen(insects));
         } else {
-            progress = insects.assetManager.getProgress();
+            progress = assetManager.getProgress();
         }
     }
     private void draw() {

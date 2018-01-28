@@ -2,6 +2,7 @@ package com.gstrzal.insects.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
+import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -31,22 +32,24 @@ public class StartScreen extends ScreenAdapter {
 
     private Stage stage;
     private final Insects game;
+    private final AssetManager assetManager;
 
 
 
     public StartScreen(Insects game) {
         this.game = game;
+        this.assetManager = game.getAssetManager();
     }
 
     public void show() {
         stage = new Stage(new FitViewport(GameConfig.SCREEN_WIDTH_PX, GameConfig.SCREEN_HEIGHT_PX));
         Gdx.input.setInputProcessor(stage);
-        backgroundTexture = game.assetManager.get(AssetPaths.MENU_BACKGROUND);
+        backgroundTexture = assetManager.get(AssetPaths.MENU_BACKGROUND);
         Image background = new Image(backgroundTexture);
         stage.addActor(background);
 
-        playTexture = game.assetManager.get(AssetPaths.MENU_PLAYBUTTON);
-        playPressTexture = game.assetManager.get(AssetPaths.MENU_PLAYBUTTON_ACTIVE);
+        playTexture = assetManager.get(AssetPaths.MENU_PLAYBUTTON);
+        playPressTexture = assetManager.get(AssetPaths.MENU_PLAYBUTTON_ACTIVE);
         ImageButton play = new ImageButton(
                 new TextureRegionDrawable(new TextureRegion(playTexture)),
                 new TextureRegionDrawable(new TextureRegion(playPressTexture)));

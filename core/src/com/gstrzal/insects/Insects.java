@@ -5,7 +5,10 @@ import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.utils.Logger;
 import com.gstrzal.insects.config.GameConfig;
 import com.gstrzal.insects.screens.LoadingScreen;
@@ -26,7 +29,7 @@ public class Insects extends Game {
 	public static final short DESTROYED_BIT = 16;
 
 	public SpriteBatch batch;
-	public final AssetManager assetManager = new AssetManager();
+	private final AssetManager assetManager = new AssetManager();
 
 	@Override
 	public void create () {
@@ -34,6 +37,7 @@ public class Insects extends Game {
 		assetManager.getLogger().setLevel(Logger.DEBUG);
 
 		batch = new SpriteBatch();
+		assetManager.setLoader(TiledMap.class, new TmxMapLoader(new InternalFileHandleResolver()));
 		setScreen(new LoadingScreen(this));
 
 	}
@@ -48,4 +52,8 @@ public class Insects extends Game {
 		batch.dispose();
 		assetManager.dispose();
 	}
+
+    public AssetManager getAssetManager() {
+        return assetManager;
+    }
 }

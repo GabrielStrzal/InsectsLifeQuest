@@ -26,7 +26,7 @@ public class Ant extends Sprite {
 
 
     public Ant(World world, PlayScreen screen){
-        super(screen.getAtlas().findRegion("ant_32x32"));
+//        super(screen.getAtlas().findRegion("ant_32x32"));
         this.world = world;
 
         antStand = new TextureRegion(getTexture(),0, 0, 32, 32);
