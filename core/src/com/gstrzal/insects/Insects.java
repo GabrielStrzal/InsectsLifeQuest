@@ -12,8 +12,6 @@ import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.utils.Logger;
 import com.gstrzal.insects.config.GameConfig;
 import com.gstrzal.insects.screens.LoadingScreen;
-import com.gstrzal.insects.screens.MenuScreen;
-import com.gstrzal.insects.screens.StartScreen;
 
 
 public class Insects extends Game {
