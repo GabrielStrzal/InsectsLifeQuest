@@ -10,7 +10,7 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.gstrzal.insects.Insects;
-import com.gstrzal.insects.screens.PlayScreen;
+import com.gstrzal.insects.screens.GameScreen;
 
 /**
  * Created by Gabriel on 15/10/2017.
@@ -25,7 +25,7 @@ public class Ant extends Sprite {
 
 
 
-    public Ant(World world, PlayScreen screen){
+    public Ant(World world, GameScreen screen){
 //        super(screen.getAtlas().findRegion("ant_32x32"));
         this.world = world;
 

@@ -65,7 +65,7 @@ public class LoadingScreen extends ScreenAdapter{
     }
     private void update() {
         if (assetManager.update()) {
-            insects.setScreen(new StartScreen(insects));
+            insects.setScreen(new MenuScreen(insects));
         } else {
             progress = assetManager.getProgress();
         }

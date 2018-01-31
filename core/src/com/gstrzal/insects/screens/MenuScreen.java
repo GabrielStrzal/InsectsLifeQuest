@@ -11,7 +11,6 @@ import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ActorGestureListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
-import com.badlogic.gdx.utils.Logger;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.gstrzal.insects.Insects;
 import com.gstrzal.insects.assets.AssetPaths;
@@ -21,7 +20,7 @@ import com.gstrzal.insects.config.GameConfig;
  * Created by lelo on 18/12/17.
  */
 
-public class StartScreen extends ScreenAdapter {
+public class MenuScreen extends ScreenAdapter {
 
     private static final int PLAY_BUTTON_X = 510;
     private static final int PLAY_BUTTON_Y = 330;
@@ -36,7 +35,7 @@ public class StartScreen extends ScreenAdapter {
 
 
 
-    public StartScreen(Insects game) {
+    public MenuScreen(Insects game) {
         this.game = game;
         this.assetManager = game.getAssetManager();
     }
@@ -60,7 +59,7 @@ public class StartScreen extends ScreenAdapter {
             public void tap(InputEvent event, float x, float y, int count,
                             int button) {
                 super.tap(event, x, y, count, button);
-                game.setScreen(new PlayScreen(game));
+                game.setScreen(new GameScreen(game));
                 dispose();
             }
         });

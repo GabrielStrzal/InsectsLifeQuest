@@ -29,9 +29,9 @@ import com.gstrzal.insects.utils.debug.DebugCameraController;
  * Created by Gabriel on 03/09/2017.
  */
 
-public class PlayScreen implements Screen{
+public class GameScreen implements Screen{
 
-    private static final Logger log = new Logger(PlayScreen.class.getName(), Logger.DEBUG);
+    private static final Logger log = new Logger(GameScreen.class.getName(), Logger.DEBUG);
 
     private Insects game;
 
@@ -62,7 +62,7 @@ public class PlayScreen implements Screen{
     //camera debug
     private DebugCameraController debugCameraController;
 
-    public PlayScreen(Insects game){
+    public GameScreen(Insects game){
 
         this.assetManager = game.getAssetManager();
 
@@ -157,7 +157,7 @@ public class PlayScreen implements Screen{
 
         //Return to menu screen
         if (Gdx.input.isKeyJustPressed(Input.Keys.M)){
-            game.setScreen(new StartScreen(game));
+            game.setScreen(new MenuScreen(game));
         }
 
 
