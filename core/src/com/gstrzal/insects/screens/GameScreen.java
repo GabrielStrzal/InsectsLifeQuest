@@ -20,6 +20,7 @@ import com.gstrzal.insects.assets.AssetPaths;
 import com.gstrzal.insects.config.GameConfig;
 import com.gstrzal.insects.entity.*;
 import com.gstrzal.insects.tools.B2WorldCreator;
+import com.gstrzal.insects.tools.WorldContactListener;
 import com.gstrzal.insects.utils.GdxUtils;
 import com.gstrzal.insects.utils.ViewportUtils;
 import com.gstrzal.insects.utils.debug.DebugCameraController;
@@ -85,6 +86,8 @@ public class GameScreen implements Screen{
         lBug = new LBug(world, (Texture) assetManager.get(AssetPaths.JOANINHA));
 
         new B2WorldCreator(world, map);
+        world.setContactListener(new WorldContactListener());
+
 
     }
     @Override

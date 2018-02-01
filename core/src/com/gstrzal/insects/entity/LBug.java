@@ -98,10 +98,14 @@ public class LBug extends Sprite {
         fdef.shape = shape;
         b2body.createFixture(fdef);
 
-        EdgeShape head = new EdgeShape();
-        head.set(new Vector2(-2/Insects.PPM, 6 /Insects.PPM), new Vector2(2/Insects.PPM, 6 /Insects.PPM));
-        fdef.shape = head;
+
+
+        PolygonShape shape2 = new PolygonShape();
+        shape2.setAsBox(10/ Insects.PPM ,4/ Insects.PPM , new Vector2(0,-25/ Insects.PPM),0);
+        fdef.shape = shape2;
         fdef.isSensor = true;
-        b2body.createFixture(fdef).setUserData("head");
+        fdef.filter.categoryBits = Insects.ANT_BIT;
+        fdef.filter.maskBits = Insects.DEFAULT_BIT | Insects.COIN_BIT | Insects.BRICK_BIT;
+        b2body.createFixture(fdef).setUserData("base");
     }
 }
