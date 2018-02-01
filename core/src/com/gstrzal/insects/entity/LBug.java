@@ -40,7 +40,6 @@ public class LBug extends Sprite {
 
     public LBug(World world, Texture texture){
         super(texture);
-        this.setSize(WIDTH, HEIGHT);
         this.world = world;
 
         TextureRegion[] regions = TextureRegion.split(texture, WIDTH, HEIGHT)[0];
@@ -51,6 +50,7 @@ public class LBug extends Sprite {
         jumpDown = regions[3];
 
         defineLBug();
+        setBounds(0,0, WIDTH/Insects.PPM, HEIGHT/Insects.PPM);
     }
 
     public void update(float dt){
@@ -83,14 +83,13 @@ public class LBug extends Sprite {
 
     public void defineLBug(){
         BodyDef bdef = new BodyDef();
-        bdef.position.set(32/ Insects.PPM + 32, 52); //initial position
+        bdef.position.set(32/ Insects.PPM, 52/ Insects.PPM ); //initial position
         bdef.type = BodyDef.BodyType.DynamicBody;
         b2body  = world.createBody(bdef);
 
         FixtureDef fdef = new FixtureDef();
-
         PolygonShape shape = new PolygonShape();
-        shape.setAsBox(16,26);
+        shape.setAsBox(16/ Insects.PPM ,26/ Insects.PPM );
 
         fdef.filter.categoryBits = Insects.ANT_BIT;
         fdef.filter.maskBits = Insects.DEFAULT_BIT | Insects.COIN_BIT | Insects.BRICK_BIT;

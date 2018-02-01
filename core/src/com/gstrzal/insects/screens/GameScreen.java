@@ -37,6 +37,7 @@ public class GameScreen implements Screen{
 
 
     private OrthographicCamera gamecam;
+    private OrthographicCamera b2dcam;
     private Viewport gamePort;
     private LBug lBug;
 
@@ -55,9 +56,9 @@ public class GameScreen implements Screen{
     private boolean isDirectionUp = false;
     private boolean blockJump = false;
 
-    private float xVelocity = 100f;
-    private float yVelocity = 400f;
-    private float gravity = -400f;
+    private float xVelocity = 1f;
+    private float yVelocity = 1f;
+    private float gravity = -10f;
 
     //camera debug
     private DebugCameraController debugCameraController;
@@ -69,6 +70,8 @@ public class GameScreen implements Screen{
 
         this.game = game;
         gamecam = new OrthographicCamera();
+        b2dcam = new OrthographicCamera();
+        b2dcam.setToOrtho(false,Insects.V_WIDTH / Insects.PPM, Insects.V_HEIGHT/ Insects.PPM);
         gamePort = new FitViewport(Insects.V_WIDTH / Insects.PPM, Insects.V_HEIGHT/ Insects.PPM, gamecam);
 
 
@@ -101,7 +104,8 @@ public class GameScreen implements Screen{
         world.step(1/60f, 6, 2);
         lBug.update(dt);
         gamecam.update();
-        mapRenderer.setView(gamecam);
+        b2dcam.update();
+        mapRenderer.setView(b2dcam);
 
     }
     private void handleInput(float dt) {
@@ -179,8 +183,8 @@ public class GameScreen implements Screen{
         GdxUtils.clearScreen();
         mapRenderer.render();
 
-        b2dr.render(world, gamecam.combined);
-        game.batch.setProjectionMatrix(gamecam.combined);
+        b2dr.render(world, b2dcam.combined);
+        game.batch.setProjectionMatrix(b2dcam.combined);
         game.batch.begin();
         lBug.draw(game.batch);
         game.batch.end();
