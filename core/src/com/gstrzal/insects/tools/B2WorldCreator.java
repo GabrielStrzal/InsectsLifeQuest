@@ -29,6 +29,7 @@ public class B2WorldCreator {
                 body = world.createBody(bdef);
                 shape.setAsBox((rect.getWidth() / 2) / Insects.PPM, (rect.getHeight() / 2) / Insects.PPM);
                 fdef.shape = shape;
+                fdef.friction = 0;
                 body.createFixture(fdef);
             }
         }

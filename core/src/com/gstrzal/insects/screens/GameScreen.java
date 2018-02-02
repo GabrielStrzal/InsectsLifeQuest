@@ -54,15 +54,15 @@ public class GameScreen implements Screen{
     private boolean debugGrid = false;
 
     private boolean isDirectionRight = true;
-    private boolean isDirectionUp = false;
-    private boolean blockJump = false;
 
     private float xVelocity = 1f;
-    private float yVelocity = 1f;
     private float gravity = -10f;
+    private float jumpSpeed = 250f;
 
     //camera debug
     private DebugCameraController debugCameraController;
+
+    private WorldContactListener worldContactListener;
 
     public GameScreen(Insects game){
 
@@ -86,7 +86,8 @@ public class GameScreen implements Screen{
         lBug = new LBug(world, (Texture) assetManager.get(AssetPaths.JOANINHA));
 
         new B2WorldCreator(world, map);
-        world.setContactListener(new WorldContactListener());
+        worldContactListener = new WorldContactListener();
+        world.setContactListener(worldContactListener);
 
 
     }
@@ -113,27 +114,18 @@ public class GameScreen implements Screen{
     }
     private void handleInput(float dt) {
 
-        if(isDirectionRight && !blockJump){
-            lBug.b2body.setLinearVelocity(xVelocity,0);
+        if(isDirectionRight){
+            lBug.b2body.setLinearVelocity(xVelocity,lBug.b2body.getLinearVelocity().y);
+        }else{
+            lBug.b2body.setLinearVelocity(-xVelocity,lBug.b2body.getLinearVelocity().y);
         }
-        else if (!isDirectionRight && !blockJump){
-            lBug.b2body.setLinearVelocity(-xVelocity,0);
-        }
-        if (isDirectionUp){
-            if(isDirectionRight){
-                lBug.b2body.applyLinearImpulse(new Vector2(xVelocity,yVelocity),lBug.b2body.getWorldCenter(), true);
-            }else{
-                lBug.b2body.applyLinearImpulse(new Vector2(-xVelocity,yVelocity),lBug.b2body.getWorldCenter(), true);
+
+
+
+        if (Gdx.input.isKeyJustPressed(Input.Keys.UP)){
+            if(worldContactListener.isOnGrounds()){
+                lBug.b2body.applyForceToCenter(0,jumpSpeed,true);
             }
-            isDirectionUp = false;
-        }
-
-
-
-
-        if (Gdx.input.isKeyJustPressed(Input.Keys.UP) && !blockJump){
-            isDirectionUp = true;
-            blockJump = true;
         }
         if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)){
             isDirectionRight = true;
@@ -142,23 +134,19 @@ public class GameScreen implements Screen{
             isDirectionRight = false;
         }
 
-        if(lBug.b2body.getLinearVelocity().x < 40 && lBug.b2body.getLinearVelocity().x > -40){
-            blockJump = false;
-            isDirectionUp = false;
-        }
 
         //mobile
         if (Gdx.input.isTouched()) {
-            if ((Gdx.input.getY() < Gdx.graphics.getHeight() / 4) && !blockJump) {
-                isDirectionUp = true;
-                blockJump = true;
+            if ((Gdx.input.getY() < Gdx.graphics.getHeight() / 4)) {
+                if(worldContactListener.isOnGrounds()){
+                    lBug.b2body.applyForceToCenter(0,jumpSpeed,true);
+                }
             }else if (Gdx.input.getX() > Gdx.graphics.getWidth() / 2){
                 isDirectionRight = true;
             } else {
                 isDirectionRight = false;
             }
         }
-
 
 
 

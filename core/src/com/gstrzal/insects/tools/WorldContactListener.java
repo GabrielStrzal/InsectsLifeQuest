@@ -11,6 +11,16 @@ import com.badlogic.gdx.physics.box2d.Manifold;
  */
 
 public class WorldContactListener implements ContactListener {
+
+    private int onGrounds = 0;
+    public boolean isOnGrounds(){
+        if(onGrounds == 1) {
+            return true;
+        }else{
+            return false;
+        }
+    }
+
     @Override
     public void beginContact(Contact contact) {
         Fixture fixA = contact.getFixtureA();
@@ -20,6 +30,7 @@ public class WorldContactListener implements ContactListener {
             Fixture head = fixA.getUserData() == "head" ? fixA : fixB;
             Fixture object = head == fixA ? fixB : fixA;
             System.out.println("Contact with Base");
+            onGrounds++;
 
         }
 
@@ -33,6 +44,7 @@ public class WorldContactListener implements ContactListener {
             Fixture head = fixA.getUserData() == "head" ? fixA : fixB;
             Fixture object = head == fixA ? fixB : fixA;
             System.out.println("Ended contact with Base");
+            onGrounds--;
 
         }
     }

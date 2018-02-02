@@ -60,7 +60,6 @@ public class LBug extends Sprite {
         float xSpeed = b2body.getLinearVelocity().x;
         float ySpeed = b2body.getLinearVelocity().y;
 
-
         setPosition(b2body.getPosition().x - getWidth() /2, b2body.getPosition().y - getHeight()/2);
 
         //set Texture
