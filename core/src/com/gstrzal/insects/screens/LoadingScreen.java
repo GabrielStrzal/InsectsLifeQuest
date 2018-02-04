@@ -51,6 +51,7 @@ public class LoadingScreen extends ScreenAdapter{
         assetManager.load(AssetPaths.MENU_PLAYBUTTON_ACTIVE, Texture.class);
         assetManager.load(AssetPaths.LEVEL_06, TiledMap.class);
         assetManager.load(AssetPaths.LEVEL_07, TiledMap.class);
+        assetManager.load(AssetPaths.LEVEL_08, TiledMap.class);
         assetManager.load(AssetPaths.JOANINHA, Texture.class);
     }
     @Override

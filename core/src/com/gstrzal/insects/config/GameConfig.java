@@ -5,10 +5,13 @@ package com.gstrzal.insects.config;
  */
 
 public class GameConfig {
-    public static final float SCREEN_WIDTH_PX = 800f; //pixels
+    public static final float WORLD_WIDTH_UNITS = 25.0f; // world units
     public static final float SCREEN_HEIGHT_PX = 480f; //pixels
 
-    public static final float WORLD_WIDTH_UNITS = 25.0f; // world units
+    //    public static final float SCREEN_HEIGHT_PX = 1080f; //pixels
+    //    public static final float SCREEN_WIDTH_PX = 1920f; //pixels
+
+    public static final float SCREEN_WIDTH_PX = 800f; //pixels
     public static final float WORLD_HEIGHT_UNITS = 15.0f; // world units
 
     public static final float WORLD_CENTER_X_UNITS = WORLD_WIDTH_UNITS / 2f; // world units

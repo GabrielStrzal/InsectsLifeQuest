@@ -7,7 +7,6 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
-import com.badlogic.gdx.physics.box2d.EdgeShape;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
@@ -88,23 +87,23 @@ public class LBug extends Sprite {
 
         FixtureDef fdef = new FixtureDef();
         PolygonShape shape = new PolygonShape();
-        shape.setAsBox(16/ Insects.PPM ,26/ Insects.PPM );
+        shape.setAsBox(15/ Insects.PPM ,26/ Insects.PPM );
 
-        fdef.filter.categoryBits = Insects.ANT_BIT;
-        fdef.filter.maskBits = Insects.DEFAULT_BIT | Insects.COIN_BIT | Insects.BRICK_BIT;
+        fdef.filter.categoryBits = Insects.INSECT_BIT;
+        fdef.filter.maskBits = Insects.COIN_BIT | Insects.BRICK_BIT | Insects.LEVEL_END;
 
 
         fdef.shape = shape;
-        b2body.createFixture(fdef);
+        b2body.createFixture(fdef).setUserData("InsectBody");
 
 
 
         PolygonShape shape2 = new PolygonShape();
-        shape2.setAsBox(10/ Insects.PPM ,4/ Insects.PPM , new Vector2(0,-25/ Insects.PPM),0);
+        shape2.setAsBox(12/ Insects.PPM ,4/ Insects.PPM , new Vector2(0,-25/ Insects.PPM),0);
         fdef.shape = shape2;
         fdef.isSensor = true;
-        fdef.filter.categoryBits = Insects.ANT_BIT;
-        fdef.filter.maskBits = Insects.DEFAULT_BIT | Insects.COIN_BIT | Insects.BRICK_BIT;
+        fdef.filter.categoryBits = Insects.BASE_BIT;
+        fdef.filter.maskBits = Insects.BRICK_BIT | Insects.COIN_BIT;
         b2body.createFixture(fdef).setUserData("base");
     }
 }
