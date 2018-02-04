@@ -15,6 +15,7 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.gstrzal.insects.Insects;
 import com.gstrzal.insects.assets.AssetPaths;
 import com.gstrzal.insects.config.GameConfig;
+import com.gstrzal.insects.utils.GdxUtils;
 
 /**
  * Created by lelo on 18/12/17.
@@ -70,6 +71,7 @@ public class MenuScreen extends ScreenAdapter {
         stage.getViewport().update(width, height, true);
     }
     public void render(float delta) {
+        GdxUtils.clearScreen();
         stage.act(delta);
         stage.draw();
     }
@@ -81,4 +83,5 @@ public class MenuScreen extends ScreenAdapter {
         playTexture.dispose();
         playPressTexture.dispose();
     }
+
 }
