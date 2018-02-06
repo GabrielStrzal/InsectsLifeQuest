@@ -12,19 +12,25 @@ import com.badlogic.gdx.physics.box2d.CircleShape;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
+import com.badlogic.gdx.utils.Array;
 import com.gstrzal.insects.Insects;
 import com.gstrzal.insects.assets.AssetPaths;
+import com.gstrzal.insects.entity.Flower;
 
 /**
  * Created by Gabriel on 03/09/2017.
  */
 
 public class B2WorldCreator {
-    public B2WorldCreator(World world, TiledMap map){
+
+    public Array<Flower> flowers;
+
+    public B2WorldCreator(World world, TiledMap map, Insects insects){
         BodyDef bdef = new BodyDef();
         PolygonShape shape = new PolygonShape();
         FixtureDef fdef = new FixtureDef();
         Body body;
+        flowers = new Array<Flower>();
 
         //Blocks
         for (MapObject object : map.getLayers().get(AssetPaths.MAP_BLOCKS).getObjects().getByType(RectangleMapObject.class)) {
@@ -41,8 +47,8 @@ public class B2WorldCreator {
             body.createFixture(fdef).setUserData(AssetPaths.MAP_BLOCKS);
         }
 
-        //Coins
-        for (MapObject object : map.getLayers().get(AssetPaths.MAP_COINS).getObjects()) {
+        //Flowers
+        for (MapObject object : map.getLayers().get(AssetPaths.MAP_FLOWERS).getObjects()) {
             Ellipse ellipse = ((EllipseMapObject) object).getEllipse();
             bdef.type = BodyDef.BodyType.StaticBody;
             bdef.position.set(ellipse.x / Insects.PPM, ellipse.y/ Insects.PPM);
@@ -50,10 +56,14 @@ public class B2WorldCreator {
             circleShape.setRadius(8/Insects.PPM);
             fdef.shape = circleShape;
             fdef.isSensor = true;
-            fdef.filter.categoryBits = Insects.COIN_BIT;
+            fdef.filter.categoryBits = Insects.FLOWER_BIT;
             fdef.filter.maskBits = Insects.INSECT_BIT;
-            Body coinBody = world.createBody(bdef);
-            coinBody.createFixture(fdef).setUserData(AssetPaths.MAP_COINS);
+            Body flowerBody = world.createBody(bdef);
+            flowerBody.createFixture(fdef).setUserData(AssetPaths.MAP_FLOWERS);
+            Flower f = new Flower(flowerBody, insects);
+            flowerBody.setUserData(f);
+            flowers.add(f);
+
         }
 
         //Level End
@@ -67,8 +77,8 @@ public class B2WorldCreator {
             fdef.isSensor = true;
             fdef.filter.categoryBits = Insects.LEVEL_END;
             fdef.filter.maskBits = Insects.INSECT_BIT;
-            Body coinBody = world.createBody(bdef);
-            coinBody.createFixture(fdef).setUserData(AssetPaths.MAP_END);
+            Body endBody = world.createBody(bdef);
+            endBody.createFixture(fdef).setUserData(AssetPaths.MAP_END);
         }
     }
 }

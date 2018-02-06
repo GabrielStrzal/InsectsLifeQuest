@@ -90,7 +90,7 @@ public class LBug extends Sprite {
         shape.setAsBox(15/ Insects.PPM ,26/ Insects.PPM );
 
         fdef.filter.categoryBits = Insects.INSECT_BIT;
-        fdef.filter.maskBits = Insects.COIN_BIT | Insects.BRICK_BIT | Insects.LEVEL_END;
+        fdef.filter.maskBits = Insects.FLOWER_BIT | Insects.BRICK_BIT | Insects.LEVEL_END;
 
 
         fdef.shape = shape;
@@ -103,7 +103,7 @@ public class LBug extends Sprite {
         fdef.shape = shape2;
         fdef.isSensor = true;
         fdef.filter.categoryBits = Insects.BASE_BIT;
-        fdef.filter.maskBits = Insects.BRICK_BIT | Insects.COIN_BIT;
+        fdef.filter.maskBits = Insects.BRICK_BIT | Insects.FLOWER_BIT;
         b2body.createFixture(fdef).setUserData("base");
     }
 }

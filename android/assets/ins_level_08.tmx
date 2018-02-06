@@ -25,7 +25,7 @@
   <object id="21" x="416.333" y="320.333" width="64.3333" height="31.3333"/>
   <object id="22" x="65" y="256.333" width="318.667" height="31.6667"/>
  </objectgroup>
- <objectgroup name="coins">
+ <objectgroup name="flowers">
   <object id="24" x="208" y="215">
    <ellipse/>
   </object>

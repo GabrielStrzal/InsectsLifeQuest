@@ -1,10 +1,12 @@
 package com.gstrzal.insects.tools;
 
+import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.Contact;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.Manifold;
+import com.badlogic.gdx.utils.Array;
 import com.gstrzal.insects.assets.AssetPaths;
 
 /**
@@ -14,12 +16,11 @@ import com.gstrzal.insects.assets.AssetPaths;
 public class WorldContactListener implements ContactListener {
 
     private int onGrounds = 0;
-    public boolean isOnGrounds(){
-        if(onGrounds == 1) {
-            return true;
-        }else{
-            return false;
-        }
+    private Array<Body> bodiesToRemove;
+
+    public WorldContactListener() {
+        super();
+        bodiesToRemove = new Array<Body>();
     }
 
     @Override
@@ -32,23 +33,14 @@ public class WorldContactListener implements ContactListener {
             onGrounds++;
         }
 
-        if(isContact(contact, "InsectBody", AssetPaths.MAP_COINS)){
-            System.out.println("Contact with Coin");
+        if(isContact(contact, "InsectBody", AssetPaths.MAP_FLOWERS)){
+            System.out.println("Contact with Flower");
+            Fixture flower = fixA.getUserData() == AssetPaths.MAP_FLOWERS ? fixA : fixB;
+            bodiesToRemove.add(flower.getBody());
         }
         if(isContact(contact, "InsectBody", AssetPaths.MAP_END)){
             System.out.println("Contact with Level End");
         }
-
-
-
-//        if(fixA.getUserData() == "base" || fixB.getUserData() == "base"){
-//            Fixture head = fixA.getUserData() == "head" ? fixA : fixB;
-//            Fixture object = head == fixA ? fixB : fixA;
-//            System.out.println("Contact with Base");
-//            onGrounds++;
-//
-//        }
-
     }
 
     @Override
@@ -60,8 +52,8 @@ public class WorldContactListener implements ContactListener {
             System.out.println("Ended contact with Base");
             onGrounds--;
         }
-        if(isContact(contact, "InsectBody", AssetPaths.MAP_COINS)){
-            System.out.println("Ended contact with Coin");
+        if(isContact(contact, "InsectBody", AssetPaths.MAP_FLOWERS)){
+            System.out.println("Ended contact with Flower");
         }
         if(isContact(contact, "InsectBody", AssetPaths.MAP_END)){
             System.out.println("Ended contact with Level End");
@@ -94,5 +86,15 @@ public class WorldContactListener implements ContactListener {
         }else{
             return false;
         }
+    }
+    public boolean isOnGrounds(){
+        if(onGrounds == 1) {
+            return true;
+        }else{
+            return false;
+        }
+    }
+    public Array<Body> getBodiesToRemove() {
+        return bodiesToRemove;
     }
 }

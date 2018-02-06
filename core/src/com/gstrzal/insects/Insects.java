@@ -24,7 +24,7 @@ public class Insects extends Game {
 	public static final short INSECT_BIT = 2;
 	public static final short BASE_BIT = 4;
 	public static final short BRICK_BIT = 8;
-	public static final short COIN_BIT = 16;
+	public static final short FLOWER_BIT = 16;
 	public static final short LEVEL_END = 32;
 
 	public SpriteBatch batch;

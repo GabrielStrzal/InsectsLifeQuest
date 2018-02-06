@@ -10,8 +10,10 @@ import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
+import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Logger;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
@@ -63,6 +65,7 @@ public class GameScreen implements Screen{
     private DebugCameraController debugCameraController;
 
     private WorldContactListener worldContactListener;
+    private B2WorldCreator b2World;
 
     public GameScreen(Insects game){
 
@@ -85,7 +88,7 @@ public class GameScreen implements Screen{
         gamecam.position.set(gamePort.getWorldWidth()/2,gamePort.getWorldHeight()/2, 0);
         lBug = new LBug(world, (Texture) assetManager.get(AssetPaths.JOANINHA));
 
-        new B2WorldCreator(world, map);
+        b2World = new B2WorldCreator(world, map, game);
         worldContactListener = new WorldContactListener();
         world.setContactListener(worldContactListener);
 
@@ -105,6 +108,8 @@ public class GameScreen implements Screen{
     public void update(float dt){
         handleInput(dt);
 
+        collectFlowers();
+
         world.step(1/60f, 6, 2);
         lBug.update(dt);
         gamecam.update();
@@ -112,6 +117,18 @@ public class GameScreen implements Screen{
         mapRenderer.setView(b2dcam);
 
     }
+
+    private void collectFlowers() {
+        Array<Body> bodies = worldContactListener.getBodiesToRemove();
+        for(int i = 0; i < bodies.size; i++) {
+            Body b = bodies.get(i);
+            b2World.flowers.removeValue((Flower) b.getUserData(), true);
+            world.destroyBody(bodies.get(i));
+//            TODO: add Flower number
+        }
+        bodies.clear();
+    }
+
     private void handleInput(float dt) {
 
         if(isDirectionRight){
@@ -177,7 +194,14 @@ public class GameScreen implements Screen{
         b2dr.render(world, b2dcam.combined);
         game.batch.setProjectionMatrix(b2dcam.combined);
         game.batch.begin();
+
+        // draw flowers
+        for(int i = 0; i < b2World.flowers.size; i++) {
+            b2World.flowers.get(i).render(game.batch);
+        }
+
         lBug.draw(game.batch);
+
         game.batch.end();
 
         renderDebug();
