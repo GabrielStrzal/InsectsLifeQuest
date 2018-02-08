@@ -60,7 +60,7 @@ public class MenuScreen extends ScreenAdapter {
             public void tap(InputEvent event, float x, float y, int count,
                             int button) {
                 super.tap(event, x, y, count, button);
-                game.setScreen(new GameScreen(game));
+                game.setScreen(new GameScreen(game, "08"));
                 dispose();
             }
         });
