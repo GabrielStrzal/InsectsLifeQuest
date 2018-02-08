@@ -188,6 +188,7 @@ public class GameScreen implements Screen{
 
 
         update(delta);
+        checkLevelCompleted();
         GdxUtils.clearScreen();
         mapRenderer.render();
 
@@ -207,6 +208,14 @@ public class GameScreen implements Screen{
         renderDebug();
 
     }
+
+    private void checkLevelCompleted() {
+        if (worldContactListener.isLevelFinished()) {
+            worldContactListener.setLevelFinished(false);
+            game.setScreen(new MenuScreen(game));
+        }
+    }
+
     private void renderDebug() {
         if(debugGrid) {
             ViewportUtils.drawGrid(gamePort, renderer, 32);

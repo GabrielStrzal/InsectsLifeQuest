@@ -17,6 +17,8 @@ public class WorldContactListener implements ContactListener {
 
     private int onGrounds = 0;
     private Array<Body> bodiesToRemove;
+    private boolean levelFinished = false;
+
 
     public WorldContactListener() {
         super();
@@ -40,6 +42,7 @@ public class WorldContactListener implements ContactListener {
         }
         if(isContact(contact, "InsectBody", AssetPaths.MAP_END)){
             System.out.println("Contact with Level End");
+            setLevelFinished(true);
         }
     }
 
@@ -96,5 +99,14 @@ public class WorldContactListener implements ContactListener {
     }
     public Array<Body> getBodiesToRemove() {
         return bodiesToRemove;
+    }
+
+
+    public boolean isLevelFinished() {
+        return levelFinished;
+    }
+
+    public void setLevelFinished(boolean levelFinished) {
+        this.levelFinished = levelFinished;
     }
 }
