@@ -59,6 +59,7 @@ public class LoadingScreen extends ScreenAdapter{
         assetManager.load(Constants.MENU_SELECT_LEVEL_BACK_BUTTON_PRESSED, Texture.class);
         assetManager.load(Constants.MENU_SELECT_LEVEL_BUTTON, Texture.class);
         assetManager.load(Constants.MENU_SELECT_LEVEL_BUTTON_PRESSED, Texture.class);
+        assetManager.load(Constants.MENU_SELECT_LEVEL_BUTTON_BLOCKED, Texture.class);
         assetManager.load(Constants.LEVEL_1, TiledMap.class);
         assetManager.load(Constants.LEVEL_2, TiledMap.class);
         assetManager.load(Constants.LEVEL_3, TiledMap.class);

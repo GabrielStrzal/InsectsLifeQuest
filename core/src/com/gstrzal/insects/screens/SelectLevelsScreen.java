@@ -40,6 +40,7 @@ public class SelectLevelsScreen extends ScreenAdapter {
     private Texture backButtonPressedTexture;
     private Texture levelButtonTexture;
     private Texture levelButtonPressedTexture;
+    private Texture levelButtonBlockedTexture;
 
 
     private Stage stage;
@@ -101,13 +102,24 @@ public class SelectLevelsScreen extends ScreenAdapter {
                 new TextureRegionDrawable(new TextureRegion(levelButtonTexture)),
                 new BitmapFont(Gdx.files.internal(Constants.GAME_FONT),false)
         );
+        levelButtonBlockedTexture = assetManager.get(Constants.MENU_SELECT_LEVEL_BUTTON_BLOCKED);
+        ImageTextButton.ImageTextButtonStyle levelImgBlockedStyle = new ImageTextButton.ImageTextButtonStyle(
+                new TextureRegionDrawable(new TextureRegion(levelButtonBlockedTexture)),
+                new TextureRegionDrawable(new TextureRegion(levelButtonBlockedTexture)),
+                new TextureRegionDrawable(new TextureRegion(levelButtonBlockedTexture)),
+                new BitmapFont(Gdx.files.internal(Constants.GAME_FONT),false)
+        );
 
         //add buttons to Table
         for(int row = 0; row< 2; row++) {
             for (int col = 0; col < 5; col++) {
                 ++levelNumber;
-                
-                ImageTextButton levelImg = new ImageTextButton(Integer.toString(levelNumber), levelImgStyle);
+                ImageTextButton levelImg;
+                if(levelNumber <= GameConfig.GAME_MAX_LEVELS) {
+                    levelImg = new ImageTextButton(Integer.toString(levelNumber), levelImgStyle);
+                }else{
+                    levelImg = new ImageTextButton("", levelImgBlockedStyle);
+                }
                 levelImg.setName(Integer.toString(levelNumber));
                 buttonList.add(levelImg);
 

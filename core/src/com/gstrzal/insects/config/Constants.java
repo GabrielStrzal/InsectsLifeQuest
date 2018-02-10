@@ -17,6 +17,7 @@ public class Constants {
     public static final String MENU_SELECT_LEVEL_BACK_BUTTON_PRESSED = "menu/button_back_pressed_88x88.png";
     public static final String MENU_SELECT_LEVEL_BUTTON = "menu/button_level_88x88.png";
     public static final String MENU_SELECT_LEVEL_BUTTON_PRESSED = "menu/button_level_pressed_88x88.png";
+    public static final String MENU_SELECT_LEVEL_BUTTON_BLOCKED = "menu/button_level_blocked_88x88.png";
 
     public static final String GAME_FONT = "fonts/sonic_comic.fnt";
 
