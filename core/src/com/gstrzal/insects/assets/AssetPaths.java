@@ -8,11 +8,9 @@ public class AssetPaths {
     public static final String MENU_BACKGROUND = "menu/insects_menu_800x480.png";
     public static final String MENU_PLAYBUTTON = "menu/start_button.png";
     public static final String MENU_PLAYBUTTON_ACTIVE = "menu/start_button_active.png";
-    public static final String LEVEL_06 = "ins_level_06.tmx";
-    public static final String LEVEL_07 = "ins_level_07.tmx";
-    public static final String LEVEL_08 = "ins_level_08.tmx";
-    public static final String LEVEL_09 = "ins_level_09.tmx";
-    public static final String LEVEL = "ins_level_";
+    public static final String LEVEL_01 = "levels/ins_level_01.tmx";
+    public static final String LEVEL_02 = "levels/ins_level_02.tmx";
+    public static final String LEVEL = "levels/ins_level_";
     public static final String TMX = ".tmx";
     public static final String JOANINHA = "joaninha_128x52.png";
     public static final String FLOWER = "flower_16x16.png";

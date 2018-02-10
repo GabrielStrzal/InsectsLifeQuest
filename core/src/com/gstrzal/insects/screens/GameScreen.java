@@ -212,7 +212,7 @@ public class GameScreen implements Screen{
     private void checkLevelCompleted() {
         if (worldContactListener.isLevelFinished()) {
             worldContactListener.setLevelFinished(false);
-            game.setScreen(new GameScreen(game , "09"));
+            game.setScreen(new GameScreen(game , "02"));
         }
     }
 
