@@ -48,7 +48,11 @@ public class LoadingScreen extends ScreenAdapter{
         shapeRenderer = new ShapeRenderer();
         assetManager.load(Constants.MENU_BACKGROUND, Texture.class);
         assetManager.load(Constants.MENU_PLAYBUTTON, Texture.class);
-        assetManager.load(Constants.MENU_PLAYBUTTON_ACTIVE, Texture.class);
+        assetManager.load(Constants.MENU_PLAYBUTTON_PRESSED, Texture.class);
+        assetManager.load(Constants.MENU_OPTIONS, Texture.class);
+        assetManager.load(Constants.MENU_OPTIONS_PRESSED, Texture.class);
+        assetManager.load(Constants.MENU_SELECT_LEVEL, Texture.class);
+        assetManager.load(Constants.MENU_SELECT_LEVEL_PRESSED, Texture.class);
         assetManager.load(Constants.LEVEL_1, TiledMap.class);
         assetManager.load(Constants.LEVEL_2, TiledMap.class);
         assetManager.load(Constants.LEVEL_3, TiledMap.class);

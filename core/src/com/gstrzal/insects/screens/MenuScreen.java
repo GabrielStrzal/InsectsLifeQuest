@@ -23,12 +23,18 @@ import com.gstrzal.insects.utils.GdxUtils;
 
 public class MenuScreen extends ScreenAdapter {
 
-    private static final int PLAY_BUTTON_X = 510;
-    private static final int PLAY_BUTTON_Y = 330;
+    private static final int PLAY_BUTTON_Y = (int)GameConfig.SCREEN_HEIGHT_PX/5;
+    private static final int BUTTONS_Y = PLAY_BUTTON_Y + 6;
+    private static final int OPTIONS_BUTTON_X = 100;
+    private static final int SELECT_LEVELS_BUTTON_X = 525;
 
     private Texture backgroundTexture;
     private Texture playTexture;
     private Texture playPressTexture;
+    private Texture optionsTexture;
+    private Texture optionsPressTexture;
+    private Texture selectLevelsTexture;
+    private Texture selectLevelsPressTexture;
 
     private Stage stage;
     private final Insects game;
@@ -48,12 +54,13 @@ public class MenuScreen extends ScreenAdapter {
         Image background = new Image(backgroundTexture);
         stage.addActor(background);
 
+        //Play Button
         playTexture = assetManager.get(Constants.MENU_PLAYBUTTON);
-        playPressTexture = assetManager.get(Constants.MENU_PLAYBUTTON_ACTIVE);
+        playPressTexture = assetManager.get(Constants.MENU_PLAYBUTTON_PRESSED);
         ImageButton play = new ImageButton(
                 new TextureRegionDrawable(new TextureRegion(playTexture)),
                 new TextureRegionDrawable(new TextureRegion(playPressTexture)));
-        play.setPosition(PLAY_BUTTON_X, PLAY_BUTTON_Y);
+        play.setPosition(GameConfig.SCREEN_WIDTH_PX/2 - playTexture.getWidth()/2, PLAY_BUTTON_Y);
 
         play.addListener(new ActorGestureListener() {
             @Override
@@ -65,6 +72,46 @@ public class MenuScreen extends ScreenAdapter {
             }
         });
         stage.addActor(play);
+
+        //Options Button
+        optionsTexture = assetManager.get(Constants.MENU_OPTIONS);
+        optionsPressTexture = assetManager.get(Constants.MENU_OPTIONS_PRESSED);
+        ImageButton options = new ImageButton(
+                new TextureRegionDrawable(new TextureRegion(optionsTexture)),
+                new TextureRegionDrawable(new TextureRegion(optionsPressTexture)));
+        options.setPosition(OPTIONS_BUTTON_X, BUTTONS_Y);
+
+        options.addListener(new ActorGestureListener() {
+            @Override
+            public void tap(InputEvent event, float x, float y, int count,
+                            int button) {
+                super.tap(event, x, y, count, button);
+//                game.setScreen(new GameScreen(game, 1));
+//                dispose();
+            }
+        });
+        stage.addActor(options);
+
+        //Select Levels Button
+        selectLevelsTexture = assetManager.get(Constants.MENU_SELECT_LEVEL);
+        selectLevelsPressTexture = assetManager.get(Constants.MENU_SELECT_LEVEL_PRESSED);
+        ImageButton selectLevels = new ImageButton(
+                new TextureRegionDrawable(new TextureRegion(selectLevelsTexture)),
+                new TextureRegionDrawable(new TextureRegion(selectLevelsPressTexture)));
+        selectLevels.setPosition(SELECT_LEVELS_BUTTON_X, BUTTONS_Y);
+
+        selectLevels.addListener(new ActorGestureListener() {
+            @Override
+            public void tap(InputEvent event, float x, float y, int count,
+                            int button) {
+                super.tap(event, x, y, count, button);
+//                game.setScreen(new GameScreen(game, 1));
+//                dispose();
+            }
+        });
+        stage.addActor(selectLevels);
+
+
 
     }
     public void resize(int width, int height) {
