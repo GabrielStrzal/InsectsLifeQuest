@@ -11,7 +11,7 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.gstrzal.insects.Insects;
-import com.gstrzal.insects.assets.AssetPaths;
+import com.gstrzal.insects.config.Constants;
 import com.gstrzal.insects.config.GameConfig;
 import com.gstrzal.insects.utils.GdxUtils;
 
@@ -46,13 +46,13 @@ public class LoadingScreen extends ScreenAdapter{
         camera.update();
         viewport = new FitViewport(GameConfig.SCREEN_WIDTH_PX, GameConfig.SCREEN_HEIGHT_PX, camera);
         shapeRenderer = new ShapeRenderer();
-        assetManager.load(AssetPaths.MENU_BACKGROUND, Texture.class);
-        assetManager.load(AssetPaths.MENU_PLAYBUTTON, Texture.class);
-        assetManager.load(AssetPaths.MENU_PLAYBUTTON_ACTIVE, Texture.class);
-        assetManager.load(AssetPaths.LEVEL_01, TiledMap.class);
-        assetManager.load(AssetPaths.LEVEL_02, TiledMap.class);
-        assetManager.load(AssetPaths.JOANINHA, Texture.class);
-        assetManager.load(AssetPaths.FLOWER, Texture.class);
+        assetManager.load(Constants.MENU_BACKGROUND, Texture.class);
+        assetManager.load(Constants.MENU_PLAYBUTTON, Texture.class);
+        assetManager.load(Constants.MENU_PLAYBUTTON_ACTIVE, Texture.class);
+        assetManager.load(Constants.LEVEL_01, TiledMap.class);
+        assetManager.load(Constants.LEVEL_02, TiledMap.class);
+        assetManager.load(Constants.JOANINHA, Texture.class);
+        assetManager.load(Constants.FLOWER, Texture.class);
     }
     @Override
     public void render(float delta) {

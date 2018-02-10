@@ -18,7 +18,7 @@ import com.badlogic.gdx.utils.Logger;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.gstrzal.insects.Insects;
-import com.gstrzal.insects.assets.AssetPaths;
+import com.gstrzal.insects.config.Constants;
 import com.gstrzal.insects.config.GameConfig;
 import com.gstrzal.insects.entity.*;
 import com.gstrzal.insects.tools.B2WorldCreator;
@@ -83,10 +83,10 @@ public class GameScreen implements Screen{
         world = new World(new Vector2(0, gravity), true);
         b2dr = new Box2DDebugRenderer();
 
-        map = assetManager.get(AssetPaths.LEVEL+level+AssetPaths.TMX);
+        map = assetManager.get(Constants.LEVEL+level+ Constants.TMX);
         mapRenderer = new OrthogonalTiledMapRenderer(map, 1 / Insects.PPM);
         gamecam.position.set(gamePort.getWorldWidth()/2,gamePort.getWorldHeight()/2, 0);
-        lBug = new LBug(world, (Texture) assetManager.get(AssetPaths.JOANINHA));
+        lBug = new LBug(world, (Texture) assetManager.get(Constants.JOANINHA));
 
         b2World = new B2WorldCreator(world, map, game);
         worldContactListener = new WorldContactListener();

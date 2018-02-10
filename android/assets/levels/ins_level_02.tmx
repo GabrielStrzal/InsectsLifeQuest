@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.1" orientation="orthogonal" renderorder="right-down" width="25" height="15" tilewidth="32" tileheight="32" infinite="0" nextobjectid="48">
+<map version="1.0" tiledversion="1.1.1" orientation="orthogonal" renderorder="right-down" width="25" height="15" tilewidth="32" tileheight="32" infinite="0" nextobjectid="49">
  <tileset firstgid="1" source="tiles_32x32_proper.tsx"/>
  <layer name="background" width="25" height="15">
   <data encoding="base64">
@@ -22,8 +22,9 @@
   <object id="39" x="0.10982" y="415.915" width="188.759" height="62.3243"/>
   <object id="41" x="544.013" y="255.187" width="230.279" height="19.4626"/>
   <object id="46" x="28" y="1" width="742.833" height="30.9565"/>
+  <object id="48" x="186.667" y="467.667" width="48" height="10.6667"/>
  </objectgroup>
- <objectgroup name="demage">
+ <objectgroup name="damage">
   <object id="40" x="193.407" y="434.132" width="30.3644" height="24.0385"/>
   <object id="42" x="579.923" y="236.694" width="24.0385" height="12.6518"/>
   <object id="45" x="673.923" y="236.694" width="24.0385" height="12.6518"/>

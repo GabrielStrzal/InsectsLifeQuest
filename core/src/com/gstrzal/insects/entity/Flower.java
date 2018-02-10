@@ -5,7 +5,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.gstrzal.insects.Insects;
-import com.gstrzal.insects.assets.AssetPaths;
+import com.gstrzal.insects.config.Constants;
 
 /**
  * Created by lelo on 06/02/18.
@@ -21,7 +21,7 @@ public class Flower {
     public Flower(Body body, Insects insects){
         this.body = body;
         this.assetManager = insects.getAssetManager();
-        texture = assetManager.get(AssetPaths.FLOWER);
+        texture = assetManager.get(Constants.FLOWER);
         height = texture.getHeight()/Insects.PPM;
         width = texture.getWidth()/Insects.PPM;
     }

@@ -7,7 +7,7 @@ import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.Manifold;
 import com.badlogic.gdx.utils.Array;
-import com.gstrzal.insects.assets.AssetPaths;
+import com.gstrzal.insects.config.Constants;
 
 /**
  * Created by lelo on 31/01/18.
@@ -30,19 +30,21 @@ public class WorldContactListener implements ContactListener {
         Fixture fixA = contact.getFixtureA();
         Fixture fixB = contact.getFixtureB();
 
-        if(isContact(contact, "base", AssetPaths.MAP_BLOCKS)){
-            System.out.println("Contact with Base");
+        if(isContact(contact, Constants.INSECT_BASE, Constants.MAP_BLOCKS)){
             onGrounds++;
         }
 
-        if(isContact(contact, "InsectBody", AssetPaths.MAP_FLOWERS)){
-            System.out.println("Contact with Flower");
-            Fixture flower = fixA.getUserData() == AssetPaths.MAP_FLOWERS ? fixA : fixB;
+        if(isContact(contact, Constants.INSECT_BODY, Constants.MAP_FLOWERS)){
+            Fixture flower = fixA.getUserData() == Constants.MAP_FLOWERS ? fixA : fixB;
             bodiesToRemove.add(flower.getBody());
         }
-        if(isContact(contact, "InsectBody", AssetPaths.MAP_END)){
-            System.out.println("Contact with Level End");
+
+        if(isContact(contact, Constants.INSECT_BODY, Constants.MAP_END)){
             setLevelFinished(true);
+        }
+
+        if(isContact(contact, Constants.INSECT_BODY, Constants.MAP_DAMAGE)){
+            System.out.println("Started contact with Damage");
         }
     }
 
@@ -51,15 +53,18 @@ public class WorldContactListener implements ContactListener {
         Fixture fixA = contact.getFixtureA();
         Fixture fixB = contact.getFixtureB();
 
-        if(isContact(contact, "base", AssetPaths.MAP_BLOCKS)){
-            System.out.println("Ended contact with Base");
+        if(isContact(contact, Constants.INSECT_BASE, Constants.MAP_BLOCKS)){
             onGrounds--;
         }
-        if(isContact(contact, "InsectBody", AssetPaths.MAP_FLOWERS)){
-            System.out.println("Ended contact with Flower");
+        if(isContact(contact, Constants.INSECT_BODY, Constants.MAP_FLOWERS)){
+//            System.out.println("Ended contact with Flower");
         }
-        if(isContact(contact, "InsectBody", AssetPaths.MAP_END)){
-            System.out.println("Ended contact with Level End");
+        if(isContact(contact, Constants.INSECT_BODY, Constants.MAP_END)){
+//            System.out.println("Ended contact with Level End");
+        }
+
+        if(isContact(contact, Constants.INSECT_BODY, Constants.MAP_DAMAGE)){
+            System.out.println("Ended contact with Damage");
         }
 
 //        if(fixA.getUserData() == "base" || fixB.getUserData() == "base"){

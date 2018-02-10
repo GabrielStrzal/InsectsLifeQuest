@@ -14,7 +14,7 @@ import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
 import com.gstrzal.insects.Insects;
-import com.gstrzal.insects.assets.AssetPaths;
+import com.gstrzal.insects.config.Constants;
 import com.gstrzal.insects.entity.Flower;
 
 /**
@@ -33,7 +33,7 @@ public class B2WorldCreator {
         flowers = new Array<Flower>();
 
         //Blocks
-        for (MapObject object : map.getLayers().get(AssetPaths.MAP_BLOCKS).getObjects().getByType(RectangleMapObject.class)) {
+        for (MapObject object : map.getLayers().get(Constants.MAP_BLOCKS).getObjects().getByType(RectangleMapObject.class)) {
             Rectangle rect = ((RectangleMapObject) object).getRectangle();
             bdef.type = BodyDef.BodyType.StaticBody;
             bdef.position.set((rect.getX() + rect.getWidth() / 2) / Insects.PPM, (rect.getY() + rect.getHeight() / 2) / Insects.PPM);
@@ -43,12 +43,12 @@ public class B2WorldCreator {
             fdef.filter.categoryBits = Insects.BRICK_BIT;
             fdef.filter.maskBits = Insects.INSECT_BIT | Insects.BASE_BIT;
             fdef.friction = 0;
-
-            body.createFixture(fdef).setUserData(AssetPaths.MAP_BLOCKS);
+            body.createFixture(fdef).setUserData(Constants.MAP_BLOCKS);
         }
 
         //Flowers
-        for (MapObject object : map.getLayers().get(AssetPaths.MAP_FLOWERS).getObjects()) {
+        if(map.getLayers().get(Constants.MAP_FLOWERS) != null)
+        for (MapObject object : map.getLayers().get(Constants.MAP_FLOWERS).getObjects()) {
             Ellipse ellipse = ((EllipseMapObject) object).getEllipse();
             bdef.type = BodyDef.BodyType.StaticBody;
             bdef.position.set(ellipse.x / Insects.PPM, ellipse.y/ Insects.PPM);
@@ -59,7 +59,7 @@ public class B2WorldCreator {
             fdef.filter.categoryBits = Insects.FLOWER_BIT;
             fdef.filter.maskBits = Insects.INSECT_BIT;
             Body flowerBody = world.createBody(bdef);
-            flowerBody.createFixture(fdef).setUserData(AssetPaths.MAP_FLOWERS);
+            flowerBody.createFixture(fdef).setUserData(Constants.MAP_FLOWERS);
             Flower f = new Flower(flowerBody, insects);
             flowerBody.setUserData(f);
             flowers.add(f);
@@ -67,7 +67,8 @@ public class B2WorldCreator {
         }
 
         //Level End
-        for (MapObject object : map.getLayers().get(AssetPaths.MAP_END).getObjects()) {
+        if(map.getLayers().get(Constants.MAP_END) != null)
+        for (MapObject object : map.getLayers().get(Constants.MAP_END).getObjects()) {
             Ellipse ellipse = ((EllipseMapObject) object).getEllipse();
             bdef.type = BodyDef.BodyType.StaticBody;
             bdef.position.set(ellipse.x / Insects.PPM, ellipse.y/ Insects.PPM);
@@ -75,10 +76,26 @@ public class B2WorldCreator {
             circleShape.setRadius(8/Insects.PPM);
             fdef.shape = circleShape;
             fdef.isSensor = true;
-            fdef.filter.categoryBits = Insects.LEVEL_END;
+            fdef.filter.categoryBits = Insects.LEVEL_END_BIT;
             fdef.filter.maskBits = Insects.INSECT_BIT;
             Body endBody = world.createBody(bdef);
-            endBody.createFixture(fdef).setUserData(AssetPaths.MAP_END);
+            endBody.createFixture(fdef).setUserData(Constants.MAP_END);
+        }
+
+        //Damage
+        if(map.getLayers().get(Constants.MAP_DAMAGE) != null)
+        for (MapObject object : map.getLayers().get(Constants.MAP_DAMAGE).getObjects().getByType(RectangleMapObject.class)) {
+            Rectangle rect = ((RectangleMapObject) object).getRectangle();
+            bdef.type = BodyDef.BodyType.StaticBody;
+            bdef.position.set((rect.getX() + rect.getWidth() / 2) / Insects.PPM, (rect.getY() + rect.getHeight() / 2) / Insects.PPM);
+            body = world.createBody(bdef);
+            shape.setAsBox((rect.getWidth() / 2) / Insects.PPM, (rect.getHeight() / 2) / Insects.PPM);
+            fdef.shape = shape;
+            fdef.isSensor = true;
+            fdef.filter.categoryBits = Insects.DAMAGE_BIT;
+            fdef.filter.maskBits = Insects.INSECT_BIT | Insects.BASE_BIT;
+            fdef.friction = 0;
+            body.createFixture(fdef).setUserData(Constants.MAP_DAMAGE);
         }
     }
 }

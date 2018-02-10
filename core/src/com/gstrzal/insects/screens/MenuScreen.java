@@ -13,7 +13,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ActorGestureListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.gstrzal.insects.Insects;
-import com.gstrzal.insects.assets.AssetPaths;
+import com.gstrzal.insects.config.Constants;
 import com.gstrzal.insects.config.GameConfig;
 import com.gstrzal.insects.utils.GdxUtils;
 
@@ -44,12 +44,12 @@ public class MenuScreen extends ScreenAdapter {
     public void show() {
         stage = new Stage(new FitViewport(GameConfig.SCREEN_WIDTH_PX, GameConfig.SCREEN_HEIGHT_PX));
         Gdx.input.setInputProcessor(stage);
-        backgroundTexture = assetManager.get(AssetPaths.MENU_BACKGROUND);
+        backgroundTexture = assetManager.get(Constants.MENU_BACKGROUND);
         Image background = new Image(backgroundTexture);
         stage.addActor(background);
 
-        playTexture = assetManager.get(AssetPaths.MENU_PLAYBUTTON);
-        playPressTexture = assetManager.get(AssetPaths.MENU_PLAYBUTTON_ACTIVE);
+        playTexture = assetManager.get(Constants.MENU_PLAYBUTTON);
+        playPressTexture = assetManager.get(Constants.MENU_PLAYBUTTON_ACTIVE);
         ImageButton play = new ImageButton(
                 new TextureRegionDrawable(new TextureRegion(playTexture)),
                 new TextureRegionDrawable(new TextureRegion(playPressTexture)));

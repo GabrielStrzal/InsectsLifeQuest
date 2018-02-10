@@ -11,6 +11,7 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.gstrzal.insects.Insects;
+import com.gstrzal.insects.config.Constants;
 
 /**
  * Created by Gabriel on 15/10/2017.
@@ -90,11 +91,11 @@ public class LBug extends Sprite {
         shape.setAsBox(15/ Insects.PPM ,26/ Insects.PPM );
 
         fdef.filter.categoryBits = Insects.INSECT_BIT;
-        fdef.filter.maskBits = Insects.FLOWER_BIT | Insects.BRICK_BIT | Insects.LEVEL_END;
+        fdef.filter.maskBits = Insects.FLOWER_BIT | Insects.BRICK_BIT | Insects.LEVEL_END_BIT | Insects.DAMAGE_BIT;
 
 
         fdef.shape = shape;
-        b2body.createFixture(fdef).setUserData("InsectBody");
+        b2body.createFixture(fdef).setUserData(Constants.INSECT_BODY);
 
 
 
@@ -104,6 +105,6 @@ public class LBug extends Sprite {
         fdef.isSensor = true;
         fdef.filter.categoryBits = Insects.BASE_BIT;
         fdef.filter.maskBits = Insects.BRICK_BIT | Insects.FLOWER_BIT;
-        b2body.createFixture(fdef).setUserData("base");
+        b2body.createFixture(fdef).setUserData(Constants.INSECT_BASE);
     }
 }
