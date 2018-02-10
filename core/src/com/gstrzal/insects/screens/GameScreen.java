@@ -66,8 +66,9 @@ public class GameScreen implements Screen{
 
     private WorldContactListener worldContactListener;
     private B2WorldCreator b2World;
+    private int currentLevel;
 
-    public GameScreen(Insects game, String level){
+    public GameScreen(Insects game, int level){
 
         this.assetManager = game.getAssetManager();
 
@@ -79,11 +80,11 @@ public class GameScreen implements Screen{
         gamePort = new FitViewport(Insects.V_WIDTH / Insects.PPM, Insects.V_HEIGHT/ Insects.PPM, gamecam);
 
 
-
+        this.currentLevel = level;
         world = new World(new Vector2(0, gravity), true);
         b2dr = new Box2DDebugRenderer();
 
-        map = assetManager.get(Constants.LEVEL+level+ Constants.TMX);
+        map = assetManager.get(Constants.LEVEL+ level + Constants.TMX);
         mapRenderer = new OrthogonalTiledMapRenderer(map, 1 / Insects.PPM);
         gamecam.position.set(gamePort.getWorldWidth()/2,gamePort.getWorldHeight()/2, 0);
         lBug = new LBug(world, (Texture) assetManager.get(Constants.JOANINHA));
@@ -212,7 +213,12 @@ public class GameScreen implements Screen{
     private void checkLevelCompleted() {
         if (worldContactListener.isLevelFinished()) {
             worldContactListener.setLevelFinished(false);
-            game.setScreen(new GameScreen(game , "02"));
+            currentLevel++;
+            if(currentLevel <= GameConfig.GAME_MAX_LEVELS) {
+                game.setScreen(new GameScreen(game, currentLevel));
+            }else{
+                game.setScreen(new MenuScreen(game));
+            }
         }
     }
 

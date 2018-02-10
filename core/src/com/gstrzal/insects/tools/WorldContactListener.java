@@ -1,11 +1,15 @@
 package com.gstrzal.insects.tools;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.Contact;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.Manifold;
+import com.badlogic.gdx.physics.box2d.PolygonShape;
+import com.badlogic.gdx.physics.box2d.Shape;
 import com.badlogic.gdx.utils.Array;
 import com.gstrzal.insects.config.Constants;
 
@@ -33,6 +37,9 @@ public class WorldContactListener implements ContactListener {
         if(isContact(contact, Constants.INSECT_BASE, Constants.MAP_BLOCKS)){
             onGrounds++;
         }
+        if(isContact(contact, Constants.INSECT_BASE, Constants.MAP_PASS_BLOCKS)){
+            onGrounds++;
+        }
 
         if(isContact(contact, Constants.INSECT_BODY, Constants.MAP_FLOWERS)){
             Fixture flower = fixA.getUserData() == Constants.MAP_FLOWERS ? fixA : fixB;
@@ -46,6 +53,12 @@ public class WorldContactListener implements ContactListener {
         if(isContact(contact, Constants.INSECT_BODY, Constants.MAP_DAMAGE)){
             System.out.println("Started contact with Damage");
         }
+
+        if(isContact(contact, Constants.INSECT_BODY, Constants.MAP_PASS_BLOCKS)){
+            System.out.println("Started contact with ");
+        }
+
+
     }
 
     @Override
@@ -54,6 +67,9 @@ public class WorldContactListener implements ContactListener {
         Fixture fixB = contact.getFixtureB();
 
         if(isContact(contact, Constants.INSECT_BASE, Constants.MAP_BLOCKS)){
+            onGrounds--;
+        }
+        if(isContact(contact, Constants.INSECT_BASE, Constants.MAP_PASS_BLOCKS)){
             onGrounds--;
         }
         if(isContact(contact, Constants.INSECT_BODY, Constants.MAP_FLOWERS)){
@@ -79,6 +95,28 @@ public class WorldContactListener implements ContactListener {
     @Override
     public void preSolve(Contact contact, Manifold oldManifold) {
 
+        Fixture fixtureA = contact.getFixtureA();
+        Fixture fixtureB = contact.getFixtureB();
+
+        //Pass Platform
+        if(isContact(contact, Constants.INSECT_BODY, Constants.MAP_PASS_BLOCKS)){
+
+            float passPlatform_y;
+            float insect_y;
+
+            if (fixtureA.getBody().getUserData() == Constants.MAP_PASS_BLOCKS) {
+                passPlatform_y = fixtureA.getBody().getPosition().y;
+                insect_y = fixtureB.getBody().getPosition().y;
+            } else {
+                insect_y = fixtureA.getBody().getPosition().y;
+                passPlatform_y = fixtureB.getBody().getPosition().y;
+            }
+            if(insect_y < passPlatform_y + .32f ){
+                contact.setEnabled(false);
+            } else {
+                contact.setEnabled(true);
+            }
+        }
     }
 
     @Override

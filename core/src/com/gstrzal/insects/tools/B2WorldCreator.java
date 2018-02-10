@@ -46,6 +46,22 @@ public class B2WorldCreator {
             body.createFixture(fdef).setUserData(Constants.MAP_BLOCKS);
         }
 
+        //Blocks
+        if(map.getLayers().get(Constants.MAP_PASS_BLOCKS) != null)
+        for (MapObject object : map.getLayers().get(Constants.MAP_PASS_BLOCKS).getObjects().getByType(RectangleMapObject.class)) {
+            Rectangle rect = ((RectangleMapObject) object).getRectangle();
+            bdef.type = BodyDef.BodyType.StaticBody;
+            bdef.position.set((rect.getX() + rect.getWidth() / 2) / Insects.PPM, (rect.getY() + rect.getHeight() / 2) / Insects.PPM);
+            body = world.createBody(bdef);
+            shape.setAsBox((rect.getWidth() / 2) / Insects.PPM, (rect.getHeight() / 2) / Insects.PPM);
+            fdef.shape = shape;
+            fdef.filter.categoryBits = Insects.PASS_BLOCK_BIT;
+            fdef.filter.maskBits = Insects.INSECT_BIT | Insects.BASE_BIT;
+            fdef.friction = 0;
+            body.createFixture(fdef).setUserData(Constants.MAP_PASS_BLOCKS);
+        }
+
+
         //Flowers
         if(map.getLayers().get(Constants.MAP_FLOWERS) != null)
         for (MapObject object : map.getLayers().get(Constants.MAP_FLOWERS).getObjects()) {
