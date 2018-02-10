@@ -86,8 +86,8 @@ public class MenuScreen extends ScreenAdapter {
             public void tap(InputEvent event, float x, float y, int count,
                             int button) {
                 super.tap(event, x, y, count, button);
-//                game.setScreen(new GameScreen(game, 1));
-//                dispose();
+                game.setScreen(new OptionsScreen(game));
+                dispose();
             }
         });
         stage.addActor(options);
@@ -105,8 +105,8 @@ public class MenuScreen extends ScreenAdapter {
             public void tap(InputEvent event, float x, float y, int count,
                             int button) {
                 super.tap(event, x, y, count, button);
-//                game.setScreen(new GameScreen(game, 1));
-//                dispose();
+                game.setScreen(new SelectLevelsScreen(game));
+                dispose();
             }
         });
         stage.addActor(selectLevels);

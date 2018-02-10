@@ -6,12 +6,19 @@ package com.gstrzal.insects.config;
 
 public class Constants {
     public static final String MENU_BACKGROUND = "menu/insects_menu_800x480.png";
+    public static final String MENU_SELECT_LEVELS_BACKGROUND = "menu/insects_level_select_800x480.png";
     public static final String MENU_PLAYBUTTON = "menu/button_play_175x100.png";
     public static final String MENU_PLAYBUTTON_PRESSED = "menu/button_play_pressed_175x100.png";
     public static final String MENU_OPTIONS = "menu/button_options_175x88.png";
     public static final String MENU_OPTIONS_PRESSED = "menu/button_options_pressed_175x88.png";
     public static final String MENU_SELECT_LEVEL = "menu/button_levels_175x88.png";
     public static final String MENU_SELECT_LEVEL_PRESSED = "menu/button_levels_pressed_175x88.png";
+    public static final String MENU_SELECT_LEVEL_BACK_BUTTON = "menu/button_back_88x88.png";
+    public static final String MENU_SELECT_LEVEL_BACK_BUTTON_PRESSED = "menu/button_back_pressed_88x88.png";
+    public static final String MENU_SELECT_LEVEL_BUTTON = "menu/button_level_88x88.png";
+    public static final String MENU_SELECT_LEVEL_BUTTON_PRESSED = "menu/button_level_pressed_88x88.png";
+
+    public static final String GAME_FONT = "fonts/sonic_comic.fnt";
 
     public static final String LEVEL_1 = "levels/ins_level_1.tmx";
     public static final String LEVEL_2 = "levels/ins_level_2.tmx";
