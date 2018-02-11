@@ -27,6 +27,7 @@ public class Constants {
     public static final String LEVEL_1 = "levels/ins_level_1.tmx";
     public static final String LEVEL_2 = "levels/ins_level_2.tmx";
     public static final String LEVEL_3 = "levels/ins_level_3.tmx";
+    public static final String LEVEL_4 = "levels/ins_level_4.tmx";
     public static final String LEVEL = "levels/ins_level_";
     public static final String TMX = ".tmx";
     public static final String JOANINHA = "joaninha_128x52.png";

@@ -9,7 +9,9 @@ public class GameConfig {
     public static final float SCREEN_WIDTH_PX = 800f; //pixels
 
 
-    public static final int GAME_MAX_LEVELS = 3; //
+    public static final int GAME_MAX_LEVELS = 4; //
+
+    public static final String GAME_VERSION = "V.0.0.1";
 
 
     private GameConfig(){}

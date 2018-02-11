@@ -3,7 +3,9 @@ package com.gstrzal.insects.screens;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -35,6 +37,7 @@ public class MenuScreen extends ScreenAdapter {
     private Texture optionsPressTexture;
     private Texture selectLevelsTexture;
     private Texture selectLevelsPressTexture;
+    private BitmapFont font;
 
     private Stage stage;
     private final Insects game;
@@ -53,6 +56,11 @@ public class MenuScreen extends ScreenAdapter {
         backgroundTexture = assetManager.get(Constants.MENU_BACKGROUND);
         Image background = new Image(backgroundTexture);
         stage.addActor(background);
+        font = new BitmapFont(Gdx.files.internal(Constants.GAME_FONT),false);
+        font.setColor(Color.DARK_GRAY);
+        font.getData().setScale(0.4f);
+
+
 
         //Play Button
         playTexture = assetManager.get(Constants.MENU_PLAYBUTTON);
@@ -121,11 +129,17 @@ public class MenuScreen extends ScreenAdapter {
         GdxUtils.clearScreen();
         stage.act(delta);
         stage.draw();
+        stage.getBatch().begin();
+        font.draw(stage.getBatch(), GameConfig.GAME_VERSION,
+                (GameConfig.SCREEN_WIDTH_PX/10)*9, (GameConfig.SCREEN_HEIGHT_PX/20)*19);
+        stage.getBatch().end();
+
     }
 
     @Override
     public void dispose() {
         stage.dispose();
+        font.dispose();
     }
 
 }
