@@ -6,6 +6,9 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.GlyphLayout;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
@@ -15,6 +18,7 @@ import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Logger;
+import com.badlogic.gdx.utils.Timer;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.gstrzal.insects.Insects;
@@ -68,11 +72,24 @@ public class GameScreen implements Screen{
     private WorldContactListener worldContactListener;
     private B2WorldCreator b2World;
     private int currentLevel;
+    private boolean restart;
+    long gameOverTime;
+
+
+    private enum STATE {
+        PLAYING, GAME_OVER, PAUSED
+    }
+    private STATE state;
+
+    private BitmapFont bitmapFont;
+    private GlyphLayout layout = new GlyphLayout();
+
+
 
     public GameScreen(Insects game, int level){
 
         this.assetManager = game.getAssetManager();
-
+        state = STATE.PLAYING;
 
         this.game = game;
         gamecam = new OrthographicCamera();
@@ -94,6 +111,8 @@ public class GameScreen implements Screen{
         worldContactListener = new WorldContactListener();
         world.setContactListener(worldContactListener);
 
+//        bitmapFont = assetManager.get(Constants.GAME_FONT);
+        bitmapFont = new BitmapFont();
 
     }
     @Override
@@ -184,33 +203,53 @@ public class GameScreen implements Screen{
 
     @Override
     public void render(float delta) {
+
+        switch(state) {
+            case PLAYING: {
+                update(delta);
+                checkLevelCompleted();
+                checkGameOver();
+            }
+            break;
+            case GAME_OVER: {
+                checkForRestart();
+            }
+            break;
+            case PAUSED: {
+
+            }
+            break;
+        }
+
         //camera debug
         debugCameraController.handleDebugInput(delta);
         debugCameraController.applyTo(gamecam);
 
 
-        update(delta);
-        checkLevelCompleted();
         GdxUtils.clearScreen();
         mapRenderer.render();
 
         if(debug) {
             b2dr.render(world, b2dcam.combined);
         }
+        draw();
+
+        renderDebug();
+        if(restart){
+            doRestart();
+        }
+    }
+
+    private void draw() {
         game.batch.setProjectionMatrix(b2dcam.combined);
         game.batch.begin();
-
         // draw flowers
         for(int i = 0; i < b2World.flowers.size; i++) {
             b2World.flowers.get(i).render(game.batch);
         }
-
         lBug.draw(game.batch);
-
+        drawGameOver();
         game.batch.end();
-
-        renderDebug();
-
     }
 
     private void checkLevelCompleted() {
@@ -222,6 +261,33 @@ public class GameScreen implements Screen{
             }else{
                 game.setScreen(new YouWonScreen(game));
             }
+        }
+    }
+    private void checkGameOver(){
+        if (worldContactListener.isGameOver()) {
+            worldContactListener.setGameOver(false);
+            state = STATE.GAME_OVER;
+            gameOverTime = System.currentTimeMillis();
+        }
+
+    }
+    private void checkForRestart() {
+        if(((System.currentTimeMillis() - gameOverTime) / 1000) > 1)
+        restart = true;
+    }
+
+    private void doRestart() {
+        game.setScreen(new GameScreen(game, currentLevel));
+    }
+
+    private void drawGameOver() {
+        if (state == STATE.GAME_OVER) {
+            Texture gameOvertexture = assetManager.get(Constants.GAME_OVER_POPUP);
+            float height = gameOvertexture.getHeight() / Insects.PPM;
+            float width = gameOvertexture.getWidth() / Insects.PPM;
+            game.batch.draw(gameOvertexture,
+                    ((GameConfig.SCREEN_WIDTH_PX / Insects.PPM) / 2 - width / 2), ((GameConfig.SCREEN_HEIGHT_PX / Insects.PPM) / 2 - height / 2),
+                    width, height);
         }
     }
 
@@ -249,6 +315,7 @@ public class GameScreen implements Screen{
 
     @Override
     public void hide() {
+        dispose();
 
     }
 

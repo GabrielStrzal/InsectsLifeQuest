@@ -22,6 +22,7 @@ public class WorldContactListener implements ContactListener {
     private int onGrounds = 0;
     private Array<Body> bodiesToRemove;
     private boolean levelFinished = false;
+    private boolean gameOver = false;
 
 
     public WorldContactListener() {
@@ -51,14 +52,8 @@ public class WorldContactListener implements ContactListener {
         }
 
         if(isContact(contact, Constants.INSECT_BODY, Constants.MAP_DAMAGE)){
-            System.out.println("Started contact with Damage");
+            setGameOver(true);
         }
-
-        if(isContact(contact, Constants.INSECT_BODY, Constants.MAP_PASS_BLOCKS)){
-            System.out.println("Started contact with ");
-        }
-
-
     }
 
     @Override
@@ -72,24 +67,6 @@ public class WorldContactListener implements ContactListener {
         if(isContact(contact, Constants.INSECT_BASE, Constants.MAP_PASS_BLOCKS)){
             onGrounds--;
         }
-        if(isContact(contact, Constants.INSECT_BODY, Constants.MAP_FLOWERS)){
-//            System.out.println("Ended contact with Flower");
-        }
-        if(isContact(contact, Constants.INSECT_BODY, Constants.MAP_END)){
-//            System.out.println("Ended contact with Level End");
-        }
-
-        if(isContact(contact, Constants.INSECT_BODY, Constants.MAP_DAMAGE)){
-            System.out.println("Ended contact with Damage");
-        }
-
-//        if(fixA.getUserData() == "base" || fixB.getUserData() == "base"){
-//            Fixture head = fixA.getUserData() == "head" ? fixA : fixB;
-//            Fixture object = head == fixA ? fixB : fixA;
-//            System.out.println("Ended contact with Base");
-//            onGrounds--;
-//
-//        }
     }
 
     @Override
@@ -151,5 +128,13 @@ public class WorldContactListener implements ContactListener {
 
     public void setLevelFinished(boolean levelFinished) {
         this.levelFinished = levelFinished;
+    }
+
+    public boolean isGameOver() {
+        return gameOver;
+    }
+
+    public void setGameOver(boolean gameOver) {
+        this.gameOver = gameOver;
     }
 }

@@ -86,7 +86,7 @@ public class ViewportUtils {
         float xPPU = screenWidth / worldWidth;
         float yPPU = screenHeight / worldHeight;
 
-        log.debug("x PPU= " + xPPU + " yPPU= " + yPPU);
+//        log.debug("x PPU= " + xPPU + " yPPU= " + yPPU);
     }
 
     private ViewportUtils() {
