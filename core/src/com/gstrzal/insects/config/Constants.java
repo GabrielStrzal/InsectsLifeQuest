@@ -31,6 +31,7 @@ public class Constants {
     public static final String LEVEL = "levels/ins_level_";
     public static final String TMX = ".tmx";
     public static final String JOANINHA = "joaninha_128x52.png";
+    public static final String ANT = "formiga_64x30.png";
     public static final String FLOWER = "flower_16x16.png";
 
 

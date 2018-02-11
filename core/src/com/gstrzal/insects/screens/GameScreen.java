@@ -44,7 +44,7 @@ public class GameScreen implements Screen{
     private OrthographicCamera gamecam;
     private OrthographicCamera b2dcam;
     private Viewport gamePort;
-    private LBug lBug;
+    private Insect insectPlayer;
 
     private TiledMap map;
     private OrthogonalTiledMapRenderer mapRenderer;
@@ -104,7 +104,7 @@ public class GameScreen implements Screen{
         map = assetManager.get(Constants.LEVEL+ level + Constants.TMX);
         mapRenderer = new OrthogonalTiledMapRenderer(map, 1 / Insects.PPM);
         gamecam.position.set(gamePort.getWorldWidth()/2,gamePort.getWorldHeight()/2, 0);
-        lBug = new LBug(world, (Texture) assetManager.get(Constants.JOANINHA));
+        insectPlayer = new LBug(world, (Texture) assetManager.get(Constants.JOANINHA));
 
         b2World = new B2WorldCreator(world, map, game);
         worldContactListener = new WorldContactListener();
@@ -131,7 +131,7 @@ public class GameScreen implements Screen{
         collectFlowers();
 
         world.step(1/60f, 6, 2);
-        lBug.update(dt);
+        insectPlayer.update(dt);
         gamecam.update();
         b2dcam.update();
         mapRenderer.setView(b2dcam);
@@ -152,16 +152,16 @@ public class GameScreen implements Screen{
     private void handleInput(float dt) {
 
         if(isDirectionRight){
-            lBug.b2body.setLinearVelocity(xVelocity,lBug.b2body.getLinearVelocity().y);
+            insectPlayer.b2body.setLinearVelocity(xVelocity, insectPlayer.b2body.getLinearVelocity().y);
         }else{
-            lBug.b2body.setLinearVelocity(-xVelocity,lBug.b2body.getLinearVelocity().y);
+            insectPlayer.b2body.setLinearVelocity(-xVelocity, insectPlayer.b2body.getLinearVelocity().y);
         }
 
 
 
         if (Gdx.input.isKeyJustPressed(Input.Keys.UP)){
             if(worldContactListener.isOnGrounds()){
-                lBug.b2body.applyForceToCenter(0,jumpSpeed,true);
+                insectPlayer.b2body.applyForceToCenter(0,jumpSpeed,true);
             }
         }
         if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)){
@@ -172,11 +172,28 @@ public class GameScreen implements Screen{
         }
 
 
+        //Character Change
+        if (Gdx.input.isKeyJustPressed(Input.Keys.ENTER)){
+            Insect tempInsc = insectPlayer;
+            if(tempInsc instanceof LBug) {
+                insectPlayer = new Ant(world, (Texture) assetManager.get(Constants.ANT),
+                        tempInsc.b2body.getPosition().x, tempInsc.b2body.getPosition().y);
+            }else{
+                insectPlayer = new LBug(world, (Texture) assetManager.get(Constants.JOANINHA),
+                        tempInsc.b2body.getPosition().x, tempInsc.b2body.getPosition().y);
+            }
+            tempInsc.dispose();
+        }
+
+
+
+
+
         //mobile
         if (Gdx.input.isTouched()) {
             if ((Gdx.input.getY() < Gdx.graphics.getHeight() / 4)) {
                 if(worldContactListener.isOnGrounds()){
-                    lBug.b2body.applyForceToCenter(0,jumpSpeed,true);
+                    insectPlayer.b2body.applyForceToCenter(0,jumpSpeed,true);
                 }
             }else if (Gdx.input.getX() > Gdx.graphics.getWidth() / 2){
                 isDirectionRight = true;
@@ -249,7 +266,7 @@ public class GameScreen implements Screen{
         for(int i = 0; i < b2World.flowers.size; i++) {
             b2World.flowers.get(i).render(game.batch);
         }
-        lBug.draw(game.batch);
+        insectPlayer.draw(game.batch);
         drawGameOver();
         drawLevelCleared();
         game.batch.end();

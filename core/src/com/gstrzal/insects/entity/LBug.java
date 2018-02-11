@@ -17,11 +17,10 @@ import com.gstrzal.insects.config.Constants;
  * Created by Gabriel on 15/10/2017.
  */
 
-public class LBug extends Sprite {
+public class LBug extends Insect {
 
 
-    public World world;
-    public Body b2body;
+
 
     //joaninha
     public static final int WIDTH = 32;
@@ -33,12 +32,14 @@ public class LBug extends Sprite {
     private final TextureRegion jumpUp;
     private final TextureRegion jumpDown;
 
-    public float xSpeed = 0;
-    public float ySpeed = 0;
-
 
 
     public LBug(World world, Texture texture){
+        this(world, texture, 50/ Insects.PPM, 95/ Insects.PPM);
+    }
+
+
+    public LBug(World world, Texture texture, float x, float y){
         super(texture);
         this.world = world;
 
@@ -49,7 +50,7 @@ public class LBug extends Sprite {
         jumpUp = regions[2];
         jumpDown = regions[3];
 
-        defineLBug();
+        defineLBug(x, y);
         setBounds(0,0, WIDTH/Insects.PPM, HEIGHT/Insects.PPM);
     }
 
@@ -80,25 +81,22 @@ public class LBug extends Sprite {
         setRegion(regionToDraw);
     }
 
-    public void defineLBug(){
+    public void defineLBug(float x, float y){
+
         BodyDef bdef = new BodyDef();
-        bdef.position.set(50/ Insects.PPM, 95/ Insects.PPM ); //initial position
+        bdef.position.set(x, y); //initial position
         bdef.type = BodyDef.BodyType.DynamicBody;
         b2body  = world.createBody(bdef);
-
         FixtureDef fdef = new FixtureDef();
         PolygonShape shape = new PolygonShape();
         shape.setAsBox(15/ Insects.PPM ,26/ Insects.PPM );
-
         fdef.filter.categoryBits = Insects.INSECT_BIT;
         fdef.filter.maskBits = Insects.FLOWER_BIT | Insects.BRICK_BIT | Insects.LEVEL_END_BIT | Insects.DAMAGE_BIT | Insects.PASS_BLOCK_BIT;
-
-
         fdef.shape = shape;
         b2body.createFixture(fdef).setUserData(Constants.INSECT_BODY);
 
 
-
+        //Base Sensor
         PolygonShape shape2 = new PolygonShape();
         shape2.setAsBox(12/ Insects.PPM ,4/ Insects.PPM , new Vector2(0,-25/ Insects.PPM),0);
         fdef.shape = shape2;
