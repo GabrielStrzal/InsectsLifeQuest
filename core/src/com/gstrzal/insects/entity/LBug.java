@@ -82,7 +82,7 @@ public class LBug extends Sprite {
 
     public void defineLBug(){
         BodyDef bdef = new BodyDef();
-        bdef.position.set(32/ Insects.PPM, 52/ Insects.PPM ); //initial position
+        bdef.position.set(36/ Insects.PPM, 86/ Insects.PPM ); //initial position
         bdef.type = BodyDef.BodyType.DynamicBody;
         b2body  = world.createBody(bdef);
 

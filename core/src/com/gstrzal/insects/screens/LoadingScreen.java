@@ -49,6 +49,7 @@ public class LoadingScreen extends ScreenAdapter{
         shapeRenderer = new ShapeRenderer();
         assetManager.load(Constants.MENU_BACKGROUND, Texture.class);
         assetManager.load(Constants.MENU_SELECT_LEVELS_BACKGROUND, Texture.class);
+        assetManager.load(Constants.YOU_WON_BACKGROUND, Texture.class);
         assetManager.load(Constants.MENU_PLAYBUTTON, Texture.class);
         assetManager.load(Constants.MENU_PLAYBUTTON_PRESSED, Texture.class);
         assetManager.load(Constants.MENU_OPTIONS, Texture.class);

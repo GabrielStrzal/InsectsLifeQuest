@@ -7,6 +7,7 @@ package com.gstrzal.insects.config;
 public class Constants {
     public static final String MENU_BACKGROUND = "menu/insects_menu_800x480.png";
     public static final String MENU_SELECT_LEVELS_BACKGROUND = "menu/insects_level_select_800x480.png";
+    public static final String YOU_WON_BACKGROUND = "menu/insects_you_won_800x480.png";
     public static final String MENU_PLAYBUTTON = "menu/button_play_175x100.png";
     public static final String MENU_PLAYBUTTON_PRESSED = "menu/button_play_pressed_175x100.png";
     public static final String MENU_OPTIONS = "menu/button_options_175x88.png";

@@ -54,6 +54,7 @@ public class GameScreen implements Screen{
     private AssetManager assetManager;
 
     private boolean debugGrid = false;
+    private boolean debug = false;
 
     private boolean isDirectionRight = true;
 
@@ -193,7 +194,9 @@ public class GameScreen implements Screen{
         GdxUtils.clearScreen();
         mapRenderer.render();
 
-        b2dr.render(world, b2dcam.combined);
+        if(debug) {
+            b2dr.render(world, b2dcam.combined);
+        }
         game.batch.setProjectionMatrix(b2dcam.combined);
         game.batch.begin();
 
@@ -217,7 +220,7 @@ public class GameScreen implements Screen{
             if(currentLevel <= GameConfig.GAME_MAX_LEVELS) {
                 game.setScreen(new GameScreen(game, currentLevel));
             }else{
-                game.setScreen(new MenuScreen(game));
+                game.setScreen(new YouWonScreen(game));
             }
         }
     }
