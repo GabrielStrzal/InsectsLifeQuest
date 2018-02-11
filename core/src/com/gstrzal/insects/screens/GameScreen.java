@@ -8,7 +8,6 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.GlyphLayout;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
@@ -18,7 +17,6 @@ import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Logger;
-import com.badlogic.gdx.utils.Timer;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.gstrzal.insects.Insects;
@@ -72,12 +70,13 @@ public class GameScreen implements Screen{
     private WorldContactListener worldContactListener;
     private B2WorldCreator b2World;
     private int currentLevel;
-    private boolean restart;
-    long gameOverTime;
+    private boolean waitRestartComplete;
+    private long levelStopTime;
+
 
 
     private enum STATE {
-        PLAYING, GAME_OVER, PAUSED
+        PLAYING, GAME_OVER, LEVEL_CLEARED, PAUSED
     }
     private STATE state;
 
@@ -212,7 +211,11 @@ public class GameScreen implements Screen{
             }
             break;
             case GAME_OVER: {
-                checkForRestart();
+                waitForRestart();
+            }
+            break;
+            case LEVEL_CLEARED: {
+                waitForRestart();
             }
             break;
             case PAUSED: {
@@ -235,9 +238,8 @@ public class GameScreen implements Screen{
         draw();
 
         renderDebug();
-        if(restart){
-            doRestart();
-        }
+        doRestartIfGameOver();
+        changeLevelIfLevelCompleted();
     }
 
     private void draw() {
@@ -249,6 +251,7 @@ public class GameScreen implements Screen{
         }
         lBug.draw(game.batch);
         drawGameOver();
+        drawLevelCleared();
         game.batch.end();
     }
 
@@ -256,29 +259,39 @@ public class GameScreen implements Screen{
         if (worldContactListener.isLevelFinished()) {
             worldContactListener.setLevelFinished(false);
             currentLevel++;
-            if(currentLevel <= GameConfig.GAME_MAX_LEVELS) {
-                game.setScreen(new GameScreen(game, currentLevel));
-            }else{
-                game.setScreen(new YouWonScreen(game));
-            }
+            state = STATE.LEVEL_CLEARED;
+            levelStopTime = System.currentTimeMillis();
         }
     }
     private void checkGameOver(){
         if (worldContactListener.isGameOver()) {
             worldContactListener.setGameOver(false);
             state = STATE.GAME_OVER;
-            gameOverTime = System.currentTimeMillis();
+            levelStopTime = System.currentTimeMillis();
         }
 
     }
-    private void checkForRestart() {
-        if(((System.currentTimeMillis() - gameOverTime) / 1000) > 1)
-        restart = true;
+    private void waitForRestart() {
+        if(((System.currentTimeMillis() - levelStopTime) / 100) > 5)
+        waitRestartComplete = true;
     }
 
-    private void doRestart() {
-        game.setScreen(new GameScreen(game, currentLevel));
+    private void doRestartIfGameOver() {
+        if(waitRestartComplete && state == STATE.GAME_OVER){
+            game.setScreen(new GameScreen(game, currentLevel));
+        }
     }
+
+    private void changeLevelIfLevelCompleted(){
+        if(waitRestartComplete && state == STATE.LEVEL_CLEARED) {
+            if (currentLevel <= GameConfig.GAME_MAX_LEVELS) {
+                game.setScreen(new GameScreen(game, currentLevel));
+            } else {
+                game.setScreen(new YouWonScreen(game));
+            }
+        }
+    }
+
 
     private void drawGameOver() {
         if (state == STATE.GAME_OVER) {
@@ -290,6 +303,19 @@ public class GameScreen implements Screen{
                     width, height);
         }
     }
+
+
+    private void drawLevelCleared() {
+        if (state == STATE.LEVEL_CLEARED) {
+            Texture levelClearedTexture = assetManager.get(Constants.LEVEL_CLEARED_POPUP);
+            float height = levelClearedTexture.getHeight() / Insects.PPM;
+            float width = levelClearedTexture.getWidth() / Insects.PPM;
+            game.batch.draw(levelClearedTexture,
+                    ((GameConfig.SCREEN_WIDTH_PX / Insects.PPM) / 2 - width / 2), ((GameConfig.SCREEN_HEIGHT_PX / Insects.PPM) / 2 - height / 2),
+                    width, height);
+        }
+    }
+
 
     private void renderDebug() {
         if(debugGrid) {
