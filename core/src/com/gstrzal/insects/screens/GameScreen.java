@@ -23,6 +23,7 @@ import com.gstrzal.insects.Insects;
 import com.gstrzal.insects.config.Constants;
 import com.gstrzal.insects.config.GameConfig;
 import com.gstrzal.insects.entity.*;
+import com.gstrzal.insects.hud.Controller;
 import com.gstrzal.insects.tools.B2WorldCreator;
 import com.gstrzal.insects.tools.WorldContactListener;
 import com.gstrzal.insects.utils.GdxUtils;
@@ -72,7 +73,7 @@ public class GameScreen implements Screen{
     private int currentLevel;
     private boolean waitRestartComplete;
     private long levelStopTime;
-
+    private boolean isDirectionUp;
 
 
     private enum STATE {
@@ -82,6 +83,7 @@ public class GameScreen implements Screen{
 
     private BitmapFont bitmapFont;
     private GlyphLayout layout = new GlyphLayout();
+    private Controller controller;
 
 
 
@@ -112,6 +114,9 @@ public class GameScreen implements Screen{
 
 //        bitmapFont = assetManager.get(Constants.GAME_FONT);
         bitmapFont = new BitmapFont();
+
+        controller = new Controller(game);
+
 
     }
     @Override
@@ -157,11 +162,14 @@ public class GameScreen implements Screen{
             insectPlayer.b2body.setLinearVelocity(-xVelocity, insectPlayer.b2body.getLinearVelocity().y);
         }
 
-
+        if(isDirectionUp && worldContactListener.isOnGrounds()){
+            insectPlayer.b2body.applyForceToCenter(0,jumpSpeed,true);
+            isDirectionUp = false;
+        }
 
         if (Gdx.input.isKeyJustPressed(Input.Keys.UP)){
             if(worldContactListener.isOnGrounds()){
-                insectPlayer.b2body.applyForceToCenter(0,jumpSpeed,true);
+                isDirectionUp = true;
             }
         }
         if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)){
@@ -193,7 +201,8 @@ public class GameScreen implements Screen{
         if (Gdx.input.isTouched()) {
             if ((Gdx.input.getY() < Gdx.graphics.getHeight() / 4)) {
                 if(worldContactListener.isOnGrounds()){
-                    insectPlayer.b2body.applyForceToCenter(0,jumpSpeed,true);
+//                    insectPlayer.b2body.applyForceToCenter(0,jumpSpeed,true);
+                    isDirectionUp = true;
                 }
             }else if (Gdx.input.getX() > Gdx.graphics.getWidth() / 2){
                 isDirectionRight = true;
@@ -201,14 +210,6 @@ public class GameScreen implements Screen{
                 isDirectionRight = false;
             }
         }
-
-
-
-        //Return to menu screen
-        if (Gdx.input.isKeyJustPressed(Input.Keys.M)){
-            game.setScreen(new MenuScreen(game));
-        }
-
 
         //Turn debugGrid on/of
         if (Gdx.input.isKeyJustPressed(Input.Keys.G)){
@@ -270,6 +271,7 @@ public class GameScreen implements Screen{
         drawGameOver();
         drawLevelCleared();
         game.batch.end();
+        controller.draw();
     }
 
     private void checkLevelCompleted() {
@@ -344,6 +346,7 @@ public class GameScreen implements Screen{
     public void resize(int width, int height) {
         gamePort.update(width, height);
         ViewportUtils.debugPixelPerUnit(gamePort);
+        controller.resize(width, height);
     }
 
     @Override

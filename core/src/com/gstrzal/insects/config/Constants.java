@@ -21,6 +21,11 @@ public class Constants {
     public static final String MENU_SELECT_LEVEL_BUTTON_BLOCKED = "menu/button_level_blocked_88x88.png";
     public static final String GAME_OVER_POPUP = "menu/game_over_376x90.png";
     public static final String LEVEL_CLEARED_POPUP = "menu/level_cleared_376x90.png";
+    public static final String CONTROLLER_AUDIO = "menu/button_audio_88x88.png";
+    public static final String CONTROLLER_AUDIO_PRESSED = "menu/button_audio_pressed_88x88.png";
+    public static final String CONTROLLER_OPTIONS = "menu/button_options_88x88.png";
+    public static final String CONTROLLER_OPTIONS_PRESSED = "menu/button_options_pressed_88x88.png";
+
 
     public static final String GAME_FONT = "fonts/sonic_comic.fnt";
 
