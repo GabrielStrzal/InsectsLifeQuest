@@ -206,13 +206,14 @@ public class GameScreen implements Screen{
 
         //Character Change
         if (characterChange) {
+
             Insect tempInsc = insectPlayer;
             if (tempInsc instanceof LBug) {
                 insectPlayer = new Ant(world, (Texture) assetManager.get(Constants.ANT),
-                        tempInsc.b2body.getPosition().x, tempInsc.b2body.getPosition().y);
+                        tempInsc.b2body.getPosition().x, tempInsc.b2body.getPosition().y - tempInsc.sizeDiff);
             } else {
                 insectPlayer = new LBug(world, (Texture) assetManager.get(Constants.JOANINHA),
-                        tempInsc.b2body.getPosition().x, tempInsc.b2body.getPosition().y);
+                        tempInsc.b2body.getPosition().x, tempInsc.b2body.getPosition().y + tempInsc.sizeDiff);
             }
             tempInsc.dispose();
             characterChange = false;
