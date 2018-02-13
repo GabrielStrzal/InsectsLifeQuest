@@ -86,19 +86,31 @@ public class Ant extends Insect {
         PolygonShape shape = new PolygonShape();
         shape.setAsBox(60/ Insects.PPM ,60/ Insects.PPM );
         fdef.filter.categoryBits = Insects.INSECT_BIT;
-        fdef.filter.maskBits = Insects.FLOWER_BIT | Insects.BRICK_BIT | Insects.LEVEL_END_BIT | Insects.DAMAGE_BIT | Insects.PASS_BLOCK_BIT;
+        fdef.filter.maskBits = Insects.FLOWER_BIT | Insects.BRICK_BIT | Insects.LEVEL_END_BIT
+                | Insects.DAMAGE_BIT | Insects.PASS_BLOCK_BIT;
         fdef.shape = shape;
-        b2body.createFixture(fdef).setUserData(Constants.INSECT_BODY);
+        b2body.createFixture(fdef).setUserData(Constants.ANT_BODY);
 
 
         //Base Sensor
         PolygonShape shape2 = new PolygonShape();
-        shape2.setAsBox(50/ Insects.PPM ,16/ Insects.PPM , new Vector2(0,-100/ Insects.PPM),0);
+        shape2.setAsBox(50/ Insects.PPM ,16/ Insects.PPM , new Vector2(0, -60/ Insects.PPM),0);
         fdef.shape = shape2;
         fdef.isSensor = true;
         fdef.filter.categoryBits = Insects.BASE_BIT;
-        fdef.filter.maskBits = Insects.BRICK_BIT | Insects.FLOWER_BIT | Insects.PASS_BLOCK_BIT;
+        fdef.filter.maskBits = Insects.BRICK_BIT | Insects.PASS_BLOCK_BIT;
         b2body.createFixture(fdef).setUserData(Constants.INSECT_BASE);
+
+
+
+        //Change Sensor
+        PolygonShape shape3 = new PolygonShape();
+        shape3.setAsBox(55/ Insects.PPM ,95/ Insects.PPM, new Vector2(0, 45/ Insects.PPM),0);
+        fdef.shape = shape3;
+        fdef.isSensor = true;
+        fdef.filter.categoryBits = Insects.CHANGE_INSECT_BIT;
+        fdef.filter.maskBits = Insects.BRICK_BIT;
+        b2body.createFixture(fdef).setUserData(Constants.INSECT_CHANGE);
     }
 
 }

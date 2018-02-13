@@ -20,6 +20,7 @@ import com.gstrzal.insects.config.Constants;
 public class WorldContactListener implements ContactListener {
 
     private int onGrounds = 0;
+    private int changeCollision = 0;
     private Array<Body> bodiesToRemove;
     private boolean levelFinished = false;
     private boolean gameOver = false;
@@ -42,6 +43,10 @@ public class WorldContactListener implements ContactListener {
             onGrounds++;
         }
 
+        if(isContact(contact, Constants.INSECT_CHANGE, Constants.MAP_BLOCKS)){
+            changeCollision++;
+        }
+
         if(isContact(contact, Constants.INSECT_BODY, Constants.MAP_FLOWERS)){
             Fixture flower = fixA.getUserData() == Constants.MAP_FLOWERS ? fixA : fixB;
             bodiesToRemove.add(flower.getBody());
@@ -52,6 +57,20 @@ public class WorldContactListener implements ContactListener {
         }
 
         if(isContact(contact, Constants.INSECT_BODY, Constants.MAP_DAMAGE)){
+            setGameOver(true);
+        }
+
+
+        if(isContact(contact, Constants.ANT_BODY, Constants.MAP_FLOWERS)){
+            Fixture flower = fixA.getUserData() == Constants.MAP_FLOWERS ? fixA : fixB;
+            bodiesToRemove.add(flower.getBody());
+        }
+
+        if(isContact(contact, Constants.ANT_BODY, Constants.MAP_END)){
+            setLevelFinished(true);
+        }
+
+        if(isContact(contact, Constants.ANT_BODY, Constants.MAP_DAMAGE)) {
             setGameOver(true);
         }
     }
@@ -66,6 +85,9 @@ public class WorldContactListener implements ContactListener {
         }
         if(isContact(contact, Constants.INSECT_BASE, Constants.MAP_PASS_BLOCKS)){
             onGrounds--;
+        }
+        if(isContact(contact, Constants.INSECT_CHANGE, Constants.MAP_BLOCKS)){
+            changeCollision--;
         }
     }
 
@@ -115,6 +137,14 @@ public class WorldContactListener implements ContactListener {
             return true;
         }else{
             return false;
+        }
+    }
+
+    public boolean isChangePossible(){
+        if(changeCollision == 1) {
+            return false;
+        }else{
+            return true;
         }
     }
     public Array<Body> getBodiesToRemove() {

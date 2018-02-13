@@ -68,7 +68,9 @@ public class Constants {
 
     //Object Descriptions
     public static final String INSECT_BODY = "InsectBody";
+    public static final String ANT_BODY = "antBody";
     public static final String INSECT_BASE = "base";
+    public static final String INSECT_CHANGE = "change";
 
     private Constants() {}
 }

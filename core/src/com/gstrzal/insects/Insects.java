@@ -28,6 +28,7 @@ public class Insects extends Game {
 	public static final short LEVEL_END_BIT = 32;
 	public static final short DAMAGE_BIT = 64;
 	public static final short PASS_BLOCK_BIT = 128;
+	public static final short CHANGE_INSECT_BIT = 256;
 
 
 	private boolean audioOn = true;

@@ -42,7 +42,7 @@ public class B2WorldCreator {
             shape.setAsBox((rect.getWidth() / 2) / Insects.PPM, (rect.getHeight() / 2) / Insects.PPM);
             fdef.shape = shape;
             fdef.filter.categoryBits = Insects.BRICK_BIT;
-            fdef.filter.maskBits = Insects.INSECT_BIT | Insects.BASE_BIT;
+            fdef.filter.maskBits = Insects.INSECT_BIT | Insects.BASE_BIT | Insects.CHANGE_INSECT_BIT;
             fdef.friction = 0;
             body.createFixture(fdef).setUserData(Constants.MAP_BLOCKS);
         }
@@ -74,7 +74,7 @@ public class B2WorldCreator {
             fdef.shape = circleShape;
             fdef.isSensor = true;
             fdef.filter.categoryBits = Insects.FLOWER_BIT;
-            fdef.filter.maskBits = Insects.INSECT_BIT;
+            fdef.filter.maskBits = Insects.INSECT_BIT ;
             Body flowerBody = world.createBody(bdef);
             flowerBody.createFixture(fdef).setUserData(Constants.MAP_FLOWERS);
             Flower f = new Flower(flowerBody, insects);

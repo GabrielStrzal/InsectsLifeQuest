@@ -198,7 +198,7 @@ public class GameScreen implements Screen{
 
         //Character Change
         if (Gdx.input.isKeyJustPressed(Input.Keys.ENTER)){
-            if(worldContactListener.isOnGrounds()) {
+            if(worldContactListener.isOnGrounds() && worldContactListener.isChangePossible()) {
                 characterChange = true;
             }
         }
@@ -234,7 +234,7 @@ public class GameScreen implements Screen{
             controller.setActionPressed(false);
         }
         if(controller.isInsectSwitchPressed()){
-            if(worldContactListener.isOnGrounds()) {
+            if(worldContactListener.isOnGrounds() && worldContactListener.isChangePossible()) {
                 characterChange = true;
             }
             controller.setInsectSwitchPressed(false);
