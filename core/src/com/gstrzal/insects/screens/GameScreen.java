@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -85,6 +86,8 @@ public class GameScreen implements Screen{
     private GlyphLayout layout = new GlyphLayout();
     private Controller controller;
 
+    private Sound gameSound;
+
 
 
     public GameScreen(Insects game, int level){
@@ -117,6 +120,13 @@ public class GameScreen implements Screen{
 
         controller = new Controller(game);
 
+        gameSound = assetManager.get(Constants.AUDIO_001);
+
+        gameSound.play();
+        if(!game.isAudioOn()) {
+            gameSound.pause();
+        }
+
 
     }
     @Override
@@ -140,6 +150,12 @@ public class GameScreen implements Screen{
         gamecam.update();
         b2dcam.update();
         mapRenderer.setView(b2dcam);
+
+        if(game.isAudioOn()){
+            gameSound.resume();
+        }else{
+            gameSound.pause();
+        }
 
     }
 
@@ -193,22 +209,20 @@ public class GameScreen implements Screen{
             tempInsc.dispose();
         }
 
+        //Touch
+        if(controller.isRightPressed()){
+            isDirectionRight = true;
+            controller.setRightPressed(false);
+        }else if(controller.isLeftPressed()) {
+            isDirectionRight = false;
+            controller.setLeftPressed(false);
+        }
 
-
-
-
-        //mobile
-        if (Gdx.input.isTouched()) {
-            if ((Gdx.input.getY() < Gdx.graphics.getHeight() / 4)) {
-                if(worldContactListener.isOnGrounds()){
-//                    insectPlayer.b2body.applyForceToCenter(0,jumpSpeed,true);
-                    isDirectionUp = true;
-                }
-            }else if (Gdx.input.getX() > Gdx.graphics.getWidth() / 2){
-                isDirectionRight = true;
-            } else {
-                isDirectionRight = false;
+        if(controller.isActionPressed()){
+            if(worldContactListener.isOnGrounds()){
+                isDirectionUp = true;
             }
+            controller.setActionPressed(false);
         }
 
         //Turn debugGrid on/of
@@ -371,5 +385,6 @@ public class GameScreen implements Screen{
         mapRenderer.dispose();
         world.dispose();
         b2dr.dispose();
+        gameSound.stop();
     }
 }

@@ -89,7 +89,7 @@ public class LBug extends Insect {
         b2body  = world.createBody(bdef);
         FixtureDef fdef = new FixtureDef();
         PolygonShape shape = new PolygonShape();
-        shape.setAsBox(60/ Insects.PPM ,100/ Insects.PPM );
+        shape.setAsBox(55/ Insects.PPM ,100/ Insects.PPM );
         fdef.filter.categoryBits = Insects.INSECT_BIT;
         fdef.filter.maskBits = Insects.FLOWER_BIT | Insects.BRICK_BIT | Insects.LEVEL_END_BIT | Insects.DAMAGE_BIT | Insects.PASS_BLOCK_BIT;
         fdef.shape = shape;

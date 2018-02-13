@@ -30,6 +30,9 @@ public class Insects extends Game {
 	public static final short PASS_BLOCK_BIT = 128;
 
 
+	private boolean audioOn = true;
+	private boolean displayControllers = true;
+
 	public SpriteBatch batch;
 	private final AssetManager assetManager = new AssetManager();
 
@@ -58,4 +61,20 @@ public class Insects extends Game {
     public AssetManager getAssetManager() {
         return assetManager;
     }
+
+	public boolean isAudioOn() {
+		return audioOn;
+	}
+
+	public void setAudioOn(boolean audioOn) {
+		this.audioOn = audioOn;
+	}
+
+	public boolean isDisplayControllers() {
+		return displayControllers;
+	}
+
+	public void setDisplayControllers(boolean displayControllers) {
+		this.displayControllers = displayControllers;
+	}
 }

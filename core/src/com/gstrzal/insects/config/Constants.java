@@ -21,14 +21,32 @@ public class Constants {
     public static final String MENU_SELECT_LEVEL_BUTTON_BLOCKED = "menu/button_level_blocked_352x352.png";
     public static final String GAME_OVER_POPUP = "menu/game_over_1504x360.png";
     public static final String LEVEL_CLEARED_POPUP = "menu/level_cleared_1504x360.png";
+
+    //Controllers
     public static final String CONTROLLER_AUDIO = "menu/button_audio_352x352.png";
     public static final String CONTROLLER_AUDIO_PRESSED = "menu/button_audio_pressed_352x352.png";
-    public static final String CONTROLLER_OPTIONS = "menu/button_options_352x352.png";
-    public static final String CONTROLLER_OPTIONS_PRESSED = "menu/button_options_pressed_352x352.png";
+    public static final String CONTROLLER_RIGHT = "menu/button_right_352x352.png";
+    public static final String CONTROLLER_RIGHT_PRESSED = "menu/button_right_pressed_352x352.png";
+    public static final String CONTROLLER_LEFT = "menu/button_left_352x352.png";
+    public static final String CONTROLLER_LEFT_PRESSED = "menu/button_left_pressed_352x352.png";
+    public static final String CONTROLLER_ACTIONS = "menu/button_actions_2000x215.png";
+    public static final String CONTROLLER_ACTIONS_PRESSED = "menu/button_actions_pressed_2000x215.png";
+    public static final String CONTROLLER_CONTROLS = "menu/button_controls_352x352.png";
+    public static final String CONTROLLER_CONTROLS_PRESSED = "menu/button_controls_pressed_352x352.png";
+    public static final String CONTROLLER_CONTROLS_CHECKED = "menu/button_options_checked_352x352.png";
 
+    //Audios
+    public static final String AUDIO_001 = "audio/audio_001.wav";
 
+    //Characters
+    public static final String JOANINHA = "joaninha_512x208.png";
+    public static final String ANT = "formiga_256x121.png";
+    public static final String FLOWER = "flower_64x64.png";
+
+    //Fonts
     public static final String GAME_FONT = "fonts/sonic_comic.fnt";
 
+    //Levels
     public static final String LEVEL_1 = "levels/ins_level_1.tmx";
     public static final String LEVEL_2 = "levels/ins_level_2.tmx";
     public static final String LEVEL_3 = "levels/ins_level_3.tmx";
@@ -36,10 +54,6 @@ public class Constants {
     public static final String LEVEL_5 = "levels/ins_level_5.tmx";
     public static final String LEVEL = "levels/ins_level_";
     public static final String TMX = ".tmx";
-    public static final String JOANINHA = "joaninha_512x208.png";
-    public static final String ANT = "formiga_256x121.png";
-    public static final String FLOWER = "flower_64x64.png";
-
 
     //Tile Layers
     public static final String MAP_BLOCKS = "blocks";
@@ -47,7 +61,6 @@ public class Constants {
     public static final String MAP_END = "end";
     public static final String MAP_DAMAGE = "damage";
     public static final String MAP_PASS_BLOCKS = "passBlock";
-
 
     //Object Descriptions
     public static final String INSECT_BODY = "InsectBody";

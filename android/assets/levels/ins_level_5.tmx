@@ -24,7 +24,7 @@
   <object id="52" x="1407.58" y="512.121" width="1152.42" height="81.2121"/>
  </objectgroup>
  <objectgroup name="passBlock">
-  <object id="39" x="1682" y="1190.24" width="860" height="48"/>
+  <object id="39" x="1682" y="1197.57" width="860" height="46"/>
   <object id="41" x="790" y="559.333" width="348" height="46"/>
   <object id="42" x="275.152" y="1068.64" width="599.273" height="46"/>
   <object id="43" x="155.697" y="1324.88" width="987.273" height="46"/>

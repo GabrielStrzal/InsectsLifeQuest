@@ -2,6 +2,7 @@ package com.gstrzal.insects.screens;
 
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -65,8 +66,15 @@ public class LoadingScreen extends ScreenAdapter{
         assetManager.load(Constants.LEVEL_CLEARED_POPUP, Texture.class);
         assetManager.load(Constants.CONTROLLER_AUDIO, Texture.class);
         assetManager.load(Constants.CONTROLLER_AUDIO_PRESSED, Texture.class);
-        assetManager.load(Constants.CONTROLLER_OPTIONS, Texture.class);
-        assetManager.load(Constants.CONTROLLER_OPTIONS_PRESSED, Texture.class);
+        assetManager.load(Constants.CONTROLLER_RIGHT, Texture.class);
+        assetManager.load(Constants.CONTROLLER_RIGHT_PRESSED, Texture.class);
+        assetManager.load(Constants.CONTROLLER_LEFT, Texture.class);
+        assetManager.load(Constants.CONTROLLER_LEFT_PRESSED, Texture.class);
+        assetManager.load(Constants.CONTROLLER_ACTIONS, Texture.class);
+        assetManager.load(Constants.CONTROLLER_ACTIONS_PRESSED, Texture.class);
+        assetManager.load(Constants.CONTROLLER_CONTROLS, Texture.class);
+        assetManager.load(Constants.CONTROLLER_CONTROLS_PRESSED, Texture.class);
+        assetManager.load(Constants.CONTROLLER_CONTROLS_CHECKED, Texture.class);
         assetManager.load(Constants.GAME_FONT, BitmapFont.class);
         assetManager.load(Constants.LEVEL_1, TiledMap.class);
         assetManager.load(Constants.LEVEL_2, TiledMap.class);
@@ -76,6 +84,8 @@ public class LoadingScreen extends ScreenAdapter{
         assetManager.load(Constants.JOANINHA, Texture.class);
         assetManager.load(Constants.ANT, Texture.class);
         assetManager.load(Constants.FLOWER, Texture.class);
+
+        assetManager.load(Constants.AUDIO_001, Sound.class);
     }
     @Override
     public void render(float delta) {
