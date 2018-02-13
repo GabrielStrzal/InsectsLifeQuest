@@ -61,6 +61,7 @@ public class GameScreen implements Screen{
 
 
     private boolean isDirectionRight = true;
+    private boolean characterChange;
 
     private float xVelocity = 1f;
     private float gravity = -10f;
@@ -178,13 +179,13 @@ public class GameScreen implements Screen{
             insectPlayer.b2body.setLinearVelocity(-xVelocity, insectPlayer.b2body.getLinearVelocity().y);
         }
 
-        if(isDirectionUp && worldContactListener.isOnGrounds()){
+        if(isDirectionUp && worldContactListener.isOnGrounds() && insectPlayer instanceof LBug){
             insectPlayer.b2body.applyForceToCenter(0,jumpSpeed,true);
             isDirectionUp = false;
         }
 
         if (Gdx.input.isKeyJustPressed(Input.Keys.UP)){
-            if(worldContactListener.isOnGrounds()){
+            if(worldContactListener.isOnGrounds() && insectPlayer instanceof LBug){
                 isDirectionUp = true;
             }
         }
@@ -195,19 +196,28 @@ public class GameScreen implements Screen{
             isDirectionRight = false;
         }
 
-
         //Character Change
         if (Gdx.input.isKeyJustPressed(Input.Keys.ENTER)){
+            if(worldContactListener.isOnGrounds()) {
+                characterChange = true;
+            }
+        }
+
+
+        //Character Change
+        if (characterChange) {
             Insect tempInsc = insectPlayer;
-            if(tempInsc instanceof LBug) {
+            if (tempInsc instanceof LBug) {
                 insectPlayer = new Ant(world, (Texture) assetManager.get(Constants.ANT),
                         tempInsc.b2body.getPosition().x, tempInsc.b2body.getPosition().y);
-            }else{
+            } else {
                 insectPlayer = new LBug(world, (Texture) assetManager.get(Constants.JOANINHA),
                         tempInsc.b2body.getPosition().x, tempInsc.b2body.getPosition().y);
             }
             tempInsc.dispose();
+            characterChange = false;
         }
+
 
         //Touch
         if(controller.isRightPressed()){
@@ -217,12 +227,17 @@ public class GameScreen implements Screen{
             isDirectionRight = false;
             controller.setLeftPressed(false);
         }
-
         if(controller.isActionPressed()){
-            if(worldContactListener.isOnGrounds()){
+            if(worldContactListener.isOnGrounds() && insectPlayer instanceof LBug){
                 isDirectionUp = true;
             }
             controller.setActionPressed(false);
+        }
+        if(controller.isInsectSwitchPressed()){
+            if(worldContactListener.isOnGrounds()) {
+                characterChange = true;
+            }
+            controller.setInsectSwitchPressed(false);
         }
 
         //Turn debugGrid on/of

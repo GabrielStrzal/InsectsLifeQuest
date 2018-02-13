@@ -90,6 +90,15 @@ public class Ant extends Insect {
         fdef.shape = shape;
         b2body.createFixture(fdef).setUserData(Constants.INSECT_BODY);
 
+
+        //Base Sensor
+        PolygonShape shape2 = new PolygonShape();
+        shape2.setAsBox(50/ Insects.PPM ,16/ Insects.PPM , new Vector2(0,-100/ Insects.PPM),0);
+        fdef.shape = shape2;
+        fdef.isSensor = true;
+        fdef.filter.categoryBits = Insects.BASE_BIT;
+        fdef.filter.maskBits = Insects.BRICK_BIT | Insects.FLOWER_BIT | Insects.PASS_BLOCK_BIT;
+        b2body.createFixture(fdef).setUserData(Constants.INSECT_BASE);
     }
 
 }

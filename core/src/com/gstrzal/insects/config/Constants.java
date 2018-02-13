@@ -34,6 +34,10 @@ public class Constants {
     public static final String CONTROLLER_CONTROLS = "menu/button_controls_352x352.png";
     public static final String CONTROLLER_CONTROLS_PRESSED = "menu/button_controls_pressed_352x352.png";
     public static final String CONTROLLER_CONTROLS_CHECKED = "menu/button_options_checked_352x352.png";
+    public static final String CONTROLLER_INSECT_SWITCH = "menu/button_switch_352x352.png";
+    public static final String CONTROLLER_INSECT_SWITCH_PRESSED = "menu/button_switch_pressed_352x352.png";
+
+
 
     //Audios
     public static final String AUDIO_001 = "audio/audio_001.wav";

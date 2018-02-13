@@ -29,6 +29,7 @@ public class Controller {
     private boolean rightPressed;
     private boolean leftPressed;
     private boolean actionPressed;
+    private boolean insectSwitchPressed;
 
 
     OrthographicCamera camera;
@@ -47,6 +48,8 @@ public class Controller {
     private Texture controlsButtonTexture;
     private Texture controlsButtonPressedTexture;
     private Texture controlsButtonCheckedTexture;
+    private Texture insectSwitchButtonTexture;
+    private Texture insectSwitchButtonPressedTexture;
     private AssetManager assetManager;
 
 
@@ -103,20 +106,17 @@ public class Controller {
                 new TextureRegionDrawable(new TextureRegion(soundCheckedTexture)));
         soundBtn.setPosition(BACK_BUTTON_X - BUTTON_PADDING , BACK_BUTTON_Y);
         soundBtn.setSize(BUTTON_SIZE, BUTTON_SIZE);
-
         soundBtn.addListener(new ActorGestureListener() {
             @Override
             public void tap(InputEvent event, float x, float y, int count,
                             int button) {
                 super.tap(event, x, y, count, button);
                 insects.setAudioOn(!insects.isAudioOn());
-
             }
         });
         if(!insects.isAudioOn()) {
             soundBtn.setChecked(true);
         }
-
         stage.addActor(soundBtn);
 
         //Controls Button
@@ -129,7 +129,6 @@ public class Controller {
                 new TextureRegionDrawable(new TextureRegion(controlsButtonCheckedTexture)));
         controlsBtn.setPosition(BACK_BUTTON_X - (BUTTON_PADDING * 2), BACK_BUTTON_Y);
         controlsBtn.setSize(BUTTON_SIZE,BUTTON_SIZE);
-
         controlsBtn.addListener(new ActorGestureListener() {
             @Override
             public void tap(InputEvent event, float x, float y, int count, int button) {
@@ -142,6 +141,24 @@ public class Controller {
         }
         stage.addActor(controlsBtn);
 
+
+
+        //Insect Switch Button
+        insectSwitchButtonTexture = assetManager.get(Constants.CONTROLLER_INSECT_SWITCH);
+        insectSwitchButtonPressedTexture = assetManager.get(Constants.CONTROLLER_INSECT_SWITCH_PRESSED);
+        ImageButton insectSwitchBtn = new ImageButton(
+                new TextureRegionDrawable(new TextureRegion(insectSwitchButtonTexture)),
+                new TextureRegionDrawable(new TextureRegion(insectSwitchButtonPressedTexture)));
+        insectSwitchBtn.setPosition(50, BACK_BUTTON_Y - BUTTON_SIZE);
+        insectSwitchBtn.setSize(BUTTON_SIZE*2,BUTTON_SIZE*2);
+        insectSwitchBtn.addListener(new ActorGestureListener() {
+            @Override
+            public void tap(InputEvent event, float x, float y, int count, int button) {
+                super.tap(event, x, y, count, button);
+                insectSwitchPressed = true;
+            }
+        });
+        stage.addActor(insectSwitchBtn);
 
 
         //Right Button
@@ -242,5 +259,13 @@ public class Controller {
 
     public void setActionPressed(boolean actionPressed) {
         this.actionPressed = actionPressed;
+    }
+
+    public boolean isInsectSwitchPressed() {
+        return insectSwitchPressed;
+    }
+
+    public void setInsectSwitchPressed(boolean insectSwitchPressed) {
+        this.insectSwitchPressed = insectSwitchPressed;
     }
 }
