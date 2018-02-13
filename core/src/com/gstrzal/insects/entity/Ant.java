@@ -23,8 +23,8 @@ import com.gstrzal.insects.screens.GameScreen;
 public class Ant extends Insect {
 
 
-    public static final int WIDTH = 32;
-    public static final int HEIGHT = 30;
+    public static final int WIDTH = 128;
+    public static final int HEIGHT = 120;
 
     private float animationTimer = 0;
     private final Animation walking;
@@ -35,7 +35,7 @@ public class Ant extends Insect {
 
 
     public Ant(World world, Texture texture){
-        this(world, texture, 50/ Insects.PPM, 95/ Insects.PPM);
+        this(world, texture, 200/ Insects.PPM, 380/ Insects.PPM);
     }
 
 
@@ -84,7 +84,7 @@ public class Ant extends Insect {
         b2body  = world.createBody(bdef);
         FixtureDef fdef = new FixtureDef();
         PolygonShape shape = new PolygonShape();
-        shape.setAsBox(15/ Insects.PPM ,15/ Insects.PPM );
+        shape.setAsBox(60/ Insects.PPM ,60/ Insects.PPM );
         fdef.filter.categoryBits = Insects.INSECT_BIT;
         fdef.filter.maskBits = Insects.FLOWER_BIT | Insects.BRICK_BIT | Insects.LEVEL_END_BIT | Insects.DAMAGE_BIT | Insects.PASS_BLOCK_BIT;
         fdef.shape = shape;

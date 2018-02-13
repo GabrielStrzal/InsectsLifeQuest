@@ -57,7 +57,7 @@ public class GameScreen implements Screen{
     private AssetManager assetManager;
 
     private boolean debugGrid = false;
-    private boolean debug = false;
+
 
     private boolean isDirectionRight = true;
 
@@ -250,7 +250,7 @@ public class GameScreen implements Screen{
         GdxUtils.clearScreen();
         mapRenderer.render();
 
-        if(debug) {
+        if(GameConfig.debug) {
             b2dr.render(world, b2dcam.combined);
         }
         draw();

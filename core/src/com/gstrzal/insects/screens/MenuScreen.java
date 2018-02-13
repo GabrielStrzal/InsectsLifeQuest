@@ -26,9 +26,9 @@ import com.gstrzal.insects.utils.GdxUtils;
 public class MenuScreen extends ScreenAdapter {
 
     private static final int PLAY_BUTTON_Y = (int)GameConfig.SCREEN_HEIGHT_PX/5;
-    private static final int BUTTONS_Y = PLAY_BUTTON_Y + 6;
-    private static final int OPTIONS_BUTTON_X = 100;
-    private static final int SELECT_LEVELS_BUTTON_X = 525;
+    private static final int BUTTONS_Y = PLAY_BUTTON_Y + 24;
+    private static final int OPTIONS_BUTTON_X = 400;
+    private static final int SELECT_LEVELS_BUTTON_X = 2100;
 
     private Texture backgroundTexture;
     private Texture playTexture;
@@ -58,7 +58,7 @@ public class MenuScreen extends ScreenAdapter {
         stage.addActor(background);
         font = new BitmapFont(Gdx.files.internal(Constants.GAME_FONT),false);
         font.setColor(Color.DARK_GRAY);
-        font.getData().setScale(0.4f);
+        font.getData().setScale(2f);
 
 
 

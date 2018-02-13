@@ -33,6 +33,7 @@ public class B2WorldCreator {
         flowers = new Array<Flower>();
 
         //Blocks
+        if(map.getLayers().get(Constants.MAP_BLOCKS) != null)
         for (MapObject object : map.getLayers().get(Constants.MAP_BLOCKS).getObjects().getByType(RectangleMapObject.class)) {
             Rectangle rect = ((RectangleMapObject) object).getRectangle();
             bdef.type = BodyDef.BodyType.StaticBody;
@@ -46,7 +47,7 @@ public class B2WorldCreator {
             body.createFixture(fdef).setUserData(Constants.MAP_BLOCKS);
         }
 
-        //Blocks
+        //Pass Blocks
         if(map.getLayers().get(Constants.MAP_PASS_BLOCKS) != null)
         for (MapObject object : map.getLayers().get(Constants.MAP_PASS_BLOCKS).getObjects().getByType(RectangleMapObject.class)) {
             Rectangle rect = ((RectangleMapObject) object).getRectangle();

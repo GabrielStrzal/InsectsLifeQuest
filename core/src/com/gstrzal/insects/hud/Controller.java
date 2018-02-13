@@ -41,10 +41,10 @@ public class Controller {
     private AssetManager assetManager;
 
 
-    private static final float BACK_BUTTON_X = GameConfig.SCREEN_WIDTH_PX - 40;
-    private static final float BACK_BUTTON_Y = GameConfig.SCREEN_HEIGHT_PX - 40;
-    private static final float BUTTON_SIZE = 32;
-    private static final float BUTTON_PADDING = 42;
+    private static final float BACK_BUTTON_X = GameConfig.SCREEN_WIDTH_PX - 250;
+    private static final float BACK_BUTTON_Y = GameConfig.SCREEN_HEIGHT_PX - 250;
+    private static final float BUTTON_SIZE = 180;
+    private static final float BUTTON_PADDING = 220;
 
 
 

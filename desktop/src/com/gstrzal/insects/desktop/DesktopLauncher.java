@@ -8,8 +8,8 @@ import com.gstrzal.insects.config.GameConfig;
 public class DesktopLauncher {
 	public static void main (String[] arg) {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
-		config.width = (int) GameConfig.SCREEN_WIDTH_PX;
-		config.height = (int)GameConfig.SCREEN_HEIGHT_PX;
+		config.width = (int) GameConfig.DISPLAY_SCREEN_WIDTH_PX;
+		config.height = (int)GameConfig.DISPLAY_SCREEN_HEIGHT_PX;
 		new LwjglApplication(new Insects(), config);
 	}
 }

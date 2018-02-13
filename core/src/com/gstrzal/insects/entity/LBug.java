@@ -23,8 +23,8 @@ public class LBug extends Insect {
 
 
     //joaninha
-    public static final int WIDTH = 32;
-    public static final int HEIGHT = 52;
+    public static final int WIDTH = 128;
+    public static final int HEIGHT = 208;
 
     private float animationTimer = 0;
     private final Animation walking;
@@ -35,7 +35,7 @@ public class LBug extends Insect {
 
 
     public LBug(World world, Texture texture){
-        this(world, texture, 50/ Insects.PPM, 95/ Insects.PPM);
+        this(world, texture, 200/ Insects.PPM, 380/ Insects.PPM);
     }
 
 
@@ -89,7 +89,7 @@ public class LBug extends Insect {
         b2body  = world.createBody(bdef);
         FixtureDef fdef = new FixtureDef();
         PolygonShape shape = new PolygonShape();
-        shape.setAsBox(15/ Insects.PPM ,26/ Insects.PPM );
+        shape.setAsBox(60/ Insects.PPM ,100/ Insects.PPM );
         fdef.filter.categoryBits = Insects.INSECT_BIT;
         fdef.filter.maskBits = Insects.FLOWER_BIT | Insects.BRICK_BIT | Insects.LEVEL_END_BIT | Insects.DAMAGE_BIT | Insects.PASS_BLOCK_BIT;
         fdef.shape = shape;
@@ -98,7 +98,7 @@ public class LBug extends Insect {
 
         //Base Sensor
         PolygonShape shape2 = new PolygonShape();
-        shape2.setAsBox(12/ Insects.PPM ,4/ Insects.PPM , new Vector2(0,-25/ Insects.PPM),0);
+        shape2.setAsBox(50/ Insects.PPM ,16/ Insects.PPM , new Vector2(0,-100/ Insects.PPM),0);
         fdef.shape = shape2;
         fdef.isSensor = true;
         fdef.filter.categoryBits = Insects.BASE_BIT;

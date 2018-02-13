@@ -23,8 +23,8 @@ import com.gstrzal.insects.utils.GdxUtils;
 
 public class LoadingScreen extends ScreenAdapter{
 
-    private static final float PROGRESS_BAR_WIDTH = 100;
-    private static final float PROGRESS_BAR_HEIGHT = 25;
+    private static final float PROGRESS_BAR_WIDTH = 400;
+    private static final float PROGRESS_BAR_HEIGHT = 100;
     private ShapeRenderer shapeRenderer;
     private Viewport viewport;
     private Camera camera;
@@ -72,6 +72,7 @@ public class LoadingScreen extends ScreenAdapter{
         assetManager.load(Constants.LEVEL_2, TiledMap.class);
         assetManager.load(Constants.LEVEL_3, TiledMap.class);
         assetManager.load(Constants.LEVEL_4, TiledMap.class);
+        assetManager.load(Constants.LEVEL_5, TiledMap.class);
         assetManager.load(Constants.JOANINHA, Texture.class);
         assetManager.load(Constants.ANT, Texture.class);
         assetManager.load(Constants.FLOWER, Texture.class);

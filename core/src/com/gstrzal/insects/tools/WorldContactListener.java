@@ -88,7 +88,9 @@ public class WorldContactListener implements ContactListener {
                 insect_y = fixtureA.getBody().getPosition().y;
                 passPlatform_y = fixtureB.getBody().getPosition().y;
             }
-            if(insect_y < passPlatform_y + .32f ){
+            System.out.println("---IN--" + insect_y);
+            System.out.println("-------" + passPlatform_y);
+            if(insect_y < passPlatform_y + .31f ){
                 contact.setEnabled(false);
             } else {
                 contact.setEnabled(true);

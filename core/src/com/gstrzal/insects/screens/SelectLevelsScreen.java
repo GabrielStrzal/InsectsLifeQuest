@@ -92,6 +92,8 @@ public class SelectLevelsScreen extends ScreenAdapter {
         table.align(Align.center | Align.top);
 
         table.setPosition(0,TABLE_Y);
+        BitmapFont font = new BitmapFont(Gdx.files.internal(Constants.GAME_FONT),false);
+        font.getData().setScale(4f);
 
         //button style
         levelButtonTexture = assetManager.get(Constants.MENU_SELECT_LEVEL_BUTTON);
@@ -100,14 +102,14 @@ public class SelectLevelsScreen extends ScreenAdapter {
                 new TextureRegionDrawable(new TextureRegion(levelButtonTexture)),
                 new TextureRegionDrawable(new TextureRegion(levelButtonPressedTexture)),
                 new TextureRegionDrawable(new TextureRegion(levelButtonTexture)),
-                new BitmapFont(Gdx.files.internal(Constants.GAME_FONT),false)
+                font
         );
         levelButtonBlockedTexture = assetManager.get(Constants.MENU_SELECT_LEVEL_BUTTON_BLOCKED);
         ImageTextButton.ImageTextButtonStyle levelImgBlockedStyle = new ImageTextButton.ImageTextButtonStyle(
                 new TextureRegionDrawable(new TextureRegion(levelButtonBlockedTexture)),
                 new TextureRegionDrawable(new TextureRegion(levelButtonBlockedTexture)),
                 new TextureRegionDrawable(new TextureRegion(levelButtonBlockedTexture)),
-                new BitmapFont(Gdx.files.internal(Constants.GAME_FONT),false)
+                font
         );
 
         //add buttons to Table
