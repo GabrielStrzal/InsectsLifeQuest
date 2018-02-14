@@ -40,7 +40,7 @@ public class Insects extends Game {
 
 	@Override
 	public void create () {
-		Gdx.app.setLogLevel(Application.LOG_DEBUG);
+		Gdx.app.setLogLevel(Application.LOG_NONE);
 		assetManager.getLogger().setLevel(Logger.DEBUG);
 
 		batch = new SpriteBatch();

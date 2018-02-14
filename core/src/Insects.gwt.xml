@@ -3,4 +3,5 @@
 <module>
 	<source path="com/gstrzal/insects" />
 	<extend-configuration-property name="gdx.reflect.include" value="com.badlogic.gdx.maps.objects.RectangleMapObject" />
+	<extend-configuration-property name="gdx.reflect.include" value="com.badlogic.gdx.maps.objects.PolygonMapObject" />
 </module>
