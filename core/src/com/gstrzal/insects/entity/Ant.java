@@ -87,7 +87,7 @@ public class Ant extends Insect {
         shape.setAsBox(60/ Insects.PPM ,60/ Insects.PPM );
         fdef.filter.categoryBits = Insects.INSECT_BIT;
         fdef.filter.maskBits = Insects.FLOWER_BIT | Insects.BRICK_BIT | Insects.LEVEL_END_BIT
-                | Insects.DAMAGE_BIT | Insects.PASS_BLOCK_BIT;
+                | Insects.DAMAGE_BIT | Insects.PASS_BLOCK_BIT | Insects.SLOPE_BIT;
         fdef.shape = shape;
         b2body.createFixture(fdef).setUserData(Constants.ANT_BODY);
 
@@ -98,7 +98,7 @@ public class Ant extends Insect {
         fdef.shape = shape2;
         fdef.isSensor = true;
         fdef.filter.categoryBits = Insects.BASE_BIT;
-        fdef.filter.maskBits = Insects.BRICK_BIT | Insects.PASS_BLOCK_BIT;
+        fdef.filter.maskBits = Insects.BRICK_BIT | Insects.PASS_BLOCK_BIT | Insects.SLOPE_BIT;
         b2body.createFixture(fdef).setUserData(Constants.INSECT_BASE);
 
 
@@ -109,7 +109,7 @@ public class Ant extends Insect {
         fdef.shape = shape3;
         fdef.isSensor = true;
         fdef.filter.categoryBits = Insects.CHANGE_INSECT_BIT;
-        fdef.filter.maskBits = Insects.BRICK_BIT;
+        fdef.filter.maskBits = Insects.BRICK_BIT | Insects.SLOPE_BIT;
         b2body.createFixture(fdef).setUserData(Constants.INSECT_CHANGE);
     }
 

@@ -2,9 +2,11 @@ package com.gstrzal.insects.tools;
 
 import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.objects.EllipseMapObject;
+import com.badlogic.gdx.maps.objects.PolygonMapObject;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.math.Ellipse;
+import com.badlogic.gdx.math.Polygon;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
@@ -114,5 +116,40 @@ public class B2WorldCreator {
             fdef.friction = 0;
             body.createFixture(fdef).setUserData(Constants.MAP_DAMAGE);
         }
+
+
+        BodyDef bdef2 = new BodyDef();
+        FixtureDef fdef2 = new FixtureDef();
+        Body body2;
+
+        //Slope
+        if(map.getLayers().get(Constants.MAP_SLOPE) != null)
+            for (MapObject object : map.getLayers().get(Constants.MAP_SLOPE).getObjects().getByType(PolygonMapObject.class)) {
+                Polygon polygonObject = ((PolygonMapObject) object).getPolygon();
+                bdef2.type = BodyDef.BodyType.StaticBody;
+                bdef2.position.set(polygonObject.getOriginX()/Insects.PPM, polygonObject.getOriginY()/Insects.PPM);
+
+                PolygonShape polygon = new PolygonShape();
+                float[] vertices = polygonObject.getTransformedVertices();
+                float[] worldVertices = new float[vertices.length];
+
+                for (int i = 0; i < vertices.length; ++i) {
+                    System.out.println(vertices[i]);
+                    worldVertices[i] = vertices[i] / Insects.PPM;
+                }
+
+                polygon.set(worldVertices);
+                fdef2.shape = polygon;
+
+//                fdef2.filter.categoryBits = 0x0008;
+//                fdef2.filter.maskBits = 0x0002 | 0x0008;
+
+
+                fdef2.filter.categoryBits = Insects.SLOPE_BIT;
+                fdef2.filter.maskBits = Insects.INSECT_BIT | Insects.BASE_BIT | Insects.CHANGE_INSECT_BIT;
+
+                body2 = world.createBody(bdef2);
+                body2.createFixture(fdef2).setUserData(Constants.MAP_SLOPE);
+            }
     }
 }

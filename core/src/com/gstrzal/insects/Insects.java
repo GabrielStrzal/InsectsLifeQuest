@@ -20,15 +20,16 @@ public class Insects extends Game {
 	public static final float PPM = 400;
 
 
-	public static final short DEFAULT_BIT = 1;
-	public static final short INSECT_BIT = 2;
-	public static final short BASE_BIT = 4;
-	public static final short BRICK_BIT = 8;
-	public static final short FLOWER_BIT = 16;
-	public static final short LEVEL_END_BIT = 32;
-	public static final short DAMAGE_BIT = 64;
-	public static final short PASS_BLOCK_BIT = 128;
-	public static final short CHANGE_INSECT_BIT = 256;
+	public static final short DEFAULT_BIT = 0x0001;
+	public static final short INSECT_BIT = 0x0002;
+	public static final short BASE_BIT = 0x0004;
+	public static final short BRICK_BIT = 0x0008;
+	public static final short FLOWER_BIT = 0x0016;
+	public static final short LEVEL_END_BIT = 0x0032;
+	public static final short DAMAGE_BIT = 0x0064;
+	public static final short PASS_BLOCK_BIT = 0x0128;
+	public static final short CHANGE_INSECT_BIT = 0x0256;
+	public static final short SLOPE_BIT = 0x0512;
 
 
 	private boolean audioOn = true;

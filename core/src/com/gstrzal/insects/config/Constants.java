@@ -65,6 +65,7 @@ public class Constants {
     public static final String MAP_END = "end";
     public static final String MAP_DAMAGE = "damage";
     public static final String MAP_PASS_BLOCKS = "passBlock";
+    public static final String MAP_SLOPE = "slope";
 
     //Object Descriptions
     public static final String INSECT_BODY = "InsectBody";

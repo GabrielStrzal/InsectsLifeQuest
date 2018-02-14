@@ -92,7 +92,7 @@ public class LBug extends Insect {
         shape.setAsBox(55/ Insects.PPM ,100/ Insects.PPM );
         fdef.filter.categoryBits = Insects.INSECT_BIT;
         fdef.filter.maskBits = Insects.FLOWER_BIT | Insects.BRICK_BIT | Insects.LEVEL_END_BIT
-                | Insects.DAMAGE_BIT | Insects.PASS_BLOCK_BIT;
+                | Insects.DAMAGE_BIT | Insects.PASS_BLOCK_BIT | Insects.SLOPE_BIT;
         fdef.shape = shape;
         b2body.createFixture(fdef).setUserData(Constants.INSECT_BODY);
 
@@ -103,7 +103,7 @@ public class LBug extends Insect {
         fdef.shape = shape2;
         fdef.isSensor = true;
         fdef.filter.categoryBits = Insects.BASE_BIT;
-        fdef.filter.maskBits = Insects.BRICK_BIT | Insects.PASS_BLOCK_BIT;
+        fdef.filter.maskBits = Insects.BRICK_BIT | Insects.PASS_BLOCK_BIT | Insects.SLOPE_BIT;
         b2body.createFixture(fdef).setUserData(Constants.INSECT_BASE);
     }
 }
