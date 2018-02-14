@@ -49,6 +49,12 @@ public class Constants {
     public static final String FLOWER = "flower_64x64.png";
     public static final String PUSH_BLOCK = "push_block_128x128.png";
 
+    //Next Charecyer
+    public static final String NEXT_JOANINHA = "next_joaninha_352x352.png";
+    public static final String NEXT_BESOURO = "next_besouro_352x352.png";
+    public static final String NEXT_ANT = "next_ant_352x352.png";
+
+
     //Fonts
     public static final String GAME_FONT = "fonts/sonic_comic.fnt";
 

@@ -33,7 +33,7 @@ public class Insects extends Game {
 	public static final short PUSH_BLOCK_BIT = 0x1024;
 
 
-	private boolean audioOn = true;
+	private boolean audioOn = false;
 	private boolean displayControllers = true;
 
 	public SpriteBatch batch;

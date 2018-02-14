@@ -77,6 +77,11 @@ public class GameScreen implements Screen{
     private long levelStopTime;
     private boolean isDirectionUp;
 
+    //Next Insect
+    private Texture nextJoaninha;
+    private Texture nextAnt;
+    private Texture nextBesouro;
+
 
     private enum STATE {
         PLAYING, GAME_OVER, LEVEL_CLEARED, PAUSED
@@ -127,7 +132,6 @@ public class GameScreen implements Screen{
         if(!game.isAudioOn()) {
             gameSound.pause();
         }
-
 
     }
     @Override
@@ -310,6 +314,10 @@ public class GameScreen implements Screen{
         insectPlayer.draw(game.batch);
         drawGameOver();
         drawLevelCleared();
+
+        drawNextInsect();
+
+
         game.batch.end();
         controller.draw();
     }
@@ -361,6 +369,24 @@ public class GameScreen implements Screen{
                     ((GameConfig.SCREEN_WIDTH_PX / Insects.PPM) / 2 - width / 2), ((GameConfig.SCREEN_HEIGHT_PX / Insects.PPM) / 2 - height / 2),
                     width, height);
         }
+    }
+
+    private void drawNextInsect() {
+            nextJoaninha = assetManager.get(Constants.NEXT_JOANINHA);
+            nextAnt = assetManager.get(Constants.NEXT_ANT);
+            nextBesouro = assetManager.get(Constants.NEXT_BESOURO);
+            Texture nextInsect;
+
+            float height = nextJoaninha.getHeight() * .8f / Insects.PPM;
+            float width = nextJoaninha.getWidth() * .8f / Insects.PPM;
+
+            if(insectPlayer instanceof  LBug) nextInsect = nextBesouro;
+            else if(insectPlayer instanceof  Besouro) nextInsect = nextAnt;
+            else nextInsect = nextJoaninha;
+
+            game.batch.draw(nextInsect,
+                    450 / Insects.PPM, ((GameConfig.SCREEN_HEIGHT_PX / Insects.PPM) - height * 1.25f),
+                    width, height);
     }
 
 

@@ -89,6 +89,9 @@ public class LoadingScreen extends ScreenAdapter{
         assetManager.load(Constants.ANT, Texture.class);
         assetManager.load(Constants.FLOWER, Texture.class);
         assetManager.load(Constants.PUSH_BLOCK, Texture.class);
+        assetManager.load(Constants.NEXT_JOANINHA, Texture.class);
+        assetManager.load(Constants.NEXT_ANT, Texture.class);
+        assetManager.load(Constants.NEXT_BESOURO, Texture.class);
 
         assetManager.load(Constants.AUDIO_001, Sound.class);
     }
