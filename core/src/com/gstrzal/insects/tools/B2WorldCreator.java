@@ -26,6 +26,7 @@ import com.gstrzal.insects.entity.Flower;
 public class B2WorldCreator {
 
     public Array<Flower> flowers;
+    private final static float circleRadius = 32f;
 
     public B2WorldCreator(World world, TiledMap map, Insects insects){
         BodyDef bdef = new BodyDef();
@@ -72,7 +73,7 @@ public class B2WorldCreator {
             bdef.type = BodyDef.BodyType.StaticBody;
             bdef.position.set(ellipse.x / Insects.PPM, ellipse.y/ Insects.PPM);
             CircleShape circleShape =new CircleShape();
-            circleShape.setRadius(8/Insects.PPM);
+            circleShape.setRadius(circleRadius/Insects.PPM);
             fdef.shape = circleShape;
             fdef.isSensor = true;
             fdef.filter.categoryBits = Insects.FLOWER_BIT;
@@ -92,7 +93,7 @@ public class B2WorldCreator {
             bdef.type = BodyDef.BodyType.StaticBody;
             bdef.position.set(ellipse.x / Insects.PPM, ellipse.y/ Insects.PPM);
             CircleShape circleShape =new CircleShape();
-            circleShape.setRadius(8/Insects.PPM);
+            circleShape.setRadius(circleRadius/Insects.PPM);
             fdef.shape = circleShape;
             fdef.isSensor = true;
             fdef.filter.categoryBits = Insects.LEVEL_END_BIT;
@@ -118,17 +119,15 @@ public class B2WorldCreator {
         }
 
 
+        //Slope
         BodyDef bdef2 = new BodyDef();
         FixtureDef fdef2 = new FixtureDef();
         Body body2;
-
-        //Slope
         if(map.getLayers().get(Constants.MAP_SLOPE) != null)
             for (MapObject object : map.getLayers().get(Constants.MAP_SLOPE).getObjects().getByType(PolygonMapObject.class)) {
                 Polygon polygonObject = ((PolygonMapObject) object).getPolygon();
                 bdef2.type = BodyDef.BodyType.StaticBody;
                 bdef2.position.set(polygonObject.getOriginX()/Insects.PPM, polygonObject.getOriginY()/Insects.PPM);
-
                 PolygonShape polygon = new PolygonShape();
                 float[] vertices = polygonObject.getTransformedVertices();
                 float[] worldVertices = new float[vertices.length];
@@ -137,17 +136,10 @@ public class B2WorldCreator {
                     System.out.println(vertices[i]);
                     worldVertices[i] = vertices[i] / Insects.PPM;
                 }
-
                 polygon.set(worldVertices);
                 fdef2.shape = polygon;
-
-//                fdef2.filter.categoryBits = 0x0008;
-//                fdef2.filter.maskBits = 0x0002 | 0x0008;
-
-
                 fdef2.filter.categoryBits = Insects.SLOPE_BIT;
                 fdef2.filter.maskBits = Insects.INSECT_BIT | Insects.BASE_BIT | Insects.CHANGE_INSECT_BIT;
-
                 body2 = world.createBody(bdef2);
                 body2.createFixture(fdef2).setUserData(Constants.MAP_SLOPE);
             }

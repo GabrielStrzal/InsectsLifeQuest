@@ -83,13 +83,16 @@ public class Ant extends Insect {
         bdef.type = BodyDef.BodyType.DynamicBody;
         b2body  = world.createBody(bdef);
         FixtureDef fdef = new FixtureDef();
-        PolygonShape shape = new PolygonShape();
-        shape.setAsBox(60/ Insects.PPM ,60/ Insects.PPM );
-        fdef.filter.categoryBits = Insects.INSECT_BIT;
-        fdef.filter.maskBits = Insects.FLOWER_BIT | Insects.BRICK_BIT | Insects.LEVEL_END_BIT
+
+        //Base Circle
+        FixtureDef fdefCircle = new FixtureDef();
+        CircleShape circleShape = new CircleShape();
+        circleShape.setRadius(60/ Insects.PPM);
+        fdefCircle.filter.categoryBits = Insects.INSECT_BIT;
+        fdefCircle.filter.maskBits = Insects.FLOWER_BIT | Insects.BRICK_BIT | Insects.LEVEL_END_BIT
                 | Insects.DAMAGE_BIT | Insects.PASS_BLOCK_BIT | Insects.SLOPE_BIT;
-        fdef.shape = shape;
-        b2body.createFixture(fdef).setUserData(Constants.ANT_BODY);
+        fdefCircle.shape = circleShape;
+        b2body.createFixture(fdefCircle).setUserData(Constants.ANT_BODY);
 
 
         //Base Sensor

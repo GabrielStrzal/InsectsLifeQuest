@@ -142,11 +142,11 @@ public class GameScreen implements Screen{
     }
 
     public void update(float dt){
-        handleInput(dt);
+        world.step(1/60f, 6, 2);
 
         collectFlowers();
+        handleInput(dt);
 
-        world.step(1/60f, 6, 2);
         insectPlayer.update(dt);
         gamecam.update();
         b2dcam.update();
@@ -208,14 +208,17 @@ public class GameScreen implements Screen{
         if (characterChange) {
 
             Insect tempInsc = insectPlayer;
+            float tempInscX = tempInsc.b2body.getPosition().x;
+            float tempInscY = tempInsc.b2body.getPosition().y;
+            tempInsc.dispose();
+
             if (tempInsc instanceof LBug) {
                 insectPlayer = new Ant(world, (Texture) assetManager.get(Constants.ANT),
-                        tempInsc.b2body.getPosition().x, tempInsc.b2body.getPosition().y - tempInsc.sizeDiff);
+                        tempInscX , tempInscY - insectPlayer.sizeDiff);
             } else {
                 insectPlayer = new LBug(world, (Texture) assetManager.get(Constants.JOANINHA),
-                        tempInsc.b2body.getPosition().x, tempInsc.b2body.getPosition().y + tempInsc.sizeDiff);
+                        tempInscX , tempInscY + insectPlayer.sizeDiff);
             }
-            tempInsc.dispose();
             characterChange = false;
         }
 

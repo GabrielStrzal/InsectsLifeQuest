@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
+import com.badlogic.gdx.physics.box2d.CircleShape;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
@@ -32,6 +33,7 @@ public class LBug extends Insect {
     private final TextureRegion jumpUp;
     private final TextureRegion jumpDown;
 
+    private float circleDifference = 10f;
 
 
     public LBug(World world, Texture texture){
@@ -89,17 +91,30 @@ public class LBug extends Insect {
         b2body  = world.createBody(bdef);
         FixtureDef fdef = new FixtureDef();
         PolygonShape shape = new PolygonShape();
-        shape.setAsBox(55/ Insects.PPM ,100/ Insects.PPM );
+        shape.setAsBox(55/ Insects.PPM ,(100 - circleDifference)/ Insects.PPM , new Vector2(0, circleDifference/ Insects.PPM),0);
         fdef.filter.categoryBits = Insects.INSECT_BIT;
-        fdef.filter.maskBits = Insects.FLOWER_BIT | Insects.BRICK_BIT | Insects.LEVEL_END_BIT
-                | Insects.DAMAGE_BIT | Insects.PASS_BLOCK_BIT | Insects.SLOPE_BIT;
+        fdef.filter.maskBits = Insects.BRICK_BIT | Insects.FLOWER_BIT | Insects.LEVEL_END_BIT
+                | Insects.DAMAGE_BIT | Insects.SLOPE_BIT;
         fdef.shape = shape;
         b2body.createFixture(fdef).setUserData(Constants.INSECT_BODY);
 
 
+        //Base Circle
+        FixtureDef fdefCircle = new FixtureDef();
+        CircleShape circleShape = new CircleShape();
+        circleShape.setRadius(55/ Insects.PPM);
+        circleShape.setPosition(new Vector2(0,-55/ Insects.PPM));
+        fdefCircle.filter.categoryBits = Insects.INSECT_BIT;
+        fdefCircle.filter.maskBits = Insects.BRICK_BIT | Insects.FLOWER_BIT | Insects.LEVEL_END_BIT
+                | Insects.DAMAGE_BIT | Insects.PASS_BLOCK_BIT | Insects.SLOPE_BIT;
+        fdefCircle.shape = circleShape;
+        fdefCircle.friction = 0;
+        b2body.createFixture(fdefCircle).setUserData(Constants.INSECT_BODY);
+
+
         //Base Sensor
         PolygonShape shape2 = new PolygonShape();
-        shape2.setAsBox(50/ Insects.PPM ,16/ Insects.PPM , new Vector2(0,-100/ Insects.PPM),0);
+        shape2.setAsBox(35/ Insects.PPM ,16/ Insects.PPM , new Vector2(0,-100/ Insects.PPM),0);
         fdef.shape = shape2;
         fdef.isSensor = true;
         fdef.filter.categoryBits = Insects.BASE_BIT;
