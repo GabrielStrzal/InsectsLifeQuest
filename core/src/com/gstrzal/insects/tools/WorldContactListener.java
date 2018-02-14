@@ -8,6 +8,7 @@ import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.Manifold;
+import com.badlogic.gdx.physics.box2d.MassData;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.Shape;
 import com.badlogic.gdx.utils.Array;
@@ -73,6 +74,19 @@ public class WorldContactListener implements ContactListener {
         if(isContact(contact, Constants.ANT_BODY, Constants.MAP_DAMAGE)) {
             setGameOver(true);
         }
+
+        if(isContact(contact, Constants.BESOURO_BODY, Constants.MAP_PUSH_BLOCKS)) {
+            final Fixture pushBlock = fixA.getUserData() == Constants.MAP_PUSH_BLOCKS ? fixA : fixB;
+            final MassData massData = new MassData();
+            massData.mass = 250;
+            Gdx.app.postRunnable(new Runnable() {
+
+                @Override
+                public void run () {
+                    pushBlock.getBody().setMassData(massData);
+                }
+            });
+        }
     }
 
     @Override
@@ -88,6 +102,20 @@ public class WorldContactListener implements ContactListener {
         }
         if(isContact(contact, Constants.INSECT_CHANGE, Constants.MAP_BLOCKS)){
             changeCollision--;
+        }
+
+        if(isContact(contact, Constants.BESOURO_BODY, Constants.MAP_PUSH_BLOCKS)) {
+            final Fixture pushBlock = fixA.getUserData() == Constants.MAP_PUSH_BLOCKS ? fixA : fixB;
+            final MassData massData = new MassData();
+            massData.mass = 10000;
+            Gdx.app.postRunnable(new Runnable() {
+
+                @Override
+                public void run () {
+                    pushBlock.getBody().setMassData(massData);
+                    pushBlock.getBody().setLinearVelocity(0,0);
+                }
+            });
         }
     }
 

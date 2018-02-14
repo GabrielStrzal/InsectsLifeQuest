@@ -12,12 +12,14 @@ import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.CircleShape;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
+import com.badlogic.gdx.physics.box2d.MassData;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
 import com.gstrzal.insects.Insects;
 import com.gstrzal.insects.config.Constants;
 import com.gstrzal.insects.entity.Flower;
+import com.gstrzal.insects.entity.PushBox;
 
 /**
  * Created by Gabriel on 03/09/2017.
@@ -26,6 +28,7 @@ import com.gstrzal.insects.entity.Flower;
 public class B2WorldCreator {
 
     public Array<Flower> flowers;
+    public Array<PushBox> pushBoxes;
     private final static float circleRadius = 32f;
 
     public B2WorldCreator(World world, TiledMap map, Insects insects){
@@ -34,6 +37,7 @@ public class B2WorldCreator {
         FixtureDef fdef = new FixtureDef();
         Body body;
         flowers = new Array<Flower>();
+        pushBoxes = new Array<PushBox>();
 
         //Blocks
         if(map.getLayers().get(Constants.MAP_BLOCKS) != null)
@@ -45,7 +49,7 @@ public class B2WorldCreator {
             shape.setAsBox((rect.getWidth() / 2) / Insects.PPM, (rect.getHeight() / 2) / Insects.PPM);
             fdef.shape = shape;
             fdef.filter.categoryBits = Insects.BRICK_BIT;
-            fdef.filter.maskBits = Insects.INSECT_BIT | Insects.BASE_BIT | Insects.CHANGE_INSECT_BIT;
+            fdef.filter.maskBits = Insects.INSECT_BIT | Insects.BASE_BIT | Insects.CHANGE_INSECT_BIT | Insects.PUSH_BLOCK_BIT;
             fdef.friction = 0;
             body.createFixture(fdef).setUserData(Constants.MAP_BLOCKS);
         }
@@ -141,6 +145,35 @@ public class B2WorldCreator {
                 fdef2.filter.maskBits = Insects.INSECT_BIT | Insects.BASE_BIT | Insects.CHANGE_INSECT_BIT;
                 body2 = world.createBody(bdef2);
                 body2.createFixture(fdef2).setUserData(Constants.MAP_SLOPE);
+            }
+
+
+        //Push Block
+        BodyDef bdef3 = new BodyDef();
+        FixtureDef fdef3 = new FixtureDef();
+        Body body3;
+        if(map.getLayers().get(Constants.MAP_PUSH_BLOCKS) != null)
+            for (MapObject object : map.getLayers().get(Constants.MAP_PUSH_BLOCKS).getObjects().getByType(RectangleMapObject.class)) {
+                Rectangle rect = ((RectangleMapObject) object).getRectangle();
+                bdef3.type = BodyDef.BodyType.DynamicBody;
+                bdef3.position.set((rect.getX() + rect.getWidth() / 2) / Insects.PPM, (rect.getY() + rect.getHeight() / 2) / Insects.PPM);
+                body3 = world.createBody(bdef3);
+                shape.setAsBox((rect.getWidth() / 2) / Insects.PPM, (rect.getHeight() / 2) / Insects.PPM);
+                fdef3.shape = shape;
+                fdef3.filter.categoryBits = Insects.PUSH_BLOCK_BIT;
+                fdef3.filter.maskBits = Insects.INSECT_BIT | Insects.BASE_BIT | Insects.BRICK_BIT | Insects.CHANGE_INSECT_BIT;
+//                fdef3.friction = 10000;
+//                fdef3.density = 500000;
+                MassData massData = new MassData();
+                massData.mass = 10000;
+                body3.setMassData(massData);
+
+                body3.createFixture(fdef3).setUserData(Constants.MAP_PUSH_BLOCKS);
+
+
+                PushBox pushBox = new PushBox(body3, insects);
+                body3.setUserData(pushBox);
+                pushBoxes.add(pushBox);
             }
     }
 }

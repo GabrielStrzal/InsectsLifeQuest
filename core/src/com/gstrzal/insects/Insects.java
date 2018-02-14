@@ -30,6 +30,7 @@ public class Insects extends Game {
 	public static final short PASS_BLOCK_BIT = 0x0128;
 	public static final short CHANGE_INSECT_BIT = 0x0256;
 	public static final short SLOPE_BIT = 0x0512;
+	public static final short PUSH_BLOCK_BIT = 0x1024;
 
 
 	private boolean audioOn = true;

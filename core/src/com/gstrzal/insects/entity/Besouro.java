@@ -2,10 +2,8 @@ package com.gstrzal.insects.entity;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.CircleShape;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
@@ -18,12 +16,8 @@ import com.gstrzal.insects.config.Constants;
  * Created by Gabriel on 15/10/2017.
  */
 
-public class LBug extends Insect {
+public class Besouro extends Insect {
 
-
-
-
-    //joaninha
     public static final int WIDTH = 128;
     public static final int HEIGHT = 208;
 
@@ -36,12 +30,12 @@ public class LBug extends Insect {
     private float circleDifference = 20f;
 
 
-    public LBug(World world, Texture texture){
+    public Besouro(World world, Texture texture){
         this(world, texture, 200/ Insects.PPM, 380/ Insects.PPM);
     }
 
 
-    public LBug(World world, Texture texture, float x, float y){
+    public Besouro(World world, Texture texture, float x, float y){
         super(texture);
         this.world = world;
 
@@ -96,7 +90,7 @@ public class LBug extends Insect {
         fdef.filter.maskBits = Insects.BRICK_BIT | Insects.FLOWER_BIT | Insects.LEVEL_END_BIT
                 | Insects.DAMAGE_BIT | Insects.SLOPE_BIT;
         fdef.shape = shape;
-        b2body.createFixture(fdef).setUserData(Constants.INSECT_BODY);
+        b2body.createFixture(fdef).setUserData(Constants.BESOURO_BODY);
 
 
         //Base Circle

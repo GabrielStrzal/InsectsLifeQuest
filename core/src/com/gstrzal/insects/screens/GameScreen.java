@@ -212,12 +212,15 @@ public class GameScreen implements Screen{
             float tempInscY = tempInsc.b2body.getPosition().y;
             tempInsc.dispose();
 
-            if (tempInsc instanceof LBug) {
+            if (tempInsc instanceof Besouro) {
                 insectPlayer = new Ant(world, (Texture) assetManager.get(Constants.ANT),
                         tempInscX , tempInscY - insectPlayer.sizeDiff);
-            } else {
+            } else if (tempInsc instanceof Ant){
                 insectPlayer = new LBug(world, (Texture) assetManager.get(Constants.JOANINHA),
                         tempInscX , tempInscY + insectPlayer.sizeDiff);
+            } else{
+                insectPlayer = new Besouro(world, (Texture) assetManager.get(Constants.BESOURO),
+                        tempInscX , tempInscY);
             }
             characterChange = false;
         }
@@ -299,6 +302,10 @@ public class GameScreen implements Screen{
         // draw flowers
         for(int i = 0; i < b2World.flowers.size; i++) {
             b2World.flowers.get(i).render(game.batch);
+        }
+        // draw boxes
+        for(int i = 0; i < b2World.pushBoxes.size; i++) {
+            b2World.pushBoxes.get(i).render(game.batch);
         }
         insectPlayer.draw(game.batch);
         drawGameOver();

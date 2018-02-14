@@ -44,8 +44,10 @@ public class Constants {
 
     //Characters
     public static final String JOANINHA = "joaninha_512x208.png";
+    public static final String BESOURO = "besouro_512x208.png";
     public static final String ANT = "formiga_256x121.png";
     public static final String FLOWER = "flower_64x64.png";
+    public static final String PUSH_BLOCK = "push_block_128x128.png";
 
     //Fonts
     public static final String GAME_FONT = "fonts/sonic_comic.fnt";
@@ -56,11 +58,13 @@ public class Constants {
     public static final String LEVEL_3 = "levels/ins_level_3.tmx";
     public static final String LEVEL_4 = "levels/ins_level_4.tmx";
     public static final String LEVEL_5 = "levels/ins_level_5.tmx";
+    public static final String LEVEL_6 = "levels/ins_level_6.tmx";
     public static final String LEVEL = "levels/ins_level_";
     public static final String TMX = ".tmx";
 
     //Tile Layers
     public static final String MAP_BLOCKS = "blocks";
+    public static final String MAP_PUSH_BLOCKS = "pushBlocks";
     public static final String MAP_FLOWERS = "flowers";
     public static final String MAP_END = "end";
     public static final String MAP_DAMAGE = "damage";
@@ -72,6 +76,7 @@ public class Constants {
     public static final String ANT_BODY = "antBody";
     public static final String INSECT_BASE = "base";
     public static final String INSECT_CHANGE = "change";
+    public static final String BESOURO_BODY = "besouro";
 
     private Constants() {}
 }
