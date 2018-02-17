@@ -162,15 +162,10 @@ public class B2WorldCreator {
                 fdef3.shape = shape;
                 fdef3.filter.categoryBits = Insects.PUSH_BLOCK_BIT;
                 fdef3.filter.maskBits = Insects.INSECT_BIT | Insects.BASE_BIT | Insects.BRICK_BIT | Insects.CHANGE_INSECT_BIT;
-//                fdef3.friction = 10000;
-//                fdef3.density = 500000;
                 MassData massData = new MassData();
                 massData.mass = 10000;
                 body3.setMassData(massData);
-
                 body3.createFixture(fdef3).setUserData(Constants.MAP_PUSH_BLOCKS);
-
-
                 PushBox pushBox = new PushBox(body3, insects);
                 body3.setUserData(pushBox);
                 pushBoxes.add(pushBox);

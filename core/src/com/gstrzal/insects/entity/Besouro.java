@@ -27,7 +27,7 @@ public class Besouro extends Insect {
     private final TextureRegion jumpUp;
     private final TextureRegion jumpDown;
 
-    private float circleDifference = 20f;
+    private float circleDifference = 0f;
 
 
     public Besouro(World world, Texture texture){
@@ -88,7 +88,7 @@ public class Besouro extends Insect {
         shape.setAsBox(55/ Insects.PPM ,(100 - circleDifference)/ Insects.PPM , new Vector2(0, circleDifference/ Insects.PPM),0);
         fdef.filter.categoryBits = Insects.INSECT_BIT;
         fdef.filter.maskBits = Insects.BRICK_BIT | Insects.FLOWER_BIT | Insects.LEVEL_END_BIT
-                | Insects.DAMAGE_BIT | Insects.SLOPE_BIT;
+                | Insects.DAMAGE_BIT | Insects.PASS_BLOCK_BIT | Insects.SLOPE_BIT;
         fdef.shape = shape;
         b2body.createFixture(fdef).setUserData(Constants.BESOURO_BODY);
 
@@ -96,11 +96,10 @@ public class Besouro extends Insect {
         //Base Circle
         FixtureDef fdefCircle = new FixtureDef();
         CircleShape circleShape = new CircleShape();
-        circleShape.setRadius(57/ Insects.PPM);
-        circleShape.setPosition(new Vector2(0,-55/ Insects.PPM));
+        circleShape.setRadius(55/ Insects.PPM);
+        circleShape.setPosition(new Vector2(0,-50/ Insects.PPM));
         fdefCircle.filter.categoryBits = Insects.INSECT_BIT;
-        fdefCircle.filter.maskBits = Insects.BRICK_BIT | Insects.FLOWER_BIT | Insects.LEVEL_END_BIT
-                | Insects.DAMAGE_BIT | Insects.PASS_BLOCK_BIT | Insects.SLOPE_BIT;
+        fdefCircle.filter.maskBits = Insects.BRICK_BIT | Insects.SLOPE_BIT;
         fdefCircle.shape = circleShape;
         fdefCircle.friction = 0;
         b2body.createFixture(fdefCircle).setUserData(Constants.INSECT_BODY);

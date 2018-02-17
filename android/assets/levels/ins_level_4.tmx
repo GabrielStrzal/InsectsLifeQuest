@@ -12,11 +12,11 @@
   </data>
  </layer>
  <objectgroup name="blocks">
-  <object id="1" x="1024" y="1665.33" width="2180" height="246.667"/>
+  <object id="1" x="1024" y="1664.06" width="2180" height="247.94"/>
   <object id="2" x="3072" y="4" width="112" height="1696"/>
   <object id="3" x="64" y="52" width="64" height="1684"/>
   <object id="4" x="8" y="4" width="3172" height="120"/>
-  <object id="14" x="2050.67" y="1277.33" width="1040" height="254.667"/>
+  <object id="14" x="2048.17" y="1279.95" width="1042.5" height="255.542"/>
   <object id="31" x="0" y="1664" width="768" height="246.667"/>
  </objectgroup>
  <objectgroup name="passBlock">

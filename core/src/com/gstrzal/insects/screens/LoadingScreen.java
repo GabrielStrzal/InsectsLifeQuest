@@ -84,6 +84,8 @@ public class LoadingScreen extends ScreenAdapter{
         assetManager.load(Constants.LEVEL_4, TiledMap.class);
         assetManager.load(Constants.LEVEL_5, TiledMap.class);
         assetManager.load(Constants.LEVEL_6, TiledMap.class);
+        assetManager.load(Constants.LEVEL_7, TiledMap.class);
+        assetManager.load(Constants.LEVEL_8, TiledMap.class);
         assetManager.load(Constants.JOANINHA, Texture.class);
         assetManager.load(Constants.BESOURO, Texture.class);
         assetManager.load(Constants.ANT, Texture.class);

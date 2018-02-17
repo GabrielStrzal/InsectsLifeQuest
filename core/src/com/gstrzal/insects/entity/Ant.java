@@ -108,7 +108,7 @@ public class Ant extends Insect {
 
         //Change Sensor
         PolygonShape shape3 = new PolygonShape();
-        shape3.setAsBox(55/ Insects.PPM ,95/ Insects.PPM, new Vector2(0, 45/ Insects.PPM),0);
+        shape3.setAsBox(48/ Insects.PPM ,95/ Insects.PPM, new Vector2(0, 45/ Insects.PPM),0);
         fdef.shape = shape3;
         fdef.isSensor = true;
         fdef.filter.categoryBits = Insects.CHANGE_INSECT_BIT;

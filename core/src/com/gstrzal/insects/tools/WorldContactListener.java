@@ -37,13 +37,9 @@ public class WorldContactListener implements ContactListener {
         Fixture fixA = contact.getFixtureA();
         Fixture fixB = contact.getFixtureB();
 
-        if(isContact(contact, Constants.INSECT_BASE, Constants.MAP_BLOCKS)){
-            onGrounds++;
-        }
-        if(isContact(contact, Constants.INSECT_BASE, Constants.MAP_PASS_BLOCKS)){
-            onGrounds++;
-        }
+        checkCharacterOnGrounds(contact);
 
+        //For ant character - size check
         if(isContact(contact, Constants.INSECT_CHANGE, Constants.MAP_BLOCKS)){
             changeCollision++;
         }
@@ -94,12 +90,8 @@ public class WorldContactListener implements ContactListener {
         Fixture fixA = contact.getFixtureA();
         Fixture fixB = contact.getFixtureB();
 
-        if(isContact(contact, Constants.INSECT_BASE, Constants.MAP_BLOCKS)){
-            onGrounds--;
-        }
-        if(isContact(contact, Constants.INSECT_BASE, Constants.MAP_PASS_BLOCKS)){
-            onGrounds--;
-        }
+        uncheckCharacterOnGrounds(contact);
+
         if(isContact(contact, Constants.INSECT_CHANGE, Constants.MAP_BLOCKS)){
             changeCollision--;
         }
@@ -138,7 +130,7 @@ public class WorldContactListener implements ContactListener {
                 insect_y = fixtureA.getBody().getPosition().y;
                 passPlatform_y = fixtureB.getBody().getPosition().y;
             }
-            if(insect_y < passPlatform_y + .1185f ){
+            if(insect_y < passPlatform_y + .31f ){ //.1185F
                 contact.setEnabled(false);
             } else {
                 contact.setEnabled(true);
@@ -150,6 +142,39 @@ public class WorldContactListener implements ContactListener {
     public void postSolve(Contact contact, ContactImpulse impulse) {
 
     }
+
+
+    private void checkCharacterOnGrounds(Contact contact){
+        //Jump and Character change check
+        if(isContact(contact, Constants.INSECT_BASE, Constants.MAP_BLOCKS)){
+            onGrounds++;
+        }
+        if(isContact(contact, Constants.INSECT_BASE, Constants.MAP_PASS_BLOCKS)){
+            onGrounds++;
+        }
+        if(isContact(contact, Constants.INSECT_BASE, Constants.MAP_SLOPE)){
+            onGrounds++;
+        }
+        if(isContact(contact, Constants.INSECT_BASE, Constants.MAP_PUSH_BLOCKS)){
+            onGrounds++;
+        }
+    }
+
+    private void uncheckCharacterOnGrounds(Contact contact){
+        if(isContact(contact, Constants.INSECT_BASE, Constants.MAP_BLOCKS)){
+            onGrounds--;
+        }
+        if(isContact(contact, Constants.INSECT_BASE, Constants.MAP_PASS_BLOCKS)){
+            onGrounds--;
+        }
+        if(isContact(contact, Constants.INSECT_BASE, Constants.MAP_SLOPE)){
+            onGrounds--;
+        }
+        if(isContact(contact, Constants.INSECT_BASE, Constants.MAP_PUSH_BLOCKS)){
+            onGrounds--;
+        }
+    }
+
 
     private boolean isContact(Contact contact, String a, String b){
         Fixture fixA = contact.getFixtureA();
