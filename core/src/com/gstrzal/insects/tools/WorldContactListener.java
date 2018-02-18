@@ -1,7 +1,6 @@
 package com.gstrzal.insects.tools;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.Contact;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;
@@ -9,8 +8,6 @@ import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.Manifold;
 import com.badlogic.gdx.physics.box2d.MassData;
-import com.badlogic.gdx.physics.box2d.PolygonShape;
-import com.badlogic.gdx.physics.box2d.Shape;
 import com.badlogic.gdx.utils.Array;
 import com.gstrzal.insects.config.Constants;
 
@@ -251,10 +248,10 @@ public class WorldContactListener implements ContactListener {
     }
 
     public boolean isChangePossible(){
-        if(changeCollision == 1) {
-            return false;
-        }else{
+        if(changeCollision == 0) {
             return true;
+        }else{
+            return false;
         }
     }
     public Array<Body> getBodiesToRemove() {

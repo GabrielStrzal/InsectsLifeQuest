@@ -131,7 +131,7 @@ public class MenuScreen extends ScreenAdapter {
         stage.draw();
         stage.getBatch().begin();
         font.draw(stage.getBatch(), GameConfig.GAME_VERSION,
-                (GameConfig.SCREEN_WIDTH_PX/10)*9, (GameConfig.SCREEN_HEIGHT_PX/20)*19);
+                (GameConfig.SCREEN_WIDTH_PX * .87f), (GameConfig.SCREEN_HEIGHT_PX * .95f));
         stage.getBatch().end();
 
     }
