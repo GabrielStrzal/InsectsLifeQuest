@@ -66,6 +66,9 @@ public class Constants {
     public static final String LEVEL_6 = "levels/ins_level_6.tmx";
     public static final String LEVEL_7 = "levels/ins_level_7.tmx";
     public static final String LEVEL_8 = "levels/ins_level_8.tmx";
+    public static final String LEVEL_9 = "levels/ins_level_9.tmx";
+    public static final String LEVEL_10 = "levels/ins_level_10.tmx";
+    public static final String LEVEL_11 = "levels/ins_level_11.tmx";
     public static final String LEVEL = "levels/ins_level_";
     public static final String TMX = ".tmx";
 
