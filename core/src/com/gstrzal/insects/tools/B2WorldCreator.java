@@ -75,7 +75,8 @@ public class B2WorldCreator {
         for (MapObject object : map.getLayers().get(Constants.MAP_FLOWERS).getObjects()) {
             Ellipse ellipse = ((EllipseMapObject) object).getEllipse();
             bdef.type = BodyDef.BodyType.StaticBody;
-            bdef.position.set(ellipse.x / Insects.PPM, ellipse.y/ Insects.PPM);
+            bdef.position.set(ellipse.x / Insects.PPM + (ellipse.width / 2) / Insects.PPM,
+                    ellipse.y/ Insects.PPM + (ellipse.height / 2) / Insects.PPM);
             CircleShape circleShape =new CircleShape();
             circleShape.setRadius(circleRadius/Insects.PPM);
             fdef.shape = circleShape;
@@ -95,7 +96,8 @@ public class B2WorldCreator {
         for (MapObject object : map.getLayers().get(Constants.MAP_END).getObjects()) {
             Ellipse ellipse = ((EllipseMapObject) object).getEllipse();
             bdef.type = BodyDef.BodyType.StaticBody;
-            bdef.position.set(ellipse.x / Insects.PPM, ellipse.y/ Insects.PPM);
+            bdef.position.set(ellipse.x / Insects.PPM + (ellipse.width / 2) / Insects.PPM,
+                    ellipse.y/ Insects.PPM + (ellipse.height / 2) / Insects.PPM);
             CircleShape circleShape =new CircleShape();
             circleShape.setRadius(circleRadius/Insects.PPM);
             fdef.shape = circleShape;
