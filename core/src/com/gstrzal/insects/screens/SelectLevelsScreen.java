@@ -113,8 +113,8 @@ public class SelectLevelsScreen extends ScreenAdapter {
         );
 
         //add buttons to Table
-        for(int row = 0; row< 2; row++) {
-            for (int col = 0; col < 5; col++) {
+        for(int row = 0; row< 3; row++) {
+            for (int col = 0; col < 7; col++) {
                 ++levelNumber;
                 ImageTextButton levelImg;
                 if(levelNumber <= GameConfig.GAME_MAX_LEVELS) {
