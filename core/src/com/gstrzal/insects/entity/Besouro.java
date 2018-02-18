@@ -46,7 +46,7 @@ public class Besouro extends Insect {
         jumpUp = regions[2];
         jumpDown = regions[3];
 
-        defineLBug(x, y);
+        defineBesouro(x, y);
         setBounds(0,0, WIDTH/Insects.PPM, HEIGHT/Insects.PPM);
     }
 
@@ -77,7 +77,7 @@ public class Besouro extends Insect {
         setRegion(regionToDraw);
     }
 
-    public void defineLBug(float x, float y){
+    public void defineBesouro(float x, float y){
 
         BodyDef bdef = new BodyDef();
         bdef.position.set(x, y); //initial position

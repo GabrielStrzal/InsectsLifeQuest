@@ -17,8 +17,8 @@
   <object id="3" x="64" y="52" width="64" height="1684"/>
   <object id="4" x="8" y="4" width="3172" height="120"/>
   <object id="7" x="69.2727" y="1279.94" width="314.213" height="127.94"/>
-  <object id="9" x="1662.67" y="1152" width="257.455" height="80.7878"/>
-  <object id="49" x="1280" y="1152" width="383.996" height="254.663"/>
+  <object id="9" x="1280.03" y="1152" width="640.091" height="80.7878"/>
+  <object id="49" x="1280" y="1222.67" width="383.996" height="183.996"/>
   <object id="51" x="2304.67" y="1536" width="255.333" height="140.667"/>
  </objectgroup>
  <objectgroup name="slope"/>

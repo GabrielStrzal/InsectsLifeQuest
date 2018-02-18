@@ -39,38 +39,19 @@ public class WorldContactListener implements ContactListener {
 
         checkCharacterOnGrounds(contact);
 
+        checkCharacterFlowerContact(contact);
+
+        checkCharacterMapEndContact(contact);
+
+        checkCharacterDamageContact(contact);
+
+
         //For ant character - size check
         if(isContact(contact, Constants.INSECT_CHANGE, Constants.MAP_BLOCKS)){
             changeCollision++;
         }
 
-        if(isContact(contact, Constants.INSECT_BODY, Constants.MAP_FLOWERS)){
-            Fixture flower = fixA.getUserData() == Constants.MAP_FLOWERS ? fixA : fixB;
-            bodiesToRemove.add(flower.getBody());
-        }
-
-        if(isContact(contact, Constants.INSECT_BODY, Constants.MAP_END)){
-            setLevelFinished(true);
-        }
-
-        if(isContact(contact, Constants.INSECT_BODY, Constants.MAP_DAMAGE)){
-            setGameOver(true);
-        }
-
-
-        if(isContact(contact, Constants.ANT_BODY, Constants.MAP_FLOWERS)){
-            Fixture flower = fixA.getUserData() == Constants.MAP_FLOWERS ? fixA : fixB;
-            bodiesToRemove.add(flower.getBody());
-        }
-
-        if(isContact(contact, Constants.ANT_BODY, Constants.MAP_END)){
-            setLevelFinished(true);
-        }
-
-        if(isContact(contact, Constants.ANT_BODY, Constants.MAP_DAMAGE)) {
-            setGameOver(true);
-        }
-
+        //Besouro Push Blocks
         if(isContact(contact, Constants.BESOURO_BODY, Constants.MAP_PUSH_BLOCKS)) {
             final Fixture pushBlock = fixA.getUserData() == Constants.MAP_PUSH_BLOCKS ? fixA : fixB;
             final MassData massData = new MassData();
@@ -92,10 +73,12 @@ public class WorldContactListener implements ContactListener {
 
         uncheckCharacterOnGrounds(contact);
 
+        //For ant character - size check
         if(isContact(contact, Constants.INSECT_CHANGE, Constants.MAP_BLOCKS)){
             changeCollision--;
         }
 
+        //Besouro Push Blocks
         if(isContact(contact, Constants.BESOURO_BODY, Constants.MAP_PUSH_BLOCKS)) {
             final Fixture pushBlock = fixA.getUserData() == Constants.MAP_PUSH_BLOCKS ? fixA : fixB;
             final MassData massData = new MassData();
@@ -114,28 +97,7 @@ public class WorldContactListener implements ContactListener {
     @Override
     public void preSolve(Contact contact, Manifold oldManifold) {
 
-        Fixture fixtureA = contact.getFixtureA();
-        Fixture fixtureB = contact.getFixtureB();
-
-        //Pass Platform
-        if(isContact(contact, Constants.INSECT_BODY, Constants.MAP_PASS_BLOCKS)){
-
-            float passPlatform_y;
-            float insect_y;
-
-            if (fixtureA.getBody().getUserData() == Constants.MAP_PASS_BLOCKS) {
-                passPlatform_y = fixtureA.getBody().getPosition().y;
-                insect_y = fixtureB.getBody().getPosition().y;
-            } else {
-                insect_y = fixtureA.getBody().getPosition().y;
-                passPlatform_y = fixtureB.getBody().getPosition().y;
-            }
-            if(insect_y < passPlatform_y + .31f ){ //.1185F
-                contact.setEnabled(false);
-            } else {
-                contact.setEnabled(true);
-            }
-        }
+        checkPassPlatformContact(contact);
     }
 
     @Override
@@ -143,8 +105,103 @@ public class WorldContactListener implements ContactListener {
 
     }
 
+    private void checkPassPlatformContact(Contact contact) {
+
+        //Joaninha
+        if(isContact(contact, Constants.INSECT_BODY, Constants.MAP_PASS_BLOCKS)){
+            changePassPlatformContactStatus(contact);
+        }
+        //Besouro
+        if(isContact(contact, Constants.BESOURO_BODY, Constants.MAP_PASS_BLOCKS)){
+            changePassPlatformContactStatus(contact);
+        }
+
+    }
+
+    private void changePassPlatformContactStatus(Contact contact) {
+        Fixture fixtureA = contact.getFixtureA();
+        Fixture fixtureB = contact.getFixtureB();
+
+        float passPlatform_y;
+        float insect_y;
+
+        if (fixtureA.getBody().getUserData() == Constants.MAP_PASS_BLOCKS) {
+            passPlatform_y = fixtureA.getBody().getPosition().y;
+            insect_y = fixtureB.getBody().getPosition().y;
+        } else {
+            insect_y = fixtureA.getBody().getPosition().y;
+            passPlatform_y = fixtureB.getBody().getPosition().y;
+        }
+        if(insect_y < passPlatform_y + .31f ){ //.1185F
+            contact.setEnabled(false);
+        } else {
+            contact.setEnabled(true);
+        }
+    }
+
+
+
+    private void checkCharacterDamageContact(Contact contact) {
+
+        //Joaninha
+        if(isContact(contact, Constants.INSECT_BODY, Constants.MAP_DAMAGE)){
+            setGameOver(true);
+        }
+
+        //Ant
+        if(isContact(contact, Constants.ANT_BODY, Constants.MAP_DAMAGE)) {
+            setGameOver(true);
+        }
+
+        //Besouro
+        if(isContact(contact, Constants.BESOURO_BODY, Constants.MAP_DAMAGE)) {
+            setGameOver(true);
+        }
+    }
+
+    private void checkCharacterMapEndContact(Contact contact) {
+
+        //Joaninha
+        if(isContact(contact, Constants.INSECT_BODY, Constants.MAP_END)){
+            setLevelFinished(true);
+        }
+
+        //Ant
+        if(isContact(contact, Constants.ANT_BODY, Constants.MAP_END)){
+            setLevelFinished(true);
+        }
+
+        //Besouro
+        if(isContact(contact, Constants.BESOURO_BODY, Constants.MAP_END)){
+            setLevelFinished(true);
+        }
+    }
+
+    private void checkCharacterFlowerContact(Contact contact) {
+        Fixture fixA = contact.getFixtureA();
+        Fixture fixB = contact.getFixtureB();
+
+        //Joaninha
+        if(isContact(contact, Constants.INSECT_BODY, Constants.MAP_FLOWERS)){
+            Fixture flower = fixA.getUserData() == Constants.MAP_FLOWERS ? fixA : fixB;
+            bodiesToRemove.add(flower.getBody());
+        }
+
+        //Ant
+        if(isContact(contact, Constants.ANT_BODY, Constants.MAP_FLOWERS)){
+            Fixture flower = fixA.getUserData() == Constants.MAP_FLOWERS ? fixA : fixB;
+            bodiesToRemove.add(flower.getBody());
+        }
+
+        //Besouro
+        if(isContact(contact, Constants.BESOURO_BODY, Constants.MAP_FLOWERS)){
+            Fixture flower = fixA.getUserData() == Constants.MAP_FLOWERS ? fixA : fixB;
+            bodiesToRemove.add(flower.getBody());
+        }
+    }
 
     private void checkCharacterOnGrounds(Contact contact){
+
         //Jump and Character change check
         if(isContact(contact, Constants.INSECT_BASE, Constants.MAP_BLOCKS)){
             onGrounds++;
