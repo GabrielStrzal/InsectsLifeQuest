@@ -201,7 +201,7 @@ public class GameScreen implements Screen{
         }
 
         //Character Change
-        if (Gdx.input.isKeyJustPressed(Input.Keys.ENTER)){
+        if (Gdx.input.isKeyJustPressed(Input.Keys.ENTER) || Gdx.input.isKeyJustPressed(Input.Keys.SPACE)){
             if(worldContactListener.isOnGrounds() && worldContactListener.isChangePossible()) {
                 characterChange = true;
             }
@@ -377,15 +377,15 @@ public class GameScreen implements Screen{
             nextBesouro = assetManager.get(Constants.NEXT_BESOURO);
             Texture nextInsect;
 
-            float height = nextJoaninha.getHeight() * .8f / Insects.PPM;
-            float width = nextJoaninha.getWidth() * .8f / Insects.PPM;
+            float height = nextJoaninha.getHeight() / Insects.PPM;
+            float width = nextJoaninha.getWidth() / Insects.PPM;
 
             if(insectPlayer instanceof  LBug) nextInsect = nextBesouro;
             else if(insectPlayer instanceof  Besouro) nextInsect = nextAnt;
             else nextInsect = nextJoaninha;
 
             game.batch.draw(nextInsect,
-                    450 / Insects.PPM, ((GameConfig.SCREEN_HEIGHT_PX / Insects.PPM) - height * 1.25f),
+                    50 / Insects.PPM, ((GameConfig.SCREEN_HEIGHT_PX - 250 )/ Insects.PPM) - height/2, //450
                     width, height);
     }
 

@@ -48,8 +48,7 @@ public class Controller {
     private Texture controlsButtonTexture;
     private Texture controlsButtonPressedTexture;
     private Texture controlsButtonCheckedTexture;
-    private Texture insectSwitchButtonTexture;
-    private Texture insectSwitchButtonPressedTexture;
+    private Texture insectSwitchButtonTransparentTexture;
     private AssetManager assetManager;
 
 
@@ -143,12 +142,10 @@ public class Controller {
 
 
 
-        //Insect Switch Button
-        insectSwitchButtonTexture = assetManager.get(Constants.CONTROLLER_INSECT_SWITCH);
-        insectSwitchButtonPressedTexture = assetManager.get(Constants.CONTROLLER_INSECT_SWITCH_PRESSED);
+        //Insect Switch Button -- Transparent
+        insectSwitchButtonTransparentTexture = assetManager.get(Constants.CONTROLLER_INSECT_SWITCH_TRANSPARENT);
         ImageButton insectSwitchBtn = new ImageButton(
-                new TextureRegionDrawable(new TextureRegion(insectSwitchButtonTexture)),
-                new TextureRegionDrawable(new TextureRegion(insectSwitchButtonPressedTexture)));
+                new TextureRegionDrawable(new TextureRegion(insectSwitchButtonTransparentTexture)));
         insectSwitchBtn.setPosition(50, BACK_BUTTON_Y - BUTTON_SIZE);
         insectSwitchBtn.setSize(BUTTON_SIZE*2,BUTTON_SIZE*2);
         insectSwitchBtn.addListener(new ActorGestureListener() {

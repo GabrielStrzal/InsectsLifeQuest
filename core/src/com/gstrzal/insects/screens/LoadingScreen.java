@@ -75,8 +75,7 @@ public class LoadingScreen extends ScreenAdapter{
         assetManager.load(Constants.CONTROLLER_CONTROLS, Texture.class);
         assetManager.load(Constants.CONTROLLER_CONTROLS_PRESSED, Texture.class);
         assetManager.load(Constants.CONTROLLER_CONTROLS_CHECKED, Texture.class);
-        assetManager.load(Constants.CONTROLLER_INSECT_SWITCH, Texture.class);
-        assetManager.load(Constants.CONTROLLER_INSECT_SWITCH_PRESSED, Texture.class);
+        assetManager.load(Constants.CONTROLLER_INSECT_SWITCH_TRANSPARENT, Texture.class);
         assetManager.load(Constants.GAME_FONT, BitmapFont.class);
         assetManager.load(Constants.LEVEL_1, TiledMap.class);
         assetManager.load(Constants.LEVEL_2, TiledMap.class);
