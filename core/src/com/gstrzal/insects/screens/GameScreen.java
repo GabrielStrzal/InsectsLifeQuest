@@ -266,6 +266,7 @@ public class GameScreen implements Screen{
                 update(delta);
                 checkLevelCompleted();
                 checkGameOver();
+                checkSwitchOn();
             }
             break;
             case GAME_OVER: {
@@ -311,6 +312,16 @@ public class GameScreen implements Screen{
         for(int i = 0; i < b2World.pushBoxes.size; i++) {
             b2World.pushBoxes.get(i).render(game.batch);
         }
+        // draw switches
+        if( b2World.levelSwitch != null) {
+            b2World.levelSwitch.render(game.batch);
+        }
+
+        // draw levelEndBlock
+        if( b2World.levelEndBlock != null) {
+            b2World.levelEndBlock.render(game.batch);
+        }
+
         insectPlayer.draw(game.batch);
         drawGameOver();
         drawLevelCleared();
@@ -320,6 +331,17 @@ public class GameScreen implements Screen{
 
         game.batch.end();
         controller.draw();
+    }
+
+
+    private void checkSwitchOn(){
+        if(worldContactListener.isSwitchOn()){
+            b2World.levelSwitch.turnSwitchOn();
+            if( b2World.levelEndBlock != null) {
+                world.destroyBody(b2World.levelEndBlock.getBody());
+                b2World.levelEndBlock = null;
+            }
+        }
     }
 
     private void checkLevelCompleted() {

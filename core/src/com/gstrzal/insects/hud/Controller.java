@@ -142,7 +142,7 @@ public class Controller {
 
 
 
-        //Insect Switch Button -- Transparent
+        //Insect LevelSwitch Button -- Transparent
         insectSwitchButtonTransparentTexture = assetManager.get(Constants.CONTROLLER_INSECT_SWITCH_TRANSPARENT);
         ImageButton insectSwitchBtn = new ImageButton(
                 new TextureRegionDrawable(new TextureRegion(insectSwitchButtonTransparentTexture)));

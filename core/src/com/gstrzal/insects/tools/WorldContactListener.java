@@ -22,6 +22,7 @@ public class WorldContactListener implements ContactListener {
     private Array<Body> bodiesToRemove;
     private boolean levelFinished = false;
     private boolean gameOver = false;
+    private boolean switchOn = false;
 
 
     public WorldContactListener() {
@@ -41,6 +42,8 @@ public class WorldContactListener implements ContactListener {
         checkCharacterMapEndContact(contact);
 
         checkCharacterDamageContact(contact);
+
+        checkCharacterSwitchContact(contact);
 
 
         //For ant character - size check
@@ -99,6 +102,23 @@ public class WorldContactListener implements ContactListener {
 
     @Override
     public void postSolve(Contact contact, ContactImpulse impulse) {
+
+    }
+
+    private void checkCharacterSwitchContact(Contact contact) {
+
+        //Joaninha
+        if(isContact(contact, Constants.INSECT_BODY, Constants.MAP_SWITCH)){
+            switchOn = true;
+        }
+        //Ant
+        if(isContact(contact, Constants.ANT_BODY, Constants.MAP_SWITCH)){
+            switchOn = true;
+        }
+        //Besouro
+        if(isContact(contact, Constants.BESOURO_BODY, Constants.MAP_SWITCH)){
+            switchOn = true;
+        }
 
     }
 
@@ -273,5 +293,9 @@ public class WorldContactListener implements ContactListener {
 
     public void setGameOver(boolean gameOver) {
         this.gameOver = gameOver;
+    }
+
+    public boolean isSwitchOn() {
+        return switchOn;
     }
 }

@@ -47,6 +47,9 @@ public class Constants {
     public static final String ANT = "formiga_256x121.png";
     public static final String FLOWER = "flower_64x64.png";
     public static final String PUSH_BLOCK = "push_block_128x128.png";
+    public static final String SWITCH_ON = "switch_on_128x128.png";
+    public static final String SWITCH_OFF = "switch_off_128x128.png";
+    public static final String LEVEL_END_BLOCK = "level_end_block_128x128.png";
 
     //Next Charecyer
     public static final String NEXT_JOANINHA = "next_joaninha_352x352.png";
@@ -69,6 +72,7 @@ public class Constants {
     public static final String LEVEL_9 = "levels/ins_level_9.tmx";
     public static final String LEVEL_10 = "levels/ins_level_10.tmx";
     public static final String LEVEL_11 = "levels/ins_level_11.tmx";
+    public static final String LEVEL_12 = "levels/ins_level_12.tmx";
     public static final String LEVEL = "levels/ins_level_";
     public static final String TMX = ".tmx";
 
@@ -80,6 +84,8 @@ public class Constants {
     public static final String MAP_DAMAGE = "damage";
     public static final String MAP_PASS_BLOCKS = "passBlock";
     public static final String MAP_SLOPE = "slope";
+    public static final String MAP_SWITCH = "switch";
+    public static final String MAP_LEVEL_END_BLOCK = "levelEndBlock";
 
     //Object Descriptions
     public static final String INSECT_BODY = "InsectBody";

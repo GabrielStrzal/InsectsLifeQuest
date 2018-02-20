@@ -88,11 +88,15 @@ public class LoadingScreen extends ScreenAdapter{
         assetManager.load(Constants.LEVEL_9, TiledMap.class);
         assetManager.load(Constants.LEVEL_10, TiledMap.class);
         assetManager.load(Constants.LEVEL_11, TiledMap.class);
+        assetManager.load(Constants.LEVEL_12, TiledMap.class);
         assetManager.load(Constants.JOANINHA, Texture.class);
         assetManager.load(Constants.BESOURO, Texture.class);
         assetManager.load(Constants.ANT, Texture.class);
         assetManager.load(Constants.FLOWER, Texture.class);
         assetManager.load(Constants.PUSH_BLOCK, Texture.class);
+        assetManager.load(Constants.SWITCH_ON, Texture.class);
+        assetManager.load(Constants.SWITCH_OFF, Texture.class);
+        assetManager.load(Constants.LEVEL_END_BLOCK, Texture.class);
         assetManager.load(Constants.NEXT_JOANINHA, Texture.class);
         assetManager.load(Constants.NEXT_ANT, Texture.class);
         assetManager.load(Constants.NEXT_BESOURO, Texture.class);

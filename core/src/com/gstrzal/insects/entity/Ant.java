@@ -90,7 +90,7 @@ public class Ant extends Insect {
         circleShape.setRadius(60/ Insects.PPM);
         fdefCircle.filter.categoryBits = Insects.INSECT_BIT;
         fdefCircle.filter.maskBits = Insects.FLOWER_BIT | Insects.BRICK_BIT | Insects.LEVEL_END_BIT
-                | Insects.DAMAGE_BIT | Insects.PASS_BLOCK_BIT | Insects.SLOPE_BIT;
+                | Insects.DAMAGE_BIT | Insects.PASS_BLOCK_BIT | Insects.SLOPE_BIT | Insects.SWITCH_BIT;
         fdefCircle.shape = circleShape;
         b2body.createFixture(fdefCircle).setUserData(Constants.ANT_BODY);
 

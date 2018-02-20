@@ -18,9 +18,9 @@ public class GameConfig {
     public static final float SCREEN_WIDTH_PX = 3200f; //pixels
     public static final float SCREEN_HEIGHT_PX = 1920f; //pixels
 
-    public static final int GAME_MAX_LEVELS = 11; //
+    public static final int GAME_MAX_LEVELS = 12; //
 
-    public static final String GAME_VERSION = "V.0.0.2.2";
+    public static final String GAME_VERSION = "V.0.0.2.3";
 
     public static final boolean debug = false;
 

@@ -19,6 +19,8 @@ import com.badlogic.gdx.utils.Array;
 import com.gstrzal.insects.Insects;
 import com.gstrzal.insects.config.Constants;
 import com.gstrzal.insects.entity.Flower;
+import com.gstrzal.insects.entity.LevelEndBlock;
+import com.gstrzal.insects.entity.LevelSwitch;
 import com.gstrzal.insects.entity.PushBox;
 
 /**
@@ -29,6 +31,8 @@ public class B2WorldCreator {
 
     public Array<Flower> flowers;
     public Array<PushBox> pushBoxes;
+    public LevelSwitch levelSwitch;
+    public LevelEndBlock levelEndBlock;
     private final static float circleRadius = 32f;
 
     public B2WorldCreator(World world, TiledMap map, Insects insects){
@@ -171,6 +175,52 @@ public class B2WorldCreator {
                 PushBox pushBox = new PushBox(body3, insects);
                 body3.setUserData(pushBox);
                 pushBoxes.add(pushBox);
+            }
+
+        //Switch
+        BodyDef switchBdef = new BodyDef();
+        FixtureDef switchfdef = new FixtureDef();
+        Body switchBody;
+        if(map.getLayers().get(Constants.MAP_SWITCH) != null)
+            for (MapObject object : map.getLayers().get(Constants.MAP_SWITCH).getObjects().getByType(RectangleMapObject.class)) {
+                Rectangle rect = ((RectangleMapObject) object).getRectangle();
+                switchBdef.type = BodyDef.BodyType.StaticBody;
+                switchBdef.position.set((rect.getX() + rect.getWidth() / 2) / Insects.PPM, (rect.getY() + rect.getHeight() / 2) / Insects.PPM);
+                switchBody = world.createBody(switchBdef);
+                shape.setAsBox((rect.getWidth() / 2) / Insects.PPM, (rect.getHeight() / 2) / Insects.PPM);
+                switchfdef.shape = shape;
+                switchfdef.isSensor = true;
+                switchfdef.filter.categoryBits = Insects.SWITCH_BIT;
+                switchfdef.filter.maskBits = Insects.INSECT_BIT | Insects.BASE_BIT;
+
+                switchBody.createFixture(switchfdef).setUserData(Constants.MAP_SWITCH);
+                levelSwitch = new LevelSwitch(switchBody, insects);
+                switchBody.setUserData(levelSwitch);
+
+            }
+
+
+
+        //Switch
+        BodyDef levelEndBlockBdef = new BodyDef();
+        FixtureDef levelEndBlockfdef = new FixtureDef();
+        Body levelEndClockBody;
+        if(map.getLayers().get(Constants.MAP_LEVEL_END_BLOCK) != null)
+            for (MapObject object : map.getLayers().get(Constants.MAP_LEVEL_END_BLOCK).getObjects().getByType(RectangleMapObject.class)) {
+                Rectangle rect = ((RectangleMapObject) object).getRectangle();
+                levelEndBlockBdef.type = BodyDef.BodyType.StaticBody;
+                levelEndBlockBdef.position.set((rect.getX() + rect.getWidth() / 2) / Insects.PPM, (rect.getY() + rect.getHeight() / 2) / Insects.PPM);
+                levelEndClockBody = world.createBody(levelEndBlockBdef);
+                shape.setAsBox((rect.getWidth() / 2) / Insects.PPM, (rect.getHeight() / 2) / Insects.PPM);
+                levelEndBlockfdef.shape = shape;
+//                levelEndBlockfdef.isSensor = true;
+                levelEndBlockfdef.filter.categoryBits = Insects.BRICK_BIT;
+                levelEndBlockfdef.filter.maskBits = Insects.INSECT_BIT | Insects.BASE_BIT;
+
+                levelEndClockBody.createFixture(levelEndBlockfdef).setUserData(Constants.MAP_LEVEL_END_BLOCK);
+                levelEndBlock = new LevelEndBlock(levelEndClockBody, insects);
+                levelEndClockBody.setUserData(levelEndBlock);
+
             }
     }
 }

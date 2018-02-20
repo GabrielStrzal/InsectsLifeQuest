@@ -88,7 +88,7 @@ public class Besouro extends Insect {
         shape.setAsBox(55/ Insects.PPM ,(100 - circleDifference)/ Insects.PPM , new Vector2(0, circleDifference/ Insects.PPM),0);
         fdef.filter.categoryBits = Insects.INSECT_BIT;
         fdef.filter.maskBits = Insects.BRICK_BIT | Insects.FLOWER_BIT | Insects.LEVEL_END_BIT
-                | Insects.DAMAGE_BIT | Insects.PASS_BLOCK_BIT | Insects.SLOPE_BIT;
+                | Insects.DAMAGE_BIT | Insects.PASS_BLOCK_BIT | Insects.SLOPE_BIT | Insects.SWITCH_BIT;
         fdef.shape = shape;
         b2body.createFixture(fdef).setUserData(Constants.BESOURO_BODY);
 
