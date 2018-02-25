@@ -165,8 +165,8 @@ public class Controller {
         ImageButton rightBtn = new ImageButton(
                 new TextureRegionDrawable(new TextureRegion(rightButtonTexture)),
                 new TextureRegionDrawable(new TextureRegion(rightPressedButtonTexture)));
-        rightBtn.setPosition(GameConfig.SCREEN_WIDTH_PX-400, GameConfig.SCREEN_HEIGHT_PX/2 - 176);
-        rightBtn.setSize(BUTTON_SIZE*2,BUTTON_SIZE*2);
+        rightBtn.setPosition(GameConfig.SCREEN_WIDTH_PX-(BUTTON_SIZE*1.3f + 50), 10);
+        rightBtn.setSize(BUTTON_SIZE*1.3f,BUTTON_SIZE*1.3f);
 
         rightBtn.addListener(new ActorGestureListener() {
             @Override
@@ -185,8 +185,8 @@ public class Controller {
         ImageButton leftBtn = new ImageButton(
                 new TextureRegionDrawable(new TextureRegion(leftButtonTexture)),
                 new TextureRegionDrawable(new TextureRegion(leftPressedButtonTexture)));
-        leftBtn.setPosition(50, GameConfig.SCREEN_HEIGHT_PX/2 - 176);
-        leftBtn.setSize(BUTTON_SIZE*2,BUTTON_SIZE*2);
+        leftBtn.setPosition(50, 10);
+        leftBtn.setSize(BUTTON_SIZE*1.3f,BUTTON_SIZE*1.3f);
 
         leftBtn.addListener(new ActorGestureListener() {
             @Override
