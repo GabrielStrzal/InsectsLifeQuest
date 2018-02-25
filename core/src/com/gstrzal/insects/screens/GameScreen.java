@@ -4,7 +4,6 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.assets.AssetManager;
-import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -25,7 +24,10 @@ import com.gstrzal.insects.config.Constants;
 import com.gstrzal.insects.config.GameConfig;
 import com.gstrzal.insects.entity.*;
 import com.gstrzal.insects.hud.Controller;
+import com.gstrzal.insects.tools.AudioHandler;
 import com.gstrzal.insects.tools.B2WorldCreator;
+import com.gstrzal.insects.tools.ScreenEnum;
+import com.gstrzal.insects.tools.ScreenManager;
 import com.gstrzal.insects.tools.WorldContactListener;
 import com.gstrzal.insects.utils.GdxUtils;
 import com.gstrzal.insects.utils.ViewportUtils;
@@ -92,16 +94,17 @@ public class GameScreen implements Screen{
     private GlyphLayout layout = new GlyphLayout();
     private Controller controller;
 
-    private Sound gameSound;
+    private AudioHandler audioHandler;
+    private long gameSoundID;
 
 
 
     public GameScreen(Insects game, int level){
 
-        this.assetManager = game.getAssetManager();
-        state = STATE.PLAYING;
-
         this.game = game;
+        this.assetManager = game.getAssetManager();
+        this.audioHandler = game.getAudioHandler();
+        state = STATE.PLAYING;
         gamecam = new OrthographicCamera();
         b2dcam = new OrthographicCamera();
         b2dcam.setToOrtho(false,Insects.V_WIDTH / Insects.PPM, Insects.V_HEIGHT/ Insects.PPM);
@@ -126,12 +129,8 @@ public class GameScreen implements Screen{
 
         controller = new Controller(game);
 
-        gameSound = assetManager.get(Constants.AUDIO_001);
-
-        gameSound.play();
-        if(!game.isAudioOn()) {
-            gameSound.pause();
-        }
+        //Audio
+        gameSoundID = audioHandler.playBackGroundMusic();
 
     }
     @Override
@@ -156,11 +155,7 @@ public class GameScreen implements Screen{
         b2dcam.update();
         mapRenderer.setView(b2dcam);
 
-        if(game.isAudioOn()){
-            gameSound.resume();
-        }else{
-            gameSound.pause();
-        }
+        audioHandler.updateMusic();
 
     }
 
@@ -367,16 +362,16 @@ public class GameScreen implements Screen{
 
     private void doRestartIfGameOver() {
         if(waitRestartComplete && state == STATE.GAME_OVER){
-            game.setScreen(new GameScreen(game, currentLevel));
+            ScreenManager.getInstance().showScreen(ScreenEnum.GAME_SCREEN, game, currentLevel);
         }
     }
 
     private void changeLevelIfLevelCompleted(){
         if(waitRestartComplete && state == STATE.LEVEL_CLEARED) {
             if (currentLevel <= GameConfig.GAME_MAX_LEVELS) {
-                game.setScreen(new GameScreen(game, currentLevel));
+                ScreenManager.getInstance().showScreen(ScreenEnum.GAME_SCREEN, game, currentLevel);
             } else {
-                game.setScreen(new YouWonScreen(game));
+                ScreenManager.getInstance().showScreen(ScreenEnum.YOU_WON_SCREEM, game);
             }
         }
     }
@@ -449,7 +444,7 @@ public class GameScreen implements Screen{
 
     @Override
     public void hide() {
-        dispose();
+//        dispose();
 
     }
 
@@ -459,6 +454,6 @@ public class GameScreen implements Screen{
         mapRenderer.dispose();
         world.dispose();
         b2dr.dispose();
-        gameSound.stop();
+        audioHandler.stopBackGroundMusic(gameSoundID);
     }
 }

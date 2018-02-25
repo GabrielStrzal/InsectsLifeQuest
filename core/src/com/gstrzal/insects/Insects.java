@@ -11,7 +11,9 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.utils.Logger;
 import com.gstrzal.insects.config.GameConfig;
-import com.gstrzal.insects.screens.LoadingScreen;
+import com.gstrzal.insects.tools.AudioHandler;
+import com.gstrzal.insects.tools.ScreenEnum;
+import com.gstrzal.insects.tools.ScreenManager;
 
 
 public class Insects extends Game {
@@ -35,11 +37,12 @@ public class Insects extends Game {
 	public static final short SWITCH_BIT = 0x4096;
 
 
-	private boolean audioOn = false;
+	private boolean audioOn = true;
 	private boolean displayControllers = true;
 
 	public SpriteBatch batch;
 	private final AssetManager assetManager = new AssetManager();
+	private AudioHandler audioHandler;
 
 	@Override
 	public void create () {
@@ -48,8 +51,9 @@ public class Insects extends Game {
 
 		batch = new SpriteBatch();
 		assetManager.setLoader(TiledMap.class, new TmxMapLoader(new InternalFileHandleResolver()));
-		setScreen(new LoadingScreen(this));
-
+		audioHandler = new AudioHandler(this);
+		ScreenManager.getInstance().initialize(this);
+		ScreenManager.getInstance().showScreen(ScreenEnum.LOADING_SCREEN, this);
 	}
 
 	@Override
@@ -81,5 +85,8 @@ public class Insects extends Game {
 
 	public void setDisplayControllers(boolean displayControllers) {
 		this.displayControllers = displayControllers;
+	}
+	public AudioHandler getAudioHandler() {
+		return audioHandler;
 	}
 }
