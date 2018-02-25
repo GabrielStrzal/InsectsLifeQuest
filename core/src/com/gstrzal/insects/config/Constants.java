@@ -35,6 +35,8 @@ public class Constants {
     public static final String CONTROLLER_CONTROLS_PRESSED = "menu/button_controls_pressed_352x352.png";
     public static final String CONTROLLER_CONTROLS_CHECKED = "menu/button_options_checked_352x352.png";
     public static final String CONTROLLER_INSECT_SWITCH_TRANSPARENT = "menu/button_switch_transparent_352x352.png";
+    public static final String CONTROLLER_LEVEL_RESTART = "menu/button_restart_352x352.png";
+    public static final String CONTROLLER_LEVEL_RESTART_PRESSED = "menu/button_restart_pressed_352x352.png";
 
 
 

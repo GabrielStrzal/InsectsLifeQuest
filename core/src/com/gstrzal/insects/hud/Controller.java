@@ -31,6 +31,7 @@ public class Controller {
     private boolean leftPressed;
     private boolean actionPressed;
     private boolean insectSwitchPressed;
+    private boolean levelRestartPressed;
 
 
     OrthographicCamera camera;
@@ -49,6 +50,8 @@ public class Controller {
     private Texture controlsButtonTexture;
     private Texture controlsButtonPressedTexture;
     private Texture controlsButtonCheckedTexture;
+    private Texture levelRestartButtonTexture;
+    private Texture levelRestartButtonPressedTexture;
     private Texture insectSwitchButtonTransparentTexture;
     private AssetManager assetManager;
 
@@ -140,6 +143,24 @@ public class Controller {
             controlsBtn.setChecked(true);
         }
         stage.addActor(controlsBtn);
+
+        //Level Restart Button
+        levelRestartButtonTexture = assetManager.get(Constants.CONTROLLER_LEVEL_RESTART);
+        levelRestartButtonPressedTexture = assetManager.get(Constants.CONTROLLER_LEVEL_RESTART_PRESSED);
+
+        ImageButton levelRestartBtn = new ImageButton(
+                new TextureRegionDrawable(new TextureRegion(levelRestartButtonTexture)),
+                new TextureRegionDrawable(new TextureRegion(levelRestartButtonPressedTexture)));
+        levelRestartBtn.setPosition(BACK_BUTTON_X - (BUTTON_PADDING * 3), BACK_BUTTON_Y);
+        levelRestartBtn.setSize(BUTTON_SIZE,BUTTON_SIZE);
+        levelRestartBtn.addListener(new ActorGestureListener() {
+            @Override
+            public void tap(InputEvent event, float x, float y, int count, int button) {
+                super.tap(event, x, y, count, button);
+                ScreenManager.getInstance().showScreen(ScreenEnum.GAME_SCREEN, insects, insects.currentLevel);
+            }
+        });
+        stage.addActor(levelRestartBtn);
 
 
 
@@ -265,5 +286,13 @@ public class Controller {
 
     public void setInsectSwitchPressed(boolean insectSwitchPressed) {
         this.insectSwitchPressed = insectSwitchPressed;
+    }
+
+    public boolean isLevelRestartPressed() {
+        return levelRestartPressed;
+    }
+
+    public void setLevelRestartPressed(boolean levelRestartPressed) {
+        this.levelRestartPressed = levelRestartPressed;
     }
 }

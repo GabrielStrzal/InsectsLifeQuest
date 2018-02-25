@@ -74,7 +74,6 @@ public class GameScreen implements Screen{
 
     private WorldContactListener worldContactListener;
     private B2WorldCreator b2World;
-    private int currentLevel;
     private boolean waitRestartComplete;
     private long levelStopTime;
     private boolean isDirectionUp;
@@ -111,7 +110,7 @@ public class GameScreen implements Screen{
         gamePort = new FitViewport(Insects.V_WIDTH / Insects.PPM, Insects.V_HEIGHT/ Insects.PPM, gamecam);
 
 
-        this.currentLevel = level;
+        game.currentLevel = level;
         world = new World(new Vector2(0, gravity), true);
         b2dr = new Box2DDebugRenderer();
 
@@ -342,7 +341,7 @@ public class GameScreen implements Screen{
     private void checkLevelCompleted() {
         if (worldContactListener.isLevelFinished()) {
             worldContactListener.setLevelFinished(false);
-            currentLevel++;
+            game.currentLevel++;
             state = STATE.LEVEL_CLEARED;
             levelStopTime = System.currentTimeMillis();
         }
@@ -362,14 +361,14 @@ public class GameScreen implements Screen{
 
     private void doRestartIfGameOver() {
         if(waitRestartComplete && state == STATE.GAME_OVER){
-            ScreenManager.getInstance().showScreen(ScreenEnum.GAME_SCREEN, game, currentLevel);
+            ScreenManager.getInstance().showScreen(ScreenEnum.GAME_SCREEN, game, game.currentLevel);
         }
     }
 
     private void changeLevelIfLevelCompleted(){
         if(waitRestartComplete && state == STATE.LEVEL_CLEARED) {
-            if (currentLevel <= GameConfig.GAME_MAX_LEVELS) {
-                ScreenManager.getInstance().showScreen(ScreenEnum.GAME_SCREEN, game, currentLevel);
+            if (game.currentLevel <= GameConfig.GAME_MAX_LEVELS) {
+                ScreenManager.getInstance().showScreen(ScreenEnum.GAME_SCREEN, game, game.currentLevel);
             } else {
                 ScreenManager.getInstance().showScreen(ScreenEnum.YOU_WON_SCREEM, game);
             }

@@ -41,6 +41,7 @@ public class Insects extends Game {
 	private boolean displayControllers = true;
 
 	public SpriteBatch batch;
+	public int currentLevel;
 	private final AssetManager assetManager = new AssetManager();
 	private AudioHandler audioHandler;
 
