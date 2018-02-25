@@ -165,6 +165,7 @@ public class GameScreen implements Screen{
             b2World.flowers.removeValue((Flower) b.getUserData(), true);
             world.destroyBody(bodies.get(i));
 //            TODO: add Flower number
+            audioHandler.playPickupFlowerSound();
         }
         bodies.clear();
     }
@@ -180,6 +181,7 @@ public class GameScreen implements Screen{
         if(isDirectionUp && worldContactListener.isOnGrounds() && insectPlayer instanceof LBug){
             insectPlayer.b2body.applyForceToCenter(0,jumpSpeed,true);
             isDirectionUp = false;
+            audioHandler.playJumpSound();
         }
 
         if (Gdx.input.isKeyJustPressed(Input.Keys.UP)){
@@ -221,6 +223,8 @@ public class GameScreen implements Screen{
                         tempInscX , tempInscY);
             }
             characterChange = false;
+
+            audioHandler.playChangeInsectSound();
         }
 
 
@@ -343,6 +347,7 @@ public class GameScreen implements Screen{
             worldContactListener.setLevelFinished(false);
             game.currentLevel++;
             state = STATE.LEVEL_CLEARED;
+            audioHandler.playEndLevelSound();
             levelStopTime = System.currentTimeMillis();
         }
     }
@@ -350,6 +355,7 @@ public class GameScreen implements Screen{
         if (worldContactListener.isGameOver()) {
             worldContactListener.setGameOver(false);
             state = STATE.GAME_OVER;
+            audioHandler.playHitHurtSound();
             levelStopTime = System.currentTimeMillis();
         }
 

@@ -41,7 +41,12 @@ public class Constants {
 
 
     //Audios
-    public static final String AUDIO_001 = "audio/audio_001.wav";
+    public static final String AUDIO_BACKGROUND_MUSIC = "audio/audio_001.wav";
+    public static final String AUDIO_JUMP = "audio/jump01.wav";
+    public static final String AUDIO_HIT_HURT = "audio/hit_hurt01.wav";
+    public static final String AUDIO_END_LEVEL = "audio/end_level01.wav";
+    public static final String AUDIO_CHANGE_INSECT = "audio/change_insect_01.wav";
+    public static final String AUDIO_PICKUP_FLOWER = "audio/pickup_flower01.wav";
 
     //Characters
     public static final String JOANINHA = "joaninha_512x208.png";

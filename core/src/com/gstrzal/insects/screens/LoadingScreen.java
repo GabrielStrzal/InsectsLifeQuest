@@ -105,7 +105,12 @@ public class LoadingScreen extends ScreenAdapter{
         assetManager.load(Constants.NEXT_ANT, Texture.class);
         assetManager.load(Constants.NEXT_BESOURO, Texture.class);
 
-        assetManager.load(Constants.AUDIO_001, Sound.class);
+        assetManager.load(Constants.AUDIO_BACKGROUND_MUSIC, Sound.class);
+        assetManager.load(Constants.AUDIO_JUMP, Sound.class);
+        assetManager.load(Constants.AUDIO_HIT_HURT, Sound.class);
+        assetManager.load(Constants.AUDIO_END_LEVEL, Sound.class);
+        assetManager.load(Constants.AUDIO_CHANGE_INSECT, Sound.class);
+        assetManager.load(Constants.AUDIO_PICKUP_FLOWER, Sound.class);
     }
     @Override
     public void render(float delta) {
