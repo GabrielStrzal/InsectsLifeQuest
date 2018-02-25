@@ -201,25 +201,24 @@ public class B2WorldCreator {
 
 
 
-        //Switch
+        //Level End Block
         BodyDef levelEndBlockBdef = new BodyDef();
         FixtureDef levelEndBlockfdef = new FixtureDef();
-        Body levelEndClockBody;
+        Body levelEndBlockBody;
         if(map.getLayers().get(Constants.MAP_LEVEL_END_BLOCK) != null)
             for (MapObject object : map.getLayers().get(Constants.MAP_LEVEL_END_BLOCK).getObjects().getByType(RectangleMapObject.class)) {
                 Rectangle rect = ((RectangleMapObject) object).getRectangle();
                 levelEndBlockBdef.type = BodyDef.BodyType.StaticBody;
                 levelEndBlockBdef.position.set((rect.getX() + rect.getWidth() / 2) / Insects.PPM, (rect.getY() + rect.getHeight() / 2) / Insects.PPM);
-                levelEndClockBody = world.createBody(levelEndBlockBdef);
+                levelEndBlockBody = world.createBody(levelEndBlockBdef);
                 shape.setAsBox((rect.getWidth() / 2) / Insects.PPM, (rect.getHeight() / 2) / Insects.PPM);
                 levelEndBlockfdef.shape = shape;
-//                levelEndBlockfdef.isSensor = true;
                 levelEndBlockfdef.filter.categoryBits = Insects.BRICK_BIT;
                 levelEndBlockfdef.filter.maskBits = Insects.INSECT_BIT | Insects.BASE_BIT;
 
-                levelEndClockBody.createFixture(levelEndBlockfdef).setUserData(Constants.MAP_LEVEL_END_BLOCK);
-                levelEndBlock = new LevelEndBlock(levelEndClockBody, insects);
-                levelEndClockBody.setUserData(levelEndBlock);
+                levelEndBlockBody.createFixture(levelEndBlockfdef).setUserData(Constants.MAP_LEVEL_END_BLOCK);
+                levelEndBlock = new LevelEndBlock(levelEndBlockBody, insects);
+                levelEndBlockBody.setUserData(levelEndBlock);
 
             }
     }
