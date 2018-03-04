@@ -83,14 +83,16 @@ public class Besouro extends Insect {
         bdef.position.set(x, y); //initial position
         bdef.type = BodyDef.BodyType.DynamicBody;
         b2body  = world.createBody(bdef);
-        FixtureDef fdef = new FixtureDef();
-        PolygonShape shape = new PolygonShape();
-        shape.setAsBox(55/ Insects.PPM ,(100 - circleDifference)/ Insects.PPM , new Vector2(0, circleDifference/ Insects.PPM),0);
-        fdef.filter.categoryBits = Insects.INSECT_BIT;
-        fdef.filter.maskBits = Insects.BRICK_BIT | Insects.FLOWER_BIT | Insects.LEVEL_END_BIT
+
+        //Body Fixture
+        FixtureDef bodyFdef = new FixtureDef();
+        PolygonShape bodyShape = new PolygonShape();
+        bodyShape.setAsBox(55/ Insects.PPM ,(100 - circleDifference)/ Insects.PPM , new Vector2(0, circleDifference/ Insects.PPM),0);
+        bodyFdef.filter.categoryBits = Insects.INSECT_BIT;
+        bodyFdef.filter.maskBits = Insects.BRICK_BIT | Insects.FLOWER_BIT | Insects.LEVEL_END_BIT
                 | Insects.DAMAGE_BIT | Insects.PASS_BLOCK_BIT | Insects.SLOPE_BIT | Insects.SWITCH_BIT;
-        fdef.shape = shape;
-        b2body.createFixture(fdef).setUserData(Constants.BESOURO_BODY);
+        bodyFdef.shape = bodyShape;
+        b2body.createFixture(bodyFdef).setUserData(Constants.BESOURO_BODY);
 
 
         //Base Circle
@@ -106,12 +108,13 @@ public class Besouro extends Insect {
 
 
         //Base Sensor
-        PolygonShape shape2 = new PolygonShape();
-        shape2.setAsBox(35/ Insects.PPM ,16/ Insects.PPM , new Vector2(0,-100/ Insects.PPM),0);
-        fdef.shape = shape2;
-        fdef.isSensor = true;
-        fdef.filter.categoryBits = Insects.BASE_BIT;
-        fdef.filter.maskBits = Insects.BRICK_BIT | Insects.PASS_BLOCK_BIT | Insects.SLOPE_BIT;
-        b2body.createFixture(fdef).setUserData(Constants.INSECT_BASE);
+        FixtureDef baseSensorFdef = new FixtureDef();
+        PolygonShape baseShape = new PolygonShape();
+        baseShape.setAsBox(35/ Insects.PPM ,16/ Insects.PPM , new Vector2(0,-100/ Insects.PPM),0);
+        baseSensorFdef.shape = baseShape;
+        baseSensorFdef.isSensor = true;
+        baseSensorFdef.filter.categoryBits = Insects.BASE_BIT;
+        baseSensorFdef.filter.maskBits = Insects.BRICK_BIT | Insects.PASS_BLOCK_BIT | Insects.SLOPE_BIT;
+        b2body.createFixture(baseSensorFdef).setUserData(Constants.INSECT_BASE);
     }
 }

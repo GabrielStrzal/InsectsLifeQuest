@@ -82,7 +82,6 @@ public class Ant extends Insect {
         bdef.position.set(x , y); //initial position
         bdef.type = BodyDef.BodyType.DynamicBody;
         b2body  = world.createBody(bdef);
-        FixtureDef fdef = new FixtureDef();
 
         //Base Circle
         FixtureDef fdefCircle = new FixtureDef();
@@ -96,24 +95,26 @@ public class Ant extends Insect {
 
 
         //Base Sensor
-        PolygonShape shape2 = new PolygonShape();
-        shape2.setAsBox(50/ Insects.PPM ,16/ Insects.PPM , new Vector2(0, -60/ Insects.PPM),0);
-        fdef.shape = shape2;
-        fdef.isSensor = true;
-        fdef.filter.categoryBits = Insects.BASE_BIT;
-        fdef.filter.maskBits = Insects.BRICK_BIT | Insects.PASS_BLOCK_BIT | Insects.SLOPE_BIT;
-        b2body.createFixture(fdef).setUserData(Constants.INSECT_BASE);
+        FixtureDef baseFdef = new FixtureDef();
+        PolygonShape baseShape = new PolygonShape();
+        baseShape.setAsBox(50/ Insects.PPM ,16/ Insects.PPM , new Vector2(0, -60/ Insects.PPM),0);
+        baseFdef.shape = baseShape;
+        baseFdef.isSensor = true;
+        baseFdef.filter.categoryBits = Insects.BASE_BIT;
+        baseFdef.filter.maskBits = Insects.BRICK_BIT | Insects.PASS_BLOCK_BIT | Insects.SLOPE_BIT;
+        b2body.createFixture(baseFdef).setUserData(Constants.INSECT_BASE);
 
 
 
         //Change Sensor
-        PolygonShape shape3 = new PolygonShape();
-        shape3.setAsBox(48/ Insects.PPM ,95/ Insects.PPM, new Vector2(0, 45/ Insects.PPM),0);
-        fdef.shape = shape3;
-        fdef.isSensor = true;
-        fdef.filter.categoryBits = Insects.CHANGE_INSECT_BIT;
-        fdef.filter.maskBits = Insects.BRICK_BIT | Insects.SLOPE_BIT;
-        b2body.createFixture(fdef).setUserData(Constants.INSECT_CHANGE);
+        FixtureDef changeFdef = new FixtureDef();
+        PolygonShape changeSensorShape = new PolygonShape();
+        changeSensorShape.setAsBox(48/ Insects.PPM ,95/ Insects.PPM, new Vector2(0, 45/ Insects.PPM),0);
+        changeFdef.shape = changeSensorShape;
+        changeFdef.isSensor = true;
+        changeFdef.filter.categoryBits = Insects.CHANGE_INSECT_BIT;
+        changeFdef.filter.maskBits = Insects.BRICK_BIT | Insects.SLOPE_BIT;
+        b2body.createFixture(changeFdef).setUserData(Constants.INSECT_CHANGE);
     }
 
 }

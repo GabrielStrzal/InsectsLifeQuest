@@ -82,7 +82,7 @@ public class WorldContactListener implements ContactListener {
         if(isContact(contact, Constants.BESOURO_BODY, Constants.MAP_PUSH_BLOCKS)) {
             final Fixture pushBlock = fixA.getUserData() == Constants.MAP_PUSH_BLOCKS ? fixA : fixB;
             final MassData massData = new MassData();
-            massData.mass = 10000;
+            massData.mass = 1000000;
             Gdx.app.postRunnable(new Runnable() {
 
                 @Override

@@ -89,6 +89,9 @@ public class LBug extends Insect {
         bdef.position.set(x, y); //initial position
         bdef.type = BodyDef.BodyType.DynamicBody;
         b2body  = world.createBody(bdef);
+
+
+        //Body Fixture
         FixtureDef fdef = new FixtureDef();
         PolygonShape shape = new PolygonShape();
         shape.setAsBox(55/ Insects.PPM ,(100 - circleDifference)/ Insects.PPM , new Vector2(0, circleDifference/ Insects.PPM),0);
@@ -112,12 +115,13 @@ public class LBug extends Insect {
 
 
         //Base Sensor
+        FixtureDef baseFdef = new FixtureDef();
         PolygonShape shape2 = new PolygonShape();
         shape2.setAsBox(35/ Insects.PPM ,16/ Insects.PPM , new Vector2(0,-100/ Insects.PPM),0);
-        fdef.shape = shape2;
-        fdef.isSensor = true;
-        fdef.filter.categoryBits = Insects.BASE_BIT;
-        fdef.filter.maskBits = Insects.BRICK_BIT | Insects.PASS_BLOCK_BIT | Insects.SLOPE_BIT | Insects.PUSH_BLOCK_BIT;
-        b2body.createFixture(fdef).setUserData(Constants.INSECT_BASE);
+        baseFdef.shape = shape2;
+        baseFdef.isSensor = true;
+        baseFdef.filter.categoryBits = Insects.BASE_BIT;
+        baseFdef.filter.maskBits = Insects.BRICK_BIT | Insects.PASS_BLOCK_BIT | Insects.SLOPE_BIT | Insects.PUSH_BLOCK_BIT;
+        b2body.createFixture(baseFdef).setUserData(Constants.INSECT_BASE);
     }
 }

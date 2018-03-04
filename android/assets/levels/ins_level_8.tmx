@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.1" orientation="orthogonal" renderorder="right-down" width="25" height="15" tilewidth="128" tileheight="128" infinite="0" nextobjectid="78">
+<map version="1.0" tiledversion="1.1.1" orientation="orthogonal" renderorder="right-down" width="25" height="15" tilewidth="128" tileheight="128" infinite="0" nextobjectid="79">
  <tileset firstgid="1" source="tiles_128x128.tsx"/>
  <layer name="background" width="25" height="15">
   <data encoding="base64">
@@ -56,6 +56,9 @@
   <object id="76" x="2950.55" y="211.883" width="69.697" height="69.697">
    <ellipse/>
   </object>
+  <object id="78" x="1632.36" y="1030.06" width="69.697" height="69.697">
+   <ellipse/>
+  </object>
  </objectgroup>
  <objectgroup name="end">
   <object id="44" x="199.833" y="1207.67">
@@ -64,7 +67,6 @@
  </objectgroup>
  <objectgroup name="pushBlocks">
   <object id="46" x="1382.37" y="253.412" width="128" height="128"/>
-  <object id="52" x="1592.63" y="1022.08" width="128" height="128"/>
  </objectgroup>
  <objectgroup name="damage">
   <object id="56" x="1932.67" y="1323.33" width="357.333" height="142.667"/>
