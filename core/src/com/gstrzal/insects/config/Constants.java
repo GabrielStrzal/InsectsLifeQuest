@@ -82,6 +82,7 @@ public class Constants {
     public static final String LEVEL_12 = "levels/ins_level_12.tmx";
     public static final String LEVEL_13 = "levels/ins_level_13.tmx";
     public static final String LEVEL_14 = "levels/ins_level_14.tmx";
+    public static final String LEVEL_15 = "levels/ins_level_15.tmx";
     public static final String LEVEL = "levels/ins_level_";
     public static final String TMX = ".tmx";
 
@@ -95,6 +96,8 @@ public class Constants {
     public static final String MAP_SLOPE = "slope";
     public static final String MAP_SWITCH = "switch";
     public static final String MAP_LEVEL_END_BLOCK = "levelEndBlock";
+    public static final String MAP_WARP_A = "warp_a";
+    public static final String MAP_WARP_B = "warp_b";
 
     //Object Descriptions
     public static final String INSECT_BODY = "InsectBody";

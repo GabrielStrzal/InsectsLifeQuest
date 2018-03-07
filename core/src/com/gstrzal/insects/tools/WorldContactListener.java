@@ -23,6 +23,10 @@ public class WorldContactListener implements ContactListener {
     private boolean levelFinished = false;
     private boolean gameOver = false;
     private boolean switchOn = false;
+    private boolean warpA = false;
+    private boolean warpB = false;
+    private boolean justWarpedA = false;
+    private boolean justWarpedB = false;
 
 
     public WorldContactListener() {
@@ -44,6 +48,10 @@ public class WorldContactListener implements ContactListener {
         checkCharacterDamageContact(contact);
 
         checkCharacterSwitchContact(contact);
+
+        checkCharacterWarpAContact(contact);
+
+        checkCharacterWarpBContact(contact);
 
 
         //For ant character - size check
@@ -92,6 +100,10 @@ public class WorldContactListener implements ContactListener {
                 }
             });
         }
+
+        checkCharacterWarpAEndContact(contact);
+
+        checkCharacterWarpBEndContact(contact);
     }
 
     @Override
@@ -191,6 +203,45 @@ public class WorldContactListener implements ContactListener {
         //Besouro
         if(isContact(contact, Constants.BESOURO_BODY, Constants.MAP_END)){
             setLevelFinished(true);
+        }
+    }
+
+    private void checkCharacterWarpAContact(Contact contact) {
+
+        if(!justWarpedB) {
+            if (isContact(contact, Constants.INSECT_BODY, Constants.MAP_WARP_A)
+                || isContact(contact, Constants.ANT_BODY, Constants.MAP_WARP_A)
+                || isContact(contact, Constants.BESOURO_BODY, Constants.MAP_WARP_A)) {
+                setWarpA(true);
+                setJustWarpedA(true);
+            }
+        }
+    }
+    private void checkCharacterWarpAEndContact(Contact contact) {
+        if (isContact(contact, Constants.INSECT_BODY, Constants.MAP_WARP_A)
+                || isContact(contact, Constants.ANT_BODY, Constants.MAP_WARP_A)
+                || isContact(contact, Constants.BESOURO_BODY, Constants.MAP_WARP_A)) {
+            setJustWarpedB(false);
+        }
+    }
+
+    private void checkCharacterWarpBContact(Contact contact) {
+
+        if(!justWarpedA) {
+            if (isContact(contact, Constants.INSECT_BODY, Constants.MAP_WARP_B)
+                    || isContact(contact, Constants.ANT_BODY, Constants.MAP_WARP_B)
+                    || isContact(contact, Constants.BESOURO_BODY, Constants.MAP_WARP_B)) {
+                setWarpB(true);
+                setJustWarpedB(true);
+            }
+        }
+    }
+
+    private void checkCharacterWarpBEndContact(Contact contact) {
+        if (isContact(contact, Constants.INSECT_BODY, Constants.MAP_WARP_B)
+                || isContact(contact, Constants.ANT_BODY, Constants.MAP_WARP_B)
+                || isContact(contact, Constants.BESOURO_BODY, Constants.MAP_WARP_B)) {
+            setJustWarpedA(false);
         }
     }
 
@@ -297,5 +348,38 @@ public class WorldContactListener implements ContactListener {
 
     public boolean isSwitchOn() {
         return switchOn;
+    }
+
+
+    public void setWarpA(boolean warpA) {
+        this.warpA = warpA;
+    }
+
+    public void setWarpB(boolean warpB) {
+        this.warpB = warpB;
+    }
+
+    public boolean isWarpA() {
+        return warpA;
+    }
+
+    public boolean isWarpB() {
+        return warpB;
+    }
+
+    public boolean isJustWarpedA() {
+        return justWarpedA;
+    }
+
+    public void setJustWarpedA(boolean justWarpedA) {
+        this.justWarpedA = justWarpedA;
+    }
+
+    public boolean isJustWarpedB() {
+        return justWarpedB;
+    }
+
+    public void setJustWarpedB(boolean justWarpedB) {
+        this.justWarpedB = justWarpedB;
     }
 }

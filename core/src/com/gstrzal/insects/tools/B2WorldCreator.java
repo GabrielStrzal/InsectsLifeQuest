@@ -8,6 +8,7 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.math.Ellipse;
 import com.badlogic.gdx.math.Polygon;
 import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.CircleShape;
@@ -34,6 +35,8 @@ public class B2WorldCreator {
     public LevelSwitch levelSwitch;
     public LevelEndBlock levelEndBlock;
     private final static float circleRadius = 32f;
+    public Vector2 warpAposition = new Vector2(0,0);
+    public Vector2 warpBposition = new Vector2(0,0);
 
     public B2WorldCreator(World world, TiledMap map, Insects insects){
         flowers = new Array<Flower>();
@@ -75,49 +78,6 @@ public class B2WorldCreator {
             passBlockFdef.filter.maskBits = Insects.INSECT_BIT | Insects.BASE_BIT;
             passBlockFdef.friction = 0;
             passBlockBody.createFixture(passBlockFdef).setUserData(Constants.MAP_PASS_BLOCKS);
-        }
-
-
-        //Flowers
-        FixtureDef flowerFdef = new FixtureDef();
-        CircleShape flowerCircleShape =new CircleShape();
-        BodyDef flowerBdef = new BodyDef();
-        if(map.getLayers().get(Constants.MAP_FLOWERS) != null)
-        for (MapObject object : map.getLayers().get(Constants.MAP_FLOWERS).getObjects()) {
-            Ellipse ellipse = ((EllipseMapObject) object).getEllipse();
-            flowerBdef.type = BodyDef.BodyType.StaticBody;
-            flowerBdef.position.set(ellipse.x / Insects.PPM + (ellipse.width / 2) / Insects.PPM,
-                    ellipse.y/ Insects.PPM + (ellipse.height / 2) / Insects.PPM);
-            flowerCircleShape.setRadius(circleRadius/Insects.PPM);
-            flowerFdef.shape = flowerCircleShape;
-            flowerFdef.isSensor = true;
-            flowerFdef.filter.categoryBits = Insects.FLOWER_BIT;
-            flowerFdef.filter.maskBits = Insects.INSECT_BIT ;
-            Body flowerBody = world.createBody(flowerBdef);
-            flowerBody.createFixture(flowerFdef).setUserData(Constants.MAP_FLOWERS);
-            Flower f = new Flower(flowerBody, insects);
-            flowerBody.setUserData(f);
-            flowers.add(f);
-
-        }
-
-        //Level End
-        FixtureDef levelEndFdef = new FixtureDef();
-        CircleShape levelEndCircularShape =new CircleShape();
-        BodyDef levelEndBdef = new BodyDef();
-        if(map.getLayers().get(Constants.MAP_END) != null)
-        for (MapObject object : map.getLayers().get(Constants.MAP_END).getObjects()) {
-            Ellipse ellipse = ((EllipseMapObject) object).getEllipse();
-            levelEndBdef.type = BodyDef.BodyType.StaticBody;
-            levelEndBdef.position.set(ellipse.x / Insects.PPM + (ellipse.width / 2) / Insects.PPM,
-                    ellipse.y/ Insects.PPM + (ellipse.height / 2) / Insects.PPM);
-            levelEndCircularShape.setRadius(circleRadius/Insects.PPM);
-            levelEndFdef.shape = levelEndCircularShape;
-            levelEndFdef.isSensor = true;
-            levelEndFdef.filter.categoryBits = Insects.LEVEL_END_BIT;
-            levelEndFdef.filter.maskBits = Insects.INSECT_BIT;
-            Body endBody = world.createBody(levelEndBdef);
-            endBody.createFixture(levelEndFdef).setUserData(Constants.MAP_END);
         }
 
         //Damage
@@ -235,6 +195,63 @@ public class B2WorldCreator {
                 levelEndBlock = new LevelEndBlock(levelEndBlockBody, insects);
                 levelEndBlockBody.setUserData(levelEndBlock);
 
+            }
+
+        //Flowers
+        FixtureDef flowerFdef = new FixtureDef();
+        CircleShape flowerCircleShape =new CircleShape();
+        BodyDef flowerBdef = new BodyDef();
+        if(map.getLayers().get(Constants.MAP_FLOWERS) != null)
+            for (MapObject object : map.getLayers().get(Constants.MAP_FLOWERS).getObjects()) {
+                Ellipse ellipse = ((EllipseMapObject) object).getEllipse();
+                flowerBdef.type = BodyDef.BodyType.StaticBody;
+                flowerBdef.position.set(ellipse.x / Insects.PPM + (ellipse.width / 2) / Insects.PPM,
+                        ellipse.y/ Insects.PPM + (ellipse.height / 2) / Insects.PPM);
+                flowerCircleShape.setRadius(circleRadius/Insects.PPM);
+                flowerFdef.shape = flowerCircleShape;
+                flowerFdef.isSensor = true;
+                flowerFdef.filter.categoryBits = Insects.FLOWER_BIT;
+                flowerFdef.filter.maskBits = Insects.INSECT_BIT ;
+                Body flowerBody = world.createBody(flowerBdef);
+                flowerBody.createFixture(flowerFdef).setUserData(Constants.MAP_FLOWERS);
+                Flower f = new Flower(flowerBody, insects);
+                flowerBody.setUserData(f);
+                flowers.add(f);
+
+            }
+
+        //Level End
+        createCircularSensorShapeFromMap(world, map, Constants.MAP_END);
+
+        //Warp A End
+        createCircularSensorShapeFromMap(world, map, Constants.MAP_WARP_A);
+
+        //Warp B End
+        createCircularSensorShapeFromMap(world, map, Constants.MAP_WARP_B);
+    }
+    private void createCircularSensorShapeFromMap(World world, TiledMap map, String mapLayer){
+        FixtureDef fdef = new FixtureDef();
+        CircleShape circleShape =new CircleShape();
+        BodyDef bodyDef = new BodyDef();
+        if(map.getLayers().get(mapLayer) != null)
+            for (MapObject object : map.getLayers().get(mapLayer).getObjects()) {
+                Ellipse ellipse = ((EllipseMapObject) object).getEllipse();
+                bodyDef.type = BodyDef.BodyType.StaticBody;
+                bodyDef.position.set(ellipse.x / Insects.PPM + (ellipse.width / 2) / Insects.PPM,
+                        ellipse.y/ Insects.PPM + (ellipse.height / 2) / Insects.PPM);
+                circleShape.setRadius(circleRadius/Insects.PPM);
+                fdef.shape = circleShape;
+                fdef.isSensor = true;
+                fdef.filter.categoryBits = Insects.LEVEL_END_BIT;
+                fdef.filter.maskBits = Insects.INSECT_BIT;
+                Body body = world.createBody(bodyDef);
+                body.createFixture(fdef).setUserData(mapLayer);
+
+                if(mapLayer == Constants.MAP_WARP_A){
+                    warpAposition = bodyDef.position;
+                }else if(mapLayer == Constants.MAP_WARP_B){
+                    warpBposition = bodyDef.position;
+                }
             }
     }
 }

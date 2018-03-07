@@ -265,6 +265,7 @@ public class GameScreen implements Screen{
                 checkLevelCompleted();
                 checkGameOver();
                 checkSwitchOn();
+                checkWarp();
             }
             break;
             case GAME_OVER: {
@@ -359,6 +360,17 @@ public class GameScreen implements Screen{
             levelStopTime = System.currentTimeMillis();
         }
 
+    }
+
+    private void checkWarp() {
+        if (worldContactListener.isWarpA()) {
+            worldContactListener.setWarpA(false);
+            insectPlayer.b2body.setTransform(b2World.warpBposition, insectPlayer.b2body.getAngle());
+        }
+        if (worldContactListener.isWarpB()) {
+            worldContactListener.setWarpB(false);
+            insectPlayer.b2body.setTransform(b2World.warpAposition, insectPlayer.b2body.getAngle());
+        }
     }
     private void waitForRestart() {
         if(((System.currentTimeMillis() - levelStopTime) / 100) > 5)
