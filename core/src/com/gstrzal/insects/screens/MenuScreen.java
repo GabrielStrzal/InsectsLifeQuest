@@ -39,6 +39,8 @@ public class MenuScreen extends ScreenAdapter {
     private Texture optionsPressTexture;
     private Texture selectLevelsTexture;
     private Texture selectLevelsPressTexture;
+    private Texture instructionsTexture;
+    private Texture instructionsPressTexture;
     private BitmapFont font;
 
     private Stage stage;
@@ -88,7 +90,7 @@ public class MenuScreen extends ScreenAdapter {
         ImageButton options = new ImageButton(
                 new TextureRegionDrawable(new TextureRegion(optionsTexture)),
                 new TextureRegionDrawable(new TextureRegion(optionsPressTexture)));
-        options.setPosition(OPTIONS_BUTTON_X, BUTTONS_Y);
+        options.setPosition(OPTIONS_BUTTON_X, PLAY_BUTTON_Y);
 
         options.addListener(new ActorGestureListener() {
             @Override
@@ -99,6 +101,25 @@ public class MenuScreen extends ScreenAdapter {
             }
         });
         stage.addActor(options);
+
+
+        //Intructions Button
+        instructionsTexture = assetManager.get(Constants.MENU_INSTRUCTIONS);
+        instructionsPressTexture = assetManager.get(Constants.MENU_INSTRUCTIONS_PRESSED);
+        ImageButton instructions = new ImageButton(
+                new TextureRegionDrawable(new TextureRegion(instructionsTexture)),
+                new TextureRegionDrawable(new TextureRegion(instructionsPressTexture)));
+        instructions.setPosition(OPTIONS_BUTTON_X, PLAY_BUTTON_Y + 210);
+
+        instructions.addListener(new ActorGestureListener() {
+            @Override
+            public void tap(InputEvent event, float x, float y, int count,
+                            int button) {
+                super.tap(event, x, y, count, button);
+                ScreenManager.getInstance().showScreen(ScreenEnum.INSTRUCTIONS_SCREEN, game);
+            }
+        });
+        stage.addActor(instructions);
 
         //Select Levels Button
         selectLevelsTexture = assetManager.get(Constants.MENU_SELECT_LEVEL);

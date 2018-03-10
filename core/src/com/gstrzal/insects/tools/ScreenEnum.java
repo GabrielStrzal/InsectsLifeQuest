@@ -3,6 +3,7 @@ package com.gstrzal.insects.tools;
 import com.badlogic.gdx.Screen;
 import com.gstrzal.insects.Insects;
 import com.gstrzal.insects.screens.GameScreen;
+import com.gstrzal.insects.screens.InstructionsScreen;
 import com.gstrzal.insects.screens.LoadingScreen;
 import com.gstrzal.insects.screens.MenuScreen;
 import com.gstrzal.insects.screens.OptionsScreen;
@@ -32,6 +33,11 @@ public enum ScreenEnum {
     OPTIONS_SCREEN {
         public Screen getScreen(Object... params) {
             return new OptionsScreen((Insects)params[0]);
+        }
+    },
+    INSTRUCTIONS_SCREEN {
+        public Screen getScreen(Object... params) {
+            return new InstructionsScreen((Insects)params[0]);
         }
     },
     SELECT_LEVELS_SCREEM {

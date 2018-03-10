@@ -51,10 +51,13 @@ public class LoadingScreen extends ScreenAdapter{
         assetManager.load(Constants.MENU_BACKGROUND, Texture.class);
         assetManager.load(Constants.MENU_SELECT_LEVELS_BACKGROUND, Texture.class);
         assetManager.load(Constants.YOU_WON_BACKGROUND, Texture.class);
+        assetManager.load(Constants.MENU_INSTRUCTIONS_BACKGROUND, Texture.class);
         assetManager.load(Constants.MENU_PLAYBUTTON, Texture.class);
         assetManager.load(Constants.MENU_PLAYBUTTON_PRESSED, Texture.class);
         assetManager.load(Constants.MENU_OPTIONS, Texture.class);
         assetManager.load(Constants.MENU_OPTIONS_PRESSED, Texture.class);
+        assetManager.load(Constants.MENU_INSTRUCTIONS, Texture.class);
+        assetManager.load(Constants.MENU_INSTRUCTIONS_PRESSED, Texture.class);
         assetManager.load(Constants.MENU_SELECT_LEVEL, Texture.class);
         assetManager.load(Constants.MENU_SELECT_LEVEL_PRESSED, Texture.class);
         assetManager.load(Constants.MENU_SELECT_LEVEL_BACK_BUTTON, Texture.class);
