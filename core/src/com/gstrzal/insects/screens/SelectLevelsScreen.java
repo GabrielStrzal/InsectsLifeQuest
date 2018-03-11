@@ -21,6 +21,7 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.gstrzal.insects.Insects;
 import com.gstrzal.insects.config.Constants;
 import com.gstrzal.insects.config.GameConfig;
+import com.gstrzal.insects.tools.GameStatsHandler;
 import com.gstrzal.insects.tools.ScreenEnum;
 import com.gstrzal.insects.tools.ScreenManager;
 import com.gstrzal.insects.utils.GdxUtils;
@@ -40,8 +41,14 @@ public class SelectLevelsScreen extends ScreenAdapter {
     private Texture backgroundTexture;
     private Texture backButtonTexture;
     private Texture backButtonPressedTexture;
-    private Texture levelButtonTexture;
-    private Texture levelButtonPressedTexture;
+    private Texture levelButtonTexture_0;
+    private Texture levelButtonPressedTexture_0;
+    private Texture levelButtonTexture_1;
+    private Texture levelButtonPressedTexture_1;
+    private Texture levelButtonTexture_2;
+    private Texture levelButtonPressedTexture_2;
+    private Texture levelButtonTexture_3;
+    private Texture levelButtonPressedTexture_3;
     private Texture levelButtonBlockedTexture;
 
 
@@ -54,12 +61,15 @@ public class SelectLevelsScreen extends ScreenAdapter {
 
     public int levelNumber = 0;
 
+    private GameStatsHandler gameStatsHandler;
+
 
 
     public SelectLevelsScreen(Insects game) {
         this.game = game;
         assetManager = game.getAssetManager();
         buttonList = new Array<Actor>();
+        gameStatsHandler = game.getGameStatsHandler();
     }
 
     public void show() {
@@ -94,15 +104,42 @@ public class SelectLevelsScreen extends ScreenAdapter {
 
         table.setPosition(0,TABLE_Y);
         BitmapFont font = new BitmapFont(Gdx.files.internal(Constants.GAME_FONT),false);
-        font.getData().setScale(4f);
+        font.getData().setScale(3.0f);
 
-        //button style
-        levelButtonTexture = assetManager.get(Constants.MENU_SELECT_LEVEL_BUTTON);
-        levelButtonPressedTexture = assetManager.get(Constants.MENU_SELECT_LEVEL_BUTTON_PRESSED);
-        ImageTextButton.ImageTextButtonStyle levelImgStyle = new ImageTextButton.ImageTextButtonStyle(
-                new TextureRegionDrawable(new TextureRegion(levelButtonTexture)),
-                new TextureRegionDrawable(new TextureRegion(levelButtonPressedTexture)),
-                new TextureRegionDrawable(new TextureRegion(levelButtonTexture)),
+        //button style 0
+        levelButtonTexture_0 = assetManager.get(Constants.MENU_SELECT_LEVEL_BUTTON_0);
+        levelButtonPressedTexture_0 = assetManager.get(Constants.MENU_SELECT_LEVEL_BUTTON_0_PRESSED);
+        ImageTextButton.ImageTextButtonStyle levelImgStyle_0 = new ImageTextButton.ImageTextButtonStyle(
+                new TextureRegionDrawable(new TextureRegion(levelButtonTexture_0)),
+                new TextureRegionDrawable(new TextureRegion(levelButtonPressedTexture_0)),
+                new TextureRegionDrawable(new TextureRegion(levelButtonTexture_0)),
+                font
+        );
+        //button style 1
+        levelButtonTexture_1 = assetManager.get(Constants.MENU_SELECT_LEVEL_BUTTON_1);
+        levelButtonPressedTexture_1 = assetManager.get(Constants.MENU_SELECT_LEVEL_BUTTON_1_PRESSED);
+        ImageTextButton.ImageTextButtonStyle levelImgStyle_1 = new ImageTextButton.ImageTextButtonStyle(
+                new TextureRegionDrawable(new TextureRegion(levelButtonTexture_1)),
+                new TextureRegionDrawable(new TextureRegion(levelButtonPressedTexture_1)),
+                new TextureRegionDrawable(new TextureRegion(levelButtonTexture_1)),
+                font
+        );
+        //button style 2
+        levelButtonTexture_2 = assetManager.get(Constants.MENU_SELECT_LEVEL_BUTTON_2);
+        levelButtonPressedTexture_2 = assetManager.get(Constants.MENU_SELECT_LEVEL_BUTTON_2_PRESSED);
+        ImageTextButton.ImageTextButtonStyle levelImgStyle_2 = new ImageTextButton.ImageTextButtonStyle(
+                new TextureRegionDrawable(new TextureRegion(levelButtonTexture_2)),
+                new TextureRegionDrawable(new TextureRegion(levelButtonPressedTexture_2)),
+                new TextureRegionDrawable(new TextureRegion(levelButtonTexture_2)),
+                font
+        );
+        //button style 3
+        levelButtonTexture_3 = assetManager.get(Constants.MENU_SELECT_LEVEL_BUTTON_3);
+        levelButtonPressedTexture_3 = assetManager.get(Constants.MENU_SELECT_LEVEL_BUTTON_3_PRESSED);
+        ImageTextButton.ImageTextButtonStyle levelImgStyle_3 = new ImageTextButton.ImageTextButtonStyle(
+                new TextureRegionDrawable(new TextureRegion(levelButtonTexture_3)),
+                new TextureRegionDrawable(new TextureRegion(levelButtonPressedTexture_3)),
+                new TextureRegionDrawable(new TextureRegion(levelButtonTexture_3)),
                 font
         );
         levelButtonBlockedTexture = assetManager.get(Constants.MENU_SELECT_LEVEL_BUTTON_BLOCKED);
@@ -118,8 +155,19 @@ public class SelectLevelsScreen extends ScreenAdapter {
             for (int col = 0; col < 7; col++) {
                 ++levelNumber;
                 ImageTextButton levelImg;
+                ImageTextButton.ImageTextButtonStyle tempimgTxtBStyle = new ImageTextButton.ImageTextButtonStyle();
                 if(levelNumber <= GameConfig.GAME_MAX_LEVELS) {
-                    levelImg = new ImageTextButton(Integer.toString(levelNumber), levelImgStyle);
+
+                    if(gameStatsHandler.getLevelSuccess(levelNumber) == 0)
+                        tempimgTxtBStyle = levelImgStyle_0;
+                    if(gameStatsHandler.getLevelSuccess(levelNumber) == 1)
+                        tempimgTxtBStyle = levelImgStyle_1;
+                    if(gameStatsHandler.getLevelSuccess(levelNumber) == 2)
+                        tempimgTxtBStyle = levelImgStyle_2;
+                    if(gameStatsHandler.getLevelSuccess(levelNumber) == 3)
+                        tempimgTxtBStyle = levelImgStyle_3;
+
+                    levelImg = new ImageTextButton(Integer.toString(levelNumber), tempimgTxtBStyle);
                 }else{
                     levelImg = new ImageTextButton("", levelImgBlockedStyle);
                 }
@@ -146,6 +194,7 @@ public class SelectLevelsScreen extends ScreenAdapter {
         stage.addActor(table);
 
     }
+
     public void resize(int width, int height) {
         stage.getViewport().update(width, height, true);
     }

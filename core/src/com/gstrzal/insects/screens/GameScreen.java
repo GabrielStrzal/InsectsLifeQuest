@@ -26,6 +26,8 @@ import com.gstrzal.insects.entity.*;
 import com.gstrzal.insects.hud.Controller;
 import com.gstrzal.insects.tools.AudioHandler;
 import com.gstrzal.insects.tools.B2WorldCreator;
+import com.gstrzal.insects.tools.GameStatsHandler;
+import com.gstrzal.insects.tools.LevelStats;
 import com.gstrzal.insects.tools.ScreenEnum;
 import com.gstrzal.insects.tools.ScreenManager;
 import com.gstrzal.insects.tools.WorldContactListener;
@@ -74,6 +76,7 @@ public class GameScreen implements Screen{
 
     private WorldContactListener worldContactListener;
     private B2WorldCreator b2World;
+    private float numberOfFlowerInLevel;
     private boolean waitRestartComplete;
     private long levelStopTime;
     private boolean isDirectionUp;
@@ -96,6 +99,10 @@ public class GameScreen implements Screen{
     private AudioHandler audioHandler;
     private long gameSoundID;
 
+    private LevelStats levelStats;
+    private GameStatsHandler gameStatsHandler;
+    private float numberOfFlowersCollected = 0;
+
 
 
     public GameScreen(Insects game, int level){
@@ -103,14 +110,16 @@ public class GameScreen implements Screen{
         this.game = game;
         this.assetManager = game.getAssetManager();
         this.audioHandler = game.getAudioHandler();
+        this.gameStatsHandler = game.getGameStatsHandler();
         state = STATE.PLAYING;
         gamecam = new OrthographicCamera();
         b2dcam = new OrthographicCamera();
         b2dcam.setToOrtho(false,Insects.V_WIDTH / Insects.PPM, Insects.V_HEIGHT/ Insects.PPM);
         gamePort = new FitViewport(Insects.V_WIDTH / Insects.PPM, Insects.V_HEIGHT/ Insects.PPM, gamecam);
 
-
+        levelStats = new LevelStats(level);
         game.currentLevel = level;
+
         world = new World(new Vector2(0, gravity), true);
         b2dr = new Box2DDebugRenderer();
 
@@ -120,6 +129,7 @@ public class GameScreen implements Screen{
         insectPlayer = new LBug(world, (Texture) assetManager.get(Constants.JOANINHA));
 
         b2World = new B2WorldCreator(world, map, game);
+        numberOfFlowerInLevel = b2World.flowers.size;
         worldContactListener = new WorldContactListener();
         world.setContactListener(worldContactListener);
 
@@ -166,6 +176,7 @@ public class GameScreen implements Screen{
             world.destroyBody(bodies.get(i));
 //            TODO: add Flower number
             audioHandler.playPickupFlowerSound();
+            numberOfFlowersCollected++;
         }
         bodies.clear();
     }
@@ -385,6 +396,8 @@ public class GameScreen implements Screen{
 
     private void changeLevelIfLevelCompleted(){
         if(waitRestartComplete && state == STATE.LEVEL_CLEARED) {
+            levelStats.successFactor = numberOfFlowersCollected/numberOfFlowerInLevel;
+            gameStatsHandler.saveLevelSuccess(levelStats);
             if (game.currentLevel <= GameConfig.GAME_MAX_LEVELS) {
                 ScreenManager.getInstance().showScreen(ScreenEnum.GAME_SCREEN, game, game.currentLevel);
             } else {

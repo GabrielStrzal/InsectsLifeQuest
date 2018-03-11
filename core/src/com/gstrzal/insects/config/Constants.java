@@ -19,8 +19,14 @@ public class Constants {
     public static final String MENU_SELECT_LEVEL_PRESSED = "menu/button_levels_pressed_700x352.png";
     public static final String MENU_SELECT_LEVEL_BACK_BUTTON = "menu/button_back_352x352.png";
     public static final String MENU_SELECT_LEVEL_BACK_BUTTON_PRESSED = "menu/button_back_pressed_352x352.png";
-    public static final String MENU_SELECT_LEVEL_BUTTON = "menu/button_level_300x300.png";
-    public static final String MENU_SELECT_LEVEL_BUTTON_PRESSED = "menu/button_level_pressed_300x300.png";
+    public static final String MENU_SELECT_LEVEL_BUTTON_0 = "menu/button_level_0_300x300.png";
+    public static final String MENU_SELECT_LEVEL_BUTTON_0_PRESSED = "menu/button_level_pressed_0_300x300.png";
+    public static final String MENU_SELECT_LEVEL_BUTTON_1 = "menu/button_level_1_300x300.png";
+    public static final String MENU_SELECT_LEVEL_BUTTON_1_PRESSED = "menu/button_level_pressed_1_300x300.png";
+    public static final String MENU_SELECT_LEVEL_BUTTON_2 = "menu/button_level_2_300x300.png";
+    public static final String MENU_SELECT_LEVEL_BUTTON_2_PRESSED = "menu/button_level_pressed_2_300x300.png";
+    public static final String MENU_SELECT_LEVEL_BUTTON_3 = "menu/button_level_3_300x300.png";
+    public static final String MENU_SELECT_LEVEL_BUTTON_3_PRESSED = "menu/button_level_pressed_3_300x300.png";
     public static final String MENU_SELECT_LEVEL_BUTTON_BLOCKED = "menu/button_level_blocked_300x300.png";
     public static final String GAME_OVER_POPUP = "menu/game_over_1504x360.png";
     public static final String LEVEL_CLEARED_POPUP = "menu/level_cleared_1504x360.png";

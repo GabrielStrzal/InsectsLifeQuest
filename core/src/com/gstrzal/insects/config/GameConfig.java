@@ -20,7 +20,7 @@ public class GameConfig {
 
     public static final int GAME_MAX_LEVELS = 15; //
 
-    public static final String GAME_VERSION = "V.0.0.2.3";
+    public static final String GAME_VERSION = "V.0.0.2.4";
 
     public static final boolean debug = false;
 

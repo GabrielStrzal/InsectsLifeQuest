@@ -12,6 +12,7 @@ import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.utils.Logger;
 import com.gstrzal.insects.config.GameConfig;
 import com.gstrzal.insects.tools.AudioHandler;
+import com.gstrzal.insects.tools.GameStatsHandler;
 import com.gstrzal.insects.tools.ScreenEnum;
 import com.gstrzal.insects.tools.ScreenManager;
 
@@ -44,6 +45,7 @@ public class Insects extends Game {
 	public int currentLevel;
 	private final AssetManager assetManager = new AssetManager();
 	private AudioHandler audioHandler;
+	private GameStatsHandler gameStatsHandler;
 
 	@Override
 	public void create () {
@@ -51,6 +53,7 @@ public class Insects extends Game {
 		assetManager.getLogger().setLevel(Logger.DEBUG);
 
 		batch = new SpriteBatch();
+		gameStatsHandler = new GameStatsHandler(this);
 		assetManager.setLoader(TiledMap.class, new TmxMapLoader(new InternalFileHandleResolver()));
 		audioHandler = new AudioHandler(this);
 		ScreenManager.getInstance().initialize(this);
@@ -89,5 +92,9 @@ public class Insects extends Game {
 	}
 	public AudioHandler getAudioHandler() {
 		return audioHandler;
+	}
+
+	public GameStatsHandler getGameStatsHandler() {
+		return gameStatsHandler;
 	}
 }
