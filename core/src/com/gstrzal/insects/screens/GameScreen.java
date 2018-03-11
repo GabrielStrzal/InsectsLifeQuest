@@ -280,11 +280,11 @@ public class GameScreen implements Screen{
             }
             break;
             case GAME_OVER: {
-                waitForRestart();
+                waitForRestart(10);
             }
             break;
             case LEVEL_CLEARED: {
-                waitForRestart();
+                waitForRestart(15);
             }
             break;
             case PAUSED: {
@@ -383,8 +383,8 @@ public class GameScreen implements Screen{
             insectPlayer.b2body.setTransform(b2World.warpAposition, insectPlayer.b2body.getAngle());
         }
     }
-    private void waitForRestart() {
-        if(((System.currentTimeMillis() - levelStopTime) / 100) > 5)
+    private void waitForRestart(int wait) {
+        if(((System.currentTimeMillis() - levelStopTime) / 100) > wait)//5
         waitRestartComplete = true;
     }
 
@@ -439,7 +439,17 @@ public class GameScreen implements Screen{
 
     private void drawLevelCleared() {
         if (state == STATE.LEVEL_CLEARED) {
-            Texture levelClearedTexture = assetManager.get(Constants.LEVEL_CLEARED_POPUP);
+            Texture levelClearedTexture;
+            float successFactor = numberOfFlowersCollected/numberOfFlowerInLevel;
+            if(successFactor <= 0)
+                levelClearedTexture = assetManager.get(Constants.LEVEL_CLEARED_POPUP_0);
+            else if (successFactor <= 0.6)
+                levelClearedTexture = assetManager.get(Constants.LEVEL_CLEARED_POPUP_1);
+            else if (successFactor < 1 && successFactor > 0.6)
+                levelClearedTexture = assetManager.get(Constants.LEVEL_CLEARED_POPUP_2);
+            else
+                levelClearedTexture = assetManager.get(Constants.LEVEL_CLEARED_POPUP_3);
+
             float height = levelClearedTexture.getHeight() / Insects.PPM;
             float width = levelClearedTexture.getWidth() / Insects.PPM;
             game.batch.draw(levelClearedTexture,

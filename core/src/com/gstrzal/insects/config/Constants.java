@@ -29,7 +29,10 @@ public class Constants {
     public static final String MENU_SELECT_LEVEL_BUTTON_3_PRESSED = "menu/button_level_pressed_3_300x300.png";
     public static final String MENU_SELECT_LEVEL_BUTTON_BLOCKED = "menu/button_level_blocked_300x300.png";
     public static final String GAME_OVER_POPUP = "menu/game_over_1504x360.png";
-    public static final String LEVEL_CLEARED_POPUP = "menu/level_cleared_1504x360.png";
+    public static final String LEVEL_CLEARED_POPUP_0 = "menu/level_cleared_0_1600x866.png";
+    public static final String LEVEL_CLEARED_POPUP_1 = "menu/level_cleared_1_1600x866.png";
+    public static final String LEVEL_CLEARED_POPUP_2 = "menu/level_cleared_2_1600x866.png";
+    public static final String LEVEL_CLEARED_POPUP_3 = "menu/level_cleared_3_1600x866.png";
 
     //Controllers
     public static final String CONTROLLER_AUDIO = "menu/button_audio_352x352.png";
@@ -92,6 +95,9 @@ public class Constants {
     public static final String LEVEL_13 = "levels/ins_level_13.tmx";
     public static final String LEVEL_14 = "levels/ins_level_14.tmx";
     public static final String LEVEL_15 = "levels/ins_level_15.tmx";
+    public static final String LEVEL_16 = "levels/ins_level_16.tmx";
+    public static final String LEVEL_17 = "levels/ins_level_17.tmx";
+    public static final String LEVEL_18 = "levels/ins_level_18.tmx";
     public static final String LEVEL = "levels/ins_level_";
     public static final String TMX = ".tmx";
 

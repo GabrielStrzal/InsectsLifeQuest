@@ -72,7 +72,10 @@ public class LoadingScreen extends ScreenAdapter{
         assetManager.load(Constants.MENU_SELECT_LEVEL_BUTTON_3_PRESSED, Texture.class);
         assetManager.load(Constants.MENU_SELECT_LEVEL_BUTTON_BLOCKED, Texture.class);
         assetManager.load(Constants.GAME_OVER_POPUP, Texture.class);
-        assetManager.load(Constants.LEVEL_CLEARED_POPUP, Texture.class);
+        assetManager.load(Constants.LEVEL_CLEARED_POPUP_0, Texture.class);
+        assetManager.load(Constants.LEVEL_CLEARED_POPUP_1, Texture.class);
+        assetManager.load(Constants.LEVEL_CLEARED_POPUP_2, Texture.class);
+        assetManager.load(Constants.LEVEL_CLEARED_POPUP_3, Texture.class);
         assetManager.load(Constants.CONTROLLER_AUDIO, Texture.class);
         assetManager.load(Constants.CONTROLLER_AUDIO_PRESSED, Texture.class);
         assetManager.load(Constants.CONTROLLER_RIGHT, Texture.class);
@@ -103,6 +106,9 @@ public class LoadingScreen extends ScreenAdapter{
         assetManager.load(Constants.LEVEL_13, TiledMap.class);
         assetManager.load(Constants.LEVEL_14, TiledMap.class);
         assetManager.load(Constants.LEVEL_15, TiledMap.class);
+        assetManager.load(Constants.LEVEL_16, TiledMap.class);
+        assetManager.load(Constants.LEVEL_17, TiledMap.class);
+        assetManager.load(Constants.LEVEL_18, TiledMap.class);
         assetManager.load(Constants.JOANINHA, Texture.class);
         assetManager.load(Constants.BESOURO, Texture.class);
         assetManager.load(Constants.ANT, Texture.class);
