@@ -168,8 +168,8 @@ public class Controller {
         insectSwitchButtonTransparentTexture = assetManager.get(Constants.CONTROLLER_INSECT_SWITCH_TRANSPARENT);
         ImageButton insectSwitchBtn = new ImageButton(
                 new TextureRegionDrawable(new TextureRegion(insectSwitchButtonTransparentTexture)));
-        insectSwitchBtn.setPosition(50, BACK_BUTTON_Y - BUTTON_SIZE);
-        insectSwitchBtn.setSize(BUTTON_SIZE*2,BUTTON_SIZE*2);
+        insectSwitchBtn.setPosition(GameConfig.SCREEN_WIDTH_PX-(BUTTON_SIZE*1.7f + 760), 10);
+        insectSwitchBtn.setSize(BUTTON_SIZE*1.7f,BUTTON_SIZE*1.7f);
         insectSwitchBtn.addListener(new ActorGestureListener() {
             @Override
             public void tap(InputEvent event, float x, float y, int count, int button) {
@@ -186,7 +186,7 @@ public class Controller {
         ImageButton rightBtn = new ImageButton(
                 new TextureRegionDrawable(new TextureRegion(rightButtonTexture)),
                 new TextureRegionDrawable(new TextureRegion(rightPressedButtonTexture)));
-        rightBtn.setPosition(GameConfig.SCREEN_WIDTH_PX-(BUTTON_SIZE*1.3f + 50), 10);
+        rightBtn.setPosition(320, 10);
         rightBtn.setSize(BUTTON_SIZE*1.3f,BUTTON_SIZE*1.3f);
 
         rightBtn.addListener(new ActorGestureListener() {
@@ -226,8 +226,8 @@ public class Controller {
         final ImageButton actionBtn = new ImageButton(
                 new TextureRegionDrawable(new TextureRegion(actionButtonTexture)),
                 new TextureRegionDrawable(new TextureRegion(actionPressedButtonTexture)));
-        actionBtn.setPosition(GameConfig.SCREEN_WIDTH_PX/2 - ACTION_BUTTON_WIDTH/2, 10);
-        actionBtn.setWidth(ACTION_BUTTON_WIDTH);
+        actionBtn.setPosition(GameConfig.SCREEN_WIDTH_PX - (ACTION_BUTTON_WIDTH/2+130), 10);
+        actionBtn.setHeight(BUTTON_SIZE*1.3f);
 
         actionBtn.addListener(new ActorGestureListener() {
             @Override

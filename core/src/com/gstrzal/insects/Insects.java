@@ -45,6 +45,7 @@ public class Insects extends Game {
 	public int currentLevel;
 	private final AssetManager assetManager = new AssetManager();
 	private AudioHandler audioHandler;
+	public long backgroundAudioID;
 	private GameStatsHandler gameStatsHandler;
 
 	@Override

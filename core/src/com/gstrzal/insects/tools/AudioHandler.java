@@ -1,6 +1,7 @@
 package com.gstrzal.insects.tools;
 
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.gstrzal.insects.Insects;
 import com.gstrzal.insects.config.Constants;
@@ -12,7 +13,7 @@ import com.gstrzal.insects.config.Constants;
 public class AudioHandler {
 
     private Insects game;
-    private Sound backgroundMusic;
+    private Music backgroundMusic;
     private Sound jumpSound;
     private Sound hitHurtSound;
     private Sound endLevelSound;
@@ -25,21 +26,29 @@ public class AudioHandler {
     public AudioHandler(Insects insects){
         game = insects;
         assetManager = game.getAssetManager();
+        gameSoundID = game.backgroundAudioID;
     }
 
 
     public long playBackGroundMusic(){
-        backgroundMusic = assetManager.get(Constants.AUDIO_BACKGROUND_MUSIC);
-        gameSoundID = backgroundMusic.loop();
+        if(backgroundMusic!= null) {
+            if (!backgroundMusic.isPlaying()) {
+                return gameSoundID;
+            }
+        }else{
+            backgroundMusic = assetManager.get(Constants.AUDIO_BACKGROUND_MUSIC);
+            backgroundMusic.setLooping(true);
+            backgroundMusic.play();
 
-        if(!game.isAudioOn()) {
-            backgroundMusic.pause();
+            if(!game.isAudioOn()) {
+                backgroundMusic.pause();
+            }
         }
         return gameSoundID;
     }
 
     public void stopBackGroundMusic(long gameSoundID){
-        backgroundMusic.stop(gameSoundID);
+        backgroundMusic.stop();
     }
 
     public void updateMusic(){
@@ -51,7 +60,8 @@ public class AudioHandler {
     private void updateBackgroundMusic(){
         //backgroundMusic
         if(game.isAudioOn()) {
-            backgroundMusic.resume();
+            if(backgroundMusic!= null && !backgroundMusic.isPlaying())
+                backgroundMusic.play();
         }else{
             backgroundMusic.pause();
         }

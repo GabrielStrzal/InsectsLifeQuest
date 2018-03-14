@@ -64,6 +64,8 @@ public class MenuScreen extends ScreenAdapter {
         font.setColor(Color.DARK_GRAY);
         font.getData().setScale(2f);
 
+        game.backgroundAudioID = game.getAudioHandler().playBackGroundMusic();
+
 
 
         //Play Button
@@ -153,6 +155,7 @@ public class MenuScreen extends ScreenAdapter {
         font.draw(stage.getBatch(), GameConfig.GAME_VERSION,
                 (GameConfig.SCREEN_WIDTH_PX * .87f), (GameConfig.SCREEN_HEIGHT_PX * .95f));
         stage.getBatch().end();
+        game.getAudioHandler().updateMusic();
 
     }
 

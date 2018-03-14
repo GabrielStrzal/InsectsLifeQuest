@@ -195,15 +195,15 @@ public class GameScreen implements Screen{
             audioHandler.playJumpSound();
         }
 
-        if (Gdx.input.isKeyJustPressed(Input.Keys.UP)){
+        if (Gdx.input.isKeyJustPressed(Input.Keys.UP)|| Gdx.input.isKeyJustPressed(Input.Keys.W)){
             if(worldContactListener.isOnGrounds() && insectPlayer instanceof LBug){
                 isDirectionUp = true;
             }
         }
-        if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)){
+        if (Gdx.input.isKeyPressed(Input.Keys.RIGHT) || Gdx.input.isKeyPressed(Input.Keys.D)){
             isDirectionRight = true;
         }
-        if (Gdx.input.isKeyPressed(Input.Keys.LEFT)){
+        if (Gdx.input.isKeyPressed(Input.Keys.LEFT)|| Gdx.input.isKeyPressed(Input.Keys.A)){
             isDirectionRight = false;
         }
 
@@ -432,8 +432,9 @@ public class GameScreen implements Screen{
             else nextInsect = nextJoaninha;
 
             game.batch.draw(nextInsect,
-                    50 / Insects.PPM, ((GameConfig.SCREEN_HEIGHT_PX - 250 )/ Insects.PPM) - height/2, //450
-                    width, height);
+                    //50 / Insects.PPM, ((GameConfig.SCREEN_HEIGHT_PX - 250 )/ Insects.PPM) - height/2, //450
+                    (GameConfig.SCREEN_WIDTH_PX-1036)/ Insects.PPM, 10/ Insects.PPM,
+                    width*.7f, height*.7f);
     }
 
 
@@ -494,6 +495,6 @@ public class GameScreen implements Screen{
         mapRenderer.dispose();
         world.dispose();
         b2dr.dispose();
-        audioHandler.stopBackGroundMusic(gameSoundID);
+//        audioHandler.stopBackGroundMusic(gameSoundID);
     }
 }

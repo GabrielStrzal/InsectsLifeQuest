@@ -2,6 +2,7 @@ package com.gstrzal.insects.screens;
 
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Camera;
 import com.badlogic.gdx.graphics.Color;
@@ -52,6 +53,7 @@ public class LoadingScreen extends ScreenAdapter{
         assetManager.load(Constants.MENU_SELECT_LEVELS_BACKGROUND, Texture.class);
         assetManager.load(Constants.YOU_WON_BACKGROUND, Texture.class);
         assetManager.load(Constants.MENU_INSTRUCTIONS_BACKGROUND, Texture.class);
+        assetManager.load(Constants.MENU_MADE_BY, Texture.class);
         assetManager.load(Constants.MENU_PLAYBUTTON, Texture.class);
         assetManager.load(Constants.MENU_PLAYBUTTON_PRESSED, Texture.class);
         assetManager.load(Constants.MENU_OPTIONS, Texture.class);
@@ -121,7 +123,7 @@ public class LoadingScreen extends ScreenAdapter{
         assetManager.load(Constants.NEXT_ANT, Texture.class);
         assetManager.load(Constants.NEXT_BESOURO, Texture.class);
 
-        assetManager.load(Constants.AUDIO_BACKGROUND_MUSIC, Sound.class);
+        assetManager.load(Constants.AUDIO_BACKGROUND_MUSIC, Music.class);
         assetManager.load(Constants.AUDIO_JUMP, Sound.class);
         assetManager.load(Constants.AUDIO_HIT_HURT, Sound.class);
         assetManager.load(Constants.AUDIO_END_LEVEL, Sound.class);

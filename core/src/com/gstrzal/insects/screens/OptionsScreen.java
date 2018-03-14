@@ -27,6 +27,7 @@ import com.gstrzal.insects.utils.GdxUtils;
 public class OptionsScreen extends ScreenAdapter {
 
     private Texture backgroundTexture;
+    private Texture madeByTexture;
     private Texture backButtonTexture;
     private Texture backButtonPressedTexture;
 
@@ -53,9 +54,14 @@ public class OptionsScreen extends ScreenAdapter {
     public void show() {
         stage = new Stage(new FitViewport(GameConfig.SCREEN_WIDTH_PX, GameConfig.SCREEN_HEIGHT_PX));
         Gdx.input.setInputProcessor(stage);
+        //Backgound
         backgroundTexture = assetManager.get(Constants.MENU_SELECT_LEVELS_BACKGROUND);
         Image background = new Image(backgroundTexture);
         stage.addActor(background);
+        madeByTexture = assetManager.get(Constants.MENU_MADE_BY);
+        Image madeBy = new Image(madeByTexture);
+        madeBy.setPosition(GameConfig.SCREEN_WIDTH_PX/2 - madeBy.getWidth()/2, 400);
+        stage.addActor(madeBy);
 
         //Back Button
         backButtonTexture = assetManager.get(Constants.MENU_SELECT_LEVEL_BACK_BUTTON);
@@ -132,6 +138,7 @@ public class OptionsScreen extends ScreenAdapter {
         GdxUtils.clearScreen();
         stage.act(delta);
         stage.draw();
+        game.getAudioHandler().updateMusic();
     }
 
     @Override

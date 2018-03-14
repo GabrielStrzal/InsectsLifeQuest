@@ -9,6 +9,7 @@ public class Constants {
     public static final String MENU_SELECT_LEVELS_BACKGROUND = "menu/insects_level_select_3200x1920.png";
     public static final String YOU_WON_BACKGROUND = "menu/insects_you_won_3200x1920.png";
     public static final String MENU_INSTRUCTIONS_BACKGROUND = "menu/insects_instructions_3200x1920.png";
+    public static final String MENU_MADE_BY = "menu/made by_1200x150.png";
     public static final String MENU_PLAYBUTTON = "menu/button_play_700x400.png";
     public static final String MENU_PLAYBUTTON_PRESSED = "menu/button_play_pressed_700x400.png";
     public static final String MENU_OPTIONS = "menu/button_options_700x196.png";
@@ -41,8 +42,8 @@ public class Constants {
     public static final String CONTROLLER_RIGHT_PRESSED = "menu/button_right_pressed_352x352.png";
     public static final String CONTROLLER_LEFT = "menu/button_left_352x352.png";
     public static final String CONTROLLER_LEFT_PRESSED = "menu/button_left_pressed_352x352.png";
-    public static final String CONTROLLER_ACTIONS = "menu/button_actions_2000x215.png";
-    public static final String CONTROLLER_ACTIONS_PRESSED = "menu/button_actions_pressed_2000x215.png";
+    public static final String CONTROLLER_ACTIONS = "menu/button_actions_993x352.png";
+    public static final String CONTROLLER_ACTIONS_PRESSED = "menu/button_actions_pressed_993x352.png";
     public static final String CONTROLLER_CONTROLS = "menu/button_controls_352x352.png";
     public static final String CONTROLLER_CONTROLS_PRESSED = "menu/button_controls_pressed_352x352.png";
     public static final String CONTROLLER_CONTROLS_CHECKED = "menu/button_options_checked_352x352.png";
@@ -53,7 +54,7 @@ public class Constants {
 
 
     //Audios
-    public static final String AUDIO_BACKGROUND_MUSIC = "audio/audio_001.wav";
+    public static final String AUDIO_BACKGROUND_MUSIC = "audio/musics/bensound-sunny.mp3";
     public static final String AUDIO_JUMP = "audio/jump01.wav";
     public static final String AUDIO_HIT_HURT = "audio/hit_hurt01.wav";
     public static final String AUDIO_END_LEVEL = "audio/end_level01.wav";
