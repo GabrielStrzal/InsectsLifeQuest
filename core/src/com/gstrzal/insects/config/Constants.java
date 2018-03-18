@@ -54,7 +54,7 @@ public class Constants {
 
 
     //Audios
-    public static final String AUDIO_BACKGROUND_MUSIC = "audio/musics/bensound-sunny.mp3";
+    public static final String AUDIO_BACKGROUND_MUSIC = "audio/musics/bensound-sunny.ogg";
     public static final String AUDIO_JUMP = "audio/jump01.wav";
     public static final String AUDIO_HIT_HURT = "audio/hit_hurt01.wav";
     public static final String AUDIO_END_LEVEL = "audio/end_level01.wav";

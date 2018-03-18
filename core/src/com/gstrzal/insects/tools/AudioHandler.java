@@ -38,6 +38,7 @@ public class AudioHandler {
         }else{
             backgroundMusic = assetManager.get(Constants.AUDIO_BACKGROUND_MUSIC);
             backgroundMusic.setLooping(true);
+            backgroundMusic.setVolume(volume);
             backgroundMusic.play();
 
             if(!game.isAudioOn()) {
