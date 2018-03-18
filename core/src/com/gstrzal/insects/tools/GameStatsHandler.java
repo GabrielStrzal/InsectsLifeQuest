@@ -91,4 +91,15 @@ public class GameStatsHandler {
         gameSettings.putBoolean("displayControllers", displayControllers);
         gameSettings.flush();
     }
+
+    public void saveGlidingAntHighScore(int score) {
+        int glidingAntHighScore = gameSettings.getInteger("glidingAntHighScore", 0);
+        if(glidingAntHighScore < score){
+            gameSettings.putInteger("glidingAntHighScore", score);
+            gameSettings.flush();
+        }
+    }
+    public int getGlidingAntHighScore(){
+        return gameSettings.getInteger("glidingAntHighScore", 0);
+    }
 }

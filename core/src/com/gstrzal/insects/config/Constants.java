@@ -16,8 +16,10 @@ public class Constants {
     public static final String MENU_OPTIONS_PRESSED = "menu/button_options_pressed_700x196.png";
     public static final String MENU_INSTRUCTIONS = "menu/button_instructions_700x196.png";
     public static final String MENU_INSTRUCTIONS_PRESSED = "menu/button_instructions_pressed_700x196.png";
-    public static final String MENU_SELECT_LEVEL = "menu/button_levels_700x352.png";
-    public static final String MENU_SELECT_LEVEL_PRESSED = "menu/button_levels_pressed_700x352.png";
+    public static final String MENU_SELECT_LEVEL = "menu/button_missions_700x196.png";
+    public static final String MENU_SELECT_LEVEL_PRESSED = "menu/button_missions_pressed_700x196.png";
+    public static final String MENU_MINIGAMES = "menu/button_minigames_700x196.png";
+    public static final String MENU_MINIGAMES_PRESSED = "menu/button_minigames_pressed_700x196.png";
     public static final String MENU_SELECT_LEVEL_BACK_BUTTON = "menu/button_back_352x352.png";
     public static final String MENU_SELECT_LEVEL_BACK_BUTTON_PRESSED = "menu/button_back_pressed_352x352.png";
     public static final String MENU_SELECT_LEVEL_BUTTON_0 = "menu/button_level_0_300x300.png";
@@ -34,6 +36,19 @@ public class Constants {
     public static final String LEVEL_CLEARED_POPUP_1 = "menu/level_cleared_1_1600x866.png";
     public static final String LEVEL_CLEARED_POPUP_2 = "menu/level_cleared_2_1600x866.png";
     public static final String LEVEL_CLEARED_POPUP_3 = "menu/level_cleared_3_1600x866.png";
+
+
+    //Minigames
+    public static final String MINIGAMES_BLOCKED = "minigames/button_level_blocked_400x400.png";
+    //Gliding Ant
+    public static final String MINIGAMES_GLIDING_ANT_LOGO = "minigames/glidingAnt/button_gliding_ant_400x400.png";
+    public static final String MINIGAMES_GLIDING_ANT_LOGO_PRESSED = "minigames/glidingAnt/button_gliding_ant_pressed_400x400.png";
+    public static final String MINIGAMES_GLIDING_ANT_FLOWER_BOTTOM = "minigames/glidingAnt/flowerBottom.png";
+    public static final String MINIGAMES_GLIDING_ANT_FLOWER_TOP = "minigames/glidingAnt/flowerTop.png";
+    public static final String MINIGAMES_GLIDING_ANT_SPRITE = "minigames/glidingAnt/glidingAnt_sprite_236x118.png";
+    public static final String MINIGAMES_GLIDING_BACKGROUND = "minigames/glidingAnt/backgound_800x480.png";
+    public static final String MINIGAMES_GLIDING_GROUND = "minigames/glidingAnt/ground_800x50.png";
+
 
     //Controllers
     public static final String CONTROLLER_AUDIO = "menu/button_audio_352x352.png";

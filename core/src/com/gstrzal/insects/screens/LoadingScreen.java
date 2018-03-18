@@ -62,6 +62,8 @@ public class LoadingScreen extends ScreenAdapter{
         assetManager.load(Constants.MENU_INSTRUCTIONS_PRESSED, Texture.class);
         assetManager.load(Constants.MENU_SELECT_LEVEL, Texture.class);
         assetManager.load(Constants.MENU_SELECT_LEVEL_PRESSED, Texture.class);
+        assetManager.load(Constants.MENU_MINIGAMES, Texture.class);
+        assetManager.load(Constants.MENU_MINIGAMES_PRESSED, Texture.class);
         assetManager.load(Constants.MENU_SELECT_LEVEL_BACK_BUTTON, Texture.class);
         assetManager.load(Constants.MENU_SELECT_LEVEL_BACK_BUTTON_PRESSED, Texture.class);
         assetManager.load(Constants.MENU_SELECT_LEVEL_BUTTON_0, Texture.class);
@@ -92,6 +94,14 @@ public class LoadingScreen extends ScreenAdapter{
         assetManager.load(Constants.CONTROLLER_INSECT_SWITCH_TRANSPARENT, Texture.class);
         assetManager.load(Constants.CONTROLLER_LEVEL_RESTART, Texture.class);
         assetManager.load(Constants.CONTROLLER_LEVEL_RESTART_PRESSED, Texture.class);
+        assetManager.load(Constants.MINIGAMES_GLIDING_ANT_LOGO, Texture.class);
+        assetManager.load(Constants.MINIGAMES_GLIDING_ANT_LOGO_PRESSED, Texture.class);
+        assetManager.load(Constants.MINIGAMES_BLOCKED, Texture.class);
+        assetManager.load(Constants.MINIGAMES_GLIDING_ANT_FLOWER_BOTTOM, Texture.class);
+        assetManager.load(Constants.MINIGAMES_GLIDING_ANT_FLOWER_TOP, Texture.class);
+        assetManager.load(Constants.MINIGAMES_GLIDING_ANT_SPRITE, Texture.class);
+        assetManager.load(Constants.MINIGAMES_GLIDING_BACKGROUND, Texture.class);
+        assetManager.load(Constants.MINIGAMES_GLIDING_GROUND, Texture.class);
         assetManager.load(Constants.GAME_FONT, BitmapFont.class);
         assetManager.load(Constants.LEVEL_1, TiledMap.class);
         assetManager.load(Constants.LEVEL_2, TiledMap.class);

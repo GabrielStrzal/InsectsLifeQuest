@@ -3,9 +3,11 @@ package com.gstrzal.insects.tools;
 import com.badlogic.gdx.Screen;
 import com.gstrzal.insects.Insects;
 import com.gstrzal.insects.screens.GameScreen;
+import com.gstrzal.insects.screens.GlidingAnt.GlindingAntGameScreen;
 import com.gstrzal.insects.screens.InstructionsScreen;
 import com.gstrzal.insects.screens.LoadingScreen;
 import com.gstrzal.insects.screens.MenuScreen;
+import com.gstrzal.insects.screens.MinigamesScreen;
 import com.gstrzal.insects.screens.OptionsScreen;
 import com.gstrzal.insects.screens.SelectLevelsScreen;
 import com.gstrzal.insects.screens.YouWonScreen;
@@ -48,6 +50,16 @@ public enum ScreenEnum {
     YOU_WON_SCREEM {
         public Screen getScreen(Object... params) {
             return new YouWonScreen((Insects)params[0]);
+        }
+    },
+    MINIGAMES_SCREEN {
+        public Screen getScreen(Object... params) {
+            return new MinigamesScreen((Insects)params[0]);
+        }
+    },
+    GLIDING_ANT_SCREEN {
+        public Screen getScreen(Object... params) {
+            return new GlindingAntGameScreen((Insects)params[0]);
         }
     };
 

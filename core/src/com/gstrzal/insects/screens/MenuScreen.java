@@ -41,6 +41,8 @@ public class MenuScreen extends ScreenAdapter {
     private Texture selectLevelsPressTexture;
     private Texture instructionsTexture;
     private Texture instructionsPressTexture;
+    private Texture minigamesTexture;
+    private Texture minigamesPressTexture;
     private BitmapFont font;
 
     private Stage stage;
@@ -129,7 +131,7 @@ public class MenuScreen extends ScreenAdapter {
         ImageButton selectLevels = new ImageButton(
                 new TextureRegionDrawable(new TextureRegion(selectLevelsTexture)),
                 new TextureRegionDrawable(new TextureRegion(selectLevelsPressTexture)));
-        selectLevels.setPosition(SELECT_LEVELS_BUTTON_X, BUTTONS_Y);
+        selectLevels.setPosition(SELECT_LEVELS_BUTTON_X, PLAY_BUTTON_Y);
 
         selectLevels.addListener(new ActorGestureListener() {
             @Override
@@ -140,6 +142,24 @@ public class MenuScreen extends ScreenAdapter {
             }
         });
         stage.addActor(selectLevels);
+
+        //Minigames Button
+        minigamesTexture = assetManager.get(Constants.MENU_MINIGAMES);
+        minigamesPressTexture = assetManager.get(Constants.MENU_MINIGAMES_PRESSED);
+        ImageButton minigames = new ImageButton(
+                new TextureRegionDrawable(new TextureRegion(minigamesTexture)),
+                new TextureRegionDrawable(new TextureRegion(minigamesPressTexture)));
+        minigames.setPosition(SELECT_LEVELS_BUTTON_X, PLAY_BUTTON_Y + 210);
+
+        minigames.addListener(new ActorGestureListener() {
+            @Override
+            public void tap(InputEvent event, float x, float y, int count,
+                            int button) {
+                super.tap(event, x, y, count, button);
+                ScreenManager.getInstance().showScreen(ScreenEnum.MINIGAMES_SCREEN, game);
+            }
+        });
+        stage.addActor(minigames);
 
 
 
