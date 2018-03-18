@@ -114,10 +114,10 @@ public class Controller {
             public void tap(InputEvent event, float x, float y, int count,
                             int button) {
                 super.tap(event, x, y, count, button);
-                insects.setAudioOn(!insects.isAudioOn());
+                insects.getGameStatsHandler().changeAudioTo(!insects.getGameStatsHandler().isAudioOn());
             }
         });
-        if(!insects.isAudioOn()) {
+        if(!insects.getGameStatsHandler().isAudioOn()) {
             soundBtn.setChecked(true);
         }
         stage.addActor(soundBtn);
@@ -136,10 +136,10 @@ public class Controller {
             @Override
             public void tap(InputEvent event, float x, float y, int count, int button) {
                 super.tap(event, x, y, count, button);
-                insects.setDisplayControllers(!insects.isDisplayControllers());
+                insects.getGameStatsHandler().setDisplayControllers(!insects.getGameStatsHandler().isDisplayControllers());
             }
         });
-        if(!insects.isDisplayControllers()) {
+        if(!insects.getGameStatsHandler().isDisplayControllers()) {
             controlsBtn.setChecked(true);
         }
         stage.addActor(controlsBtn);
@@ -249,7 +249,7 @@ public class Controller {
     public void draw(){
         stage.act(Gdx.graphics.getDeltaTime());
         stage.draw();
-        if(insects.isDisplayControllers()){
+        if(insects.getGameStatsHandler().isDisplayControllers()){
             stageGameControls.draw();
         }
 

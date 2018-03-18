@@ -12,6 +12,7 @@ public class GameStatsHandler {
 
     private Insects insects;
     Preferences prefs = Gdx.app.getPreferences("insectsGameStats");
+    Preferences gameSettings = Gdx.app.getPreferences("insectsGameSettings");
 
 
     public GameStatsHandler(Insects insects) {
@@ -64,5 +65,30 @@ public class GameStatsHandler {
             return 2;
         else
             return 3;
+    }
+
+
+    public boolean isAudioOn(){
+        boolean audioOnStatus = gameSettings.getBoolean("audioOn", true);
+        return audioOnStatus;
+    }
+    public void changeAudioTo(boolean value){
+        gameSettings.putBoolean("audioOn", value);
+        gameSettings.flush();
+    }
+    public void changeAudioOn(){
+        boolean audioOnStatus = gameSettings.getBoolean("audioOn", true);
+        gameSettings.putBoolean("audioOn", !audioOnStatus);
+        gameSettings.flush();
+    }
+
+    public boolean isDisplayControllers() {
+        boolean displayControllers = gameSettings.getBoolean("displayControllers", true);
+        return displayControllers;
+    }
+
+    public void setDisplayControllers(boolean displayControllers) {
+        gameSettings.putBoolean("displayControllers", displayControllers);
+        gameSettings.flush();
     }
 }

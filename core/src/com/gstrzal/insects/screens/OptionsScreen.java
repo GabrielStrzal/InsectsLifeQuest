@@ -91,11 +91,11 @@ public class OptionsScreen extends ScreenAdapter {
             public void tap(InputEvent event, float x, float y, int count,
                             int button) {
                 super.tap(event, x, y, count, button);
-                game.setAudioOn(!game.isAudioOn());
+                game.getGameStatsHandler().changeAudioTo(!game.getGameStatsHandler().isAudioOn());
 
             }
         });
-        if(!game.isAudioOn()) {
+        if(!game.getGameStatsHandler().isAudioOn()) {
             soundBtn.setChecked(true);
         }
 
@@ -112,10 +112,10 @@ public class OptionsScreen extends ScreenAdapter {
             @Override
             public void tap(InputEvent event, float x, float y, int count, int button) {
                 super.tap(event, x, y, count, button);
-                game.setDisplayControllers(!game.isDisplayControllers());
+                game.getGameStatsHandler().setDisplayControllers(!game.getGameStatsHandler().isDisplayControllers());
             }
         });
-        if(!game.isDisplayControllers()) {
+        if(!game.getGameStatsHandler().isDisplayControllers()) {
             controlsBtn.setChecked(true);
         }
 

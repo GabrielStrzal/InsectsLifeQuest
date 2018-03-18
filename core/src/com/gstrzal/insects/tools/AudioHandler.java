@@ -41,7 +41,7 @@ public class AudioHandler {
             backgroundMusic.setVolume(volume);
             backgroundMusic.play();
 
-            if(!game.isAudioOn()) {
+            if(!game.getGameStatsHandler().isAudioOn()) {
                 backgroundMusic.pause();
             }
         }
@@ -60,7 +60,7 @@ public class AudioHandler {
 
     private void updateBackgroundMusic(){
         //backgroundMusic
-        if(game.isAudioOn()) {
+        if(game.getGameStatsHandler().isAudioOn()) {
             if(backgroundMusic!= null && !backgroundMusic.isPlaying())
                 backgroundMusic.play();
         }else{
@@ -70,26 +70,26 @@ public class AudioHandler {
 
     public void playJumpSound(){
         jumpSound = assetManager.get(Constants.AUDIO_JUMP);
-        if(game.isAudioOn()) jumpSound.play(volume);
+        if(game.getGameStatsHandler().isAudioOn()) jumpSound.play(volume);
     }
 
     public void playHitHurtSound(){
         hitHurtSound = assetManager.get(Constants.AUDIO_HIT_HURT);
-        if(game.isAudioOn()) hitHurtSound.play(volume);
+        if(game.getGameStatsHandler().isAudioOn()) hitHurtSound.play(volume);
     }
 
     public void playEndLevelSound(){
         endLevelSound = assetManager.get(Constants.AUDIO_END_LEVEL);
-        if(game.isAudioOn()) endLevelSound.play(volume);
+        if(game.getGameStatsHandler().isAudioOn()) endLevelSound.play(volume);
     }
 
     public void playChangeInsectSound(){
         changeInsectSound = assetManager.get(Constants.AUDIO_CHANGE_INSECT);
-        if(game.isAudioOn()) changeInsectSound.play(volume);
+        if(game.getGameStatsHandler().isAudioOn()) changeInsectSound.play(volume);
     }
 
     public void playPickupFlowerSound(){
         pickupFlowerlSound = assetManager.get(Constants.AUDIO_PICKUP_FLOWER);
-        if(game.isAudioOn()) pickupFlowerlSound.play(volume);
+        if(game.getGameStatsHandler().isAudioOn()) pickupFlowerlSound.play(volume);
     }
 }
