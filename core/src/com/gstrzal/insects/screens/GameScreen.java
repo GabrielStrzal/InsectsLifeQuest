@@ -321,6 +321,9 @@ public class GameScreen implements Screen{
         // draw boxes
         for(int i = 0; i < b2World.pushBoxes.size; i++) {
             b2World.pushBoxes.get(i).render(game.batch);
+            if(!b2World.pushBoxes.get(i).getBody().getLinearVelocity().isZero()
+                    && insectPlayer instanceof Besouro) audioHandler.playPushBlockSound();
+
         }
         // draw switches
         if( b2World.levelSwitch != null) {
@@ -350,6 +353,7 @@ public class GameScreen implements Screen{
             if( b2World.levelEndBlock != null) {
                 world.destroyBody(b2World.levelEndBlock.getBody());
                 b2World.levelEndBlock = null;
+                audioHandler.playSwitch();
             }
         }
     }
@@ -377,10 +381,12 @@ public class GameScreen implements Screen{
         if (worldContactListener.isWarpA()) {
             worldContactListener.setWarpA(false);
             insectPlayer.b2body.setTransform(b2World.warpBposition, insectPlayer.b2body.getAngle());
+            audioHandler.playWarp();
         }
         if (worldContactListener.isWarpB()) {
             worldContactListener.setWarpB(false);
             insectPlayer.b2body.setTransform(b2World.warpAposition, insectPlayer.b2body.getAngle());
+            audioHandler.playWarp();
         }
     }
     private void waitForRestart(int wait) {

@@ -19,6 +19,9 @@ public class AudioHandler {
     private Sound endLevelSound;
     private Sound changeInsectSound;
     private Sound pickupFlowerlSound;
+    private Sound warpSound;
+    private Sound switchSound;
+    private Sound pushBlockSound;
     private AssetManager assetManager;
     long gameSoundID;
     float volume = 0.3f;
@@ -91,5 +94,20 @@ public class AudioHandler {
     public void playPickupFlowerSound(){
         pickupFlowerlSound = assetManager.get(Constants.AUDIO_PICKUP_FLOWER);
         if(game.getGameStatsHandler().isAudioOn()) pickupFlowerlSound.play(volume);
+    }
+
+    public void playWarp() {
+        warpSound = assetManager.get(Constants.AUDIO_WARP);
+        if(game.getGameStatsHandler().isAudioOn()) warpSound.play(volume);
+    }
+
+    public void playSwitch() {
+        switchSound = assetManager.get(Constants.AUDIO_SWITCH);
+        if(game.getGameStatsHandler().isAudioOn()) switchSound.play(volume);
+    }
+
+    public void playPushBlockSound() {
+        pushBlockSound = assetManager.get(Constants.AUDIO_PUSH_BLOCK);
+        if(game.getGameStatsHandler().isAudioOn()) pushBlockSound.play(0.1f);
     }
 }
