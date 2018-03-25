@@ -36,6 +36,7 @@ public class Constants {
     public static final String LEVEL_CLEARED_POPUP_1 = "menu/level_cleared_1_1600x866.png";
     public static final String LEVEL_CLEARED_POPUP_2 = "menu/level_cleared_2_1600x866.png";
     public static final String LEVEL_CLEARED_POPUP_3 = "menu/level_cleared_3_1600x866.png";
+    public static final String GAME_BACKGROUND = "menu/background_320x192.png";
 
 
     //Minigames

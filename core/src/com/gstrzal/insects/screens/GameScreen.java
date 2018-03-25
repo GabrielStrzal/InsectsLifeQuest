@@ -54,6 +54,7 @@ public class GameScreen implements Screen{
 
     private TiledMap map;
     private OrthogonalTiledMapRenderer mapRenderer;
+    private Texture background;
 
     private ShapeRenderer renderer;
 
@@ -127,6 +128,8 @@ public class GameScreen implements Screen{
         mapRenderer = new OrthogonalTiledMapRenderer(map, 1 / Insects.PPM);
         gamecam.position.set(gamePort.getWorldWidth()/2,gamePort.getWorldHeight()/2, 0);
         insectPlayer = new LBug(world, (Texture) assetManager.get(Constants.JOANINHA));
+        background = assetManager.get(Constants.GAME_BACKGROUND);
+
 
         b2World = new B2WorldCreator(world, map, game);
         numberOfFlowerInLevel = b2World.flowers.size;
@@ -299,8 +302,11 @@ public class GameScreen implements Screen{
 
 
         GdxUtils.clearScreen();
-        mapRenderer.render();
+        game.batch.begin();
+        game.batch.draw(background, 0, 0, (GameConfig.SCREEN_WIDTH_PX / Insects.PPM), (GameConfig.SCREEN_HEIGHT_PX / Insects.PPM));
+        game.batch.end();
 
+        mapRenderer.render();
         if(GameConfig.debug) {
             b2dr.render(world, b2dcam.combined);
         }
@@ -314,6 +320,7 @@ public class GameScreen implements Screen{
     private void draw() {
         game.batch.setProjectionMatrix(b2dcam.combined);
         game.batch.begin();
+
         // draw flowers
         for(int i = 0; i < b2World.flowers.size; i++) {
             b2World.flowers.get(i).render(game.batch);
