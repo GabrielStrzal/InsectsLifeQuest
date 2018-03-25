@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.1" orientation="orthogonal" renderorder="right-down" width="25" height="15" tilewidth="128" tileheight="128" infinite="0" nextobjectid="145">
+<map version="1.0" tiledversion="1.1.1" orientation="orthogonal" renderorder="right-down" width="25" height="15" tilewidth="128" tileheight="128" infinite="0" nextobjectid="147">
  <tileset firstgid="1" source="tiles_128x128.tsx"/>
  <tileset firstgid="37" source="tiles_oil_128x128.tsx"/>
  <layer name="graphics" width="25" height="15">
@@ -85,6 +85,6 @@
  <objectgroup name="damage">
   <object id="129" x="796" y="910.667" width="210.667" height="210.667"/>
   <object id="130" x="1020.24" y="1651.88" width="2048.91" height="43.5152"/>
-  <object id="138" x="916" y="1542" width="103" height="155"/>
+  <object id="146" x="915" y="1541" width="107" height="128"/>
  </objectgroup>
 </map>

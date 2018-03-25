@@ -271,31 +271,21 @@ public class WorldContactListener implements ContactListener {
     private void checkCharacterOnGrounds(Contact contact){
 
         //Jump and Character change check
-        if(isContact(contact, Constants.INSECT_BASE, Constants.MAP_BLOCKS)){
-            onGrounds++;
-        }
-        if(isContact(contact, Constants.INSECT_BASE, Constants.MAP_PASS_BLOCKS)){
-            onGrounds++;
-        }
-        if(isContact(contact, Constants.INSECT_BASE, Constants.MAP_SLOPE)){
-            onGrounds++;
-        }
-        if(isContact(contact, Constants.INSECT_BASE, Constants.MAP_PUSH_BLOCKS)){
+        if(isContact(contact, Constants.INSECT_BASE, Constants.MAP_BLOCKS)
+            || isContact(contact, Constants.INSECT_BASE, Constants.MAP_PASS_BLOCKS)
+            || isContact(contact, Constants.INSECT_BASE, Constants.MAP_SLOPE)
+            || isContact(contact, Constants.INSECT_BASE, Constants.MAP_PUSH_BLOCKS)
+            || isContact(contact, Constants.INSECT_BASE, Constants.MAP_LEVEL_END_BLOCK)){
             onGrounds++;
         }
     }
 
     private void uncheckCharacterOnGrounds(Contact contact){
-        if(isContact(contact, Constants.INSECT_BASE, Constants.MAP_BLOCKS)){
-            onGrounds--;
-        }
-        if(isContact(contact, Constants.INSECT_BASE, Constants.MAP_PASS_BLOCKS)){
-            onGrounds--;
-        }
-        if(isContact(contact, Constants.INSECT_BASE, Constants.MAP_SLOPE)){
-            onGrounds--;
-        }
-        if(isContact(contact, Constants.INSECT_BASE, Constants.MAP_PUSH_BLOCKS)){
+        if(isContact(contact, Constants.INSECT_BASE, Constants.MAP_BLOCKS)
+                || isContact(contact, Constants.INSECT_BASE, Constants.MAP_PASS_BLOCKS)
+                || isContact(contact, Constants.INSECT_BASE, Constants.MAP_SLOPE)
+                || isContact(contact, Constants.INSECT_BASE, Constants.MAP_PUSH_BLOCKS)
+                || isContact(contact, Constants.INSECT_BASE, Constants.MAP_LEVEL_END_BLOCK)){
             onGrounds--;
         }
     }
