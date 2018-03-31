@@ -110,7 +110,7 @@ public class Besouro extends Insect {
         //Base Sensor
         FixtureDef baseSensorFdef = new FixtureDef();
         PolygonShape baseShape = new PolygonShape();
-        baseShape.setAsBox(35/ Insects.PPM ,16/ Insects.PPM , new Vector2(0,-100/ Insects.PPM),0);
+        baseShape.setAsBox(50/ Insects.PPM ,16/ Insects.PPM , new Vector2(0,-100/ Insects.PPM),0);
         baseSensorFdef.shape = baseShape;
         baseSensorFdef.isSensor = true;
         baseSensorFdef.filter.categoryBits = Insects.BASE_BIT;
