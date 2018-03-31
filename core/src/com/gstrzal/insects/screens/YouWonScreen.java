@@ -62,9 +62,9 @@ public class YouWonScreen extends ScreenAdapter {
 
         backBtn.addListener(new ActorGestureListener() {
             @Override
-            public void tap(InputEvent event, float x, float y, int count,
+            public void touchDown(InputEvent event, float x, float y, int count,
                             int button) {
-                super.tap(event, x, y, count, button);
+                super.touchDown(event, x, y, count, button);
                 ScreenManager.getInstance().showScreen(ScreenEnum.MENU_SCREEN, game);
             }
         });

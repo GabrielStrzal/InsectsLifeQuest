@@ -89,9 +89,9 @@ public class SelectLevelsScreen extends ScreenAdapter {
 
         backBtn.addListener(new ActorGestureListener() {
             @Override
-            public void tap(InputEvent event, float x, float y, int count,
+            public void touchDown(InputEvent event, float x, float y, int count,
                             int button) {
-                super.tap(event, x, y, count, button);
+                super.touchDown(event, x, y, count, button);
                 ScreenManager.getInstance().showScreen(ScreenEnum.MENU_SCREEN, game);
             }
         });
@@ -176,9 +176,9 @@ public class SelectLevelsScreen extends ScreenAdapter {
 
                 levelImg.addListener(new ActorGestureListener() {
                     @Override
-                    public void tap(InputEvent event, float x, float y, int count,
+                    public void touchDown(InputEvent event, float x, float y, int count,
                                     int button) {
-                        super.tap(event, x, y, count, button);
+                        super.touchDown(event, x, y, count, button);
                         if(Integer.parseInt(event.getListenerActor().getName()) <= GameConfig.GAME_MAX_LEVELS) {
                             ScreenManager.getInstance().showScreen(ScreenEnum.GAME_SCREEN,
                                     game, Integer.parseInt(event.getListenerActor().getName()));

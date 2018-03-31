@@ -71,9 +71,9 @@ public class OptionsScreen extends ScreenAdapter {
                 new TextureRegionDrawable(new TextureRegion(backButtonPressedTexture)));
         backBtn.addListener(new ActorGestureListener() {
             @Override
-            public void tap(InputEvent event, float x, float y, int count,
+            public void touchDown(InputEvent event, float x, float y, int count,
                             int button) {
-                super.tap(event, x, y, count, button);
+                super.touchDown(event, x, y, count, button);
                 ScreenManager.getInstance().showScreen(ScreenEnum.MENU_SCREEN, game);
             }
         });
@@ -88,9 +88,9 @@ public class OptionsScreen extends ScreenAdapter {
                 new TextureRegionDrawable(new TextureRegion(soundCheckedTexture)));
         soundBtn.addListener(new ActorGestureListener() {
             @Override
-            public void tap(InputEvent event, float x, float y, int count,
+            public void touchDown(InputEvent event, float x, float y, int count,
                             int button) {
-                super.tap(event, x, y, count, button);
+                super.touchDown(event, x, y, count, button);
                 game.getGameStatsHandler().changeAudioTo(!game.getGameStatsHandler().isAudioOn());
 
             }
@@ -110,8 +110,8 @@ public class OptionsScreen extends ScreenAdapter {
                 new TextureRegionDrawable(new TextureRegion(controlsButtonCheckedTexture)));
         controlsBtn.addListener(new ActorGestureListener() {
             @Override
-            public void tap(InputEvent event, float x, float y, int count, int button) {
-                super.tap(event, x, y, count, button);
+            public void touchDown(InputEvent event, float x, float y, int count, int button) {
+                super.touchDown(event, x, y, count, button);
                 game.getGameStatsHandler().setDisplayControllers(!game.getGameStatsHandler().isDisplayControllers());
             }
         });

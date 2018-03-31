@@ -89,9 +89,9 @@ public class Controller {
 
         backBtn.addListener(new ActorGestureListener() {
             @Override
-            public void tap(InputEvent event, float x, float y, int count,
+            public void touchDown(InputEvent event, float x, float y, int count,
                             int button) {
-                super.tap(event, x, y, count, button);
+                super.touchDown(event, x, y, count, button);
                 ScreenManager.getInstance().showScreen(ScreenEnum.MENU_SCREEN, insects);
 
             }
@@ -111,9 +111,9 @@ public class Controller {
         soundBtn.setSize(BUTTON_SIZE, BUTTON_SIZE);
         soundBtn.addListener(new ActorGestureListener() {
             @Override
-            public void tap(InputEvent event, float x, float y, int count,
+            public void touchDown(InputEvent event, float x, float y, int count,
                             int button) {
-                super.tap(event, x, y, count, button);
+                super.touchDown(event, x, y, count, button);
                 insects.getGameStatsHandler().changeAudioTo(!insects.getGameStatsHandler().isAudioOn());
             }
         });
@@ -134,8 +134,8 @@ public class Controller {
         controlsBtn.setSize(BUTTON_SIZE,BUTTON_SIZE);
         controlsBtn.addListener(new ActorGestureListener() {
             @Override
-            public void tap(InputEvent event, float x, float y, int count, int button) {
-                super.tap(event, x, y, count, button);
+            public void touchDown(InputEvent event, float x, float y, int count, int button) {
+                super.touchDown(event, x, y, count, button);
                 insects.getGameStatsHandler().setDisplayControllers(!insects.getGameStatsHandler().isDisplayControllers());
             }
         });
@@ -155,8 +155,8 @@ public class Controller {
         levelRestartBtn.setSize(BUTTON_SIZE,BUTTON_SIZE);
         levelRestartBtn.addListener(new ActorGestureListener() {
             @Override
-            public void tap(InputEvent event, float x, float y, int count, int button) {
-                super.tap(event, x, y, count, button);
+            public void touchDown(InputEvent event, float x, float y, int count, int button) {
+                super.touchDown(event, x, y, count, button);
                 ScreenManager.getInstance().showScreen(ScreenEnum.GAME_SCREEN, insects, insects.currentLevel);
             }
         });
@@ -172,8 +172,8 @@ public class Controller {
         insectSwitchBtn.setSize(BUTTON_SIZE*1.7f,BUTTON_SIZE*1.7f);
         insectSwitchBtn.addListener(new ActorGestureListener() {
             @Override
-            public void tap(InputEvent event, float x, float y, int count, int button) {
-                super.tap(event, x, y, count, button);
+            public void touchDown(InputEvent event, float x, float y, int count, int button) {
+                super.touchDown(event, x, y, count, button);
                 insectSwitchPressed = true;
             }
         });
@@ -191,8 +191,8 @@ public class Controller {
 
         rightBtn.addListener(new ActorGestureListener() {
             @Override
-            public void tap(InputEvent event, float x, float y, int count, int button) {
-                super.tap(event, x, y, count, button);
+            public void touchDown(InputEvent event, float x, float y, int count, int button) {
+                super.touchDown(event, x, y, count, button);
                 rightPressed = true;
                 leftPressed = false;
             }
@@ -211,8 +211,8 @@ public class Controller {
 
         leftBtn.addListener(new ActorGestureListener() {
             @Override
-            public void tap(InputEvent event, float x, float y, int count, int button) {
-                super.tap(event, x, y, count, button);
+            public void touchDown(InputEvent event, float x, float y, int count, int button) {
+                super.touchDown(event, x, y, count, button);
                 leftPressed = true;
                 rightPressed = false;
             }
@@ -231,8 +231,8 @@ public class Controller {
 
         actionBtn.addListener(new ActorGestureListener() {
             @Override
-            public void tap(InputEvent event, float x, float y, int count, int button) {
-                super.tap(event, x, y, count, button);
+            public void touchDown(InputEvent event, float x, float y, int count, int button) {
+                super.touchDown(event, x, y, count, button);
                 actionPressed = true;
             }
         });

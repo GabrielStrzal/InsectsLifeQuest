@@ -83,9 +83,9 @@ public class GlidingAntController {
 
         backBtn.addListener(new ActorGestureListener() {
             @Override
-            public void tap(InputEvent event, float x, float y, int count,
+            public void touchDown(InputEvent event, float x, float y, int count,
                             int button) {
-                super.tap(event, x, y, count, button);
+                super.touchDown(event, x, y, count, button);
                 ScreenManager.getInstance().showScreen(ScreenEnum.MINIGAMES_SCREEN, insects);
 
             }
@@ -105,9 +105,9 @@ public class GlidingAntController {
         soundBtn.setSize(BUTTON_SIZE, BUTTON_SIZE);
         soundBtn.addListener(new ActorGestureListener() {
             @Override
-            public void tap(InputEvent event, float x, float y, int count,
+            public void touchDown(InputEvent event, float x, float y, int count,
                             int button) {
-                super.tap(event, x, y, count, button);
+                super.touchDown(event, x, y, count, button);
                 insects.getGameStatsHandler().changeAudioTo(!insects.getGameStatsHandler().isAudioOn());
             }
         });
@@ -128,8 +128,8 @@ public class GlidingAntController {
         controlsBtn.setSize(BUTTON_SIZE,BUTTON_SIZE);
         controlsBtn.addListener(new ActorGestureListener() {
             @Override
-            public void tap(InputEvent event, float x, float y, int count, int button) {
-                super.tap(event, x, y, count, button);
+            public void touchDown(InputEvent event, float x, float y, int count, int button) {
+                super.touchDown(event, x, y, count, button);
                 insects.getGameStatsHandler().setDisplayControllers(!insects.getGameStatsHandler().isDisplayControllers());
             }
         });
@@ -149,8 +149,8 @@ public class GlidingAntController {
         levelRestartBtn.setSize(BUTTON_SIZE,BUTTON_SIZE);
         levelRestartBtn.addListener(new ActorGestureListener() {
             @Override
-            public void tap(InputEvent event, float x, float y, int count, int button) {
-                super.tap(event, x, y, count, button);
+            public void touchDown(InputEvent event, float x, float y, int count, int button) {
+                super.touchDown(event, x, y, count, button);
                 ScreenManager.getInstance().showScreen(ScreenEnum.GLIDING_ANT_SCREEN, insects);
             }
         });
@@ -169,8 +169,8 @@ public class GlidingAntController {
 
         actionBtn.addListener(new ActorGestureListener() {
             @Override
-            public void tap(InputEvent event, float x, float y, int count, int button) {
-                super.tap(event, x, y, count, button);
+            public void touchDown(InputEvent event, float x, float y, int count, int button) {
+                super.touchDown(event, x, y, count, button);
                 actionPressed = true;
             }
         });
