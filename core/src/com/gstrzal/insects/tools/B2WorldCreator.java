@@ -228,6 +228,9 @@ public class B2WorldCreator {
 
         //Warp B End
         createCircularSensorShapeFromMap(world, map, Constants.MAP_WARP_B);
+
+        //Info
+        createCircularSensorShapeFromMap(world, map, Constants.MAP_INFO);
     }
     private void createCircularSensorShapeFromMap(World world, TiledMap map, String mapLayer){
         FixtureDef fdef = new FixtureDef();

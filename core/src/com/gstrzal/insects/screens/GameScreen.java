@@ -226,14 +226,15 @@ public class GameScreen implements Screen{
             float tempInscY = tempInsc.b2body.getPosition().y;
             tempInsc.dispose();
 
-            if (tempInsc instanceof Besouro) {
+            if (tempInsc instanceof LBug) {
                 insectPlayer = new Ant(world, (Texture) assetManager.get(Constants.ANT),
                         tempInscX , tempInscY - insectPlayer.sizeDiff);
+
             } else if (tempInsc instanceof Ant){
-                insectPlayer = new LBug(world, (Texture) assetManager.get(Constants.JOANINHA),
+                insectPlayer = new Besouro(world, (Texture) assetManager.get(Constants.BESOURO),
                         tempInscX , tempInscY + insectPlayer.sizeDiff);
             } else{
-                insectPlayer = new Besouro(world, (Texture) assetManager.get(Constants.BESOURO),
+                insectPlayer = new LBug(world, (Texture) assetManager.get(Constants.JOANINHA),
                         tempInscX , tempInscY);
             }
             characterChange = false;
@@ -280,6 +281,7 @@ public class GameScreen implements Screen{
                 checkGameOver();
                 checkSwitchOn();
                 checkWarp();
+                checkShowInfo();
             }
             break;
             case GAME_OVER: {
@@ -291,7 +293,7 @@ public class GameScreen implements Screen{
             }
             break;
             case PAUSED: {
-
+                showInfoPauseGame();
             }
             break;
         }
@@ -345,6 +347,7 @@ public class GameScreen implements Screen{
         insectPlayer.draw(game.batch);
         drawGameOver();
         drawLevelCleared();
+        drawInfo();
 
         drawNextInsect();
 
@@ -380,6 +383,19 @@ public class GameScreen implements Screen{
             state = STATE.GAME_OVER;
             audioHandler.playHitHurtSound();
             levelStopTime = System.currentTimeMillis();
+        }
+
+    }
+    private void checkShowInfo(){
+        if (worldContactListener.isShowInfo()) {
+            state = STATE.PAUSED;
+            worldContactListener.setShowInfo(false);
+        }
+    }
+    private void showInfoPauseGame(){
+        if(Gdx.input.isKeyJustPressed(Input.Keys.ANY_KEY)
+                || Gdx.input.isTouched()){
+            state = STATE.PLAYING;
         }
 
     }
@@ -419,6 +435,16 @@ public class GameScreen implements Screen{
         }
     }
 
+    private void drawInfo(){
+        if (state == STATE.PAUSED) {
+            Texture infotexture = assetManager.get(Constants.INFO_IMAGE + game.currentLevel + Constants.PNG);
+            float height = infotexture.getHeight() / Insects.PPM;
+            float width = infotexture.getWidth() / Insects.PPM;
+            game.batch.draw(infotexture,
+                    ((GameConfig.SCREEN_WIDTH_PX / Insects.PPM) / 2 - width / 2), ((GameConfig.SCREEN_HEIGHT_PX / Insects.PPM) / 2 - height / 2),
+                    width, height);
+        }
+    }
 
     private void drawGameOver() {
         if (state == STATE.GAME_OVER) {
@@ -440,9 +466,9 @@ public class GameScreen implements Screen{
             float height = nextJoaninha.getHeight() / Insects.PPM;
             float width = nextJoaninha.getWidth() / Insects.PPM;
 
-            if(insectPlayer instanceof  LBug) nextInsect = nextBesouro;
-            else if(insectPlayer instanceof  Besouro) nextInsect = nextAnt;
-            else nextInsect = nextJoaninha;
+            if(insectPlayer instanceof  LBug) nextInsect = nextAnt;
+            else if(insectPlayer instanceof  Besouro) nextInsect = nextJoaninha;
+            else nextInsect = nextBesouro;
 
             game.batch.draw(nextInsect,
                     //50 / Insects.PPM, ((GameConfig.SCREEN_HEIGHT_PX - 250 )/ Insects.PPM) - height/2, //450

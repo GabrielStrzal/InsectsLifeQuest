@@ -27,6 +27,7 @@ public class WorldContactListener implements ContactListener {
     private boolean warpB = false;
     private boolean justWarpedA = false;
     private boolean justWarpedB = false;
+    private boolean showInfo = false;
 
 
     public WorldContactListener() {
@@ -52,6 +53,8 @@ public class WorldContactListener implements ContactListener {
         checkCharacterWarpAContact(contact);
 
         checkCharacterWarpBContact(contact);
+
+        checkCharacterEnterInfoContact(contact);
 
 
         //For ant character - size check
@@ -203,6 +206,14 @@ public class WorldContactListener implements ContactListener {
         //Besouro
         if(isContact(contact, Constants.BESOURO_BODY, Constants.MAP_END)){
             setLevelFinished(true);
+        }
+    }
+
+    private void checkCharacterEnterInfoContact(Contact contact){
+        if (isContact(contact, Constants.INSECT_BODY, Constants.MAP_INFO)
+                || isContact(contact, Constants.ANT_BODY, Constants.MAP_INFO)
+                || isContact(contact, Constants.BESOURO_BODY, Constants.MAP_INFO)) {
+            setShowInfo(true);
         }
     }
 
@@ -371,5 +382,13 @@ public class WorldContactListener implements ContactListener {
 
     public void setJustWarpedB(boolean justWarpedB) {
         this.justWarpedB = justWarpedB;
+    }
+
+    public boolean isShowInfo() {
+        return showInfo;
+    }
+
+    public void setShowInfo(boolean showInfo) {
+        this.showInfo = showInfo;
     }
 }
