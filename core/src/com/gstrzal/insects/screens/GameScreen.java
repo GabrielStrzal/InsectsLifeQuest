@@ -348,12 +348,15 @@ public class GameScreen implements Screen{
         drawGameOver();
         drawLevelCleared();
         drawInfo();
-
         drawNextInsect();
-
 
         game.batch.end();
         controller.draw();
+
+
+        game.batch.begin();
+        drawUnableJumpButton();
+        game.batch.end();
     }
 
 
@@ -453,6 +456,16 @@ public class GameScreen implements Screen{
             float width = gameOvertexture.getWidth() / Insects.PPM;
             game.batch.draw(gameOvertexture,
                     ((GameConfig.SCREEN_WIDTH_PX / Insects.PPM) / 2 - width / 2), ((GameConfig.SCREEN_HEIGHT_PX / Insects.PPM) / 2 - height / 2),
+                    width, height);
+        }
+    }
+    private void drawUnableJumpButton(){
+        if( insectPlayer instanceof Ant || insectPlayer instanceof Besouro){
+            Texture jumpButtonBlockedtexture = assetManager.get(Constants.CONTROLLER_ACTIONS_BLOCKED);
+            float height = (jumpButtonBlockedtexture.getHeight() / Insects.PPM) * 0.664f;
+            float width = (jumpButtonBlockedtexture.getWidth() / Insects.PPM) * 0.664f;
+            game.batch.draw(jumpButtonBlockedtexture,
+                    ((GameConfig.SCREEN_WIDTH_PX / Insects.PPM) - (width / 2) - (385/ Insects.PPM) ), 10/ Insects.PPM,
                     width, height);
         }
     }

@@ -60,6 +60,7 @@ public class Constants {
     public static final String CONTROLLER_LEFT_PRESSED = "menu/button_left_pressed_352x352.png";
     public static final String CONTROLLER_ACTIONS = "menu/button_actions_993x352.png";
     public static final String CONTROLLER_ACTIONS_PRESSED = "menu/button_actions_pressed_993x352.png";
+    public static final String CONTROLLER_ACTIONS_BLOCKED = "menu/button_actions_blocked_993x352.png";
     public static final String CONTROLLER_CONTROLS = "menu/button_controls_352x352.png";
     public static final String CONTROLLER_CONTROLS_PRESSED = "menu/button_controls_pressed_352x352.png";
     public static final String CONTROLLER_CONTROLS_CHECKED = "menu/button_options_checked_352x352.png";
