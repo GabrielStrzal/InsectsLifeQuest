@@ -285,15 +285,15 @@ public class GameScreen implements Screen{
             }
             break;
             case GAME_OVER: {
-                waitForRestart(10);
+                checkUserConfirmation();
             }
             break;
             case LEVEL_CLEARED: {
-                waitForRestart(15);
+                checkUserConfirmation();
             }
             break;
             case PAUSED: {
-                showInfoPauseGame();
+                checkUnPauseGame();
             }
             break;
         }
@@ -395,12 +395,17 @@ public class GameScreen implements Screen{
             worldContactListener.setShowInfo(false);
         }
     }
-    private void showInfoPauseGame(){
+    private void checkUnPauseGame(){
         if(Gdx.input.isKeyJustPressed(Input.Keys.ANY_KEY)
                 || Gdx.input.isTouched()){
             state = STATE.PLAYING;
         }
-
+    }
+    private void checkUserConfirmation(){
+        if(Gdx.input.isKeyJustPressed(Input.Keys.ANY_KEY)
+                || Gdx.input.isTouched()){
+            waitRestartComplete = true;
+        }
     }
 
     private void checkWarp() {
@@ -416,8 +421,7 @@ public class GameScreen implements Screen{
         }
     }
     private void waitForRestart(int wait) {
-        if(((System.currentTimeMillis() - levelStopTime) / 100) > wait)//5
-        waitRestartComplete = true;
+//        if(((System.currentTimeMillis() - levelStopTime) / 100) > wait)//5
     }
 
     private void doRestartIfGameOver() {
@@ -548,6 +552,5 @@ public class GameScreen implements Screen{
         mapRenderer.dispose();
         world.dispose();
         b2dr.dispose();
-//        audioHandler.stopBackGroundMusic(gameSoundID);
     }
 }
