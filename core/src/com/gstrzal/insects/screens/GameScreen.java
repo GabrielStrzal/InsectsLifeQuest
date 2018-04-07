@@ -429,6 +429,7 @@ public class GameScreen implements Screen{
     private void changeLevelIfLevelCompleted(){
         if(waitRestartComplete && state == STATE.LEVEL_CLEARED) {
             levelStats.successFactor = numberOfFlowersCollected/numberOfFlowerInLevel;
+            levelStats.currentLevel = game.currentLevel;
             gameStatsHandler.saveLevelSuccess(levelStats);
             if (game.currentLevel <= GameConfig.GAME_MAX_LEVELS) {
                 ScreenManager.getInstance().showScreen(ScreenEnum.GAME_SCREEN, game, game.currentLevel);

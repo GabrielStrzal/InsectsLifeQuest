@@ -11,6 +11,7 @@ public class LevelStats {
     public int levelTotalTime;
     public int deaths;
     public int bestTime;
+    public int currentLevel;
 
     public LevelStats(int levelNumber){
         this.levelNumber = levelNumber;

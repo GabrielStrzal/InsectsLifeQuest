@@ -156,7 +156,7 @@ public class SelectLevelsScreen extends ScreenAdapter {
                 ++levelNumber;
                 ImageTextButton levelImg;
                 ImageTextButton.ImageTextButtonStyle tempimgTxtBStyle = new ImageTextButton.ImageTextButtonStyle();
-                if(levelNumber <= GameConfig.GAME_MAX_LEVELS) {
+                if(levelNumber <= gameStatsHandler.getTopCLearedLevel()) {
 
                     if(gameStatsHandler.getLevelSuccess(levelNumber) == 0)
                         tempimgTxtBStyle = levelImgStyle_0;
@@ -179,7 +179,7 @@ public class SelectLevelsScreen extends ScreenAdapter {
                     public void touchDown(InputEvent event, float x, float y, int count,
                                     int button) {
                         super.touchDown(event, x, y, count, button);
-                        if(Integer.parseInt(event.getListenerActor().getName()) <= GameConfig.GAME_MAX_LEVELS) {
+                        if(Integer.parseInt(event.getListenerActor().getName()) <= gameStatsHandler.getTopCLearedLevel()) {
                             ScreenManager.getInstance().showScreen(ScreenEnum.GAME_SCREEN,
                                     game, Integer.parseInt(event.getListenerActor().getName()));
                         }

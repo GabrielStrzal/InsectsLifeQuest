@@ -42,6 +42,13 @@ public class GameStatsHandler {
 
 
     public void saveLevelSuccess(LevelStats levelStats) {
+        //top cleared level
+        int topClearedLevel = prefs.getInteger("topClearedLevel", 3);
+        if(levelStats.currentLevel > 3 && levelStats.currentLevel > topClearedLevel) {
+            prefs.putInteger("topClearedLevel", levelStats.currentLevel);
+            prefs.flush();
+        }
+
         String levelNum = "level_" + levelStats.levelNumber;
         float currentSuccessFact = prefs.getFloat("level_" + levelStats.levelNumber + "_successFactor", 0);
         if(currentSuccessFact < levelStats.successFactor) {
@@ -102,4 +109,7 @@ public class GameStatsHandler {
     public int getGlidingAntHighScore(){
         return gameSettings.getInteger("glidingAntHighScore", 0);
     }
+     public int getTopCLearedLevel(){
+         return prefs.getInteger("topClearedLevel", 3);
+     }
 }
