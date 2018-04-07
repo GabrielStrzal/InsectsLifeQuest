@@ -2,6 +2,7 @@ package com.gstrzal.insects.tools;
 
 import com.badlogic.gdx.Screen;
 import com.gstrzal.insects.Insects;
+import com.gstrzal.insects.entity.GlidingAnt.GlidingEntityType;
 import com.gstrzal.insects.screens.GameScreen;
 import com.gstrzal.insects.screens.GlidingAnt.GlindingAntGameScreen;
 import com.gstrzal.insects.screens.InstructionsScreen;
@@ -59,7 +60,7 @@ public enum ScreenEnum {
     },
     GLIDING_ANT_SCREEN {
         public Screen getScreen(Object... params) {
-            return new GlindingAntGameScreen((Insects)params[0]);
+            return new GlindingAntGameScreen((Insects)params[0], (GlidingEntityType)params[1]);
         }
     };
 

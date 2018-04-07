@@ -44,9 +44,12 @@ public class Constants {
     //Gliding Ant
     public static final String MINIGAMES_GLIDING_ANT_LOGO = "minigames/glidingAnt/button_gliding_ant_400x400.png";
     public static final String MINIGAMES_GLIDING_ANT_LOGO_PRESSED = "minigames/glidingAnt/button_gliding_ant_pressed_400x400.png";
+    public static final String MINIGAMES_GLIDING_LBUG_LOGO = "minigames/glidingAnt/button_gliding_lbug_400x400.png";
+    public static final String MINIGAMES_GLIDING_LBUG_LOGO_PRESSED = "minigames/glidingAnt/button_gliding_lbug_pressed_400x400.png";
     public static final String MINIGAMES_GLIDING_ANT_FLOWER_BOTTOM = "minigames/glidingAnt/flowerBottom.png";
     public static final String MINIGAMES_GLIDING_ANT_FLOWER_TOP = "minigames/glidingAnt/flowerTop.png";
     public static final String MINIGAMES_GLIDING_ANT_SPRITE = "minigames/glidingAnt/glidingAnt_sprite_236x118.png";
+    public static final String MINIGAMES_GLIDING_LBUG_SPRITE = "minigames/glidingAnt/glidingAnt_joaninha_sprite_236x118.png";
     public static final String MINIGAMES_GLIDING_BACKGROUND = "minigames/glidingAnt/backgound_800x480.png";
     public static final String MINIGAMES_GLIDING_GROUND = "minigames/glidingAnt/ground_800x50.png";
 

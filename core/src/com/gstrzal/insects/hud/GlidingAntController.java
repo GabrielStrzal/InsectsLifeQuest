@@ -138,25 +138,6 @@ public class GlidingAntController {
         }
         stage.addActor(controlsBtn);
 
-        //Level Restart Button
-        levelRestartButtonTexture = assetManager.get(Constants.CONTROLLER_LEVEL_RESTART);
-        levelRestartButtonPressedTexture = assetManager.get(Constants.CONTROLLER_LEVEL_RESTART_PRESSED);
-
-        ImageButton levelRestartBtn = new ImageButton(
-                new TextureRegionDrawable(new TextureRegion(levelRestartButtonTexture)),
-                new TextureRegionDrawable(new TextureRegion(levelRestartButtonPressedTexture)));
-        levelRestartBtn.setPosition(BACK_BUTTON_X - (BUTTON_PADDING * 3), BACK_BUTTON_Y);
-        levelRestartBtn.setSize(BUTTON_SIZE,BUTTON_SIZE);
-        levelRestartBtn.addListener(new ActorGestureListener() {
-            @Override
-            public void touchDown(InputEvent event, float x, float y, int count, int button) {
-                super.touchDown(event, x, y, count, button);
-                ScreenManager.getInstance().showScreen(ScreenEnum.GLIDING_ANT_SCREEN, insects);
-            }
-        });
-        stage.addActor(levelRestartBtn);
-
-
 
         //Action Button
         actionButtonTexture = assetManager.get(Constants.CONTROLLER_ACTIONS);

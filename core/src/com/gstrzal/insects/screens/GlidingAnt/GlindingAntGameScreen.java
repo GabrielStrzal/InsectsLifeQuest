@@ -20,6 +20,7 @@ import com.gstrzal.insects.Insects;
 import com.gstrzal.insects.config.Constants;
 import com.gstrzal.insects.config.GameConfig;
 import com.gstrzal.insects.entity.GlidingAnt.GlidingAnt;
+import com.gstrzal.insects.entity.GlidingAnt.GlidingEntityType;
 import com.gstrzal.insects.entity.GlidingAnt.GlidingFlower;
 import com.gstrzal.insects.hud.GlidingAntController;
 import com.gstrzal.insects.utils.GdxUtils;
@@ -54,6 +55,8 @@ public class GlindingAntGameScreen extends ScreenAdapter {
     private final AssetManager assetManager;
     private GlidingAntController controller;
 
+    private GlidingEntityType entityType;
+
     private enum STATE {
         PLAYING, GAME_OVER
     }
@@ -66,10 +69,11 @@ public class GlindingAntGameScreen extends ScreenAdapter {
     private GlidingAnt glidingAnt;
     private Array<GlidingFlower> flowers = new Array<GlidingFlower>();
 
-    public GlindingAntGameScreen(Insects game) {
+    public GlindingAntGameScreen(Insects game, GlidingEntityType entityType) {
         this.game = game;
         this.assetManager = game.getAssetManager();
         controller = new GlidingAntController(game);
+        this.entityType = entityType;
     }
 
     @Override
@@ -92,8 +96,12 @@ public class GlindingAntGameScreen extends ScreenAdapter {
         ground = assetManager.get(Constants.MINIGAMES_GLIDING_GROUND);
         flowerBottom = assetManager.get(Constants.MINIGAMES_GLIDING_ANT_FLOWER_BOTTOM);
         flowerTop = assetManager.get(Constants.MINIGAMES_GLIDING_ANT_FLOWER_TOP);
-        glidingAntTexture = assetManager.get(Constants.MINIGAMES_GLIDING_ANT_SPRITE);
 
+        if (entityType == GlidingEntityType.LBUG){
+            glidingAntTexture = assetManager.get(Constants.MINIGAMES_GLIDING_LBUG_SPRITE);
+        }else{
+            glidingAntTexture = assetManager.get(Constants.MINIGAMES_GLIDING_ANT_SPRITE);
+        }
 
         glidingAnt = new GlidingAnt(glidingAntTexture);
         glidingAnt.setPosition(GameConfig.DISPLAY_SCREEN_WIDTH_PX / 4, GameConfig.DISPLAY_SCREEN_HEIGHT_PX / 2);
@@ -280,7 +288,8 @@ public class GlindingAntGameScreen extends ScreenAdapter {
     }
 
     private void checkForRestart() {
-        if (Gdx.input.isKeyPressed(Input.Keys.SPACE) || controller.isActionPressed()) {
+        if(Gdx.input.isKeyJustPressed(Input.Keys.ANY_KEY)
+                || Gdx.input.isTouched()){
             controller.setActionPressed(false);
             doRestart();
         }

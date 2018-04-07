@@ -16,6 +16,7 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.gstrzal.insects.Insects;
 import com.gstrzal.insects.config.Constants;
 import com.gstrzal.insects.config.GameConfig;
+import com.gstrzal.insects.entity.GlidingAnt.GlidingEntityType;
 import com.gstrzal.insects.tools.ScreenEnum;
 import com.gstrzal.insects.tools.ScreenManager;
 import com.gstrzal.insects.utils.GdxUtils;
@@ -31,6 +32,8 @@ public class MinigamesScreen extends ScreenAdapter {
     private Texture backButtonPressedTexture;
     private Texture glidingAntTexture;
     private Texture glidingAntPressedTexture;
+    private Texture glidingLBugTexture;
+    private Texture glidingLBugPressedTexture;
     private Texture blockedMiniGameTexture;
 
 
@@ -87,7 +90,22 @@ public class MinigamesScreen extends ScreenAdapter {
             public void touchDown(InputEvent event, float x, float y, int count,
                             int button) {
                 super.touchDown(event, x, y, count, button);
-                ScreenManager.getInstance().showScreen(ScreenEnum.GLIDING_ANT_SCREEN, game);
+                ScreenManager.getInstance().showScreen(ScreenEnum.GLIDING_ANT_SCREEN, game, GlidingEntityType.ANT);
+            }
+        });
+
+        //Gliding LBug Button
+        glidingLBugTexture = assetManager.get(Constants.MINIGAMES_GLIDING_LBUG_LOGO);
+        glidingLBugPressedTexture = assetManager.get(Constants.MINIGAMES_GLIDING_LBUG_LOGO_PRESSED);
+        ImageButton glidingLBug = new ImageButton(
+                new TextureRegionDrawable(new TextureRegion(glidingLBugTexture)),
+                new TextureRegionDrawable(new TextureRegion(glidingLBugPressedTexture)));
+        glidingLBug.addListener(new ActorGestureListener() {
+            @Override
+            public void touchDown(InputEvent event, float x, float y, int count,
+                                  int button) {
+                super.touchDown(event, x, y, count, button);
+                ScreenManager.getInstance().showScreen(ScreenEnum.GLIDING_ANT_SCREEN, game, GlidingEntityType.LBUG);
             }
         });
 
@@ -103,7 +121,8 @@ public class MinigamesScreen extends ScreenAdapter {
         table.setFillParent(true);
         table.center().padTop(400);
         table.add(glidingAnt).pad(50);
-        table.add(blockedMinigame).pad(50);
+        table.add(glidingLBug).pad(50);
+//        table.add(blockedMinigame).pad(50);
         stage.addActor(table);
 
 
