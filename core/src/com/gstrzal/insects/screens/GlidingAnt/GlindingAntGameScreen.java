@@ -74,6 +74,7 @@ public class GlindingAntGameScreen extends ScreenAdapter {
         this.assetManager = game.getAssetManager();
         controller = new GlidingAntController(game);
         this.entityType = entityType;
+        game.actionResolver.setTrackerScreenName("com.gstrzal.insects.screens.GlidingAnt.GlindingAntGameScreen");
     }
 
     @Override

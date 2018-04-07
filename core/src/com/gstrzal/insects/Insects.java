@@ -11,6 +11,7 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.utils.Logger;
 import com.gstrzal.insects.config.GameConfig;
+import com.gstrzal.insects.resolvers.ActionResolver;
 import com.gstrzal.insects.tools.AudioHandler;
 import com.gstrzal.insects.tools.GameStatsHandler;
 import com.gstrzal.insects.tools.ScreenEnum;
@@ -44,6 +45,12 @@ public class Insects extends Game {
 	private AudioHandler audioHandler;
 	public long backgroundAudioID;
 	private GameStatsHandler gameStatsHandler;
+
+	public ActionResolver actionResolver;
+
+	public Insects(ActionResolver actionResolver){
+		this.actionResolver = actionResolver;
+	}
 
 	@Override
 	public void create () {

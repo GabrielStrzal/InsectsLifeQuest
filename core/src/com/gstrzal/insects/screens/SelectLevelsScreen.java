@@ -70,6 +70,7 @@ public class SelectLevelsScreen extends ScreenAdapter {
         assetManager = game.getAssetManager();
         buttonList = new Array<Actor>();
         gameStatsHandler = game.getGameStatsHandler();
+        game.actionResolver.setTrackerScreenName("com.gstrzal.insects.screens.SelectLevelsScreen");
     }
 
     public void show() {

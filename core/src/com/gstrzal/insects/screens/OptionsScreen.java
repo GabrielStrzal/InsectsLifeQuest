@@ -49,6 +49,7 @@ public class OptionsScreen extends ScreenAdapter {
     public OptionsScreen(Insects game) {
         this.game = game;
         this.assetManager = game.getAssetManager();
+        game.actionResolver.setTrackerScreenName("com.gstrzal.insects.screens.OptionsScreen");
     }
 
     public void show() {

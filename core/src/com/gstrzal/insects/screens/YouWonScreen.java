@@ -43,6 +43,7 @@ public class YouWonScreen extends ScreenAdapter {
     public YouWonScreen(Insects game) {
         this.game = game;
         this.assetManager = game.getAssetManager();
+        game.actionResolver.setTrackerScreenName("com.gstrzal.insects.screens.YouWonScreen");
     }
 
     public void show() {

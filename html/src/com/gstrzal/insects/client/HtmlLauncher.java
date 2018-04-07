@@ -13,6 +13,7 @@ import com.google.gwt.event.logical.shared.ResizeHandler;
 import com.google.gwt.user.client.Window;
 import com.gstrzal.insects.Insects;
 import com.gstrzal.insects.config.GameConfig;
+import com.gstrzal.insects.resolvers.ActionResolverDummy;
 
 // Based on Benjamin Schulte (MrStahlfelge) and Dennis (kwlum) solutions for canvas resizing.
 // https://github.com/MrStahlfelge
@@ -37,7 +38,7 @@ public class HtmlLauncher extends GwtApplication {
     }
 
     public ApplicationListener createApplicationListener () {
-        return new Insects();
+        return new Insects(new ActionResolverDummy());
     }
 
     class ResizeListener implements ResizeHandler {

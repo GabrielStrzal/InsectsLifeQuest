@@ -42,6 +42,7 @@ public class InstructionsScreen extends ScreenAdapter {
     public InstructionsScreen(Insects game) {
         this.game = game;
         this.assetManager = game.getAssetManager();
+        game.actionResolver.setTrackerScreenName("com.gstrzal.insects.screens.InstructionsScreen");
     }
 
     public void show() {

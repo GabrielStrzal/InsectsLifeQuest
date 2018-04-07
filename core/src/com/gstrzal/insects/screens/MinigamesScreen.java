@@ -49,6 +49,7 @@ public class MinigamesScreen extends ScreenAdapter {
     public MinigamesScreen(Insects game) {
         this.game = game;
         this.assetManager = game.getAssetManager();
+        game.actionResolver.setTrackerScreenName("com.gstrzal.insects.screens.MinigamesScreen");
     }
 
     public void show() {

@@ -54,6 +54,7 @@ public class MenuScreen extends ScreenAdapter {
     public MenuScreen(Insects game) {
         this.game = game;
         this.assetManager = game.getAssetManager();
+        game.actionResolver.setTrackerScreenName("com.gstrzal.insects.screens.MenuScreen");
     }
 
     public void show() {

@@ -37,6 +37,7 @@ public class LoadingScreen extends ScreenAdapter{
     public LoadingScreen(Insects insects) {
         this.insects = insects;
         this.assetManager = insects.getAssetManager();
+        insects.actionResolver.setTrackerScreenName("com.gstrzal.insects.screens.LoadingScreen");
     }
     @Override
     public void resize(int width, int height) {
