@@ -154,38 +154,41 @@ public class SelectLevelsScreen extends ScreenAdapter {
         for(int row = 0; row< 3; row++) {
             for (int col = 0; col < 7; col++) {
                 ++levelNumber;
-                ImageTextButton levelImg;
-                ImageTextButton.ImageTextButtonStyle tempimgTxtBStyle = new ImageTextButton.ImageTextButtonStyle();
-                if(levelNumber <= gameStatsHandler.getTopCLearedLevel()) {
+                if(levelNumber<=GameConfig.GAME_MAX_LEVELS) {
+                    ImageTextButton levelImg;
+                    ImageTextButton.ImageTextButtonStyle tempimgTxtBStyle = new ImageTextButton.ImageTextButtonStyle();
+                    if (levelNumber <= gameStatsHandler.getTopCLearedLevel() && levelNumber <= GameConfig.GAME_MAX_LEVELS) {
 
-                    if(gameStatsHandler.getLevelSuccess(levelNumber) == 0)
-                        tempimgTxtBStyle = levelImgStyle_0;
-                    if(gameStatsHandler.getLevelSuccess(levelNumber) == 1)
-                        tempimgTxtBStyle = levelImgStyle_1;
-                    if(gameStatsHandler.getLevelSuccess(levelNumber) == 2)
-                        tempimgTxtBStyle = levelImgStyle_2;
-                    if(gameStatsHandler.getLevelSuccess(levelNumber) == 3)
-                        tempimgTxtBStyle = levelImgStyle_3;
+                        if (gameStatsHandler.getLevelSuccess(levelNumber) == 0)
+                            tempimgTxtBStyle = levelImgStyle_0;
+                        if (gameStatsHandler.getLevelSuccess(levelNumber) == 1)
+                            tempimgTxtBStyle = levelImgStyle_1;
+                        if (gameStatsHandler.getLevelSuccess(levelNumber) == 2)
+                            tempimgTxtBStyle = levelImgStyle_2;
+                        if (gameStatsHandler.getLevelSuccess(levelNumber) == 3)
+                            tempimgTxtBStyle = levelImgStyle_3;
 
-                    levelImg = new ImageTextButton(Integer.toString(levelNumber), tempimgTxtBStyle);
-                }else{
-                    levelImg = new ImageTextButton("", levelImgBlockedStyle);
-                }
-                levelImg.setName(Integer.toString(levelNumber));
-                buttonList.add(levelImg);
-
-                levelImg.addListener(new ActorGestureListener() {
-                    @Override
-                    public void touchDown(InputEvent event, float x, float y, int count,
-                                    int button) {
-                        super.touchDown(event, x, y, count, button);
-                        if(Integer.parseInt(event.getListenerActor().getName()) <= gameStatsHandler.getTopCLearedLevel()) {
-                            ScreenManager.getInstance().showScreen(ScreenEnum.GAME_SCREEN,
-                                    game, Integer.parseInt(event.getListenerActor().getName()));
-                        }
+                        levelImg = new ImageTextButton(Integer.toString(levelNumber), tempimgTxtBStyle);
+                    } else {
+                        levelImg = new ImageTextButton("", levelImgBlockedStyle);
                     }
-                });
-                table.add(levelImg).pad(25);
+                    levelImg.setName(Integer.toString(levelNumber));
+                    buttonList.add(levelImg);
+
+                    levelImg.addListener(new ActorGestureListener() {
+                        @Override
+                        public void touchDown(InputEvent event, float x, float y, int count,
+                                              int button) {
+                            super.touchDown(event, x, y, count, button);
+                            if (Integer.parseInt(event.getListenerActor().getName()) <= gameStatsHandler.getTopCLearedLevel()
+                                    && Integer.parseInt(event.getListenerActor().getName()) <= GameConfig.GAME_MAX_LEVELS) {
+                                ScreenManager.getInstance().showScreen(ScreenEnum.GAME_SCREEN,
+                                        game, Integer.parseInt(event.getListenerActor().getName()));
+                            }
+                        }
+                    });
+                    table.add(levelImg).pad(25);
+                }
             }
             table.row();
         }

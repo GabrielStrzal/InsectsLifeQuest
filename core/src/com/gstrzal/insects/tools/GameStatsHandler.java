@@ -11,8 +11,8 @@ import com.gstrzal.insects.Insects;
 public class GameStatsHandler {
 
     private Insects insects;
-    Preferences prefs = Gdx.app.getPreferences("insectsGameStats");
-    Preferences gameSettings = Gdx.app.getPreferences("insectsGameSettings");
+    Preferences prefs = Gdx.app.getPreferences("insectsGameStats_v1");
+    Preferences gameSettings = Gdx.app.getPreferences("insectsGameSettings_v1");
 
 
     public GameStatsHandler(Insects insects) {
