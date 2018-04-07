@@ -171,7 +171,7 @@ public class GlindingAntGameScreen extends ScreenAdapter {
     private void updateGlidingAnt(float delta){
         glidingAnt.update(delta);
         if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE) || Gdx.input.isKeyJustPressed(Input.Keys.UP)
-                || controller.isActionPressed()){
+                || controller.isActionPressed() || Gdx.input.justTouched()){
             glidingAnt.flyUp();
             game.getAudioHandler().playJumpSound();
             controller.setActionPressed(false);

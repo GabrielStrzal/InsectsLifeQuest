@@ -46,8 +46,6 @@ public class GlidingAntController {
     private Texture controlsButtonTexture;
     private Texture controlsButtonPressedTexture;
     private Texture controlsButtonCheckedTexture;
-    private Texture levelRestartButtonTexture;
-    private Texture levelRestartButtonPressedTexture;
     private AssetManager assetManager;
 
 

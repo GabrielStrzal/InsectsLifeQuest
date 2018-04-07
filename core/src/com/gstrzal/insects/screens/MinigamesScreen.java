@@ -114,15 +114,23 @@ public class MinigamesScreen extends ScreenAdapter {
 
         ImageButton blockedMinigame = new ImageButton(
                 new TextureRegionDrawable(new TextureRegion(blockedMiniGameTexture)));
-
-
+        ImageButton blockedMinigameDouble = new ImageButton(
+                new TextureRegionDrawable(new TextureRegion(blockedMiniGameTexture)));
 
         Table table = new Table();
         table.setFillParent(true);
         table.center().padTop(400);
-        table.add(glidingAnt).pad(50);
-        table.add(glidingLBug).pad(50);
-//        table.add(blockedMinigame).pad(50);
+        if(game.getGameStatsHandler().getTopCLearedLevel()>=10){
+            table.add(glidingAnt).pad(50);
+        }else{
+            table.add(blockedMinigame).pad(50);
+        }
+
+        if(game.getGameStatsHandler().getTopCLearedLevel()>=18) {
+            table.add(glidingLBug).pad(50);
+        }else {
+            table.add(blockedMinigameDouble).pad(50);
+        }
         stage.addActor(table);
 
 
