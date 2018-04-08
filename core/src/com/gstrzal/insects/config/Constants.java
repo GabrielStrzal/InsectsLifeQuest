@@ -132,6 +132,13 @@ public class Constants {
     public static final String LEVEL_16 = "levels/ins_level_16.tmx";
     public static final String LEVEL_17 = "levels/ins_level_17.tmx";
     public static final String LEVEL_18 = "levels/ins_level_18.tmx";
+    public static final String LEVEL_19 = "levels/ins_level_19.tmx";
+    public static final String LEVEL_20 = "levels/ins_level_20.tmx";
+    public static final String LEVEL_21 = "levels/ins_level_21.tmx";
+    public static final String LEVEL_22 = "levels/ins_level_22.tmx";
+    public static final String LEVEL_23 = "levels/ins_level_23.tmx";
+    public static final String LEVEL_24 = "levels/ins_level_24.tmx";
+    public static final String LEVEL_25 = "levels/ins_level_25.tmx";
     public static final String LEVEL = "levels/ins_level_";
     public static final String TMX = ".tmx";
 

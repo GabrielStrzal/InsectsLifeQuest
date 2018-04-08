@@ -25,8 +25,8 @@ import com.gstrzal.insects.utils.GdxUtils;
  */
 
 public class StoryScreen extends ScreenAdapter {
-    private static final int BACK_BUTTON_Y = ((int)GameConfig.SCREEN_HEIGHT_PX/7)*5;
-    private static final int BACK_BUTTON_X = ((int)GameConfig.SCREEN_WIDTH_PX/5)*4;
+    private static final float BACK_BUTTON_Y = ((int)GameConfig.DISPLAY_SCREEN_HEIGHT_PX)*.7f;
+    private static final float BACK_BUTTON_X = ((int)GameConfig.DISPLAY_SCREEN_WIDTH_PX)*.8f;
 
     private Texture skipButtonTexture;
 
@@ -61,14 +61,11 @@ public class StoryScreen extends ScreenAdapter {
     }
     public void render(float delta) {
         GdxUtils.clearScreen();
-        stage.act(delta);
-        stage.draw();
 
         checkTimePassed();
         checkAndShowScreen();
-        showSkipButton();
-
-
+        stage.act(delta);
+        stage.draw();
     }
 
     private void checkAndShowScreen() {
@@ -96,9 +93,14 @@ public class StoryScreen extends ScreenAdapter {
             case 5: {
                 ScreenManager.getInstance().showScreen(ScreenEnum.GAME_SCREEN, game, 1);
                 break;
-
             }
         }
+    }
+
+
+    @Override
+    public void dispose() {
+        stage.dispose();
     }
 
     private void checkTimePassed() {
@@ -108,17 +110,19 @@ public class StoryScreen extends ScreenAdapter {
         }
     }
 
-    @Override
-    public void dispose() {
-        stage.dispose();
+    private void showStoryScreen(String assetName){
+        Texture texture = assetManager.get(assetName);
+        Image textureImg = new Image(texture);
+        stage.addActor(textureImg);
+        showSkipButton();
     }
 
     private void showSkipButton() {
-        //Skip Button
         skipButtonTexture = assetManager.get(Constants.MENU_STORY_SKIP_BUTTON);
         ImageButton skipBtn = new ImageButton(
                 new TextureRegionDrawable(new TextureRegion(skipButtonTexture)));
-        skipBtn.setPosition(BACK_BUTTON_X, BACK_BUTTON_Y);
+        skipBtn.setHeight(skipButtonTexture.getHeight()*.15f);
+        skipBtn.setPosition(560, 400);
         skipBtn.addListener(new ActorGestureListener() {
             @Override
             public void touchDown(InputEvent event, float x, float y, int count,
@@ -128,12 +132,6 @@ public class StoryScreen extends ScreenAdapter {
             }
         });
         stage.addActor(skipBtn);
-    }
-
-    private void showStoryScreen(String assetName){
-        Texture texture = assetManager.get(assetName);
-        Image textureImg = new Image(texture);
-        stage.addActor(textureImg);
     }
 
 
