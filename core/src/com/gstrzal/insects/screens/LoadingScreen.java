@@ -142,6 +142,13 @@ public class LoadingScreen extends ScreenAdapter{
         assetManager.load(Constants.NEXT_ANT, Texture.class);
         assetManager.load(Constants.NEXT_BESOURO, Texture.class);
 
+        //Story
+        assetManager.load(Constants.STORY_01, Texture.class);
+        assetManager.load(Constants.STORY_02, Texture.class);
+        assetManager.load(Constants.STORY_03, Texture.class);
+        assetManager.load(Constants.STORY_04, Texture.class);
+        assetManager.load(Constants.STORY_05, Texture.class);
+
 
 
         //Info

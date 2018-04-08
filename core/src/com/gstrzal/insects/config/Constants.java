@@ -74,6 +74,13 @@ public class Constants {
     public static final String CONTROLLER_LEVEL_RESTART = "menu/button_restart_352x352.png";
     public static final String CONTROLLER_LEVEL_RESTART_PRESSED = "menu/button_restart_pressed_352x352.png";
 
+    //Story
+    public static final String STORY_01 = "story/insects_story_01_800x480.png";
+    public static final String STORY_02 = "story/insects_story_02_800x480.png";
+    public static final String STORY_03 = "story/insects_story_03_800x480.png";
+    public static final String STORY_04 = "story/insects_story_04_800x480.png";
+    public static final String STORY_05 = "story/insects_story_05_800x480.png";
+
 
 
     //Audios

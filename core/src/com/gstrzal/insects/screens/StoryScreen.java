@@ -25,7 +25,7 @@ import com.gstrzal.insects.utils.GdxUtils;
  */
 
 public class StoryScreen extends ScreenAdapter {
-    private static final int BACK_BUTTON_Y = ((int) GameConfig.SCREEN_HEIGHT_PX/7)*5;
+    private static final int BACK_BUTTON_Y = ((int)GameConfig.SCREEN_HEIGHT_PX/7)*5;
     private static final int BACK_BUTTON_X = ((int)GameConfig.SCREEN_WIDTH_PX/5)*4;
 
     private Texture skipButtonTexture;
@@ -50,7 +50,7 @@ public class StoryScreen extends ScreenAdapter {
     }
 
     public void show() {
-        stage = new Stage(new FitViewport(GameConfig.SCREEN_WIDTH_PX, GameConfig.SCREEN_HEIGHT_PX));
+        stage = new Stage(new FitViewport(GameConfig.DISPLAY_SCREEN_WIDTH_PX, GameConfig.DISPLAY_SCREEN_HEIGHT_PX));
         Gdx.input.setInputProcessor(stage);
 
     }
@@ -74,22 +74,26 @@ public class StoryScreen extends ScreenAdapter {
     private void checkAndShowScreen() {
         switch(screenNumber) {
             case 0:{
-                showStoryScreen(Constants.YOU_WON_BACKGROUND);
+                showStoryScreen(Constants.STORY_01);
                 break;
             }
             case 1: {
-                showStoryScreen(Constants.MENU_INSTRUCTIONS_BACKGROUND);
+                showStoryScreen(Constants.STORY_02);
                 break;
             }
             case 2: {
-                showStoryScreen(Constants.YOU_WON_BACKGROUND);
+                showStoryScreen(Constants.STORY_03);
                 break;
             }
             case 3: {
-                showStoryScreen(Constants.MENU_INSTRUCTIONS_BACKGROUND);
+                showStoryScreen(Constants.STORY_04);
                 break;
             }
             case 4: {
+                showStoryScreen(Constants.STORY_05);
+                break;
+            }
+            case 5: {
                 ScreenManager.getInstance().showScreen(ScreenEnum.GAME_SCREEN, game, 1);
                 break;
 
