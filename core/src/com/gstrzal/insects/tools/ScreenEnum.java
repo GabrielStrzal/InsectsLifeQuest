@@ -12,6 +12,7 @@ import com.gstrzal.insects.screens.MinigamesScreen;
 import com.gstrzal.insects.screens.OptionsScreen;
 import com.gstrzal.insects.screens.SelectLevelsScreen;
 import com.gstrzal.insects.screens.YouWonScreen;
+import com.gstrzal.insects.screens.enums.SelectLevelsType;
 
 /**
  * Based on http://www.pixnbgames.com/blog/libgdx/how-to-manage-screens-in-libgdx/
@@ -45,7 +46,7 @@ public enum ScreenEnum {
     },
     SELECT_LEVELS_SCREEM {
         public Screen getScreen(Object... params) {
-            return new SelectLevelsScreen((Insects)params[0]);
+            return new SelectLevelsScreen((Insects)params[0], (SelectLevelsType)params[1]);
         }
     },
     YOU_WON_SCREEM {

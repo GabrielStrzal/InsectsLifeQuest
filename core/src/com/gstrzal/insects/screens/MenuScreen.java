@@ -17,6 +17,7 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.gstrzal.insects.Insects;
 import com.gstrzal.insects.config.Constants;
 import com.gstrzal.insects.config.GameConfig;
+import com.gstrzal.insects.screens.enums.SelectLevelsType;
 import com.gstrzal.insects.tools.ScreenEnum;
 import com.gstrzal.insects.tools.ScreenManager;
 import com.gstrzal.insects.utils.GdxUtils;
@@ -139,7 +140,7 @@ public class MenuScreen extends ScreenAdapter {
             public void touchDown(InputEvent event, float x, float y, int count,
                             int button) {
                 super.touchDown(event, x, y, count, button);
-                ScreenManager.getInstance().showScreen(ScreenEnum.SELECT_LEVELS_SCREEM, game);
+                ScreenManager.getInstance().showScreen(ScreenEnum.SELECT_LEVELS_SCREEM, game, SelectLevelsType.ONE);
             }
         });
         stage.addActor(selectLevels);

@@ -22,6 +22,8 @@ public class Constants {
     public static final String MENU_MINIGAMES_PRESSED = "menu/button_minigames_pressed_700x196.png";
     public static final String MENU_SELECT_LEVEL_BACK_BUTTON = "menu/button_back_352x352.png";
     public static final String MENU_SELECT_LEVEL_BACK_BUTTON_PRESSED = "menu/button_back_pressed_352x352.png";
+    public static final String MENU_SELECT_LEVEL_RIGHT_BUTTON = "menu/button_right_200x200.png";
+    public static final String MENU_SELECT_LEVEL_LEFT_BUTTON = "menu/button_left_200x200.png";
     public static final String MENU_SELECT_LEVEL_BUTTON_0 = "menu/button_level_0_300x300.png";
     public static final String MENU_SELECT_LEVEL_BUTTON_0_PRESSED = "menu/button_level_pressed_0_300x300.png";
     public static final String MENU_SELECT_LEVEL_BUTTON_1 = "menu/button_level_1_300x300.png";

@@ -21,6 +21,7 @@ import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.gstrzal.insects.Insects;
 import com.gstrzal.insects.config.Constants;
 import com.gstrzal.insects.config.GameConfig;
+import com.gstrzal.insects.screens.enums.SelectLevelsType;
 import com.gstrzal.insects.tools.GameStatsHandler;
 import com.gstrzal.insects.tools.ScreenEnum;
 import com.gstrzal.insects.tools.ScreenManager;
@@ -41,6 +42,8 @@ public class SelectLevelsScreen extends ScreenAdapter {
     private Texture backgroundTexture;
     private Texture backButtonTexture;
     private Texture backButtonPressedTexture;
+    private Texture rightScreenButtonTexture;
+    private Texture leftScreenButtonTexture;
     private Texture levelButtonTexture_0;
     private Texture levelButtonPressedTexture_0;
     private Texture levelButtonTexture_1;
@@ -62,15 +65,23 @@ public class SelectLevelsScreen extends ScreenAdapter {
     public int levelNumber = 0;
 
     private GameStatsHandler gameStatsHandler;
+    private SelectLevelsType type;
+    private int numberOfLevelsPerScreen = 21;
 
 
 
-    public SelectLevelsScreen(Insects game) {
+    public SelectLevelsScreen(Insects game, SelectLevelsType type) {
         this.game = game;
         assetManager = game.getAssetManager();
         buttonList = new Array<Actor>();
         gameStatsHandler = game.getGameStatsHandler();
         game.actionResolver.setTrackerScreenName("com.gstrzal.insects.screens.SelectLevelsScreen");
+        this.type = type;
+        if(type == SelectLevelsType.TWO) {
+            levelNumber = numberOfLevelsPerScreen;
+        }else if(type == SelectLevelsType.THREE) {
+            levelNumber = numberOfLevelsPerScreen * 2;
+        }
     }
 
     public void show() {
@@ -80,23 +91,15 @@ public class SelectLevelsScreen extends ScreenAdapter {
         Image background = new Image(backgroundTexture);
         stage.addActor(background);
 
-        //Back Button
-        backButtonTexture = assetManager.get(Constants.MENU_SELECT_LEVEL_BACK_BUTTON);
-        backButtonPressedTexture = assetManager.get(Constants.MENU_SELECT_LEVEL_BACK_BUTTON_PRESSED);
-        ImageButton backBtn = new ImageButton(
-                new TextureRegionDrawable(new TextureRegion(backButtonTexture)),
-                new TextureRegionDrawable(new TextureRegion(backButtonPressedTexture)));
-        backBtn.setPosition(BACK_BUTTON_X, BACK_BUTTON_Y);
+        createBackButton();
 
-        backBtn.addListener(new ActorGestureListener() {
-            @Override
-            public void touchDown(InputEvent event, float x, float y, int count,
-                            int button) {
-                super.touchDown(event, x, y, count, button);
-                ScreenManager.getInstance().showScreen(ScreenEnum.MENU_SCREEN, game);
-            }
-        });
-        stage.addActor(backBtn);
+        if(type == SelectLevelsType.ONE) {
+            createRightScreenButton();
+        }else if(type == SelectLevelsType.TWO) {
+            createLeftScreenButton();
+        }
+
+
 
         //Table
         table = new Table();
@@ -197,6 +200,59 @@ public class SelectLevelsScreen extends ScreenAdapter {
 
         stage.addActor(table);
 
+    }
+
+    private void createBackButton() {
+        backButtonTexture = assetManager.get(Constants.MENU_SELECT_LEVEL_BACK_BUTTON);
+        backButtonPressedTexture = assetManager.get(Constants.MENU_SELECT_LEVEL_BACK_BUTTON_PRESSED);
+        ImageButton backBtn = new ImageButton(
+                new TextureRegionDrawable(new TextureRegion(backButtonTexture)),
+                new TextureRegionDrawable(new TextureRegion(backButtonPressedTexture)));
+        backBtn.setPosition(BACK_BUTTON_X, BACK_BUTTON_Y);
+
+        backBtn.addListener(new ActorGestureListener() {
+            @Override
+            public void touchDown(InputEvent event, float x, float y, int count,
+                                  int button) {
+                super.touchDown(event, x, y, count, button);
+                ScreenManager.getInstance().showScreen(ScreenEnum.MENU_SCREEN, game);
+            }
+        });
+        stage.addActor(backBtn);
+    }
+
+    private void createRightScreenButton() {
+        rightScreenButtonTexture = assetManager.get(Constants.MENU_SELECT_LEVEL_RIGHT_BUTTON);
+        ImageButton rightScreenBtn = new ImageButton(
+                new TextureRegionDrawable(new TextureRegion(rightScreenButtonTexture)));
+        rightScreenBtn.setPosition(GameConfig.SCREEN_WIDTH_PX - 300, GameConfig.SCREEN_HEIGHT_PX/2 - 100);
+
+        rightScreenBtn.addListener(new ActorGestureListener() {
+            @Override
+            public void touchDown(InputEvent event, float x, float y, int count,
+                                  int button) {
+                super.touchDown(event, x, y, count, button);
+                ScreenManager.getInstance().showScreen(ScreenEnum.SELECT_LEVELS_SCREEM, game, SelectLevelsType.TWO);
+            }
+        });
+        stage.addActor(rightScreenBtn);
+    }
+
+    private void createLeftScreenButton() {
+        leftScreenButtonTexture = assetManager.get(Constants.MENU_SELECT_LEVEL_LEFT_BUTTON);
+        ImageButton leftScreenBtn = new ImageButton(
+                new TextureRegionDrawable(new TextureRegion(leftScreenButtonTexture)));
+        leftScreenBtn.setPosition(100, GameConfig.SCREEN_HEIGHT_PX/2 - 100);
+
+        leftScreenBtn.addListener(new ActorGestureListener() {
+            @Override
+            public void touchDown(InputEvent event, float x, float y, int count,
+                                  int button) {
+                super.touchDown(event, x, y, count, button);
+                ScreenManager.getInstance().showScreen(ScreenEnum.SELECT_LEVELS_SCREEM, game, SelectLevelsType.ONE);
+            }
+        });
+        stage.addActor(leftScreenBtn);
     }
 
     public void resize(int width, int height) {
