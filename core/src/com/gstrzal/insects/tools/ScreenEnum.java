@@ -11,6 +11,7 @@ import com.gstrzal.insects.screens.MenuScreen;
 import com.gstrzal.insects.screens.MinigamesScreen;
 import com.gstrzal.insects.screens.OptionsScreen;
 import com.gstrzal.insects.screens.SelectLevelsScreen;
+import com.gstrzal.insects.screens.StoryScreen;
 import com.gstrzal.insects.screens.YouWonScreen;
 import com.gstrzal.insects.screens.enums.SelectLevelsType;
 
@@ -52,6 +53,11 @@ public enum ScreenEnum {
     YOU_WON_SCREEM {
         public Screen getScreen(Object... params) {
             return new YouWonScreen((Insects)params[0]);
+        }
+    },
+    STORY_SCREEN {
+        public Screen getScreen(Object... params) {
+            return new StoryScreen((Insects)params[0]);
         }
     },
     MINIGAMES_SCREEN {

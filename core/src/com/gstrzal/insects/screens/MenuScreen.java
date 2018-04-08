@@ -85,7 +85,7 @@ public class MenuScreen extends ScreenAdapter {
             public void touchDown(InputEvent event, float x, float y, int count,
                             int button) {
                 super.touchDown(event, x, y, count, button);
-                ScreenManager.getInstance().showScreen(ScreenEnum.GAME_SCREEN, game, 1);
+                ScreenManager.getInstance().showScreen(ScreenEnum.STORY_SCREEN, game);
             }
         });
         stage.addActor(play);

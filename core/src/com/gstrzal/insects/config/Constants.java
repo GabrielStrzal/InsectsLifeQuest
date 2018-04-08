@@ -33,6 +33,7 @@ public class Constants {
     public static final String MENU_SELECT_LEVEL_BUTTON_3 = "menu/button_level_3_300x300.png";
     public static final String MENU_SELECT_LEVEL_BUTTON_3_PRESSED = "menu/button_level_pressed_3_300x300.png";
     public static final String MENU_SELECT_LEVEL_BUTTON_BLOCKED = "menu/button_level_blocked_300x300.png";
+    public static final String MENU_STORY_SKIP_BUTTON = "menu/button_skip_352x352.png";
     public static final String GAME_OVER_POPUP = "menu/game_over_1504x360.png";
     public static final String LEVEL_CLEARED_POPUP_0 = "menu/level_cleared_0_1600x866.png";
     public static final String LEVEL_CLEARED_POPUP_1 = "menu/level_cleared_1_1600x866.png";

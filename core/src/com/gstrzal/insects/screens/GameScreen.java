@@ -79,7 +79,6 @@ public class GameScreen implements Screen{
     private B2WorldCreator b2World;
     private float numberOfFlowerInLevel;
     private boolean waitRestartComplete;
-    private long levelStopTime;
     private boolean isDirectionUp;
 
     //Next Insect
@@ -378,7 +377,6 @@ public class GameScreen implements Screen{
             game.currentLevel++;
             state = STATE.LEVEL_CLEARED;
             audioHandler.playEndLevelSound();
-            levelStopTime = System.currentTimeMillis();
         }
     }
     private void checkGameOver(){
@@ -386,7 +384,6 @@ public class GameScreen implements Screen{
             worldContactListener.setGameOver(false);
             state = STATE.GAME_OVER;
             audioHandler.playHitHurtSound();
-            levelStopTime = System.currentTimeMillis();
         }
 
     }
@@ -420,9 +417,6 @@ public class GameScreen implements Screen{
             insectPlayer.b2body.setTransform(b2World.warpAposition, insectPlayer.b2body.getAngle());
             audioHandler.playWarp();
         }
-    }
-    private void waitForRestart(int wait) {
-//        if(((System.currentTimeMillis() - levelStopTime) / 100) > wait)//5
     }
 
     private void doRestartIfGameOver() {
@@ -543,7 +537,6 @@ public class GameScreen implements Screen{
 
     @Override
     public void hide() {
-//        dispose();
 
     }
 

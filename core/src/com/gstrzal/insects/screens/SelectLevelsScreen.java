@@ -186,8 +186,12 @@ public class SelectLevelsScreen extends ScreenAdapter {
                             super.touchDown(event, x, y, count, button);
                             if (Integer.parseInt(event.getListenerActor().getName()) <= gameStatsHandler.getTopCLearedLevel()
                                     && Integer.parseInt(event.getListenerActor().getName()) <= GameConfig.GAME_MAX_LEVELS) {
-                                ScreenManager.getInstance().showScreen(ScreenEnum.GAME_SCREEN,
-                                        game, Integer.parseInt(event.getListenerActor().getName()));
+                                if(Integer.parseInt(event.getListenerActor().getName()) == 1){
+                                    ScreenManager.getInstance().showScreen(ScreenEnum.STORY_SCREEN, game);
+                                }else {
+                                    ScreenManager.getInstance().showScreen(ScreenEnum.GAME_SCREEN,
+                                            game, Integer.parseInt(event.getListenerActor().getName()));
+                                }
                             }
                         }
                     });

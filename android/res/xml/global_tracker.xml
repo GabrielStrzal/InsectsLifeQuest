@@ -34,6 +34,7 @@
     <screenName name="com.gstrzal.insects.screens.SelectLevelsScreen">Insects Level Selection Screen</screenName>
     <screenName name="com.gstrzal.insects.screens.YouWonScreen">Insects You Won Screen</screenName>
     <screenName name="com.gstrzal.insects.screens.GlidingAnt.GlindingAntGameScreen">Insects Mini Game Screen</screenName>
+    <screenName name="com.gstrzal.insects.screens.StoryScreen">Insects Story Screen</screenName>
 
     <!-- The following value should be replaced with correct property id. -->
     <string name="ga_trackingId">UA-117136841-1</string>
