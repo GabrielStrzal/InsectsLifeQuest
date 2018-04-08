@@ -1,8 +1,10 @@
-# InsectsPOC
-Insect’s Life Quest game proof of concept
+# Insect's Life Quest
+Insect’s Life Quest game
 
 <p>
   <img src="insects_menu.png">
 </p>
 
-[Game page on itch.io](https://gabrielstrzal.itch.io/insects-life-quest)
+[itch.io](https://gabrielstrzal.itch.io/insects-life-quest)
+
+[Google Play](https://play.google.com/store/apps/details?id=com.gstrzal.insects)
