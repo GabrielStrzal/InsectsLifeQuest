@@ -74,7 +74,7 @@ public class GlindingAntGameScreen extends ScreenAdapter {
         this.assetManager = game.getAssetManager();
         controller = new GlidingAntController(game);
         this.entityType = entityType;
-        game.actionResolver.setTrackerScreenName("com.gstrzal.insects.screens.GlidingAnt.GlindingAntGameScreen");
+        game.actionResolver.setTrackerScreenName("com.gstrzal.insects.screens.GlidingAnt.GlindingAntGameScreen_" + entityType.toString());
     }
 
     @Override
@@ -292,6 +292,8 @@ public class GlindingAntGameScreen extends ScreenAdapter {
         if(Gdx.input.isKeyJustPressed(Input.Keys.ANY_KEY)
                 || Gdx.input.isTouched()){
             controller.setActionPressed(false);
+            game.actionResolver.setTrackerScreenName("com.gstrzal.insects.screens.GlidingAnt.GlindingAntGameScreen_"
+                    + entityType.toString() + "_Death");
             doRestart();
         }
     }
