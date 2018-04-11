@@ -38,6 +38,7 @@ public class StoryScreen extends ScreenAdapter {
     private long levelStopTime;
     private int levelTime;
     private final int WAIT_TIME = 20;
+    private boolean waitOver = false;
 
     private int screenNumber = 0;
 
@@ -66,6 +67,9 @@ public class StoryScreen extends ScreenAdapter {
         checkAndShowScreen();
         stage.act(delta);
         stage.draw();
+        if(waitOver){
+            ScreenManager.getInstance().showScreen(ScreenEnum.GAME_SCREEN, game, 1);
+        }
     }
 
     private void checkAndShowScreen() {
@@ -90,8 +94,8 @@ public class StoryScreen extends ScreenAdapter {
                 showStoryScreen(Constants.STORY_05);
                 break;
             }
-            case 5: {
-                ScreenManager.getInstance().showScreen(ScreenEnum.GAME_SCREEN, game, 1);
+            default: {
+                waitOver = true;
                 break;
             }
         }
