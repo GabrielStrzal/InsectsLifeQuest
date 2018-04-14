@@ -512,6 +512,13 @@ public class GameScreen implements Screen{
             game.batch.draw(levelClearedTexture,
                     ((GameConfig.SCREEN_WIDTH_PX / Insects.PPM) / 2 - width / 2), ((GameConfig.SCREEN_HEIGHT_PX / Insects.PPM) / 2 - height / 2),
                     width, height);
+            if(game.currentLevel == GameConfig.GAME_FIRST_MINIGAME_AVAILABLE
+                    ||game.currentLevel == GameConfig.GAME_SECOND_MINIGAME_AVAILABLE){
+                Texture minigameUnlocked = assetManager.get(Constants.MINIGAME_UNLOCKED);
+                game.batch.draw(minigameUnlocked,
+                        0, ((GameConfig.SCREEN_HEIGHT_PX / Insects.PPM) - (minigameUnlocked.getHeight()*.8f)/Insects.PPM),
+                        (minigameUnlocked.getWidth()*.8f)/Insects.PPM, (minigameUnlocked.getHeight()*.8f)/Insects.PPM);
+            }
         }
     }
 

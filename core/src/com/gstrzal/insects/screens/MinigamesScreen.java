@@ -130,13 +130,13 @@ public class MinigamesScreen extends ScreenAdapter {
         Table table = new Table();
         table.setFillParent(true);
         table.center().padTop(400);
-        if(game.getGameStatsHandler().getTopCLearedLevel()>=10){
+        if(game.getGameStatsHandler().getTopCLearedLevel()>=GameConfig.GAME_FIRST_MINIGAME_AVAILABLE){
             table.add(glidingAnt).pad(50);
         }else{
             table.add(blockedAntMinigame).pad(50);
         }
 
-        if(game.getGameStatsHandler().getTopCLearedLevel()>=18) {
+        if(game.getGameStatsHandler().getTopCLearedLevel()>=GameConfig.GAME_SECOND_MINIGAME_AVAILABLE) {
             table.add(glidingLBug).pad(50);
         }else {
             table.add(blockedLBugMinigameDouble).pad(50);

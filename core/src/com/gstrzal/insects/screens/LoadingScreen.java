@@ -85,6 +85,7 @@ public class LoadingScreen extends ScreenAdapter{
         assetManager.load(Constants.LEVEL_CLEARED_POPUP_1, Texture.class);
         assetManager.load(Constants.LEVEL_CLEARED_POPUP_2, Texture.class);
         assetManager.load(Constants.LEVEL_CLEARED_POPUP_3, Texture.class);
+        assetManager.load(Constants.MINIGAME_UNLOCKED, Texture.class);
         assetManager.load(Constants.CONTROLLER_AUDIO, Texture.class);
         assetManager.load(Constants.CONTROLLER_AUDIO_PRESSED, Texture.class);
         assetManager.load(Constants.CONTROLLER_RIGHT, Texture.class);
