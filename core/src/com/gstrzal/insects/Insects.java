@@ -47,6 +47,7 @@ public class Insects extends Game {
 	private GameStatsHandler gameStatsHandler;
 
 	public ActionResolver actionResolver;
+	public boolean directionRight = true;
 
 	public Insects(ActionResolver actionResolver){
 		this.actionResolver = actionResolver;

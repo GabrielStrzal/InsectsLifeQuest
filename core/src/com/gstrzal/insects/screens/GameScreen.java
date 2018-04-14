@@ -205,9 +205,11 @@ public class GameScreen implements Screen{
         }
         if (Gdx.input.isKeyPressed(Input.Keys.RIGHT) || Gdx.input.isKeyPressed(Input.Keys.D)){
             isDirectionRight = true;
+            game.directionRight = true;
         }
         if (Gdx.input.isKeyPressed(Input.Keys.LEFT)|| Gdx.input.isKeyPressed(Input.Keys.A)){
             isDirectionRight = false;
+            game.directionRight = false;
         }
 
         //Character Change

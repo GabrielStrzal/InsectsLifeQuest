@@ -63,6 +63,8 @@ public class Controller {
     private static final float ACTION_BUTTON_WIDTH = 1500;
 
     private Insects insects;
+    final ImageButton rightBtn;
+    final ImageButton leftBtn;
 
 
     public Controller(final Insects insects){
@@ -183,8 +185,9 @@ public class Controller {
         //Right Button
         rightButtonTexture = assetManager.get(Constants.CONTROLLER_RIGHT);
         rightPressedButtonTexture = assetManager.get(Constants.CONTROLLER_RIGHT_PRESSED);
-        ImageButton rightBtn = new ImageButton(
+        rightBtn = new ImageButton(
                 new TextureRegionDrawable(new TextureRegion(rightButtonTexture)),
+                new TextureRegionDrawable(new TextureRegion(rightPressedButtonTexture)),
                 new TextureRegionDrawable(new TextureRegion(rightPressedButtonTexture)));
         rightBtn.setPosition(320, 10);
         rightBtn.setSize(BUTTON_SIZE*1.3f,BUTTON_SIZE*1.3f);
@@ -195,6 +198,7 @@ public class Controller {
                 super.touchDown(event, x, y, count, button);
                 rightPressed = true;
                 leftPressed = false;
+                insects.directionRight = true;
             }
         });
         stageGameControls.addActor(rightBtn);
@@ -203,8 +207,9 @@ public class Controller {
         //Left Button
         leftButtonTexture = assetManager.get(Constants.CONTROLLER_LEFT);
         leftPressedButtonTexture = assetManager.get(Constants.CONTROLLER_LEFT_PRESSED);
-        ImageButton leftBtn = new ImageButton(
+        leftBtn = new ImageButton(
                 new TextureRegionDrawable(new TextureRegion(leftButtonTexture)),
+                new TextureRegionDrawable(new TextureRegion(leftPressedButtonTexture)),
                 new TextureRegionDrawable(new TextureRegion(leftPressedButtonTexture)));
         leftBtn.setPosition(50, 10);
         leftBtn.setSize(BUTTON_SIZE*1.3f,BUTTON_SIZE*1.3f);
@@ -215,6 +220,7 @@ public class Controller {
                 super.touchDown(event, x, y, count, button);
                 leftPressed = true;
                 rightPressed = false;
+                insects.directionRight = false;
             }
         });
         stageGameControls.addActor(leftBtn);
@@ -248,6 +254,8 @@ public class Controller {
 
     public void draw(){
         stage.act(Gdx.graphics.getDeltaTime());
+        rightBtn.setChecked(insects.directionRight);
+        leftBtn.setChecked(!insects.directionRight);
         stage.draw();
         if(insects.getGameStatsHandler().isDisplayControllers()){
             stageGameControls.draw();
