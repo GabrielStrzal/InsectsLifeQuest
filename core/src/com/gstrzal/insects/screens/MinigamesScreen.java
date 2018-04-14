@@ -36,6 +36,7 @@ public class MinigamesScreen extends ScreenAdapter {
     private Texture glidingLBugPressedTexture;
     private Texture blockedAntMiniGameTexture;
     private Texture blockedLBugMiniGameTexture;
+    private Texture glidingBugs;
 
 
 
@@ -60,6 +61,12 @@ public class MinigamesScreen extends ScreenAdapter {
         backgroundTexture = assetManager.get(Constants.MENU_SELECT_LEVELS_BACKGROUND);
         Image background = new Image(backgroundTexture);
         stage.addActor(background);
+        //Gliding Bugs
+        glidingBugs = assetManager.get(Constants.MINIGAMES_GLIDING_BUGS);
+        Image glidingBugsImg = new Image(glidingBugs);
+        glidingBugsImg.setPosition(stage.getViewport().getWorldWidth()/2 -glidingBugsImg.getWidth()/2, 80);
+        stage.addActor(glidingBugsImg);
+
 
 
         //Back Button

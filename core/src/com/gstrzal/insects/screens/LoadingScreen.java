@@ -106,6 +106,7 @@ public class LoadingScreen extends ScreenAdapter{
         assetManager.load(Constants.MINIGAMES_GLIDING_LBUG_LOGO_PRESSED, Texture.class);
         assetManager.load(Constants.MINIGAMES_BLOCKED_ANT, Texture.class);
         assetManager.load(Constants.MINIGAMES_BLOCKED_LBUG, Texture.class);
+        assetManager.load(Constants.MINIGAMES_GLIDING_BUGS, Texture.class);
         assetManager.load(Constants.MINIGAMES_GLIDING_ANT_FLOWER_BOTTOM, Texture.class);
         assetManager.load(Constants.MINIGAMES_GLIDING_ANT_FLOWER_TOP, Texture.class);
         assetManager.load(Constants.MINIGAMES_GLIDING_ANT_SPRITE, Texture.class);
