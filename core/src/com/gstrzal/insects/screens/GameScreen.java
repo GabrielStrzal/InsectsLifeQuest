@@ -139,7 +139,7 @@ public class GameScreen implements Screen{
 //        bitmapFont = assetManager.get(Constants.GAME_FONT);
         bitmapFont = new BitmapFont();
 
-        controller = new Controller(game);
+        controller = new Controller(game, this);
 
         //Audio
         gameSoundID = audioHandler.playBackGroundMusic();
@@ -527,6 +527,14 @@ public class GameScreen implements Screen{
         if(debugGrid) {
             ViewportUtils.drawGrid(gamePort, renderer, 32);
         }
+    }
+
+    public float getNumberOfFlowerInLevel() {
+        return numberOfFlowerInLevel;
+    }
+
+    public float getNumberOfFlowersCollected() {
+        return numberOfFlowersCollected;
     }
 
     @Override

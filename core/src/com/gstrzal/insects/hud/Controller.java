@@ -5,10 +5,13 @@ import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.ImageButton;
+import com.badlogic.gdx.scenes.scene2d.ui.ImageTextButton;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.utils.ActorGestureListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.viewport.FitViewport;
@@ -16,6 +19,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import com.gstrzal.insects.Insects;
 import com.gstrzal.insects.config.Constants;
 import com.gstrzal.insects.config.GameConfig;
+import com.gstrzal.insects.screens.GameScreen;
 import com.gstrzal.insects.tools.ScreenEnum;
 import com.gstrzal.insects.tools.ScreenManager;
 
@@ -65,10 +69,15 @@ public class Controller {
     private Insects insects;
     final ImageButton rightBtn;
     final ImageButton leftBtn;
+    GameScreen gameScreen;
+    int currentLevel;
+    ImageTextButton levelStats;
 
 
-    public Controller(final Insects insects){
+    public Controller(final Insects insects, GameScreen gameScreen){
         this.insects = insects;
+        this.gameScreen = gameScreen;
+        currentLevel = insects.currentLevel;
         camera = new OrthographicCamera();
         viewport = new FitViewport(GameConfig.SCREEN_WIDTH_PX, GameConfig.SCREEN_HEIGHT_PX);
         stage = new Stage(viewport);
@@ -245,6 +254,22 @@ public class Controller {
         stageGameControls.addActor(actionBtn);
 
 
+        //level text
+        BitmapFont font = assetManager.get(Constants.GAME_FONT);
+        font.getData().setScale(3f);
+        Texture levelStatsTexture = assetManager.get(Constants.LEVEL_STATS_IN_GAME);
+
+        ImageTextButton.ImageTextButtonStyle levelStatsButtonStyle = new ImageTextButton.ImageTextButtonStyle(
+                new TextureRegionDrawable(new TextureRegion(levelStatsTexture)),
+                new TextureRegionDrawable(new TextureRegion(levelStatsTexture)),
+                new TextureRegionDrawable(new TextureRegion(levelStatsTexture)),
+                font);
+        levelStats = new ImageTextButton("Level: " + currentLevel +
+                " - Flowers: " + (int)gameScreen.getNumberOfFlowersCollected() + "/" +
+                (int)gameScreen.getNumberOfFlowerInLevel(), levelStatsButtonStyle);
+        levelStats.setPosition(50, BACK_BUTTON_Y);
+        levelStats.setSize(1400,BUTTON_SIZE);
+        stage.addActor(levelStats);
     }
 
     public void resize(int width, int height){
@@ -256,6 +281,9 @@ public class Controller {
         stage.act(Gdx.graphics.getDeltaTime());
         rightBtn.setChecked(insects.directionRight);
         leftBtn.setChecked(!insects.directionRight);
+        levelStats.setText("Level: " + currentLevel +
+                " - Flowers: " + (int)gameScreen.getNumberOfFlowersCollected() + "/" +
+                (int)gameScreen.getNumberOfFlowerInLevel());
         stage.draw();
         if(insects.getGameStatsHandler().isDisplayControllers()){
             stageGameControls.draw();
