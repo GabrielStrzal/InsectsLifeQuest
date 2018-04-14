@@ -57,7 +57,7 @@ public class Constants {
     public static final String MINIGAMES_GLIDING_ANT_FLOWER_TOP = "minigames/glidingAnt/flowerTop.png";
     public static final String MINIGAMES_GLIDING_ANT_SPRITE = "minigames/glidingAnt/glidingAnt_sprite_236x118.png";
     public static final String MINIGAMES_GLIDING_LBUG_SPRITE = "minigames/glidingAnt/glidingAnt_joaninha_sprite_236x118.png";
-    public static final String MINIGAMES_GLIDING_BACKGROUND = "minigames/glidingAnt/backgound_800x480.png";
+    public static final String MINIGAMES_GLIDING_BACKGROUND = "minigames/glidingAnt/background_800x480.png";
     public static final String MINIGAMES_GLIDING_GROUND = "minigames/glidingAnt/ground_800x50.png";
 
 
@@ -135,14 +135,14 @@ public class Constants {
     public static final String LEVEL_15 = "levels/ins_level_15.tmx";
     public static final String LEVEL_16 = "levels/ins_level_16.tmx";
     public static final String LEVEL_17 = "levels/ins_level_17.tmx";
-    public static final String LEVEL_18 = "levels/ins_level_18.tmx";
-    public static final String LEVEL_19 = "levels/ins_level_19.tmx";
-    public static final String LEVEL_20 = "levels/ins_level_20.tmx";
-    public static final String LEVEL_21 = "levels/ins_level_21.tmx";
-    public static final String LEVEL_22 = "levels/ins_level_22.tmx";
-    public static final String LEVEL_23 = "levels/ins_level_23.tmx";
-    public static final String LEVEL_24 = "levels/ins_level_24.tmx";
-    public static final String LEVEL_25 = "levels/ins_level_25.tmx";
+//    public static final String LEVEL_18 = "levels/ins_level_18.tmx";
+//    public static final String LEVEL_19 = "levels/ins_level_19.tmx";
+//    public static final String LEVEL_20 = "levels/ins_level_20.tmx";
+//    public static final String LEVEL_21 = "levels/ins_level_21.tmx";
+//    public static final String LEVEL_22 = "levels/ins_level_22.tmx";
+//    public static final String LEVEL_23 = "levels/ins_level_23.tmx";
+//    public static final String LEVEL_24 = "levels/ins_level_24.tmx";
+//    public static final String LEVEL_25 = "levels/ins_level_25.tmx";
     public static final String LEVEL = "levels/ins_level_";
     public static final String TMX = ".tmx";
 
@@ -150,8 +150,8 @@ public class Constants {
     public static final String INFO_IMAGE = "menu/info_";
     public static final String PNG = ".png";
     public static final String INFO_1 = "menu/info_1.png";
-    public static final String INFO_4 = "menu/info_4.png";
-    public static final String INFO_6 = "menu/info_6.png";
+    public static final String INFO_8 = "menu/info_8.png";
+    public static final String INFO_15 = "menu/info_15.png";
 
     //Tile Layers
     public static final String MAP_BLOCKS = "blocks";

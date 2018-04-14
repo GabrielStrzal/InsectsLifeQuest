@@ -133,14 +133,14 @@ public class LoadingScreen extends ScreenAdapter{
         assetManager.load(Constants.LEVEL_15, TiledMap.class);
         assetManager.load(Constants.LEVEL_16, TiledMap.class);
         assetManager.load(Constants.LEVEL_17, TiledMap.class);
-        assetManager.load(Constants.LEVEL_18, TiledMap.class);
-        assetManager.load(Constants.LEVEL_19, TiledMap.class);
-        assetManager.load(Constants.LEVEL_20, TiledMap.class);
-        assetManager.load(Constants.LEVEL_21, TiledMap.class);
-        assetManager.load(Constants.LEVEL_22, TiledMap.class);
-        assetManager.load(Constants.LEVEL_23, TiledMap.class);
-        assetManager.load(Constants.LEVEL_24, TiledMap.class);
-        assetManager.load(Constants.LEVEL_25, TiledMap.class);
+//        assetManager.load(Constants.LEVEL_18, TiledMap.class);
+//        assetManager.load(Constants.LEVEL_19, TiledMap.class);
+//        assetManager.load(Constants.LEVEL_20, TiledMap.class);
+//        assetManager.load(Constants.LEVEL_21, TiledMap.class);
+//        assetManager.load(Constants.LEVEL_22, TiledMap.class);
+//        assetManager.load(Constants.LEVEL_23, TiledMap.class);
+//        assetManager.load(Constants.LEVEL_24, TiledMap.class);
+//        assetManager.load(Constants.LEVEL_25, TiledMap.class);
         assetManager.load(Constants.JOANINHA, Texture.class);
         assetManager.load(Constants.BESOURO, Texture.class);
         assetManager.load(Constants.ANT, Texture.class);
@@ -164,8 +164,8 @@ public class LoadingScreen extends ScreenAdapter{
 
         //Info
         assetManager.load(Constants.INFO_1, Texture.class);
-        assetManager.load(Constants.INFO_4, Texture.class);
-        assetManager.load(Constants.INFO_6, Texture.class);
+        assetManager.load(Constants.INFO_8, Texture.class);
+        assetManager.load(Constants.INFO_15, Texture.class);
 
 
 
