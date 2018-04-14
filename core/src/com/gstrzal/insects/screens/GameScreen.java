@@ -349,7 +349,6 @@ public class GameScreen implements Screen{
 
         insectPlayer.draw(game.batch);
         drawGameOver();
-        drawLevelCleared();
         drawInfo();
         drawNextInsect();
 
@@ -359,6 +358,7 @@ public class GameScreen implements Screen{
 
         game.batch.begin();
         drawUnableJumpButton();
+        drawLevelCleared();
         game.batch.end();
     }
 
