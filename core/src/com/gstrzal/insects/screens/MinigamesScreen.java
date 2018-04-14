@@ -34,7 +34,8 @@ public class MinigamesScreen extends ScreenAdapter {
     private Texture glidingAntPressedTexture;
     private Texture glidingLBugTexture;
     private Texture glidingLBugPressedTexture;
-    private Texture blockedMiniGameTexture;
+    private Texture blockedAntMiniGameTexture;
+    private Texture blockedLBugMiniGameTexture;
 
 
 
@@ -111,12 +112,13 @@ public class MinigamesScreen extends ScreenAdapter {
         });
 
         //Blocked Button
-        blockedMiniGameTexture = assetManager.get(Constants.MINIGAMES_BLOCKED);
+        blockedAntMiniGameTexture = assetManager.get(Constants.MINIGAMES_BLOCKED_ANT);
+        blockedLBugMiniGameTexture = assetManager.get(Constants.MINIGAMES_BLOCKED_LBUG);
 
-        ImageButton blockedMinigame = new ImageButton(
-                new TextureRegionDrawable(new TextureRegion(blockedMiniGameTexture)));
-        ImageButton blockedMinigameDouble = new ImageButton(
-                new TextureRegionDrawable(new TextureRegion(blockedMiniGameTexture)));
+        ImageButton blockedAntMinigame = new ImageButton(
+                new TextureRegionDrawable(new TextureRegion(blockedAntMiniGameTexture)));
+        ImageButton blockedLBugMinigameDouble = new ImageButton(
+                new TextureRegionDrawable(new TextureRegion(blockedLBugMiniGameTexture)));
 
         Table table = new Table();
         table.setFillParent(true);
@@ -124,13 +126,13 @@ public class MinigamesScreen extends ScreenAdapter {
         if(game.getGameStatsHandler().getTopCLearedLevel()>=10){
             table.add(glidingAnt).pad(50);
         }else{
-            table.add(blockedMinigame).pad(50);
+            table.add(blockedAntMinigame).pad(50);
         }
 
         if(game.getGameStatsHandler().getTopCLearedLevel()>=18) {
             table.add(glidingLBug).pad(50);
         }else {
-            table.add(blockedMinigameDouble).pad(50);
+            table.add(blockedLBugMinigameDouble).pad(50);
         }
         stage.addActor(table);
 

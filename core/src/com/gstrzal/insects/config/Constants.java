@@ -43,7 +43,8 @@ public class Constants {
 
 
     //Minigames
-    public static final String MINIGAMES_BLOCKED = "minigames/button_level_blocked_400x400.png";
+    public static final String MINIGAMES_BLOCKED_ANT = "minigames/button_level_blocked_ant_400x400.png";
+    public static final String MINIGAMES_BLOCKED_LBUG = "minigames/button_level_blocked_lbug_400x400.png";
     //Gliding Ant
     public static final String MINIGAMES_GLIDING_ANT_LOGO = "minigames/glidingAnt/button_gliding_ant_400x400.png";
     public static final String MINIGAMES_GLIDING_ANT_LOGO_PRESSED = "minigames/glidingAnt/button_gliding_ant_pressed_400x400.png";
