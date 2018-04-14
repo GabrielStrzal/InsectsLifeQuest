@@ -31,6 +31,7 @@ public class Controller {
     Viewport viewport;
     Stage stage;
     Stage stageGameControls;
+    Stage actionButtonScreenStage;
     private boolean rightPressed;
     private boolean leftPressed;
     private boolean actionPressed;
@@ -82,9 +83,11 @@ public class Controller {
         viewport = new FitViewport(GameConfig.SCREEN_WIDTH_PX, GameConfig.SCREEN_HEIGHT_PX);
         stage = new Stage(viewport);
         stageGameControls = new Stage(viewport);
+        actionButtonScreenStage = new Stage(viewport);
         InputMultiplexer inputMultiplexer = new InputMultiplexer();
         inputMultiplexer.addProcessor(stage);
         inputMultiplexer.addProcessor(stageGameControls);
+        inputMultiplexer.addProcessor(actionButtonScreenStage);
         Gdx.input.setInputProcessor(inputMultiplexer);
         assetManager = insects.getAssetManager();
 
@@ -270,6 +273,15 @@ public class Controller {
         levelStats.setPosition(50, BACK_BUTTON_Y);
         levelStats.setSize(1400,BUTTON_SIZE);
         stage.addActor(levelStats);
+
+        actionButtonScreenStage.addListener(new ActorGestureListener() {
+            @Override
+            public void touchDown(InputEvent event, float x, float y, int count, int button) {
+                super.touchDown(event, x, y, count, button);
+                if(y > 280 && y < BACK_BUTTON_Y)
+                actionPressed = true;
+            }
+        });
     }
 
     public void resize(int width, int height){
