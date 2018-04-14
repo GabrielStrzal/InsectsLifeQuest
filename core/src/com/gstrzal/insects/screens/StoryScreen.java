@@ -1,6 +1,7 @@
 package com.gstrzal.insects.screens;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.Texture;
@@ -67,7 +68,7 @@ public class StoryScreen extends ScreenAdapter {
         checkAndShowScreen();
         stage.act(delta);
         stage.draw();
-        if(waitOver){
+        if(Gdx.input.isKeyJustPressed(Input.Keys.ANY_KEY) || waitOver){
             ScreenManager.getInstance().showScreen(ScreenEnum.GAME_SCREEN, game, 1);
         }
     }
@@ -117,6 +118,13 @@ public class StoryScreen extends ScreenAdapter {
     private void showStoryScreen(String assetName){
         Texture texture = assetManager.get(assetName);
         Image textureImg = new Image(texture);
+        textureImg.addListener(new ActorGestureListener() {
+            @Override
+            public void touchDown(InputEvent event, float x, float y, int count, int button) {
+                super.touchDown(event, x, y, count, button);
+                waitOver = true;
+            }
+        });
         stage.addActor(textureImg);
         showSkipButton();
     }

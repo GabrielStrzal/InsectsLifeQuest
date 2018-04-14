@@ -108,6 +108,7 @@ public class GameScreen implements Screen{
     public GameScreen(Insects game, int level){
 
         this.game = game;
+        game.directionRight = true;
         game.actionResolver.setTrackerScreenName("com.gstrzal.insects.screens.GameScreen_" + level);
         this.assetManager = game.getAssetManager();
         this.audioHandler = game.getAudioHandler();
