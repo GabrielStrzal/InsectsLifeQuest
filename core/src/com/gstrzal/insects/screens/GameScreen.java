@@ -72,6 +72,8 @@ public class GameScreen implements Screen{
     private float gravity = -10f;
     private float jumpSpeed = 250f;
 
+    private float accumulator = 0;
+
     //camera debug
     private DebugCameraController debugCameraController;
 
@@ -158,7 +160,13 @@ public class GameScreen implements Screen{
     }
 
     public void update(float dt){
-        world.step(1/60f, 6, 2);
+
+        final float frameTime = Math.min(dt, 0.25f);
+        accumulator += frameTime;
+        while (accumulator >= 1f / 60f) {
+            world.step(1f / 60f, 6, 2);
+            accumulator -= 1f / 60f;
+        }
 
         collectFlowers();
         handleInput(dt);
