@@ -94,12 +94,13 @@ public class SelectLevelsScreen extends ScreenAdapter {
         createBackButton();
 
         if(type == SelectLevelsType.ONE) {
-            createRightScreenButton();
+            createRightScreenButton(SelectLevelsType.TWO);
         }else if(type == SelectLevelsType.TWO) {
-            createLeftScreenButton();
+            createLeftScreenButton(SelectLevelsType.ONE);
+            createRightScreenButton(SelectLevelsType.THREE);
+        }else if(type == SelectLevelsType.THREE) {
+            createLeftScreenButton(SelectLevelsType.TWO);
         }
-
-
 
         //Table
         table = new Table();
@@ -225,7 +226,7 @@ public class SelectLevelsScreen extends ScreenAdapter {
         stage.addActor(backBtn);
     }
 
-    private void createRightScreenButton() {
+    private void createRightScreenButton(final SelectLevelsType levelsType) {
         rightScreenButtonTexture = assetManager.get(Constants.MENU_SELECT_LEVEL_RIGHT_BUTTON);
         ImageButton rightScreenBtn = new ImageButton(
                 new TextureRegionDrawable(new TextureRegion(rightScreenButtonTexture)));
@@ -236,13 +237,13 @@ public class SelectLevelsScreen extends ScreenAdapter {
             public void touchDown(InputEvent event, float x, float y, int count,
                                   int button) {
                 super.touchDown(event, x, y, count, button);
-                ScreenManager.getInstance().showScreen(ScreenEnum.SELECT_LEVELS_SCREEM, game, SelectLevelsType.TWO);
+                ScreenManager.getInstance().showScreen(ScreenEnum.SELECT_LEVELS_SCREEM, game, levelsType);
             }
         });
         stage.addActor(rightScreenBtn);
     }
 
-    private void createLeftScreenButton() {
+    private void createLeftScreenButton(final SelectLevelsType levelsType) {
         leftScreenButtonTexture = assetManager.get(Constants.MENU_SELECT_LEVEL_LEFT_BUTTON);
         ImageButton leftScreenBtn = new ImageButton(
                 new TextureRegionDrawable(new TextureRegion(leftScreenButtonTexture)));
@@ -253,7 +254,7 @@ public class SelectLevelsScreen extends ScreenAdapter {
             public void touchDown(InputEvent event, float x, float y, int count,
                                   int button) {
                 super.touchDown(event, x, y, count, button);
-                ScreenManager.getInstance().showScreen(ScreenEnum.SELECT_LEVELS_SCREEM, game, SelectLevelsType.ONE);
+                ScreenManager.getInstance().showScreen(ScreenEnum.SELECT_LEVELS_SCREEM, game, levelsType);
             }
         });
         stage.addActor(leftScreenBtn);

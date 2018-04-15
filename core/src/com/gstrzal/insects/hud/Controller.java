@@ -271,7 +271,7 @@ public class Controller {
                 " - Flowers: " + (int)gameScreen.getNumberOfFlowersCollected() + "/" +
                 (int)gameScreen.getNumberOfFlowerInLevel(), levelStatsButtonStyle);
         levelStats.setPosition(50, BACK_BUTTON_Y);
-        levelStats.setSize(1400,BUTTON_SIZE);
+        levelStats.setSize(1450, BUTTON_SIZE);
         stage.addActor(levelStats);
 
         actionButtonScreenStage.addListener(new ActorGestureListener() {

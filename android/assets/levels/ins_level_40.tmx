@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" tiledversion="1.1.1" orientation="orthogonal" renderorder="right-down" width="25" height="15" tilewidth="128" tileheight="128" infinite="0" nextobjectid="84">
+ <tileset firstgid="1" source="tiles_128x128.tsx"/>
+ <tileset firstgid="37" source="tiles_128x128_green.tsx"/>
+ <tileset firstgid="73" source="tiles_128x128_purple.tsx"/>
+ <tileset firstgid="109" source="tiles_128x128_orange.tsx"/>
+ <tileset firstgid="145" source="tiles_oil_128x128.tsx"/>
+ <tileset firstgid="185" source="tiles_128x128_vines.tsx"/>
+ <layer name="graphics" width="25" height="15">
+  <data encoding="base64">
+   AQAAAAEAAAABAAAAdQAAAAEAAAABAAAAAQAAAAEAAAB0AAAAAQAAAAEAAAABAAAAdQAAAAEAAAABAAAAdQAAAAEAAAABAAAAAQAAAHQAAAABAAAAAQAAAAEAAAABAAAAAQAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAB0AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAdQAAAAAAAACvAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAEAAABtAAAAbQAAAG0AAABtAAAAbQAAAHAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAbwAAAG0AAABtAAAAbQAAAG0AAABtAAAAcAAAAAAAAAAAAAAAAAAAAAAAAAB/AAAAgAAAAAAAAAAAAAAAAAAAAAAAAAB0AAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB/AAAAjwAAAHcAAAAAAAAAAAAAAAAAAAALAAAAAQAAAHQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB/AAAAhQAAAG4AAACGAAAAbQAAAG0AAABtAAAAbQAAAI8AAAABAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAH8AAABtAAAAjwAAAHcAAAAAAAAAiAAAAG4AAABuAAAAbgAAAG4AAACGAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAH8AAACFAAAAbgAAAG4AAACJAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAdgAAAHQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB/AAAAgAAAAAAAAAB2AAAAdwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHYAAAB1AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAB/AAAAjwAAAI4AAABtAAAAjwAAAHcAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAH8AAACAAAAAAAAAAK8AAAB2AAAAAQAAAAAAAAAAAAAAAAAAAAAAAAB/AAAAgAAAAAAAAAB/AAAAjwAAAHQAAAB0AAAAKQAAAHQAAACOAAAAbQAAAG0AAABtAAAAbQAAAG0AAACPAAAAjgAAAG0AAABtAAAAjwAAAAEAAABtAAAAbQAAAG0AAABtAAAAjwAAAI4AAABtAAAAjwAAAHUAAAB0AAAAdQAAAHQAAAB1AAAAdQAAAHUAAAB1AAAAAQAAAHQAAAABAAAAdQAAAAEAAAABAAAAdAAAAAEAAAABAAAAAQAAAHUAAAABAAAAdAAAAHUAAAABAAAAAQAAAAEAAAABAAAAAQAAAHUAAAABAAAAAQAAAAEAAAABAAAAdQAAAAEAAAABAAAAdQAAAAEAAAB0AAAAAQAAAHUAAAABAAAA
+  </data>
+ </layer>
+ <objectgroup name="info"/>
+ <objectgroup name="blocks">
+  <object id="1" x="8" y="1663.88" width="3196" height="248.122"/>
+  <object id="2" x="3072" y="4" width="112" height="1696"/>
+  <object id="3" x="64" y="52" width="64" height="1684"/>
+  <object id="4" x="8" y="4" width="3172" height="120"/>
+  <object id="58" x="128" y="512" width="768" height="128"/>
+  <object id="59" x="896" y="640" width="896" height="128"/>
+  <object id="60" x="640" y="1536" width="249.667" height="128"/>
+  <object id="61" x="1030.33" y="1536" width="121.667" height="128"/>
+  <object id="62" x="1152" y="1408" width="128" height="128"/>
+  <object id="63" x="1280" y="1280" width="256" height="128"/>
+  <object id="64" x="1536" y="1408" width="128" height="128"/>
+  <object id="65" x="1664" y="1152" width="128" height="384"/>
+  <object id="66" x="1792" y="1024" width="256" height="128"/>
+  <object id="67" x="2048" y="896" width="1024" height="128"/>
+  <object id="68" x="2176" y="768" width="128" height="128"/>
+  <object id="69" x="2304" y="640" width="256" height="256"/>
+  <object id="72" x="2432" y="1024" width="640" height="128"/>
+  <object id="73" x="2560" y="1408" width="256" height="128"/>
+  <object id="74" x="1920" y="1536" width="1152" height="128"/>
+  <object id="75" x="1792" y="1152" width="128" height="384"/>
+  <object id="76" x="1920" y="1152" width="384" height="128"/>
+  <object id="77" x="2176" y="1024" width="128" height="128"/>
+ </objectgroup>
+ <objectgroup name="slope"/>
+ <objectgroup name="passBlock"/>
+ <objectgroup name="flowers">
+  <object id="24" x="774.667" y="347.031" width="69.697" height="69.697">
+   <ellipse/>
+  </object>
+  <object id="26" x="480.975" y="350.061" width="69.697" height="69.697">
+   <ellipse/>
+  </object>
+  <object id="27" x="1127.28" y="479.638" width="69.697" height="69.697">
+   <ellipse/>
+  </object>
+  <object id="29" x="2659.76" y="716.486" width="69.697" height="69.697">
+   <ellipse/>
+  </object>
+  <object id="30" x="2402.19" y="465.335" width="69.697" height="69.697">
+   <ellipse/>
+  </object>
+  <object id="54" x="1560.61" y="1255.4" width="69.697" height="69.697">
+   <ellipse/>
+  </object>
+  <object id="55" x="1360.61" y="1085.7" width="69.697" height="69.697">
+   <ellipse/>
+  </object>
+  <object id="56" x="1881.82" y="840.244" width="69.697" height="69.697">
+   <ellipse/>
+  </object>
+  <object id="57" x="1496.97" y="479.638" width="69.697" height="69.697">
+   <ellipse/>
+  </object>
+  <object id="80" x="2004.97" y="1371.64" width="69.697" height="69.697">
+   <ellipse/>
+  </object>
+  <object id="81" x="2156.97" y="1355.64" width="69.697" height="69.697">
+   <ellipse/>
+  </object>
+  <object id="82" x="2324.97" y="1383.64" width="69.697" height="69.697">
+   <ellipse/>
+  </object>
+  <object id="83" x="2596.97" y="1259.64" width="69.697" height="69.697">
+   <ellipse/>
+  </object>
+ </objectgroup>
+ <objectgroup name="end">
+  <object id="44" x="2998.62" y="829.97">
+   <ellipse/>
+  </object>
+ </objectgroup>
+ <objectgroup name="pushBlocks"/>
+ <objectgroup name="warp_a">
+  <object id="78" x="279" y="412" width="74" height="72">
+   <ellipse/>
+  </object>
+ </objectgroup>
+ <objectgroup name="warp_b">
+  <object id="79" x="2971" y="1436" width="74" height="72">
+   <ellipse/>
+  </object>
+ </objectgroup>
+</map>
