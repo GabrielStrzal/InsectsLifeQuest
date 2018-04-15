@@ -22,7 +22,7 @@ public class GameConfig {
     public static final int GAME_FIRST_MINIGAME_AVAILABLE = 22; //
     public static final int GAME_SECOND_MINIGAME_AVAILABLE = 43; //
 
-    public static final String GAME_VERSION = "V.0.5";
+    public static final String GAME_VERSION = "V.1.0";
 
     public static final boolean debug = false;
 
