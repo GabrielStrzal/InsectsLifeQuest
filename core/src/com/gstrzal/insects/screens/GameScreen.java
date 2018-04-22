@@ -334,20 +334,20 @@ public class GameScreen implements Screen{
         if(GameConfig.debug) {
             b2dr.render(world, b2dcam.combined);
         }
-        draw();
+        draw(delta);
 
         renderDebug();
         doRestartIfGameOver();
         changeLevelIfLevelCompleted();
     }
 
-    private void draw() {
+    private void draw(float delta) {
         game.batch.setProjectionMatrix(b2dcam.combined);
         game.batch.begin();
 
         // draw flowers
         for(int i = 0; i < b2World.flowers.size; i++) {
-            b2World.flowers.get(i).render(game.batch);
+            b2World.flowers.get(i).render(game.batch, delta);
         }
         // draw boxes
         for(int i = 0; i < b2World.pushBoxes.size; i++) {
