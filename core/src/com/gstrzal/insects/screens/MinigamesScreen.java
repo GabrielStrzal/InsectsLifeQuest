@@ -78,9 +78,9 @@ public class MinigamesScreen extends ScreenAdapter {
         backBtn.setPosition(BACK_BUTTON_X, BACK_BUTTON_Y);
         backBtn.addListener(new ActorGestureListener() {
             @Override
-            public void touchDown(InputEvent event, float x, float y, int count,
+            public void tap(InputEvent event, float x, float y, int count,
                             int button) {
-                super.touchDown(event, x, y, count, button);
+                super.tap(event, x, y, count, button);
                 ScreenManager.getInstance().showScreen(ScreenEnum.MENU_SCREEN, game);
             }
         });

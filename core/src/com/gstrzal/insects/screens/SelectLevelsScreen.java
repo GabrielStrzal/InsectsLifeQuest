@@ -43,7 +43,9 @@ public class SelectLevelsScreen extends ScreenAdapter {
     private Texture backButtonTexture;
     private Texture backButtonPressedTexture;
     private Texture rightScreenButtonTexture;
+    private Texture rightScreenButtonPressedTexture;
     private Texture leftScreenButtonTexture;
+    private Texture leftScreenButtonPressedTexture;
     private Texture levelButtonTexture_0;
     private Texture levelButtonPressedTexture_0;
     private Texture levelButtonTexture_1;
@@ -182,9 +184,9 @@ public class SelectLevelsScreen extends ScreenAdapter {
 
                     levelImg.addListener(new ActorGestureListener() {
                         @Override
-                        public void touchDown(InputEvent event, float x, float y, int count,
+                        public void tap(InputEvent event, float x, float y, int count,
                                               int button) {
-                            super.touchDown(event, x, y, count, button);
+                            super.tap(event, x, y, count, button);
                             if (Integer.parseInt(event.getListenerActor().getName()) <= gameStatsHandler.getTopCLearedLevel()
                                     && Integer.parseInt(event.getListenerActor().getName()) <= GameConfig.GAME_MAX_LEVELS) {
                                 if(Integer.parseInt(event.getListenerActor().getName()) == 1){
@@ -217,9 +219,9 @@ public class SelectLevelsScreen extends ScreenAdapter {
 
         backBtn.addListener(new ActorGestureListener() {
             @Override
-            public void touchDown(InputEvent event, float x, float y, int count,
+            public void tap(InputEvent event, float x, float y, int count,
                                   int button) {
-                super.touchDown(event, x, y, count, button);
+                super.tap(event, x, y, count, button);
                 ScreenManager.getInstance().showScreen(ScreenEnum.MENU_SCREEN, game);
             }
         });
@@ -228,15 +230,17 @@ public class SelectLevelsScreen extends ScreenAdapter {
 
     private void createRightScreenButton(final SelectLevelsType levelsType) {
         rightScreenButtonTexture = assetManager.get(Constants.MENU_SELECT_LEVEL_RIGHT_BUTTON);
+        rightScreenButtonPressedTexture = assetManager.get(Constants.MENU_SELECT_LEVEL_RIGHT_PRESSED_BUTTON);
         ImageButton rightScreenBtn = new ImageButton(
-                new TextureRegionDrawable(new TextureRegion(rightScreenButtonTexture)));
+                new TextureRegionDrawable(new TextureRegion(rightScreenButtonTexture)),
+                new TextureRegionDrawable(new TextureRegion(rightScreenButtonPressedTexture)));
         rightScreenBtn.setPosition(GameConfig.SCREEN_WIDTH_PX - 300, GameConfig.SCREEN_HEIGHT_PX/2 - 100);
 
         rightScreenBtn.addListener(new ActorGestureListener() {
             @Override
-            public void touchDown(InputEvent event, float x, float y, int count,
+            public void tap(InputEvent event, float x, float y, int count,
                                   int button) {
-                super.touchDown(event, x, y, count, button);
+                super.tap(event, x, y, count, button);
                 ScreenManager.getInstance().showScreen(ScreenEnum.SELECT_LEVELS_SCREEM, game, levelsType);
             }
         });
@@ -245,15 +249,17 @@ public class SelectLevelsScreen extends ScreenAdapter {
 
     private void createLeftScreenButton(final SelectLevelsType levelsType) {
         leftScreenButtonTexture = assetManager.get(Constants.MENU_SELECT_LEVEL_LEFT_BUTTON);
+        leftScreenButtonPressedTexture = assetManager.get(Constants.MENU_SELECT_LEVEL_LEFT_PRESSED_BUTTON);
         ImageButton leftScreenBtn = new ImageButton(
-                new TextureRegionDrawable(new TextureRegion(leftScreenButtonTexture)));
+                new TextureRegionDrawable(new TextureRegion(leftScreenButtonTexture)),
+                new TextureRegionDrawable(new TextureRegion(leftScreenButtonPressedTexture)));
         leftScreenBtn.setPosition(100, GameConfig.SCREEN_HEIGHT_PX/2 - 100);
 
         leftScreenBtn.addListener(new ActorGestureListener() {
             @Override
-            public void touchDown(InputEvent event, float x, float y, int count,
+            public void tap(InputEvent event, float x, float y, int count,
                                   int button) {
-                super.touchDown(event, x, y, count, button);
+                super.tap(event, x, y, count, button);
                 ScreenManager.getInstance().showScreen(ScreenEnum.SELECT_LEVELS_SCREEM, game, levelsType);
             }
         });

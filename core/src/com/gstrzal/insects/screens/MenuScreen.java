@@ -82,9 +82,9 @@ public class MenuScreen extends ScreenAdapter {
 
         play.addListener(new ActorGestureListener() {
             @Override
-            public void touchDown(InputEvent event, float x, float y, int count,
+            public void tap(InputEvent event, float x, float y, int count,
                             int button) {
-                super.touchDown(event, x, y, count, button);
+                super.tap(event, x, y, count, button);
                 ScreenManager.getInstance().showScreen(ScreenEnum.STORY_SCREEN, game);
             }
         });
@@ -100,9 +100,9 @@ public class MenuScreen extends ScreenAdapter {
 
         options.addListener(new ActorGestureListener() {
             @Override
-            public void touchDown(InputEvent event, float x, float y, int count,
+            public void tap(InputEvent event, float x, float y, int count,
                             int button) {
-                super.touchDown(event, x, y, count, button);
+                super.tap(event, x, y, count, button);
                 ScreenManager.getInstance().showScreen(ScreenEnum.OPTIONS_SCREEN, game);
             }
         });
@@ -119,9 +119,9 @@ public class MenuScreen extends ScreenAdapter {
 
         instructions.addListener(new ActorGestureListener() {
             @Override
-            public void touchDown(InputEvent event, float x, float y, int count,
+            public void tap(InputEvent event, float x, float y, int count,
                             int button) {
-                super.touchDown(event, x, y, count, button);
+                super.tap(event, x, y, count, button);
                 ScreenManager.getInstance().showScreen(ScreenEnum.INSTRUCTIONS_SCREEN, game);
             }
         });
@@ -137,9 +137,9 @@ public class MenuScreen extends ScreenAdapter {
 
         selectLevels.addListener(new ActorGestureListener() {
             @Override
-            public void touchDown(InputEvent event, float x, float y, int count,
+            public void tap(InputEvent event, float x, float y, int count,
                             int button) {
-                super.touchDown(event, x, y, count, button);
+                super.tap(event, x, y, count, button);
                 ScreenManager.getInstance().showScreen(ScreenEnum.SELECT_LEVELS_SCREEM, game, SelectLevelsType.ONE);
             }
         });
@@ -155,9 +155,9 @@ public class MenuScreen extends ScreenAdapter {
 
         minigames.addListener(new ActorGestureListener() {
             @Override
-            public void touchDown(InputEvent event, float x, float y, int count,
+            public void tap(InputEvent event, float x, float y, int count,
                             int button) {
-                super.touchDown(event, x, y, count, button);
+                super.tap(event, x, y, count, button);
                 ScreenManager.getInstance().showScreen(ScreenEnum.MINIGAMES_SCREEN, game);
             }
         });
