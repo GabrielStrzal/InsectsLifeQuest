@@ -21,8 +21,8 @@ android {
         applicationId "com.gstrzal.insects"
         minSdkVersion 14
         targetSdkVersion 26
-        versionCode 4
-        versionName "1.0"
+        versionCode 5
+        versionName "1.0.1"
     }
     buildTypes {
         release {
