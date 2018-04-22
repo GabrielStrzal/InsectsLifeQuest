@@ -272,7 +272,7 @@ public class Controller {
                 (int)gameScreen.getNumberOfFlowerInLevel(), levelStatsButtonStyle);
         levelStats.setPosition(50, BACK_BUTTON_Y);
         levelStats.setSize(1450, BUTTON_SIZE);
-        stage.addActor(levelStats);
+        stageGameControls.addActor(levelStats);
 
         actionButtonScreenStage.addListener(new ActorGestureListener() {
             @Override

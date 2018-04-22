@@ -230,23 +230,34 @@ public class GameScreen implements Screen{
 
 
         //Character Change
-        if (characterChange) {
+        if (characterChange && game.currentLevel >= GameConfig.GAME_INSECT_ANT_FREE) {
 
             Insect tempInsc = insectPlayer;
             float tempInscX = tempInsc.b2body.getPosition().x;
             float tempInscY = tempInsc.b2body.getPosition().y;
             tempInsc.dispose();
 
-            if (tempInsc instanceof LBug) {
-                insectPlayer = new Ant(world, (Texture) assetManager.get(Constants.ANT),
-                        tempInscX , tempInscY - insectPlayer.sizeDiff);
+            if (game.currentLevel >= GameConfig.GAME_INSECT_BESOURO_FREE) {
+                if (tempInsc instanceof LBug) {
+                    insectPlayer = new Ant(world, (Texture) assetManager.get(Constants.ANT),
+                            tempInscX, tempInscY - insectPlayer.sizeDiff);
 
-            } else if (tempInsc instanceof Ant){
-                insectPlayer = new Besouro(world, (Texture) assetManager.get(Constants.BESOURO),
-                        tempInscX , tempInscY + insectPlayer.sizeDiff);
-            } else{
-                insectPlayer = new LBug(world, (Texture) assetManager.get(Constants.JOANINHA),
-                        tempInscX , tempInscY);
+                } else if (tempInsc instanceof Ant) {
+                    insectPlayer = new Besouro(world, (Texture) assetManager.get(Constants.BESOURO),
+                            tempInscX, tempInscY + insectPlayer.sizeDiff);
+                } else {
+                    insectPlayer = new LBug(world, (Texture) assetManager.get(Constants.JOANINHA),
+                            tempInscX, tempInscY);
+                }
+            } else {
+                if (tempInsc instanceof LBug) {
+                    insectPlayer = new Ant(world, (Texture) assetManager.get(Constants.ANT),
+                            tempInscX, tempInscY - insectPlayer.sizeDiff);
+
+                } else if (tempInsc instanceof Ant) {
+                    insectPlayer = new LBug(world, (Texture) assetManager.get(Constants.JOANINHA),
+                            tempInscX, tempInscY + insectPlayer.sizeDiff);
+                }
             }
             characterChange = false;
 
@@ -473,7 +484,8 @@ public class GameScreen implements Screen{
         }
     }
     private void drawUnableJumpButton(){
-        if( insectPlayer instanceof Ant || insectPlayer instanceof Besouro){
+        if(gameStatsHandler.isDisplayControllers()
+                && (insectPlayer instanceof Ant || insectPlayer instanceof Besouro)){
             Texture jumpButtonBlockedtexture = assetManager.get(Constants.CONTROLLER_ACTIONS_BLOCKED);
             float height = (jumpButtonBlockedtexture.getHeight() / Insects.PPM) * 0.664f;
             float width = (jumpButtonBlockedtexture.getWidth() / Insects.PPM) * 0.664f;
@@ -493,13 +505,13 @@ public class GameScreen implements Screen{
             float width = nextJoaninha.getWidth() / Insects.PPM;
 
             if(insectPlayer instanceof  LBug) nextInsect = nextAnt;
-            else if(insectPlayer instanceof  Besouro) nextInsect = nextJoaninha;
-            else nextInsect = nextBesouro;
-
-            game.batch.draw(nextInsect,
-                    //50 / Insects.PPM, ((GameConfig.SCREEN_HEIGHT_PX - 250 )/ Insects.PPM) - height/2, //450
-                    (GameConfig.SCREEN_WIDTH_PX-1036)/ Insects.PPM, 10/ Insects.PPM,
-                    width*.7f, height*.7f);
+            else if(insectPlayer instanceof  Ant && game.currentLevel >= GameConfig.GAME_INSECT_BESOURO_FREE) nextInsect = nextBesouro;
+            else nextInsect = nextJoaninha;
+            if (gameStatsHandler.isDisplayControllers() && game.currentLevel >= GameConfig.GAME_INSECT_ANT_FREE) {
+                game.batch.draw(nextInsect,
+                        (GameConfig.SCREEN_WIDTH_PX - 1036) / Insects.PPM, 10 / Insects.PPM,
+                        width * .7f, height * .7f);
+            }
     }
 
 
