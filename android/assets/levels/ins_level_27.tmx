@@ -40,7 +40,7 @@
   <object id="71" x="912.121" y="1345.45" width="106.061" height="24.2424"/>
  </objectgroup>
  <objectgroup name="flowers">
-  <object id="24" x="393.515" y="687.879" width="69.697" height="69.697">
+  <object id="24" x="395.515" y="617.879" width="69.697" height="69.697">
    <ellipse/>
   </object>
   <object id="26" x="1622.91" y="626.485" width="69.697" height="69.697">
@@ -70,16 +70,16 @@
   <object id="38" x="2127.15" y="627.758" width="69.697" height="69.697">
    <ellipse/>
   </object>
-  <object id="44" x="1489.45" y="231.788" width="69.697" height="69.697">
+  <object id="44" x="1499.45" y="273.788" width="69.697" height="69.697">
    <ellipse/>
   </object>
-  <object id="45" x="846.243" y="232.728" width="69.697" height="69.697">
+  <object id="45" x="858.243" y="264.728" width="69.697" height="69.697">
    <ellipse/>
   </object>
-  <object id="49" x="2125.39" y="239.394" width="69.697" height="69.697">
+  <object id="49" x="2139.39" y="277.394" width="69.697" height="69.697">
    <ellipse/>
   </object>
-  <object id="50" x="903.695" y="1181.7" width="69.697" height="69.697">
+  <object id="50" x="915.695" y="1155.7" width="69.697" height="69.697">
    <ellipse/>
   </object>
  </objectgroup>
