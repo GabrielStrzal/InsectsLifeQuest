@@ -10,13 +10,11 @@ import com.gstrzal.insects.Insects;
 
 public class GameStatsHandler {
 
-    private Insects insects;
     Preferences prefs = Gdx.app.getPreferences("insectsGameStats_v1_0");
     Preferences gameSettings = Gdx.app.getPreferences("insectsGameSettings_v1_0");
 
 
-    public GameStatsHandler(Insects insects) {
-        this.insects = insects;
+    public GameStatsHandler() {
     }
 
     public void saveLevelData(LevelStats levelStats){
@@ -111,5 +109,14 @@ public class GameStatsHandler {
     }
      public int getTopCLearedLevel(){
          return prefs.getInteger("topClearedLevel", 3);
+     }
+
+     public void saveLastPlayedLevel(int level){
+         gameSettings.putInteger("lastPlayedLevel", level);
+         gameSettings.flush();
+     }
+
+     public int getLastPlayedLevel(){
+         return gameSettings.getInteger("lastPlayedLevel", 0);
      }
 }

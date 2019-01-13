@@ -115,6 +115,7 @@ public class GameScreen implements Screen{
         this.assetManager = game.getAssetManager();
         this.audioHandler = game.getAudioHandler();
         this.gameStatsHandler = game.getGameStatsHandler();
+        this.gameStatsHandler.saveLastPlayedLevel(level);
         state = STATE.PLAYING;
         gamecam = new OrthographicCamera();
         b2dcam = new OrthographicCamera();
