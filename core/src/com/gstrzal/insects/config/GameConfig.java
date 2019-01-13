@@ -24,7 +24,7 @@ public class GameConfig {
     public static final int GAME_INSECT_ANT_FREE = 8;
     public static final int GAME_INSECT_BESOURO_FREE = 15;
 
-    public static final String GAME_VERSION = "V.1.0.1";
+    public static final String GAME_VERSION = "V.1.1";
 
     public static final boolean debug = false;
 
