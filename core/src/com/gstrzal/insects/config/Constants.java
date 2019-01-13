@@ -16,8 +16,8 @@ public class Constants {
     public static final String MENU_OPTIONS_PRESSED = "menu/button_options_pressed_700x196.png";
     public static final String MENU_INSTRUCTIONS = "menu/button_instructions_700x196.png";
     public static final String MENU_INSTRUCTIONS_PRESSED = "menu/button_instructions_pressed_700x196.png";
-    public static final String MENU_SELECT_LEVEL = "menu/button_missions_700x196.png";
-    public static final String MENU_SELECT_LEVEL_PRESSED = "menu/button_missions_pressed_700x196.png";
+    public static final String MENU_SELECT_LEVEL = "menu/button_levels_700x196.png";
+    public static final String MENU_SELECT_LEVEL_PRESSED = "menu/button_levels_pressed_700x196.png";
     public static final String MENU_MINIGAMES = "menu/button_minigames_700x196.png";
     public static final String MENU_MINIGAMES_PRESSED = "menu/button_minigames_pressed_700x196.png";
     public static final String MENU_SELECT_LEVEL_BACK_BUTTON = "menu/button_back_352x352.png";
