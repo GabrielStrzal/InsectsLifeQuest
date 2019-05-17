@@ -59,7 +59,7 @@ public class Insects extends Game {
 		assetManager.getLogger().setLevel(Logger.DEBUG);
 
 		batch = new SpriteBatch();
-		gameStatsHandler = new GameStatsHandler(this);
+		gameStatsHandler = new GameStatsHandler();
 		assetManager.setLoader(TiledMap.class, new TmxMapLoader(new InternalFileHandleResolver()));
 		audioHandler = new AudioHandler(this);
 		ScreenManager.getInstance().initialize(this);
